@@ -21,5 +21,10 @@ namespace Studyzy.LeanEnglishBySubtitle.Helpers
             }
             return result;
         }
+        private static Regex chineseRegex = new Regex("[\u4e00-\u9fa5]");
+        public static  bool IsChinese(string str)
+        {
+            return chineseRegex.IsMatch(str);
+        }
     }
 }

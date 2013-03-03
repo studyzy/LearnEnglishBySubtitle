@@ -36,7 +36,7 @@ namespace Studyzy.LeanEnglishBySubtitle
             InitMapping(fluentConfiguration);
             
             var sf= fluentConfiguration.BuildSessionFactory();
-        
+      
             return sf;
         }
 

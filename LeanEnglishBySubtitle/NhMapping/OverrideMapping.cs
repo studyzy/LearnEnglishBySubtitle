@@ -11,14 +11,7 @@ using Studyzy.LeanEnglishBySubtitle.Entities;
 namespace Studyzy.LeanEnglishBySubtitle.NhMapping
 {
 
-    public class EngDictionaryMapping : IAutoMappingOverride<EngDictionary>
-    {
-        public void Override(AutoMapping<EngDictionary> mapping)
-        {
-            mapping.Id(x => x.Word).GeneratedBy.Assigned();
-          
-        }
-    }
+  
     public class CK_BookItemMapping : IAutoMappingOverride<CK_BookItem>
     {
         public void Override(AutoMapping<CK_BookItem> mapping)
@@ -46,15 +39,38 @@ namespace Studyzy.LeanEnglishBySubtitle.NhMapping
             mapping.HasMany(c => c.Units).KeyColumn("BookId").Cascade.AllDeleteOrphan().Inverse();
         }
     }
-    public class WordRankMapping : IAutoMappingOverride<WordRank>
+    public class WordRankMapping : IAutoMappingOverride<VocabularyRank>
     {
-        public void Override(AutoMapping<WordRank> mapping)
+        public void Override(AutoMapping<VocabularyRank> mapping)
         {
             mapping.Id(x => x.Word).GeneratedBy.Assigned();
         }
 
     }
+    public class UserNewWordMapping : IAutoMappingOverride<User_NewWord>
+    {
+        public void Override(AutoMapping<User_NewWord> mapping)
+        {
+            mapping.Id(x => x.Word).GeneratedBy.Assigned();
+        }
 
+    }
+    public class EngDictionaryMapping : IAutoMappingOverride<EngDictionary>
+    {
+        public void Override(AutoMapping<EngDictionary> mapping)
+        {
+            mapping.Id(x => x.Word).GeneratedBy.Assigned();
+
+        }
+    }
+    public class EasyWordMapping : IAutoMappingOverride<EasyWord>
+    {
+        public void Override(AutoMapping<EasyWord> mapping)
+        {
+            mapping.Id(x => x.Word).GeneratedBy.Assigned();
+        }
+
+    }
     //public class UMapping : IAutoMappingOverride<UploadFile>
     //{
     //    public void Override(AutoMapping<UploadFile> mapping)

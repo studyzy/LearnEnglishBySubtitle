@@ -289,7 +289,9 @@ namespace Studyzy.LeanEnglishBySubtitle.EngDict
 
                 var word = kv.Key;
                 string xml = kv.Value;
-                words.Add(word, xml);
+
+                var means = StringHelper.GetCoreDescriptions(xml);
+                words.Add(word, means.Count>0?means[0]:"");
                 //if (IncludeMeaning)
                 //{
                 //    words[i] = word + " = " + (xml);

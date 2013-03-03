@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Data.SQLite;
 using NHibernate;
+using NHibernate.Linq;
 using Studyzy.LeanEnglishBySubtitle.Entities;
 using log4net;
 
@@ -53,21 +54,21 @@ namespace Studyzy.LeanEnglishBySubtitle
             if (transaction == null)
                 Session.Flush();
         }
-        public void InsertWordRank(string word, string source)
-        {
-            if (Session.QueryOver<WordRank>().Where(w => w.Word == word).RowCount() == 0)
-            {
-                WordRank ed = new WordRank()
-                    {Word = word, Source = source, KnownStatus = KnownStatus.Unknown, Rank = Rank.Unknown};
-                Session.Save(ed);
-                if (transaction == null)
-                    Session.Flush();
-            }
-            else
-            {
-                logger.Info(word+" is in database");
-            }
-        }
+        //public void InsertWordRank(string word, string source)
+        //{
+        //    if (Session.QueryOver<VocabularyRank>().Where(w => w.Word == word).RowCount() == 0)
+        //    {
+        //        VocabularyRank ed = new VocabularyRank()
+        //            {Word = word, Source = source, KnownStatus = KnownStatus.Unknown, Rank = Rank.Unknown};
+        //        Session.Save(ed);
+        //        if (transaction == null)
+        //            Session.Flush();
+        //    }
+        //    else
+        //    {
+        //        logger.Info(word+" is in database");
+        //    }
+        //}
 
         private ITransaction transaction;
         public void BeginTran()
@@ -96,6 +97,10 @@ namespace Studyzy.LeanEnglishBySubtitle
         {
             return Session.QueryOver<T>().Where(expression).SingleOrDefault();
         }
+        public T FindFirst<T>(Expression<Func<T, bool>> expression) where T : class
+        {
+            return Session.Query<T>().Where(expression).FirstOrDefault();
+        }
         public IList<T> FindAll<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return Session.QueryOver<T>().Where(expression).List();
@@ -103,6 +108,65 @@ namespace Studyzy.LeanEnglishBySubtitle
         public IList<T> GetAll<T>() where T : class
         {
             return Session.QueryOver<T>().List();
+        }
+        public T Save<T>(T obj) where T : class
+        {
+            Session.SaveOrUpdate(obj);
+            return obj;
+        }
+
+        #region User Data
+        
+        public void SaveUserNewWords(IList<string> newWords )
+        {
+            BeginTran();
+            var q= Session.CreateSQLQuery("delete from User_NewWord");
+            q.ExecuteUpdate();
+            foreach (var userNewWord in newWords.Distinct())
+            {
+                User_NewWord entity=new User_NewWord(){Word = userNewWord};
+                Session.SaveOrUpdate(entity);
+            }
+            Commit();
+        }
+        public void SaveUserLearnHistory(IList<User_LearnHistory> histories )
+        {
+            BeginTran();
+            var q = Session.CreateSQLQuery("delete from User_LearnHistory");
+            q.ExecuteUpdate();
+            foreach (var history in histories)
+            {
+                Session.SaveOrUpdate(history);
+            }
+            Commit();
+        }
+        public void ClearUserVocabulary()
+        {
+         
+            var q = Session.CreateSQLQuery("delete from User_Vocabulary");
+            q.ExecuteUpdate();
+
+        }
+
+        public User_Vocabulary GetUserVocabulary(string word)
+        {
+            return FindFirst<User_Vocabulary>(v => v.Word == word);
+        }
+
+        #endregion
+
+        #region Cichang Data
+    
+        public IList<CK_BookItem> GetBookItems(int bookId,int unitId)
+        {
+            return FindAll<CK_BookItem>(i => i.Book.Id == bookId && i.Unit.Id == unitId);
+        }
+        #endregion
+
+
+        public VocabularyRank GetVocabularyRank(string word)
+        {
+            return FindOne<VocabularyRank>(v => v.Word == word);
         }
     }
 }
