@@ -47,7 +47,20 @@ namespace Studyzy.LeanEnglishBySubtitle.Subtitle
     public struct SrtFormat
     {
         public int Number { get; set; }
-        public string StartEndTime { get; set; }
+
+        public string StartEndTime
+        {
+            get { return StartTime.ToString("HH:mm:ss,fff") + " --> " + EndTime.ToString("HH:mm:ss,fff"); }
+            set
+            {
+                var array = value.Split(new string[] {" --> "}, StringSplitOptions.RemoveEmptyEntries);
+                StartTime = Convert.ToDateTime("2000-01-01 " + array[0].Replace(',','.'));
+                EndTime = Convert.ToDateTime("2000-01-01 " + array[1].Replace(',', '.'));
+            }
+        }
+
         public string Text { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

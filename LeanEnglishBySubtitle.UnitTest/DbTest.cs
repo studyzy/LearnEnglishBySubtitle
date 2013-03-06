@@ -13,23 +13,23 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
     public class DbTest
     {
       
-        [Test]
-        public void TestInsertEngDic()
-        {
-            DbOperator dbOperator=new DbOperator();
+        //[Test]
+        //public void TestInsertEngDic()
+        //{
+        //    DbOperator dbOperator=new DbOperator();
 
 
-            var count = dbOperator.Count<EngDictionary>();
-            Assert.AreEqual(count, 0);
+        //    var count = dbOperator.Count<EngDictionary>();
+        //    Assert.AreEqual(count, 0);
 
-            dbOperator.InsertEngDictionary("an","一个，介词");
-            count = dbOperator.Count<EngDictionary>();
-            Assert.AreEqual(count,1);
+        //    dbOperator.InsertEngDictionary("an","一个，介词");
+        //    count = dbOperator.Count<EngDictionary>();
+        //    Assert.AreEqual(count,1);
 
-            dbOperator.InsertEngDictionary("study", "学习");
-            count = dbOperator.Count<EngDictionary>();
-            Assert.AreEqual(count, 2);
-        }
+        //    dbOperator.InsertEngDictionary("study", "学习");
+        //    count = dbOperator.Count<EngDictionary>();
+        //    Assert.AreEqual(count, 2);
+        //}
         [Test]
         public void TestInsertVocabularyRank()
         {

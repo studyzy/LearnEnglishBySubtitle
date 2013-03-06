@@ -26,5 +26,10 @@ namespace Studyzy.LeanEnglishBySubtitle.Helpers
         {
             return chineseRegex.IsMatch(str);
         }
+        private static Regex remarkRegex = new Regex(@"\(.*?\)");
+        public static string RemoveRemark(string line)
+        {
+            return remarkRegex.Replace(remarkRegex.Replace(line, ""),"");
+        }
     }
 }

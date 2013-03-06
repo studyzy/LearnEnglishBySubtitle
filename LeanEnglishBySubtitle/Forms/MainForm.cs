@@ -27,12 +27,14 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             InitializeComponent();
             dbOperator = new DbOperator();
             service = new Service(dbOperator);
-            
+            englishWordService=new EnglishWordService();
         }
 
         private int userRank = 4;
+        private bool removeChinese = true;
         DbOperator dbOperator;
         Service service;
+        private EnglishWordService englishWordService;
         private DictionaryService dictionaryService=DictionaryService.Instance;
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
@@ -47,10 +49,41 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
          
             var txt = FileOperationHelper.ReadFile(txbSubtitleFilePath.Text);
             var srts = SrtOperator.Parse(txt);
+            if (removeChinese)
+            {
+                srts = RemoveChinese(srts);
+            }
             ShowSubtitleText(srts);
             Subtitle = srts;
         }
-
+        private IList<SrtFormat> RemoveChinese(IList<SrtFormat> srts )
+        {
+            var newSrts = new List<SrtFormat>();
+            for (int i = 0; i < srts.Count; i++)
+            {
+                var srtFormat = srts[i];
+                var lines = srtFormat.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                IList<string> newLines = new List<string>();
+                foreach (var line in lines)
+                {
+                    var l = StringHelper.RemoveRemark(line);
+                    if (!StringHelper.IsChinese(l))
+                    {
+                        newLines.Add(l);
+                    }
+                }
+                if (newLines.Count > 0)
+                {
+                    srtFormat.Text = string.Join("\r\n", newLines.ToArray());
+                }
+                else
+                {
+                    srtFormat.Text = " ";
+                }
+                newSrts.Add(srtFormat);
+            }
+            return newSrts;
+        }
         private void ShowSubtitleText(IList<SrtFormat> srts )
         {
             richTextBox1.Clear();
@@ -65,7 +98,7 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
      
         private void MainForm_Load(object sender, EventArgs e)
         {
-          
+            backgroundLoadDictionary.RunWorkerAsync();
         }
         private void ShowMessage(string message)
         {
@@ -101,41 +134,93 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             ShowMessage("同步完成");
         }
 
-        private void ToolStripMenuItemRemoveChinese_Click(object sender, EventArgs e)
-        {
-            RemoveChineseSubtitleForm form = new RemoveChineseSubtitleForm();
-            form.Show();
-        }
+     
 
         private void btnRemark_Click(object sender, EventArgs e)
         {
             userRank = Convert.ToInt32(numUserVocabularyRank.Value);
-            var newSubtitle = new List<SrtFormat>();
-            for (int i = 0; i < Subtitle.Count;i++ )
+
+            var subtitleWords = PickNewWords(Subtitle);
+            if (subtitleWords.Count > 0)
             {
-                var srtFormat = Subtitle[i];
-                srtFormat.Text = StringAndRemarkString(srtFormat.Text);
-                newSubtitle.Add(srtFormat);
+                NewWordConfirmForm form=new NewWordConfirmForm();
+                form.DataSource = subtitleWords.Values.ToList();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                      Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
+                      foreach (var subtitleWord in form.SelectedNewWords)
+                      {
+                          result.Add(subtitleWord.Word, subtitleWord);
+                      }
+                    var newSubtitle = new List<SrtFormat>();
+                    for (int i = 0; i < Subtitle.Count; i++)
+                    {
+                        var srtFormat = Subtitle[i];
+                        srtFormat.Text = StringAndRemarkString(srtFormat.Text, result);
+                        newSubtitle.Add(srtFormat);
+                    }
+                    Subtitle = newSubtitle;
+                    ShowSubtitleText(newSubtitle);
+                    ClearCache();
+                }
             }
-            Subtitle = newSubtitle;
-            ShowSubtitleText(newSubtitle);
+
+           
         }
-        private string StringAndRemarkString(string line)
+        private IDictionary<string, SubtitleWord> PickNewWords(IList<SrtFormat> subtitles)
+        {
+            Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
+            var texts = subtitles.Select(s => s.Text).ToList();
+            foreach (var line in texts)
+            {
+                var array = line.Split(new char[] { ' ', ',', '.', '?', ':', '!' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string word in array)
+                {
+                    var original = englishWordService.GetOriginalWord(word);
+                    if (result.ContainsKey(original))
+                    {
+                        continue;
+                    }
+                 
+                    var mean = RemarkWord(original);
+                    if (mean!=null)
+                        result.Add(original, new SubtitleWord() { Word = original, WordInSubitle = word, Means = mean.Means, SubtitleSentence = line });
+                }
+            }
+            return result;
+        }
+
+        private string StringAndRemarkString(string line,IDictionary<string,SubtitleWord> words )
         {
             var array = line.Split(new char[] {' ', ',', '.', '?', ':', '!'}, StringSplitOptions.RemoveEmptyEntries);
             foreach (string word in array)
             {
-                line = line.Replace(word, RemarkWord(WordToLower(word)));
+                var w = englishWordService.GetOriginalWord(word);
+                var mean = words.ContainsKey(w) ? words[w].SelectMean : "";
+                if (!string.IsNullOrEmpty(mean))
+                {
+                    if(shortMean)
+                    {
+                        var meanarray = mean.Split(new char[]{';',','},StringSplitOptions.RemoveEmptyEntries);
+                        mean = meanarray[0];
+                    }
+                    line = ReplaceNewWord(line, word, mean);
+                }
             }
             return line;
         }
-        private string WordToLower(string word)
+
+        private string ReplaceNewWord(string line,string word,string mean)
         {
-            if (word == "I"||word=="I'm")
-                return word;
-            return word.ToLower();
+            string fontFormat = "({0})";
+            if (meanColor != default(Color))
+            {
+                fontFormat = "(<font color='#" + meanColor.R.ToString("x") + meanColor.G.ToString("x") + meanColor.B.ToString("x") +"'>{0}</font>)";
+            }
+            return line.Replace(word, word +string.Format(fontFormat,mean) );
         }
-        private Dictionary<string,string> cachedDict=new Dictionary<string, string>();
+
+        private Dictionary<string, EngDictionary> cachedDict = new Dictionary<string, EngDictionary>();
 
         private IList<string> easyWord;
         private bool IsEasyWord(string word)
@@ -145,15 +230,24 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             return easyWord.Contains(word);
         }
 
-        private string RemarkWord(string word)
+        private EngDictionary RemarkWord(string word)
         {
             if (IsEasyWord(word))
             {
-                return word;
+                return null;
             }
             if (!cachedDict.ContainsKey(word))
             {
-                cachedDict[word] = CalcAndGetWordAndMean(word);
+                var w = CalcAndGetWordAndMean(word);
+                if(!string.IsNullOrEmpty(w))
+                {
+                    var d = dictionaryService.GetChineseMeanInDict(w);
+                    cachedDict[word] = d;
+                }
+                else
+                {
+                    cachedDict[word] = null;
+                }
               
             }
             return cachedDict[word];
@@ -163,7 +257,7 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
  
         private User_Vocabulary GetUserVocabulary(string word)
         {
-            if (userVocabularies == null)
+            if (userVocabularies == null||userVocabularies.Count==0)
             {
                 userVocabularies = dbOperator.GetAll<User_Vocabulary>();
             }
@@ -173,7 +267,7 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         private IList<VocabularyRank> vocabularyRanks;
         private VocabularyRank GetVocabularyRank(string word)
         {
-          if (vocabularyRanks == null)
+          if (vocabularyRanks == null||vocabularyRanks.Count==0)
             {
                 vocabularyRanks = dbOperator.GetAll<VocabularyRank>();
             }
@@ -181,86 +275,99 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         }
         private string CalcAndGetWordAndMean(string word)
         {
-            var originalWord = GetOriginalWord(word);
-            var vocabulary = GetUserVocabulary(originalWord);
+ 
+            var vocabulary = GetUserVocabulary(word);
             if (vocabulary != null)
             {
                 if (vocabulary.KnownStatus == KnownStatus.Known)
                 {
                     //用户认识这个词，那么就不用替换
-                    return word;
+                    return "";
                 }
                 else //用户的生词表中有这个词，
                 {
-                    return GetWordAndMean(word);
+                    return (word);
                 }
             }
             //用户词汇中没有这个词，那么就查询词频分级表，看有没有分级信息
-            var rank = GetVocabularyRank(originalWord);
+            var rank = GetVocabularyRank(word);
             if (rank != null)
             {
                 if (rank.RankValue < userRank)
                 {
-                    return GetWordAndMean(word);
+                    return (word);
                 }
                 else
                 {
-                    return word;
+                    return "";
                 }
             }
-            return GetWordAndMean(word);
+            return (word);
 
         }
 
-        private string GetWordAndMean(string word)
+      
+
+    
+        private void backgroundLoadDictionary_DoWork(object sender, DoWorkEventArgs e)
         {
-            var mean = dictionaryService.GetChineseMean(word);
-            if (string.IsNullOrEmpty(mean))
-            {
-                return word;
-            }
-            return word + "(" + mean + ")";
+            dictionaryService.IsInDictionary("a");
         }
 
-        private string GetOriginalWord(string word)
+        private void backgroundLoadDictionary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
-            if (word.EndsWith("ing"))//进行时
-            {
-                var newWord = word.Substring(0, word.Length - 3);
-                if (dictionaryService.IsInDictionary(newWord))
-                {
-                    return newWord;
-                }
-                newWord += "e";
-                if (dictionaryService.IsInDictionary(newWord))
-                {
-                    return newWord;
-                }
-            }
-            if (word.EndsWith("ed") || word.EndsWith("es"))//过去式 //复数
-            {
-                var newWord = word.Substring(0, word.Length - 2);
-                if (dictionaryService.IsInDictionary(newWord))
-                {
-                    return newWord;
-                }
-                newWord += "e";
-                if (dictionaryService.IsInDictionary(newWord))
-                {
-                    return newWord;
-                }
-            }
-            if (word.EndsWith("s"))//复数
-            {
-                var newWord = word.Substring(0, word.Length - 1);
-                if (dictionaryService.IsInDictionary(newWord))
-                {
-                    return newWord;
-                }
-               
-            }
-            return word;
+            ShowMessage("字典装载完成.");
+            btnRemark.Enabled = true;
         }
+        private  void ClearCache()
+        {
+            userVocabularies.Clear();
+            cachedDict.Clear();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var bakFile = txbSubtitleFilePath.Text + ".bak";
+            if(!File.Exists(bakFile))
+            {
+                File.Copy(txbSubtitleFilePath.Text, bakFile);
+            }
+            var str = SrtOperator.SrtFormat2String(Subtitle);
+            FileOperationHelper.WriteFile(txbSubtitleFilePath.Text, Encoding.UTF8, str);
+            ShowMessage("保存成功");
+        }
+
+        private void ToolStripMenuItemAdjustSubtitleTimeline_Click(object sender, EventArgs e)
+        {
+            TimelineAdjustForm form=new TimelineAdjustForm();
+            form.Show();
+        }
+
+        private void ToolStripMenuItemFilterChinese_Click(object sender, EventArgs e)
+        {
+            removeChinese = ToolStripMenuItemFilterChinese.Checked;
+        }
+
+        private bool shortMean = true;
+        private void ToolStripMenuItemShortMean_Click(object sender, EventArgs e)
+        {
+            shortMean = ToolStripMenuItemShortMean.Checked;
+        }
+
+        private void ToolStripMenuItemMeanStyleConfig_Click(object sender, EventArgs e)
+        {
+            var r = colorDialog1.ShowDialog();
+            if ( r== DialogResult.OK)
+            {
+                meanColor = colorDialog1.Color;
+            }
+            else if(r==DialogResult.Cancel)
+            {
+                meanColor = default(Color);
+            }
+        }
+
+        private Color meanColor;
+
     }
 }

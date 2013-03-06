@@ -15,20 +15,23 @@ namespace Studyzy.LeanEnglishBySubtitle.EngDict
             Ld2FilePath = "Modern.ld2";
         }
         private LingoesLd2 ld2Parse=new LingoesLd2();
-        private IDictionary<string, string> engDictionary;
-        private IDictionary<string,string> EngDictionary
+        private IDictionary<string, EngDictionary> engDictionary;
+        private IDictionary<string, EngDictionary> EngDictionary
         {
             get
             {
                 if (engDictionary == null)
                 {
-                    engDictionary=new Dictionary<string, string>();
-                    engDictionary = ld2Parse.Parse(Ld2FilePath);
-                    //foreach (var word in engDictionary.Keys)
-                    //{
-                    //    var means = StringHelper.GetCoreDescriptions(engDictionary[word]);
-                    //    engDictionary[word] = means.Count>0? means[0]:"";
-                    //}
+                    engDictionary = new Dictionary<string, EngDictionary>();
+                    var dictionary = ld2Parse.Parse(Ld2FilePath);
+                    foreach (var word in dictionary.Keys)
+                    {
+                        var means = StringHelper.GetCoreDescriptions(dictionary[word]);
+                        if (!engDictionary.ContainsKey(word))
+                        {
+                            engDictionary.Add(word,new EngDictionary(){Word = word,Detail = dictionary[word],Means = means});
+                        }
+                    }
                 }
                 return engDictionary;
             }
@@ -37,11 +40,17 @@ namespace Studyzy.LeanEnglishBySubtitle.EngDict
         /// 字典的路径
         /// </summary>
         public string Ld2FilePath { get; set; }
-        public  string GetChineseMean(string word)
+        public  IList<string> GetChineseMean(string word)
         {
             if(EngDictionary.ContainsKey(word))
-            return EngDictionary[word];
-            return "";
+            return EngDictionary[word].Means;
+            return new List<string>();
+        }
+        public EngDictionary GetChineseMeanInDict(string word)
+        {
+            if (EngDictionary.ContainsKey(word))
+                return EngDictionary[word];
+            return null;
         }
         public bool IsInDictionary(string word)
         {

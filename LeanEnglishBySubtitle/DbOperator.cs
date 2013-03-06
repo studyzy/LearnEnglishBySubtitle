@@ -47,13 +47,13 @@ namespace Studyzy.LeanEnglishBySubtitle
         {
             return Session.QueryOver<T>().RowCount();
         }
-        public void InsertEngDictionary(string word, string description)
-        {
-            EngDictionary ed = new EngDictionary() {Word = word, Description = description};
-            Session.SaveOrUpdate(ed);
-            if (transaction == null)
-                Session.Flush();
-        }
+        //public void InsertEngDictionary(string word, string description)
+        //{
+        //    EngDictionary ed = new EngDictionary() {Word = word, Description = description};
+        //    Session.SaveOrUpdate(ed);
+        //    if (transaction == null)
+        //        Session.Flush();
+        //}
         //public void InsertWordRank(string word, string source)
         //{
         //    if (Session.QueryOver<VocabularyRank>().Where(w => w.Word == word).RowCount() == 0)
@@ -80,15 +80,15 @@ namespace Studyzy.LeanEnglishBySubtitle
             transaction.Commit();
             transaction = null;
         }
-        public string GetDecription(string word)
-        {
-            var result= Session.QueryOver<EngDictionary>().Where(d => d.Word == word).SingleOrDefault();
-            if (result == null)
-            {
-                return "";
-            }
-            return result.Description;
-        }
+        //public string GetDecription(string word)
+        //{
+        //    var result= Session.QueryOver<EngDictionary>().Where(d => d.Word == word).SingleOrDefault();
+        //    if (result == null)
+        //    {
+        //        return "";
+        //    }
+        //    return result.Description;
+        //}
         //public T GetById<T>(long id) where T : class 
         //{
         //    return Session.CreateCriteria<T>().Add(Expression.Eq("Id", id)).UniqueResult<T>();
@@ -146,6 +146,22 @@ namespace Studyzy.LeanEnglishBySubtitle
             var q = Session.CreateSQLQuery("delete from User_Vocabulary");
             q.ExecuteUpdate();
 
+        }
+
+        public void SaveUserKnownWords(IList<string> words )
+        {
+            BeginTran();
+
+            foreach (var w in words)
+            {
+                UserKnownWord word=new UserKnownWord(){AddTime = DateTime.Now,Word = w};
+                Session.SaveOrUpdate(word);
+                User_Vocabulary vocabulary=new User_Vocabulary();
+                vocabulary.Word = w;
+                vocabulary.KnownStatus=KnownStatus.Known;
+                Session.SaveOrUpdate(vocabulary);
+            }
+            Commit();
         }
 
         public User_Vocabulary GetUserVocabulary(string word)

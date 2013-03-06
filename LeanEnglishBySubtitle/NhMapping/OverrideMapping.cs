@@ -55,9 +55,18 @@ namespace Studyzy.LeanEnglishBySubtitle.NhMapping
         }
 
     }
-    public class EngDictionaryMapping : IAutoMappingOverride<EngDictionary>
+    //public class EngDictionaryMapping : IAutoMappingOverride<EngDictionary>
+    //{
+    //    public void Override(AutoMapping<EngDictionary> mapping)
+    //    {
+    //        mapping.Id(x => x.Word).GeneratedBy.Assigned();
+
+    //    }
+    //}
+
+    public class WordOriginalMapMapping : IAutoMappingOverride<WordOriginalMap>
     {
-        public void Override(AutoMapping<EngDictionary> mapping)
+        public void Override(AutoMapping<WordOriginalMap> mapping)
         {
             mapping.Id(x => x.Word).GeneratedBy.Assigned();
 
