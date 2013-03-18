@@ -80,11 +80,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbOperator.cs" />
+    <Compile Include="EngDict\OxfordDictionaryService.cs" />
+    <Compile Include="EngDict\QuickE2CDictionaryService.cs" />
+    <Compile Include="EngDict\ViconDictionaryService.cs" />
+    <Compile Include="EngDict\LangdaoE2CDictionaryService.cs" />
+    <Compile Include="EngDict\ModernDictionaryService.cs" />
     <Compile Include="EngDict\LingoesLd2.cs" />
     <Compile Include="EnglishWordService.cs" />
     <Compile Include="Entities\CK_Books.cs" />
     <Compile Include="Entities\CK_BookUnit.cs" />
     <Compile Include="Entities\CK_BookItem.cs" />
+    <Compile Include="Entities\Subtitle_NewWord.cs" />
     <Compile Include="Entities\EasyWord.cs" />
     <Compile Include="Entities\UserKnownWord.cs" />
     <Compile Include="Entities\User_LearnHistory.cs" />
@@ -148,6 +154,9 @@
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DictionaryConfigForm.resx">
+      <DependentUpon>DictionaryConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewWordConfirmForm.resx">
       <DependentUpon>NewWordConfirmForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,7 +177,13 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="Modern.ld2">
+    <None Include="Dictionaries\Langdao E-C Dictionary.ld2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionaries\Modern.ld2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionaries\Oxford.ld2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="NHibernate.config">
@@ -186,6 +201,12 @@
     </Compile>
     <None Include="Dictionary.db3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionaries\Quick E-C Dictionary.ld2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionaries\Vicon English-Chinese%28S%29 Dictionary.ld2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,24 @@ namespace Studyzy.LeanEnglishBySubtitle
     public class EnglishWordService
     {
         private DbOperator dbOperator = new DbOperator();
-        private DictionaryService dictionaryService = DictionaryService.Instance;
+        private DictionaryService dictionaryService ;
+        public DictionaryService DictionaryService { set { dictionaryService = value; } }
+
+        public EnglishWordService(DictionaryService dictionaryService)
+        {
+            this.dictionaryService = dictionaryService;
+        }
+
+        private IList<VocabularyRank> rankData; 
+        private bool IsInRankTable(string word)
+        {
+            if(rankData==null)
+            {
+                rankData = dbOperator.GetAll<VocabularyRank>();
+            }
+            return rankData.Count(r => r.Word == word) > 0;
+        }
+
         /// <summary>
         /// 传入一个英文单词，获得其原型
         /// </summary>
@@ -30,6 +47,10 @@ namespace Studyzy.LeanEnglishBySubtitle
             if (original != null)
             {
                 return original;
+            }
+            if (IsInRankTable(word))
+            {
+                return word;
             }
             if (word.Length>4 && word.EndsWith("ing"))//进行时
             {
@@ -139,13 +160,13 @@ namespace Studyzy.LeanEnglishBySubtitle
 
         private bool IsSameMean(string newWord, string oldWord)
         {
-            var a = dictionaryService.GetChineseMeanInDict(newWord);
-            var b = dictionaryService.GetChineseMeanInDict(oldWord);
-            if (a != null && b == null)
+            var newMean = dictionaryService.GetChineseMeanInDict(newWord);
+            var oldMean = dictionaryService.GetChineseMeanInDict(oldWord);
+            if (newMean != null && oldMean == null)
             {
                 return true;
             }
-            if (a != null && a.Detail == b.Detail)
+            if (newMean != null && newMean.Detail == oldMean.Detail)
             {
                 return true;
             }

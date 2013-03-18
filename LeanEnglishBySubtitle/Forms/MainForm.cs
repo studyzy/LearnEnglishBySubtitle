@@ -27,7 +27,7 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             InitializeComponent();
             dbOperator = new DbOperator();
             service = new Service(dbOperator);
-            englishWordService=new EnglishWordService();
+            englishWordService = new EnglishWordService(dictionaryService);
         }
 
         private int userRank = 4;
@@ -35,7 +35,7 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         DbOperator dbOperator;
         Service service;
         private EnglishWordService englishWordService;
-        private DictionaryService dictionaryService=DictionaryService.Instance;
+        private DictionaryService dictionaryService=new ModernDictionaryService();
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -147,6 +147,8 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
                 form.DataSource = subtitleWords.Values.ToList();
                 if (form.ShowDialog() == DialogResult.OK)
                 {
+                    var subtitleName = Path.GetFileNameWithoutExtension(txbSubtitleFilePath.Text);
+                     dbOperator.SaveSubtitleNewWords(form.SelectedNewWords,subtitleName);
                       Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
                       foreach (var subtitleWord in form.SelectedNewWords)
                       {
@@ -217,7 +219,7 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             {
                 fontFormat = "(<font color='#" + meanColor.R.ToString("x") + meanColor.G.ToString("x") + meanColor.B.ToString("x") +"'>{0}</font>)";
             }
-            return line.Replace(word, word +string.Format(fontFormat,mean) );
+            return line.Replace(word, word +string.Format(fontFormat,mean.Trim()) );
         }
 
         private Dictionary<string, EngDictionary> cachedDict = new Dictionary<string, EngDictionary>();
@@ -368,6 +370,20 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         }
 
         private Color meanColor;
+
+        private void ToolStripMenuItemDictionaryConfig_Click(object sender, EventArgs e)
+        {
+            DictionaryConfigForm form=new DictionaryConfigForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                this.dictionaryService = form.SelectDictionaryService;
+                englishWordService.DictionaryService = dictionaryService;
+                if(!backgroundLoadDictionary.IsBusy)
+                {
+                    backgroundLoadDictionary.RunWorkerAsync();
+                }
+            }
+        }
 
     }
 }

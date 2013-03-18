@@ -67,7 +67,7 @@
     <None Include="HJBookDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Modern.ld2">
+    <None Include="Dictionaries\Modern.ld2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="NHibernate.config" />

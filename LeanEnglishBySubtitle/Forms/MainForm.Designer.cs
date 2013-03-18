@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txbSubtitleFilePath = new System.Windows.Forms.TextBox();
@@ -42,7 +43,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.字典设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemDictionaryConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.已知词汇管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemFilterChinese = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemShortMean = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,7 +180,7 @@
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.字典设置ToolStripMenuItem,
+            this.ToolStripMenuItemDictionaryConfig,
             this.已知词汇管理ToolStripMenuItem,
             this.ToolStripMenuItemFilterChinese,
             this.ToolStripMenuItemShortMean,
@@ -188,11 +189,12 @@
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
-            // 字典设置ToolStripMenuItem
+            // ToolStripMenuItemDictionaryConfig
             // 
-            this.字典设置ToolStripMenuItem.Name = "字典设置ToolStripMenuItem";
-            this.字典设置ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.字典设置ToolStripMenuItem.Text = "字典设置";
+            this.ToolStripMenuItemDictionaryConfig.Name = "ToolStripMenuItemDictionaryConfig";
+            this.ToolStripMenuItemDictionaryConfig.Size = new System.Drawing.Size(172, 22);
+            this.ToolStripMenuItemDictionaryConfig.Text = "字典设置";
+            this.ToolStripMenuItemDictionaryConfig.Click += new System.EventHandler(this.ToolStripMenuItemDictionaryConfig_Click);
             // 
             // 已知词汇管理ToolStripMenuItem
             // 
@@ -253,6 +255,7 @@
             // 
             // 捐赠ToolStripMenuItem
             // 
+            this.捐赠ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("捐赠ToolStripMenuItem.Image")));
             this.捐赠ToolStripMenuItem.Name = "捐赠ToolStripMenuItem";
             this.捐赠ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.捐赠ToolStripMenuItem.Text = "捐赠";
@@ -360,7 +363,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAdjustSubtitleTimeline;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numUserVocabularyRank;
-        private System.Windows.Forms.ToolStripMenuItem 字典设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDictionaryConfig;
         private System.ComponentModel.BackgroundWorker backgroundLoadDictionary;
         private System.Windows.Forms.ToolStripMenuItem 已知词汇管理ToolStripMenuItem;
         private System.Windows.Forms.Button btnSave;

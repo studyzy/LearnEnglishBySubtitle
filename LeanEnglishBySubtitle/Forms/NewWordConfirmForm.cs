@@ -69,6 +69,8 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             }
             dbOperator.SaveUserKnownWords(knownWords);
             SelectedNewWords = unknownWords;
+           
+
             DialogResult=DialogResult.OK;
         }
 
@@ -77,6 +79,11 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             var rest= this.Width - 240;
             dataGridView1.Columns[2].Width = rest/2;
             dataGridView1.Columns[3].Width = rest/2;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult=DialogResult.Cancel;
         }
     }
 }

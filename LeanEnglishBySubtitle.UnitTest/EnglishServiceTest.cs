@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using Studyzy.LeanEnglishBySubtitle.EngDict;
 
 namespace Studyzy.LeanEnglishBySubtitle.UnitTest
 {
     class EnglishServiceTest
     {
-        EnglishWordService service=new EnglishWordService();
+        EnglishWordService service=new EnglishWordService(new LangdaoE2CDictionaryService());
 
         [TestCase("doing","do")]
-        [TestCase("making","make")]
         [TestCase("stopping","stop")]
         public void TestVerbIng(string word,string result)
         {
             var o= service.GetOriginalWord(word);
             Assert .AreEqual(o,result);
         }
+
         [TestCase("stopped","stop")]
         [TestCase("studied", "study")]
         [TestCase("fired", "fire")]
@@ -50,6 +51,7 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
             var o = service.GetOriginalWord(word);
             Assert.AreEqual(o, result);
         }
+         [TestCase("tired")]
         [TestCase("morning")]
         [TestCase("always")]
         public void TestKeepSame(string word)

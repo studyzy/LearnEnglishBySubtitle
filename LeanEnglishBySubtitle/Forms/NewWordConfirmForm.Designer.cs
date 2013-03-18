@@ -80,6 +80,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // IsNewWord
             // 
@@ -105,7 +106,7 @@
             // 
             this.Means.HeaderText = "解释";
             this.Means.Name = "Means";
-            this.Means.Width = 300;
+            this.Means.Width = 290;
             // 
             // NewWordConfirmForm
             // 

@@ -8,19 +8,28 @@ namespace Studyzy.LeanEnglishBySubtitle.Helpers
 {
     class StringHelper
     {
-        private static Regex regex = new Regex("<Q>(.*?)</Q>");
-        private static Regex detailRegex = new Regex("<.*?/.*?>");
-        public static IList<string> GetCoreDescriptions(string xml)
-        {
-            var result = new List<string>();
-            foreach (Match match in regex.Matches(xml))
-            {
-                var val = match.Groups[1].Value;
+      
+        //private static Regex regex2 = new Regex("<N>(.*?)</N>");
+        //private static Regex detailRegex = new Regex("<.*?/.*?>");
+       
+        //public static IList<string> GetCoreDescriptions2(string xml)
+        //{
+        //    var result = new List<string>();
+        //    if (xml.IndexOf("<J D=") > 0)
+        //    {
+        //        xml = xml.Substring(0, xml.IndexOf("<J D="));
+        //        //去掉继承用法和特殊用法的解释
+        //    }
 
-                result.Add(detailRegex.Replace(val, ""));
-            }
-            return result;
-        }
+        //    foreach (Match match in regex2.Matches(xml))
+        //    {
+        //        var val = match.Groups[1].Value;
+
+        //        result.Add(detailRegex.Replace(val, ""));
+        //    }
+        //    return result;
+        //}
+
         private static Regex chineseRegex = new Regex("[\u4e00-\u9fa5]");
         public static  bool IsChinese(string str)
         {

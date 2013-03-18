@@ -180,6 +180,19 @@ namespace Studyzy.LeanEnglishBySubtitle
         #endregion
 
 
+        public void SaveSubtitleNewWords(IList<SubtitleWord> newWords,string subtitleName)
+        {
+            BeginTran();
+            var q = Session.CreateSQLQuery("delete from Subtitle_NewWord where SubtitleName='"+subtitleName.Replace("'","''")+"'");
+            q.ExecuteUpdate();
+            foreach (var userNewWord in newWords.Distinct())
+            {
+                Subtitle_NewWord entity = new Subtitle_NewWord() { NewWord = userNewWord.Word,SubtitleName = subtitleName,WordMean = userNewWord.SelectMean};
+                Session.SaveOrUpdate(entity);
+            }
+            Commit();
+        }
+
         public VocabularyRank GetVocabularyRank(string word)
         {
             return FindOne<VocabularyRank>(v => v.Word == word);
