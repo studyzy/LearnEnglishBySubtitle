@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<FCVocaPhraseList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Phrases>
+    <Phrase>
+      <Eng>tape</Eng>
+      <Phonetic>[teɪp]</Phonetic>
+      <Defi>n.磁带,录音带,卷尺;v.用磁带录音,判断,用带捆扎;</Defi>
+      <Date>2013-04-10 09:48:33</Date>
+    </Phrase>
+    <Phrase>
+      <Eng>sincerely</Eng>
+      <Phonetic>[sɪnˈsɪrli]</Phonetic>
+      <Defi>adv.真诚地,真挚地,诚实地;</Defi>
+      <Date>2013-04-10 09:48:48</Date>
+    </Phrase>
+  </Phrases>
+</FCVocaPhraseList>

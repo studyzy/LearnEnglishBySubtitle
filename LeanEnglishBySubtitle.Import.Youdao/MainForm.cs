@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using Studyzy.LeanEnglishBySubtitle;
 
 namespace LeanEnglishBySubtitle.Import.Youdao
 {
@@ -27,7 +28,14 @@ namespace LeanEnglishBySubtitle.Import.Youdao
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-           
+            var list = XmlParseHelper.Parse(txbFilePath.Text);
+            var result = new List<Vocabulary>();
+            foreach (var str in list)
+            {
+                result.Add(new Vocabulary(){Word = str,IsKnown = false});
+            }
+            Service service=new Service();
+            service.SaveUserVocabulary(result,"有道词典");
         }
 
 
