@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Studyzy.LeanEnglishBySubtitle.Entities
 {
+    /// <summary>
+    /// 单词的变形和原型的对应
+    /// </summary>
     public class WordOriginalMap
     {
         public virtual string Word { get; set; }

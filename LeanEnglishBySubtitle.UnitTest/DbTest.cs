@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NHibernate;
@@ -66,5 +67,22 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
         //        }
         //    }
         //}
+        [Test]
+        public void TestInsertVocabulary()
+        {
+            StreamReader sr=new StreamReader("Vocabulary.txt");
+            var txt = sr.ReadToEnd();
+            sr.Close();
+            var lines = txt.Split(new char[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+            var list = new List<Vocabulary>();
+            foreach (var line in lines)
+            {
+                list.Add(new Vocabulary(){Word = line.Split(',')[1]});
+            }
+            Service service=new Service();
+            Debug.WriteLine("Start:"+DateTime.Now);
+            service.SaveUserVocabulary(list,"单元测试");
+            Debug.WriteLine("Finish:" + DateTime.Now);
+        }
     }
 }

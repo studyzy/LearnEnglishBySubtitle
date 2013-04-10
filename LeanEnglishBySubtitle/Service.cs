@@ -6,50 +6,35 @@ using Studyzy.LeanEnglishBySubtitle.Entities;
 
 namespace Studyzy.LeanEnglishBySubtitle
 {
-    internal class Service
+    public class Service
     {
-        public Service(DbOperator dbOperator)
-        {
-            this.dbOperator = dbOperator;
-        }
+       
 
-        private DbOperator dbOperator;
+        private DbOperator dbOperator=new DbOperator();
 
-        public void CalcUserVocabulary(IList<string> userNewWords = null)
+        public void SaveUserVocabulary(IList<Vocabulary> userWords,string source )
         {
-            IList<string> newWords = new List<string>();
-            if (userNewWords == null)
-            {
-                newWords = dbOperator.GetAll<User_NewWord>().Select(w => w.Word).ToList();
-            }
-            else
-            {
-                newWords = userNewWords;
-            }
+            var allUserVocabulary = dbOperator.GetAll<UserVocabulary>();
+
+
             dbOperator.BeginTran();
-            dbOperator.ClearUserVocabulary();
-            var histories = dbOperator.GetAll<User_LearnHistory>();
-            foreach (var history in histories)
+            foreach (var word in userWords)
             {
-                //读取已经背诵的单元
-                for (var i = 1; i <= history.MaxUnitId; i++)
+                var dbWord = allUserVocabulary.SingleOrDefault(v => v.Word == word.Word);
+                if (dbWord != null)
                 {
-                    var items = dbOperator.GetBookItems(history.BookId, i);
-                    foreach (var bookItem in items)
-                    {
-                        User_Vocabulary vocabulary = new User_Vocabulary() {Word = bookItem.Word};
-                        if (newWords.Contains(bookItem.Word))
-                        {
-                            vocabulary.KnownStatus = KnownStatus.DoNotKnow;
-                        }
-                        else
-                        {
-                            vocabulary.KnownStatus = KnownStatus.Known;
-                        }
-                        dbOperator.Save<User_Vocabulary>(vocabulary);
-                    }
+                    dbWord.KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown;
+                    dbWord.Source = source;
+                    dbOperator.Save(dbWord);
+                }
+                else
+                {
+                    UserVocabulary uv = new UserVocabulary() { Word = word.Word,Source = source,KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown };
+                    allUserVocabulary.Add(uv);
+                    dbOperator.Save(uv);
                 }
             }
+           
             dbOperator.Commit();
         }
     }

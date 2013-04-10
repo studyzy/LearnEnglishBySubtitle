@@ -11,8 +11,9 @@ namespace Studyzy.LeanEnglishBySubtitle.Entities
     public class Subtitle_NewWord
     {
         public virtual int Id { get; set; }
-        public virtual string NewWord { get; set; }
+        public virtual string Word { get; set; }
         public virtual string SubtitleName	 { get; set; }
+        public virtual string Sentence { get; set; }
         public virtual string WordMean { get; set; } 
     }
 }

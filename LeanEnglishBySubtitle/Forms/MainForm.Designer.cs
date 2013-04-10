@@ -36,13 +36,11 @@
             this.btnParse = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnRemark = new System.Windows.Forms.Button();
-            this.btnSyncNewWords = new System.Windows.Forms.Button();
-            this.txbUserId = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemUserVocabularyConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemDictionaryConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.已知词汇管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemFilterChinese = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,14 +51,11 @@
             this.帮助ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.捐赠ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.numUserVocabularyRank = new System.Windows.Forms.NumericUpDown();
             this.backgroundLoadDictionary = new System.ComponentModel.BackgroundWorker();
             this.btnSave = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUserVocabularyRank)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpenFile
@@ -123,33 +118,6 @@
             this.btnRemark.UseVisualStyleBackColor = true;
             this.btnRemark.Click += new System.EventHandler(this.btnRemark_Click);
             // 
-            // btnSyncNewWords
-            // 
-            this.btnSyncNewWords.Location = new System.Drawing.Point(207, 70);
-            this.btnSyncNewWords.Name = "btnSyncNewWords";
-            this.btnSyncNewWords.Size = new System.Drawing.Size(90, 23);
-            this.btnSyncNewWords.TabIndex = 7;
-            this.btnSyncNewWords.Text = "读取词场数据";
-            this.btnSyncNewWords.UseVisualStyleBackColor = true;
-            this.btnSyncNewWords.Click += new System.EventHandler(this.btnSyncNewWords_Click);
-            // 
-            // txbUserId
-            // 
-            this.txbUserId.Location = new System.Drawing.Point(83, 72);
-            this.txbUserId.Name = "txbUserId";
-            this.txbUserId.Size = new System.Drawing.Size(100, 21);
-            this.txbUserId.TabIndex = 8;
-            this.txbUserId.Text = "11009764";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "沪江Id：";
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -180,6 +148,7 @@
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemUserVocabularyConfig,
             this.ToolStripMenuItemDictionaryConfig,
             this.已知词汇管理ToolStripMenuItem,
             this.ToolStripMenuItemFilterChinese,
@@ -188,6 +157,13 @@
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
+            // 
+            // ToolStripMenuItemUserVocabularyConfig
+            // 
+            this.ToolStripMenuItemUserVocabularyConfig.Name = "ToolStripMenuItemUserVocabularyConfig";
+            this.ToolStripMenuItemUserVocabularyConfig.Size = new System.Drawing.Size(172, 22);
+            this.ToolStripMenuItemUserVocabularyConfig.Text = "用户词汇量设置";
+            this.ToolStripMenuItemUserVocabularyConfig.Click += new System.EventHandler(this.ToolStripMenuItemUserVocabularyConfig_Click);
             // 
             // ToolStripMenuItemDictionaryConfig
             // 
@@ -266,32 +242,6 @@
             this.关于ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.关于ToolStripMenuItem.Text = "关于";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(323, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 12);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "用户词频等级：";
-            // 
-            // numUserVocabularyRank
-            // 
-            this.numUserVocabularyRank.Location = new System.Drawing.Point(406, 70);
-            this.numUserVocabularyRank.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numUserVocabularyRank.Name = "numUserVocabularyRank";
-            this.numUserVocabularyRank.Size = new System.Drawing.Size(37, 21);
-            this.numUserVocabularyRank.TabIndex = 13;
-            this.numUserVocabularyRank.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            // 
             // backgroundLoadDictionary
             // 
             this.backgroundLoadDictionary.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundLoadDictionary_DoWork);
@@ -313,28 +263,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 644);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.numUserVocabularyRank);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txbUserId);
-            this.Controls.Add(this.btnSyncNewWords);
             this.Controls.Add(this.btnRemark);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnParse);
             this.Controls.Add(this.txbSubtitleFilePath);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOpenFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "深蓝英语字幕助手";
+            this.Text = "深蓝字幕注释小助手";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numUserVocabularyRank)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,9 +294,6 @@
         private System.Windows.Forms.Button btnParse;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnRemark;
-        private System.Windows.Forms.Button btnSyncNewWords;
-        private System.Windows.Forms.TextBox txbUserId;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -361,8 +303,6 @@
         private System.Windows.Forms.ToolStripMenuItem 捐赠ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAdjustSubtitleTimeline;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numUserVocabularyRank;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDictionaryConfig;
         private System.ComponentModel.BackgroundWorker backgroundLoadDictionary;
         private System.Windows.Forms.ToolStripMenuItem 已知词汇管理ToolStripMenuItem;
@@ -371,6 +311,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemShortMean;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemMeanStyleConfig;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserVocabularyConfig;
     }
 }
 

@@ -9,10 +9,9 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Studyzy.LeanEnglishBySubtitle</RootNamespace>
-    <AssemblyName>LeanEnglishBySubtitle</AssemblyName>
+    <AssemblyName>深蓝字幕注释小助手</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -34,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
@@ -53,9 +55,6 @@
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Linq">
-      <HintPath>..\packages\NHibernate.Linq.1.0\lib\NHibernate.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -79,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditEventListener.cs" />
     <Compile Include="DbOperator.cs" />
     <Compile Include="EngDict\OxfordDictionaryService.cs" />
     <Compile Include="EngDict\QuickE2CDictionaryService.cs" />
@@ -87,16 +87,11 @@
     <Compile Include="EngDict\ModernDictionaryService.cs" />
     <Compile Include="EngDict\LingoesLd2.cs" />
     <Compile Include="EnglishWordService.cs" />
-    <Compile Include="Entities\CK_Books.cs" />
-    <Compile Include="Entities\CK_BookUnit.cs" />
-    <Compile Include="Entities\CK_BookItem.cs" />
     <Compile Include="Entities\Subtitle_NewWord.cs" />
     <Compile Include="Entities\EasyWord.cs" />
-    <Compile Include="Entities\UserKnownWord.cs" />
-    <Compile Include="Entities\User_LearnHistory.cs" />
-    <Compile Include="Entities\User_NewWord.cs" />
+    <Compile Include="Entities\Subtitle_KnownWord.cs" />
     <Compile Include="EngDict\EngDictionary.cs" />
-    <Compile Include="Entities\User_Vocabulary.cs" />
+    <Compile Include="Entities\UserVocabulary.cs" />
     <Compile Include="Entities\WordOriginalMap.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
@@ -123,6 +118,12 @@
       <DependentUpon>TimelineAdjustForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EngDict\DictionaryService.cs" />
+    <Compile Include="Forms\UserVocabularyConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserVocabularyConfigForm.Designer.cs">
+      <DependentUpon>UserVocabularyConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\FileOperationHelper.cs" />
     <Compile Include="Helpers\BinFileHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="IAuditEntity.cs" />
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="NhMapping\AutoMapConfiguration.cs" />
     <Compile Include="NhMapping\EnumConvention.cs" />
@@ -144,13 +146,10 @@
     <Compile Include="SubtitleWord.cs" />
     <Compile Include="Subtitle\AssOperator.cs" />
     <Compile Include="Subtitle\SrtOperator.cs" />
-    <Compile Include="UserData\Book.cs" />
-    <Compile Include="UserData\HujiangLogin.cs" />
-    <Compile Include="UserData\HujiangWebService.cs" />
     <Compile Include="UserData\KaixinCichangNewWordImport.cs" />
     <Compile Include="Entities\KnownStatus.cs" />
     <Compile Include="Entities\VocabularyRank.cs" />
-    <Compile Include="UserData\UserBookUnitStatus.cs" />
+    <Compile Include="Vocabulary.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserVocabularyConfigForm.resx">
+      <DependentUpon>UserVocabularyConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -211,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

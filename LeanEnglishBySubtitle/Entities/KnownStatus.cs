@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Studyzy.LeanEnglishBySubtitle.Entities
 {
+    /// <summary>
+    /// 用户是否认识该单词
+    /// </summary>
     public enum KnownStatus
     {
         /// <summary>

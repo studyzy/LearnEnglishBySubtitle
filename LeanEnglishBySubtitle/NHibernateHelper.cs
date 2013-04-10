@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using Iesi.Collections.Generic;
 using NHibernate;
@@ -32,7 +34,9 @@ namespace Studyzy.LeanEnglishBySubtitle
             Configuration.Properties["connection.connection_string"] = "Data Source=" + path + ";Version=3;";
 
             FluentConfiguration fluentConfiguration = Fluently.Configure(Configuration);
-   
+            Configuration.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[] { new AuditEventListener() };
+            Configuration.EventListeners.PreUpdateEventListeners = new IPreUpdateEventListener[] { new AuditEventListener() };
+      
             InitMapping(fluentConfiguration);
             
             var sf= fluentConfiguration.BuildSessionFactory();
@@ -45,14 +49,25 @@ namespace Studyzy.LeanEnglishBySubtitle
             fluentConfiguration.Mappings(
                 x =>
                     {
-                        x.AutoMappings.Add(PersistenceModelGenerator.Generate(new string[] { "LeanEnglishBySubtitle.exe" },
-                                                                              new string[] { "LeanEnglishBySubtitle.exe" }));
+                        x.AutoMappings.Add(Generate());
 #if DEBUG
                         x.AutoMappings.ExportTo(@"D:\Temp");
 #endif
                     });
 
          
+        }
+        private AutoPersistenceModel Generate()
+        {
+            AutoPersistenceModel mappings = AutoMap.Assembly(this.GetType().Assembly, new AutoMapConfiguration());
+            
+            mappings.Conventions.Setup(finder =>
+                {
+                    finder.Add<EnumConvention>();
+
+                });
+            mappings.UseOverridesFromAssembly(GetType().Assembly);
+            return mappings;
         }
 
         public ISession GetSession()

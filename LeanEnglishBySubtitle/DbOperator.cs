@@ -117,29 +117,7 @@ namespace Studyzy.LeanEnglishBySubtitle
 
         #region User Data
         
-        public void SaveUserNewWords(IList<string> newWords )
-        {
-            BeginTran();
-            var q= Session.CreateSQLQuery("delete from User_NewWord");
-            q.ExecuteUpdate();
-            foreach (var userNewWord in newWords.Distinct())
-            {
-                User_NewWord entity=new User_NewWord(){Word = userNewWord};
-                Session.SaveOrUpdate(entity);
-            }
-            Commit();
-        }
-        public void SaveUserLearnHistory(IList<User_LearnHistory> histories )
-        {
-            BeginTran();
-            var q = Session.CreateSQLQuery("delete from User_LearnHistory");
-            q.ExecuteUpdate();
-            foreach (var history in histories)
-            {
-                Session.SaveOrUpdate(history);
-            }
-            Commit();
-        }
+       
         public void ClearUserVocabulary()
         {
          
@@ -154,9 +132,9 @@ namespace Studyzy.LeanEnglishBySubtitle
 
             foreach (var w in words)
             {
-                UserKnownWord word=new UserKnownWord(){AddTime = DateTime.Now,Word = w};
+                Subtitle_KnownWord word=new Subtitle_KnownWord(){AddTime = DateTime.Now,Word = w};
                 Session.SaveOrUpdate(word);
-                User_Vocabulary vocabulary=new User_Vocabulary();
+                UserVocabulary vocabulary=new UserVocabulary();
                 vocabulary.Word = w;
                 vocabulary.KnownStatus=KnownStatus.Known;
                 Session.SaveOrUpdate(vocabulary);
@@ -164,19 +142,11 @@ namespace Studyzy.LeanEnglishBySubtitle
             Commit();
         }
 
-        public User_Vocabulary GetUserVocabulary(string word)
+        public UserVocabulary GetUserVocabulary(string word)
         {
-            return FindFirst<User_Vocabulary>(v => v.Word == word);
+            return FindFirst<UserVocabulary>(v => v.Word == word);
         }
 
-        #endregion
-
-        #region Cichang Data
-    
-        public IList<CK_BookItem> GetBookItems(int bookId,int unitId)
-        {
-            return FindAll<CK_BookItem>(i => i.Book.Id == bookId && i.Unit.Id == unitId);
-        }
         #endregion
 
 
@@ -187,7 +157,7 @@ namespace Studyzy.LeanEnglishBySubtitle
             q.ExecuteUpdate();
             foreach (var userNewWord in newWords.Distinct())
             {
-                Subtitle_NewWord entity = new Subtitle_NewWord() { NewWord = userNewWord.Word,SubtitleName = subtitleName,WordMean = userNewWord.SelectMean};
+                Subtitle_NewWord entity = new Subtitle_NewWord() { Word = userNewWord.Word,SubtitleName = subtitleName,WordMean = userNewWord.SelectMean};
                 Session.SaveOrUpdate(entity);
             }
             Commit();

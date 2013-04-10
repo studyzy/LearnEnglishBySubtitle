@@ -5,6 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle", "Le
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.UnitTest", "LeanEnglishBySubtitle.UnitTest\LeanEnglishBySubtitle.UnitTest.csproj", "{FE1C2408-6508-4904-A67E-96CFD5CF6822}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UT", "UT", "{89A3DCBB-B9F9-4548-B2B2-B6DFB8A37D05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.Import.Iciba", "LeanEnglishBySubtitle.Import.Iciba\LeanEnglishBySubtitle.Import.Iciba.csproj", "{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.Import.Youdao", "LeanEnglishBySubtitle.Import.Youdao\LeanEnglishBySubtitle.Import.Youdao.csproj", "{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.Import.Hujiang", "LeanEnglishBySubtitle.Import.Hujiang\LeanEnglishBySubtitle.Import.Hujiang.csproj", "{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,8 +43,41 @@ Global
 		{FE1C2408-6508-4904-A67E-96CFD5CF6822}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FE1C2408-6508-4904-A67E-96CFD5CF6822}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE1C2408-6508-4904-A67E-96CFD5CF6822}.Release|x86.ActiveCfg = Release|Any CPU
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Debug|x86.ActiveCfg = Debug|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Debug|x86.Build.0 = Debug|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Release|Any CPU.ActiveCfg = Release|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Release|x86.ActiveCfg = Release|x86
+		{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}.Release|x86.Build.0 = Release|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Debug|x86.ActiveCfg = Debug|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Debug|x86.Build.0 = Debug|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Release|Any CPU.ActiveCfg = Release|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Release|x86.ActiveCfg = Release|x86
+		{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}.Release|x86.Build.0 = Release|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Debug|x86.ActiveCfg = Debug|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Debug|x86.Build.0 = Debug|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|Any CPU.ActiveCfg = Release|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|Mixed Platforms.Build.0 = Release|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|x86.ActiveCfg = Release|x86
+		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FE1C2408-6508-4904-A67E-96CFD5CF6822} = {89A3DCBB-B9F9-4548-B2B2-B6DFB8A37D05}
 	EndGlobalSection
 EndGlobal

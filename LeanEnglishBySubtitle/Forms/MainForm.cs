@@ -26,14 +26,14 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         {
             InitializeComponent();
             dbOperator = new DbOperator();
-            service = new Service(dbOperator);
+        
             englishWordService = new EnglishWordService(dictionaryService);
         }
 
         private int userRank = 4;
         private bool removeChinese = true;
         DbOperator dbOperator;
-        Service service;
+     
         private EnglishWordService englishWordService;
         private DictionaryService dictionaryService=new ModernDictionaryService();
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -107,38 +107,38 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         private void btnSyncNewWords_Click(object sender, EventArgs e)
         {
 
-            var uid = Convert.ToInt32(txbUserId.Text);
-            ShowMessage("读取用户生词本...");
-            //读取用户不认识的词
-            var newWordList= HujiangWebService.GetUserItems(uid, Convert.ToDateTime("2000-1-1"));
+            //var uid = Convert.ToInt32(txbUserId.Text);
+            //ShowMessage("读取用户生词本...");
+            ////读取用户不认识的词
+            //var newWordList= HujiangWebService.GetUserItems(uid, Convert.ToDateTime("2000-1-1"));
 
-            ShowMessage( "生词：" + newWordList.Count + "个");
-            dbOperator.SaveUserNewWords(newWordList);
-            ShowMessage("读取用户背诵记录...");
-            //读取用户背诵过的书和单元，得到用户已认识词列表
-            IList<User_LearnHistory> histories=new List<User_LearnHistory>();
-            var userBooks = HujiangWebService.GetPublicBooks(uid, "en");
-            foreach (var userBook in userBooks)
-            {
-                var unitId = HujiangWebService.GetUserUnitMax(uid, userBook.BookID);
-                if (unitId > 0)
-                {
-                    richTextBox1.AppendText(userBook.BookName+ " UnitId:"+unitId+"\r\n");
-                    histories.Add(new User_LearnHistory(){BookId = userBook.BookID,MaxUnitId = unitId});
-                }
-            }
-            //将用户记录写入数据库
-            dbOperator.SaveUserLearnHistory(histories);
-            ShowMessage("统计用户的已知和未知词汇...");
-            service.CalcUserVocabulary(newWordList);
-            ShowMessage("同步完成");
+            //ShowMessage( "生词：" + newWordList.Count + "个");
+            //dbOperator.SaveUserNewWords(newWordList);
+            //ShowMessage("读取用户背诵记录...");
+            ////读取用户背诵过的书和单元，得到用户已认识词列表
+            //IList<User_LearnHistory> histories=new List<User_LearnHistory>();
+            //var userBooks = HujiangWebService.GetPublicBooks(uid, "en");
+            //foreach (var userBook in userBooks)
+            //{
+            //    var unitId = HujiangWebService.GetUserUnitMax(uid, userBook.BookID);
+            //    if (unitId > 0)
+            //    {
+            //        richTextBox1.AppendText(userBook.BookName+ " UnitId:"+unitId+"\r\n");
+            //        histories.Add(new User_LearnHistory(){BookId = userBook.BookID,MaxUnitId = unitId});
+            //    }
+            //}
+            ////将用户记录写入数据库
+            //dbOperator.SaveUserLearnHistory(histories);
+            //ShowMessage("统计用户的已知和未知词汇...");
+            //service.CalcUserVocabulary(newWordList);
+            //ShowMessage("同步完成");
         }
 
      
 
         private void btnRemark_Click(object sender, EventArgs e)
         {
-            userRank = Convert.ToInt32(numUserVocabularyRank.Value);
+            userRank = 4;// Convert.ToInt32(numUserVocabularyRank.Value);
 
             var subtitleWords = PickNewWords(Subtitle);
             if (subtitleWords.Count > 0)
@@ -255,13 +255,13 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
             return cachedDict[word];
         }
 
-        private IList<User_Vocabulary> userVocabularies;
+        private IList<UserVocabulary> userVocabularies;
  
-        private User_Vocabulary GetUserVocabulary(string word)
+        private UserVocabulary GetUserVocabulary(string word)
         {
             if (userVocabularies == null||userVocabularies.Count==0)
             {
-                userVocabularies = dbOperator.GetAll<User_Vocabulary>();
+                userVocabularies = dbOperator.GetAll<UserVocabulary>();
             }
             return (userVocabularies.Where(v => v.Word == word).FirstOrDefault());
         }
@@ -383,6 +383,12 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
                     backgroundLoadDictionary.RunWorkerAsync();
                 }
             }
+        }
+
+        private void ToolStripMenuItemUserVocabularyConfig_Click(object sender, EventArgs e)
+        {
+            UserVocabularyConfigForm form=new UserVocabularyConfigForm();
+            form.Show();
         }
 
     }

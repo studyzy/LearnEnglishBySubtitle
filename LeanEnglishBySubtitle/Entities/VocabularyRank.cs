@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Studyzy.LeanEnglishBySubtitle.Entities
 {
+    /// <summary>
+    /// 柯林斯词频分级数据，1-5级，1最少用，5最常用
+    /// </summary>
     public class VocabularyRank
     {
         /// <summary>

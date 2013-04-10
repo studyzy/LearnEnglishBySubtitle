@@ -13,6 +13,7 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
 
         [TestCase("doing","do")]
         [TestCase("stopping","stop")]
+        [TestCase("deciding", "decide")]
         public void TestVerbIng(string word,string result)
         {
             var o= service.GetOriginalWord(word);
@@ -46,6 +47,8 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
         [TestCase("books","book")]
         [TestCase("houses", "house")]
         [TestCase("churches", "church")]
+        [TestCase("fires", "fire")]
+
         public void TestAddEsOrS(string word, string result)
         {
             var o = service.GetOriginalWord(word);
@@ -54,6 +57,7 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
          [TestCase("tired")]
         [TestCase("morning")]
         [TestCase("always")]
+        [TestCase("miss")]
         public void TestKeepSame(string word)
         {
             var o = service.GetOriginalWord(word);
