@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace LeanEnglishBySubtitle.Import.Youdao
 {
@@ -15,5 +16,20 @@ namespace LeanEnglishBySubtitle.Import.Youdao
         {
             InitializeComponent();
         }
+
+        private void btnSelectFile_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txbFilePath.Text = openFileDialog1.FileName;
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+
     }
 }

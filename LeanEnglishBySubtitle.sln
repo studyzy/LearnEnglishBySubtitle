@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle", "LeanEnglishBySubtitle\LeanEnglishBySubtitle.csproj", "{FCD72E58-D994-456B-9054-EC6CDB40C504}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.UnitTest", "LeanEnglishBySubtitle.UnitTest\LeanEnglishBySubtitle.UnitTest.csproj", "{FE1C2408-6508-4904-A67E-96CFD5CF6822}"
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.Import.Youdao", "LeanEnglishBySubtitle.Import.Youdao\LeanEnglishBySubtitle.Import.Youdao.csproj", "{F38F963F-1416-4E5F-8260-8DF84A9A8A9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.Import.Hujiang", "LeanEnglishBySubtitle.Import.Hujiang\LeanEnglishBySubtitle.Import.Hujiang.csproj", "{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEnglishBySubtitle.Import.Youdao.UnitTest", "LeanEnglishBySubtitle.Import.Youdao.UnitTest\LeanEnglishBySubtitle.Import.Youdao.UnitTest.csproj", "{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,11 +75,22 @@ Global
 		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|x86.ActiveCfg = Release|x86
 		{FDE53E8B-8577-43A6-9DC3-09F2A7B2A5F6}.Release|x86.Build.0 = Release|x86
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE1C2408-6508-4904-A67E-96CFD5CF6822} = {89A3DCBB-B9F9-4548-B2B2-B6DFB8A37D05}
+		{9A7D3E1F-F0D2-4CB4-8141-0353D3A3DA69} = {89A3DCBB-B9F9-4548-B2B2-B6DFB8A37D05}
 	EndGlobalSection
 EndGlobal
