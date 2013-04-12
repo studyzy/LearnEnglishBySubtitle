@@ -14,6 +14,7 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
         [TestCase("doing","do")]
         [TestCase("stopping","stop")]
         [TestCase("deciding", "decide")]
+        [TestCase("telling", "tell")]
         public void TestVerbIng(string word,string result)
         {
             var o= service.GetOriginalWord(word);

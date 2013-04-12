@@ -127,10 +127,10 @@
     <value>286, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="捐赠ToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="ToolStripMenuItemDonate.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRy
         oQAACGtJREFUWEftVglQlOcZ/v5l2WWXc5FlF0QE5BSRe0kQi0YRJdWaeNaYMNW0tR1rW22bqW3axDFJ
         vWKVVvFAFBAtHoA3oojGk+KF4oGyIvclrKAzSZ369PlEM7GTZNI27XQ6Zead/Xi/932e5z3+3V+I///9
         N3YgUwjLBiEysoSozBaiMVsRt7LVYt8mB2V+ll6Yv0hztqvw2OwkfpyjFwdytEp9jlp0M7d2oxAFxJy8

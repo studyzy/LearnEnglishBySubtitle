@@ -93,6 +93,7 @@
             this.Controls.Add(this.numUserVocabularyRank);
             this.Controls.Add(this.label3);
             this.Name = "UserVocabularyConfigForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "用户词汇量设置";
             this.Load += new System.EventHandler(this.UserVocabularyConfigForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numUserVocabularyRank)).EndInit();

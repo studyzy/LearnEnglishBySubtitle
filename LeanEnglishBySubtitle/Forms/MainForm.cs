@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -389,6 +390,28 @@ namespace Studyzy.LeanEnglishBySubtitle.Forms
         {
             UserVocabularyConfigForm form=new UserVocabularyConfigForm();
             form.Show();
+        }
+
+        private void ToolStripMenuItemUserVocabularyMgt_Click(object sender, EventArgs e)
+        {
+            UserVocabularyMgtForm form=new UserVocabularyMgtForm();
+            form.Show();
+        }
+
+        private void ToolStripMenuItemAbount_Click(object sender, EventArgs e)
+        {
+            AboutBox a=new AboutBox();
+            a.Show();
+        }
+
+        private void ToolStripMenuItemDonate_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://imewlconverter.googlecode.com/svn/wiki/donate.html");
+        }
+
+        private void ToolStripMenuItemLastVersion_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://code.google.com/p/learn-english-by-subtitle/downloads/list");
         }
 
     }

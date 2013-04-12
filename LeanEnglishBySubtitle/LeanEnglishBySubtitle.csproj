@@ -125,6 +125,12 @@
     <Compile Include="Forms\UserVocabularyConfigForm.Designer.cs">
       <DependentUpon>UserVocabularyConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserVocabularyMgtForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserVocabularyMgtForm.Designer.cs">
+      <DependentUpon>UserVocabularyMgtForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\FileOperationHelper.cs" />
     <Compile Include="Helpers\BinFileHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserVocabularyConfigForm.resx">
       <DependentUpon>UserVocabularyConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserVocabularyMgtForm.resx">
+      <DependentUpon>UserVocabularyMgtForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

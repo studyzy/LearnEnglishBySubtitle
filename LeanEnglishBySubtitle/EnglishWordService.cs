@@ -59,11 +59,13 @@ namespace Studyzy.LeanEnglishBySubtitle
         {
             if (word == "I" || word == "I'm")
                 return word;
+            word = RemoveSimpleWrite(word);
             if (word.ToUpper() == word) //全大写
             {
                 return word;
             }
             word = word.ToLower();
+           
 
             var original = GetOriginalWordFromDb(word);
             if (original != null)
@@ -89,6 +91,35 @@ namespace Studyzy.LeanEnglishBySubtitle
             else if (word.EndsWith("s") && word.Length > 3 && word[word.Length - 2] != 's') //复数
             {
                 return OperateSWord(word);
+            }
+            return word;
+        }
+
+        private string RemoveSimpleWrite(string word)
+        {
+            if (word.Contains('\''))
+            {
+              
+              if(word.Contains("n't"))
+              {
+                  return word.Replace("n't","");
+              }
+              if (word.Contains("'ll"))
+              {
+                  return word.Replace("'ll", "");
+              }
+              if (word.Contains("'d"))
+              {
+                  return word.Replace("'d", "");
+              }
+              if (word.Contains("'s"))
+              {
+                  return word.Replace("'s", "");
+              }
+              if (word.Contains("'re"))
+              {
+                  return word.Replace("'re", "");
+              }
             }
             return word;
         }

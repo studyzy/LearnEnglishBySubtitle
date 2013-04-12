@@ -17,7 +17,7 @@ namespace Studyzy.LeanEnglishBySubtitle.EngDict
         //}
         public abstract string DictionaryName { get; }
         protected LingoesLd2 ld2Parse = new LingoesLd2();
-        protected IDictionary<string, EngDictionary> engDictionary;
+        protected static IDictionary<string, EngDictionary> engDictionary;
         protected IDictionary<string, EngDictionary> EngDictionary
         {
             get
