@@ -88,5 +88,10 @@ namespace Studyzy.LeanEnglishBySubtitle.Import.Hujiang
         {
             richTextBox1.AppendText(DateTime.Now+"\t"+ str + "\r\n");
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
