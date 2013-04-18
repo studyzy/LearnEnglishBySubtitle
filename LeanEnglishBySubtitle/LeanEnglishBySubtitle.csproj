@@ -106,6 +106,12 @@
     <Compile Include="Forms\DictionaryConfigForm.Designer.cs">
       <DependentUpon>DictionaryConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NewWordConfirmForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DictionaryConfigForm.resx">
       <DependentUpon>DictionaryConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImportForm.resx">
+      <DependentUpon>ImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewWordConfirmForm.resx">
       <DependentUpon>NewWordConfirmForm.cs</DependentUpon>

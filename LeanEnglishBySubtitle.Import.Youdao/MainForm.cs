@@ -1,43 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
-using System.Xml;
 using Studyzy.LeanEnglishBySubtitle;
+using Studyzy.LeanEnglishBySubtitle.Forms;
 
 namespace LeanEnglishBySubtitle.Import.Youdao
 {
-    public partial class MainForm : Form
+    class MainForm:ImportForm
     {
         public MainForm()
         {
-            InitializeComponent();
+            this.Text = "有道词典生词本导入";
         }
-
-        private void btnSelectFile_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txbFilePath.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void btnImport_Click(object sender, EventArgs e)
+        protected override void Import_Click(object sender, EventArgs e)
         {
             var list = XmlParseHelper.Parse(txbFilePath.Text);
             var result = new List<Vocabulary>();
             foreach (var str in list)
             {
-                result.Add(new Vocabulary(){Word = str,IsKnown = false});
+                result.Add(new Vocabulary() { Word = str, IsKnown = false });
             }
-            Service service=new Service();
-            service.SaveUserVocabulary(result,"有道词典");
+            Service service = new Service();
+            service.SaveUserVocabulary(result, "有道词典");
         }
-
-
     }
 }

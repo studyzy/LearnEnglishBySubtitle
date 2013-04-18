@@ -53,14 +53,8 @@
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -82,6 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ciba.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeanEnglishBySubtitle\LeanEnglishBySubtitle.csproj">
+      <Project>{FCD72E58-D994-456B-9054-EC6CDB40C504}</Project>
+      <Name>LeanEnglishBySubtitle</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
