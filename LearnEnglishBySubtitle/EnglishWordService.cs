@@ -9,7 +9,7 @@ namespace Studyzy.LearnEnglishBySubtitle
 {
     public class EnglishWordService
     {
-        private DbOperator dbOperator = new DbOperator();
+        private DbOperator dbOperator =  DbOperator.Instance;
         private DictionaryService dictionaryService;
 
         public DictionaryService DictionaryService

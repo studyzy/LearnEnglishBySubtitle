@@ -26,7 +26,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         public MainForm()
         {
             InitializeComponent();
-            dbOperator = new DbOperator();
+            dbOperator= DbOperator.Instance;
         
             englishWordService = new EnglishWordService(dictionaryService);
         }
@@ -374,16 +374,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void ToolStripMenuItemDictionaryConfig_Click(object sender, EventArgs e)
         {
-            DictionaryConfigForm form=new DictionaryConfigForm();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                this.dictionaryService = form.SelectDictionaryService;
-                englishWordService.DictionaryService = dictionaryService;
-                if(!backgroundLoadDictionary.IsBusy)
-                {
-                    backgroundLoadDictionary.RunWorkerAsync();
-                }
-            }
+            //DictionaryConfigForm form=new DictionaryConfigForm();
+            //if (form.ShowDialog() == DialogResult.OK)
+            //{
+            //    this.dictionaryService = form.SelectDictionaryService;
+            //    englishWordService.DictionaryService = dictionaryService;
+            //    if(!backgroundLoadDictionary.IsBusy)
+            //    {
+            //        backgroundLoadDictionary.RunWorkerAsync();
+            //    }
+            //}
         }
 
         private void ToolStripMenuItemUserVocabularyConfig_Click(object sender, EventArgs e)

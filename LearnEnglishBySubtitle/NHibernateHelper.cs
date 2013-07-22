@@ -20,20 +20,22 @@ namespace Studyzy.LearnEnglishBySubtitle
     {
         private readonly ISessionFactory _sessionFactory;
 
-        public NHibernateHelper(string fileName)
+        public NHibernateHelper()
         {
-            _sessionFactory = GetSessionFactory(fileName);
+            _sessionFactory = GetSessionFactory();
         }
 
-        public Configuration Configuration { get; set; }
+        private Configuration Configuration { get; set; }
 
-        private ISessionFactory GetSessionFactory(string fileName)
+        private ISessionFactory GetSessionFactory()
         {
-            Configuration = new Configuration().Configure("NHibernate.config");
-            string path = Environment.CurrentDirectory + "\\"+fileName;
-            Configuration.Properties["connection.connection_string"] = "Data Source=" + path + ";Version=3;";
+            Configuration = new Configuration();
+            //.Configure(Environment.CurrentDirectory + "\\NHibernate.config");
+            //string path = Environment.CurrentDirectory + "\\"+fileName;
+            //Configuration.Properties["connection.connection_string"] = "Data Source=" + path + ";Version=3;";
 
             FluentConfiguration fluentConfiguration = Fluently.Configure(Configuration);
+            //fluentConfiguration
             Configuration.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[] { new AuditEventListener() };
             Configuration.EventListeners.PreUpdateEventListeners = new IPreUpdateEventListener[] { new AuditEventListener() };
       

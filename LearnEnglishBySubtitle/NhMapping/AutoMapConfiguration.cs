@@ -14,7 +14,7 @@ namespace Studyzy.LearnEnglishBySubtitle.NhMapping
         {
             try
             {
-                return (type.IsClass && type.Namespace.StartsWith("Studyzy.LeanEnglishBySubtitle.Entities"));
+                return (type.IsClass && type.Namespace.StartsWith("Studyzy.LearnEnglishBySubtitle.Entities"));
             }
             catch
             {

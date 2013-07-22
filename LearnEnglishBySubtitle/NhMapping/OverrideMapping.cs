@@ -16,6 +16,7 @@ namespace Studyzy.LearnEnglishBySubtitle.NhMapping
     {
         public void Override(AutoMapping<VocabularyRank> mapping)
         {
+            Debug.WriteLine("Override WordRankMapping");
             mapping.Id(x => x.Word).GeneratedBy.Assigned();
         }
 
@@ -34,6 +35,7 @@ namespace Studyzy.LearnEnglishBySubtitle.NhMapping
     {
         public void Override(AutoMapping<WordOriginalMap> mapping)
         {
+            Debug.WriteLine("Override WordOriginalMapMapping");
             mapping.Id(x => x.Word).GeneratedBy.Assigned();
 
         }
@@ -42,6 +44,7 @@ namespace Studyzy.LearnEnglishBySubtitle.NhMapping
     {
         public void Override(AutoMapping<EasyWord> mapping)
         {
+            Debug.WriteLine("Override EasyWordMapping");
             mapping.Id(x => x.Word).GeneratedBy.Assigned();
         }
 

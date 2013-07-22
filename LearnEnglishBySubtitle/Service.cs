@@ -10,7 +10,7 @@ namespace Studyzy.LearnEnglishBySubtitle
     {
        
 
-        private DbOperator dbOperator=new DbOperator();
+        private DbOperator dbOperator= DbOperator.Instance;
 
         public void SaveUserVocabulary(IList<Vocabulary> userWords,string source )
         {
@@ -36,6 +36,15 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
            
             dbOperator.Commit();
+        }
+        public UserVocabulary GetUserWord(string word)
+        {
+            var words = dbOperator.FindAll<UserVocabulary>(u => u.Word == word.Trim());
+            if (words.Count == 0)
+            {
+                return null;
+            }
+            return words[0];
         }
     }
 }

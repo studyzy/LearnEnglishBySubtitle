@@ -35,7 +35,7 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
         public void TestInsertVocabularyRank()
         {
             var txt = FileOperationHelper.ReadFile("klsrank.txt");
-            DbOperator dbOperator=new DbOperator();
+             DbOperator dbOperator= DbOperator.Instance;
             dbOperator.BeginTran();
             foreach (var line in txt.Split(new string[]{"\r\n"},StringSplitOptions.RemoveEmptyEntries))
             {

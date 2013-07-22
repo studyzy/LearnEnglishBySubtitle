@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnEnglishBySubtitle", "LearnEnglishBySubtitle\LearnEnglishBySubtitle.csproj", "{FCD72E58-D994-456B-9054-EC6CDB40C504}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnEnglishBySubtitle.UnitTest", "LearnEnglishBySubtitle.UnitTest\LearnEnglishBySubtitle.UnitTest.csproj", "{FE1C2408-6508-4904-A67E-96CFD5CF6822}"
@@ -20,6 +20,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnEnglishBySubtitle.Import.BingDict", "LearnEnglishBySubtitle.Import.BingDict\LearnEnglishBySubtitle.Import.BingDict.csproj", "{6A7D2019-1381-4BD6-B547-F0DB54E1E2D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearnEnglishBySubtitle.Import.BingDict.UnitTest", "LearnEnglishBySubtitle.Import.BingDict.UnitTest\LearnEnglishBySubtitle.Import.BingDict.UnitTest.csproj", "{166B3E25-38BC-4CED-B6F7-C680119CB486}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{90A9B738-4D3C-44D4-95BC-5D29DAD92AD0}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

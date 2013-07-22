@@ -15,7 +15,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             InitializeComponent();
         }
-        private DbOperator dbOperator=new DbOperator();
+        private DbOperator dbOperator = DbOperator.Instance;
         public IList<SubtitleWord> DataSource { get; set; } 
       
 

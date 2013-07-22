@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\LeanEnglishBySubtitle\bin\Debug\</OutputPath>
+    <OutputPath>..\LearnEnglishBySubtitle\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -78,7 +78,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LearnEnglishBySubtitle\LearnEnglishBySubtitle.csproj">
       <Project>{FCD72E58-D994-456B-9054-EC6CDB40C504}</Project>
-      <Name>LeanEnglishBySubtitle</Name>
+      <Name>LearnEnglishBySubtitle</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

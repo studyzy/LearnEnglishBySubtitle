@@ -15,10 +15,22 @@ namespace Studyzy.LearnEnglishBySubtitle
     {
         private ILog logger = LogManager.GetLogger(typeof (DbOperator));
         NHibernateHelper helper;
-        public DbOperator(string fileName = "Dictionary.db3")
+        private DbOperator()
         {
+            helper = new NHibernateHelper();
+        }
 
-            helper = new NHibernateHelper(fileName);
+        private static DbOperator op = null;
+        public static DbOperator Instance
+        {
+            get
+            {
+                if (op == null)
+                {
+                    op = new DbOperator();
+                }
+                return op;
+            }
         }
 
         //public string ConnectionString

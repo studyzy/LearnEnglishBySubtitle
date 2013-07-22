@@ -41,7 +41,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserVocabularyConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemDictionaryConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserVocabularyMgt = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemFilterChinese = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemShortMean = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,7 +139,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(152, 17);
             this.toolStripStatusLabel1.Text = "欢迎使用深蓝英语字幕助手";
             // 
             // menuStrip1
@@ -150,7 +149,7 @@
             this.帮助ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(735, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(735, 25);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -158,33 +157,25 @@
             // 
             this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemUserVocabularyConfig,
-            this.ToolStripMenuItemDictionaryConfig,
             this.ToolStripMenuItemUserVocabularyMgt,
             this.ToolStripMenuItemFilterChinese,
             this.ToolStripMenuItemShortMean,
             this.ToolStripMenuItemMeanStyleConfig});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.设置ToolStripMenuItem.Text = "设置";
             // 
             // ToolStripMenuItemUserVocabularyConfig
             // 
             this.ToolStripMenuItemUserVocabularyConfig.Name = "ToolStripMenuItemUserVocabularyConfig";
-            this.ToolStripMenuItemUserVocabularyConfig.Size = new System.Drawing.Size(170, 22);
+            this.ToolStripMenuItemUserVocabularyConfig.Size = new System.Drawing.Size(172, 22);
             this.ToolStripMenuItemUserVocabularyConfig.Text = "用户词汇量设置";
             this.ToolStripMenuItemUserVocabularyConfig.Click += new System.EventHandler(this.ToolStripMenuItemUserVocabularyConfig_Click);
-            // 
-            // ToolStripMenuItemDictionaryConfig
-            // 
-            this.ToolStripMenuItemDictionaryConfig.Name = "ToolStripMenuItemDictionaryConfig";
-            this.ToolStripMenuItemDictionaryConfig.Size = new System.Drawing.Size(170, 22);
-            this.ToolStripMenuItemDictionaryConfig.Text = "字典设置";
-            this.ToolStripMenuItemDictionaryConfig.Click += new System.EventHandler(this.ToolStripMenuItemDictionaryConfig_Click);
             // 
             // ToolStripMenuItemUserVocabularyMgt
             // 
             this.ToolStripMenuItemUserVocabularyMgt.Name = "ToolStripMenuItemUserVocabularyMgt";
-            this.ToolStripMenuItemUserVocabularyMgt.Size = new System.Drawing.Size(170, 22);
+            this.ToolStripMenuItemUserVocabularyMgt.Size = new System.Drawing.Size(172, 22);
             this.ToolStripMenuItemUserVocabularyMgt.Text = "用户词汇管理";
             this.ToolStripMenuItemUserVocabularyMgt.Click += new System.EventHandler(this.ToolStripMenuItemUserVocabularyMgt_Click);
             // 
@@ -194,7 +185,7 @@
             this.ToolStripMenuItemFilterChinese.CheckOnClick = true;
             this.ToolStripMenuItemFilterChinese.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemFilterChinese.Name = "ToolStripMenuItemFilterChinese";
-            this.ToolStripMenuItemFilterChinese.Size = new System.Drawing.Size(170, 22);
+            this.ToolStripMenuItemFilterChinese.Size = new System.Drawing.Size(172, 22);
             this.ToolStripMenuItemFilterChinese.Text = "自动过滤中文字幕";
             this.ToolStripMenuItemFilterChinese.Click += new System.EventHandler(this.ToolStripMenuItemFilterChinese_Click);
             // 
@@ -204,14 +195,14 @@
             this.ToolStripMenuItemShortMean.CheckOnClick = true;
             this.ToolStripMenuItemShortMean.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ToolStripMenuItemShortMean.Name = "ToolStripMenuItemShortMean";
-            this.ToolStripMenuItemShortMean.Size = new System.Drawing.Size(170, 22);
+            this.ToolStripMenuItemShortMean.Size = new System.Drawing.Size(172, 22);
             this.ToolStripMenuItemShortMean.Text = "简短注释";
             this.ToolStripMenuItemShortMean.Click += new System.EventHandler(this.ToolStripMenuItemShortMean_Click);
             // 
             // ToolStripMenuItemMeanStyleConfig
             // 
             this.ToolStripMenuItemMeanStyleConfig.Name = "ToolStripMenuItemMeanStyleConfig";
-            this.ToolStripMenuItemMeanStyleConfig.Size = new System.Drawing.Size(170, 22);
+            this.ToolStripMenuItemMeanStyleConfig.Size = new System.Drawing.Size(172, 22);
             this.ToolStripMenuItemMeanStyleConfig.Text = "解释颜色设置";
             this.ToolStripMenuItemMeanStyleConfig.Click += new System.EventHandler(this.ToolStripMenuItemMeanStyleConfig_Click);
             // 
@@ -224,41 +215,41 @@
             this.ToolStripMenuItemDonate,
             this.ToolStripMenuItemAbount});
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.帮助ToolStripMenuItem.Text = "帮助";
             // 
             // ToolStripMenuItemAdjustSubtitleTimeline
             // 
             this.ToolStripMenuItemAdjustSubtitleTimeline.Name = "ToolStripMenuItemAdjustSubtitleTimeline";
-            this.ToolStripMenuItemAdjustSubtitleTimeline.Size = new System.Drawing.Size(146, 22);
+            this.ToolStripMenuItemAdjustSubtitleTimeline.Size = new System.Drawing.Size(148, 22);
             this.ToolStripMenuItemAdjustSubtitleTimeline.Text = "字幕时间调整";
             this.ToolStripMenuItemAdjustSubtitleTimeline.Click += new System.EventHandler(this.ToolStripMenuItemAdjustSubtitleTimeline_Click);
             // 
             // ToolStripMenuItemLastVersion
             // 
             this.ToolStripMenuItemLastVersion.Name = "ToolStripMenuItemLastVersion";
-            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(146, 22);
+            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(148, 22);
             this.ToolStripMenuItemLastVersion.Text = "查看最新版本";
             this.ToolStripMenuItemLastVersion.Click += new System.EventHandler(this.ToolStripMenuItemLastVersion_Click);
             // 
             // ToolStripMenuItemHelp
             // 
             this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(146, 22);
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(148, 22);
             this.ToolStripMenuItemHelp.Text = "帮助";
             // 
             // ToolStripMenuItemDonate
             // 
             this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
             this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(146, 22);
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(148, 22);
             this.ToolStripMenuItemDonate.Text = "捐赠";
             this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
             // 
             // ToolStripMenuItemAbount
             // 
             this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
-            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(146, 22);
+            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(148, 22);
             this.ToolStripMenuItemAbount.Text = "关于";
             this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
             // 
@@ -324,7 +315,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDonate;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbount;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAdjustSubtitleTimeline;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDictionaryConfig;
         private System.ComponentModel.BackgroundWorker backgroundLoadDictionary;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserVocabularyMgt;
         private System.Windows.Forms.Button btnSave;
