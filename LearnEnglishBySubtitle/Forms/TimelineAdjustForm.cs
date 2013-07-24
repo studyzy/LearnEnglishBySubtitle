@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
-using Studyzy.LearnEnglishBySubtitle.Subtitle;
+using Studyzy.LearnEnglishBySubtitle.Subtitles;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
 {
@@ -19,6 +19,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             InitializeComponent();
         }
 
+        private ISubtitleOperator stOperator;
         private void btnSelectFiles_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -27,22 +28,29 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
         }
 
-        private Dictionary<string, IList<SrtFormat>> SubtitleFiles = new Dictionary<string, IList<SrtFormat>>();
+        private Dictionary<string, Subtitle> SubtitleFiles = new Dictionary<string, Subtitle>();
         private void btnPreview_Click(object sender, EventArgs e)
         {
             var filePaths = txbFilePath.Text.Split(new char[] {'|'}, StringSplitOptions.RemoveEmptyEntries);
+            if (filePaths.Length == 0)
+            {
+                MessageBox.Show("未选择字幕文件");
+                return;
+            }
             SubtitleFiles.Clear();
+            
+            stOperator = SubtitleHelper.GetOperatorByFileName(filePaths[0]);
             foreach (var filePath in filePaths)
             {
                 var content = FileOperationHelper.ReadFile(filePath);
-                var srts = SrtOperator.Parse(content);
+                var srts = stOperator.Parse(content);
                 SubtitleFiles.Add(filePath, srts);
             }
             richTextBox1.Clear();
             foreach (var subtitleFile in SubtitleFiles)
             {
                 richTextBox1.AppendText("----"+subtitleFile.Key+"----\r\n");
-                richTextBox1.AppendText(SrtOperator.SrtFormat2String(subtitleFile.Value));
+                richTextBox1.AppendText(stOperator.Subtitle2String(subtitleFile.Value));
             }
 
         }
@@ -53,7 +61,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             {
                 //File.Copy(subtitleFile.Key,subtitleFile.Key+".bak");
                 FileOperationHelper.WriteFile(subtitleFile.Key, Encoding.UTF8,
-                                              SrtOperator.SrtFormat2String(subtitleFile.Value));
+                                              stOperator.Subtitle2String(subtitleFile.Value));
             }
             MessageBox.Show("完成");
         }
@@ -67,21 +75,21 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             richTextBox1.Clear();
 
-            var adjustFiles = new Dictionary<string, IList<SrtFormat>>();
+            var adjustFiles = new Dictionary<string, Subtitle>();
             foreach (var key in SubtitleFiles.Keys)
             {
                 var path = key;
                 richTextBox1.AppendText("----" + path + "----\r\n");
-                IList<SrtFormat> result = new List<SrtFormat>();
-                for (int i = 0; i < SubtitleFiles[key].Count; i++)
+                IList<SubtitleLine> result = new List<SubtitleLine>();
+                for (int i = 0; i < SubtitleFiles[key].Bodies.Count; i++)
                 {
-                    var srtFormat = SubtitleFiles[key][i];
-                    srtFormat.StartTime = srtFormat.StartTime.AddSeconds((double) numTimelineDelay.Value);
-                    srtFormat.EndTime = srtFormat.EndTime.AddSeconds((double) numTimelineDelay.Value);
-                    result.Add(srtFormat);
+                    var SubtitleLine = SubtitleFiles[key].Bodies[i];
+                    SubtitleLine.StartTime = SubtitleLine.StartTime.AddSeconds((double) numTimelineDelay.Value);
+                    SubtitleLine.EndTime = SubtitleLine.EndTime.AddSeconds((double) numTimelineDelay.Value);
+                    result.Add(SubtitleLine);
                 }
-                adjustFiles[key] = result;
-                var txt = SrtOperator.SrtFormat2String(result);
+                adjustFiles[key].Bodies = result;
+                var txt = stOperator.Subtitle2String(adjustFiles[key]);
                 richTextBox1.AppendText(txt);
             }
             SubtitleFiles = adjustFiles;

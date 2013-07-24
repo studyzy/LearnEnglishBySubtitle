@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using Studyzy.LearnEnglishBySubtitle.UserData;
 
 namespace Studyzy.LearnEnglishBySubtitle.UnitTest
 {

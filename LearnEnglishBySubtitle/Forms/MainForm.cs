@@ -16,8 +16,7 @@ using System.Windows.Forms;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
-using Studyzy.LearnEnglishBySubtitle.Subtitle;
-using Studyzy.LearnEnglishBySubtitle.UserData;
+using Studyzy.LearnEnglishBySubtitle.Subtitles;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
 {
@@ -26,17 +25,19 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         public MainForm()
         {
             InitializeComponent();
-            dbOperator= DbOperator.Instance;
-        
+            dbOperator = DbOperator.Instance;
+
             englishWordService = new EnglishWordService(dictionaryService);
         }
 
-        private int userRank = 4;
+        private ISubtitleOperator stOperator;
+        //private int userRank = 4;
         private bool removeChinese = true;
-        DbOperator dbOperator;
-     
+        private DbOperator dbOperator;
+        private Subtitle subtitle;
         private EnglishWordService englishWordService;
-        private DictionaryService dictionaryService=new ModernDictionaryService();
+        private DictionaryService dictionaryService = new ModernDictionaryService();
+
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -44,54 +45,39 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 txbSubtitleFilePath.Text = openFileDialog1.FileName;
             }
         }
-        IList<SrtFormat> Subtitle; 
+
         private void btnParse_Click(object sender, EventArgs e)
         {
-         
+
             var txt = FileOperationHelper.ReadFile(txbSubtitleFilePath.Text);
-            var srts = SrtOperator.Parse(txt);
-            if (removeChinese)
-            {
-                srts = RemoveChinese(srts);
-            }
-            ShowSubtitleText(srts);
-            Subtitle = srts;
+            stOperator = SubtitleHelper.GetOperatorByFileName(txbSubtitleFilePath.Text);
+            var srts = stOperator.Parse(txt);
+
+            srts = stOperator.RemoveChinese(srts);
+
+            ShowSubtitleText(srts.Bodies);
+            subtitle = srts;
         }
-        private IList<SrtFormat> RemoveChinese(IList<SrtFormat> srts )
-        {
-            var newSrts = new List<SrtFormat>();
-            for (int i = 0; i < srts.Count; i++)
-            {
-                var srtFormat = srts[i];
-                var lines = srtFormat.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-                IList<string> newLines = new List<string>();
-                foreach (var line in lines)
-                {
-                    var l = StringHelper.RemoveRemark(line);
-                    if (!StringHelper.IsChinese(l))
-                    {
-                        newLines.Add(l);
-                    }
-                }
-                if (newLines.Count > 0)
-                {
-                    srtFormat.Text = string.Join("\r\n", newLines.ToArray());
-                }
-                else
-                {
-                    srtFormat.Text = " ";
-                }
-                newSrts.Add(srtFormat);
-            }
-            return newSrts;
-        }
-        private void ShowSubtitleText(IList<SrtFormat> srts )
+
+        private void ShowSubtitleText(IList<SubtitleLine> srts,bool withMean=false )
         {
             richTextBox1.Clear();
-            foreach (var srtFormat in srts)
+            foreach (var SubtitleLine in srts)
             {
-                if (!string.IsNullOrEmpty(srtFormat.Text.Trim()))
-                    richTextBox1.AppendText(srtFormat.Text + "\r\n");
+                var txt = SubtitleLine.Text;
+                if (removeChinese)
+                {
+                    if (withMean)
+                    {
+                        txt = SubtitleLine.EnglishTextWithMeans;
+                    }
+                    else
+                    {
+                        txt = SubtitleLine.EnglishText;
+                    }
+                }
+                if (!string.IsNullOrEmpty(txt.Trim()))
+                    richTextBox1.AppendText(txt + "\r\n");
             }
         }
 
@@ -105,43 +91,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             toolStripStatusLabel1.Text = message;
         }
-        private void btnSyncNewWords_Click(object sender, EventArgs e)
-        {
-
-            //var uid = Convert.ToInt32(txbUserId.Text);
-            //ShowMessage("读取用户生词本...");
-            ////读取用户不认识的词
-            //var newWordList= HujiangWebService.GetUserItems(uid, Convert.ToDateTime("2000-1-1"));
-
-            //ShowMessage( "生词：" + newWordList.Count + "个");
-            //dbOperator.SaveUserNewWords(newWordList);
-            //ShowMessage("读取用户背诵记录...");
-            ////读取用户背诵过的书和单元，得到用户已认识词列表
-            //IList<User_LearnHistory> histories=new List<User_LearnHistory>();
-            //var userBooks = HujiangWebService.GetPublicBooks(uid, "en");
-            //foreach (var userBook in userBooks)
-            //{
-            //    var unitId = HujiangWebService.GetUserUnitMax(uid, userBook.BookID);
-            //    if (unitId > 0)
-            //    {
-            //        richTextBox1.AppendText(userBook.BookName+ " UnitId:"+unitId+"\r\n");
-            //        histories.Add(new User_LearnHistory(){BookId = userBook.BookID,MaxUnitId = unitId});
-            //    }
-            //}
-            ////将用户记录写入数据库
-            //dbOperator.SaveUserLearnHistory(histories);
-            //ShowMessage("统计用户的已知和未知词汇...");
-            //service.CalcUserVocabulary(newWordList);
-            //ShowMessage("同步完成");
-        }
-
-     
+      
 
         private void btnRemark_Click(object sender, EventArgs e)
         {
-            userRank = 4;// Convert.ToInt32(numUserVocabularyRank.Value);
+            //userRank = 4;// Convert.ToInt32(numUserVocabularyRank.Value);
 
-            var subtitleWords = PickNewWords(Subtitle);
+            var subtitleWords = PickNewWords(subtitle.Bodies);
             if (subtitleWords.Count > 0)
             {
                 NewWordConfirmForm form=new NewWordConfirmForm();
@@ -155,25 +111,25 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                       {
                           result.Add(subtitleWord.Word, subtitleWord);
                       }
-                    var newSubtitle = new List<SrtFormat>();
-                    for (int i = 0; i < Subtitle.Count; i++)
+                    var newSubtitle = new List<SubtitleLine>();
+                    for (int i = 0; i < subtitle.Bodies.Count; i++)
                     {
-                        var srtFormat = Subtitle[i];
-                        srtFormat.Text = StringAndRemarkString(srtFormat.Text, result);
-                        newSubtitle.Add(srtFormat);
+                        var SubtitleLine = subtitle.Bodies[i];
+                        SubtitleLine.EnglishTextWithMeans = StringAndRemarkString(SubtitleLine.EnglishText, result);
+                        newSubtitle.Add(SubtitleLine);
                     }
-                    Subtitle = newSubtitle;
-                    ShowSubtitleText(newSubtitle);
+                    subtitle.Bodies = newSubtitle;
+                    ShowSubtitleText(newSubtitle,true);
                     ClearCache();
                 }
             }
 
            
         }
-        private IDictionary<string, SubtitleWord> PickNewWords(IList<SrtFormat> subtitles)
+        private IDictionary<string, SubtitleWord> PickNewWords(IList<SubtitleLine> subtitles)
         {
             Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
-            var texts = subtitles.Select(s => s.Text).ToList();
+            var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
             {
                 var array = line.Split(new char[] { ' ', ',', '.', '?', ':', '!' }, StringSplitOptions.RemoveEmptyEntries);
@@ -296,7 +252,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             var rank = GetVocabularyRank(word);
             if (rank != null)
             {
-                if (rank.RankValue < userRank)
+                if (rank.RankValue < 4)
                 {
                     return (word);
                 }
@@ -330,12 +286,27 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            var lines = new List<SubtitleLine>();
+            foreach (var subtitleLine in subtitle.Bodies)
+            {
+                if (removeChinese)
+                {
+                    subtitleLine.Text = subtitleLine.EnglishTextWithMeans;
+                }
+                else
+                {
+                    subtitleLine.Text = subtitleLine.Text.Replace(subtitleLine.EnglishText,
+                                                                  subtitleLine.EnglishTextWithMeans);
+                }
+                lines.Add(subtitleLine);
+            }
+            subtitle.Bodies = lines;
             var bakFile = txbSubtitleFilePath.Text + ".bak";
             if(!File.Exists(bakFile))
             {
                 File.Copy(txbSubtitleFilePath.Text, bakFile);
             }
-            var str = SrtOperator.SrtFormat2String(Subtitle);
+            var str = stOperator.Subtitle2String(subtitle);
             FileOperationHelper.WriteFile(txbSubtitleFilePath.Text, Encoding.UTF8, str);
             ShowMessage("保存成功");
         }
@@ -412,6 +383,28 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void ToolStripMenuItemLastVersion_Click(object sender, EventArgs e)
         {
             Process.Start("https://code.google.com/p/learn-english-by-subtitle/downloads/list");
+        }
+
+        private void MainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Link;
+            else e.Effect = DragDropEffects.None;
+        }
+
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            var array = (Array)e.Data.GetData(DataFormats.FileDrop);
+            string files = "";
+
+
+            foreach (object a in array)
+            {
+                string path = a.ToString();
+                files += path + " | ";
+            }
+            txbSubtitleFilePath.Text = files.Remove(files.Length - 3);
+           
         }
 
     }

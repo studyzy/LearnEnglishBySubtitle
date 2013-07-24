@@ -36,9 +36,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Helpers
             return chineseRegex.IsMatch(str);
         }
         private static Regex remarkRegex = new Regex(@"\(.*?\)");
+        private static Regex remark2Regex = new Regex(@"\{.*?\}");
         public static string RemoveRemark(string line)
         {
             return remarkRegex.Replace(remarkRegex.Replace(line, ""),"");
+        }
+        public static string RemoveRemark2(string line)
+        {
+            return remarkRegex.Replace(remark2Regex.Replace(line, ""), "");
         }
     }
 }

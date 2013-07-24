@@ -163,10 +163,13 @@
     <Compile Include="RegistryHelper.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="SQLiteBulkInsert.cs" />
+    <Compile Include="Subtitles\ISubtitleOperator.cs" />
+    <Compile Include="Subtitles\Subtitle.cs" />
+    <Compile Include="Subtitles\SubtitleHelper.cs" />
+    <Compile Include="Subtitles\SubtitleLine.cs" />
     <Compile Include="SubtitleWord.cs" />
-    <Compile Include="Subtitle\AssOperator.cs" />
-    <Compile Include="Subtitle\SrtOperator.cs" />
-    <Compile Include="UserData\KaixinCichangNewWordImport.cs" />
+    <Compile Include="Subtitles\AssOperator.cs" />
+    <Compile Include="Subtitles\SrtOperator.cs" />
     <Compile Include="Entities\KnownStatus.cs" />
     <Compile Include="Entities\VocabularyRank.cs" />
     <Compile Include="Vocabulary.cs" />
@@ -208,13 +211,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Dictionaries\Langdao E-C Dictionary.ld2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Dictionaries\Modern.ld2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Dictionaries\Oxford.ld2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">
@@ -231,12 +228,6 @@
     </Compile>
     <None Include="Dictionary.db3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Dictionaries\Quick E-C Dictionary.ld2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Dictionaries\Vicon English-Chinese%28S%29 Dictionary.ld2">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
