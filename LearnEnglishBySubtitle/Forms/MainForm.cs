@@ -395,7 +395,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void ToolStripMenuItemLastVersion_Click(object sender, EventArgs e)
         {
-            Process.Start("https://code.google.com/p/learn-english-by-subtitle/downloads/list");
+            Process.Start("https://sourceforge.net/projects/learnenglishbysubtitle/files/");
         }
 
         private void MainForm_DragEnter(object sender, DragEventArgs e)
@@ -418,6 +418,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
             txbSubtitleFilePath.Text = files.Remove(files.Length - 3);
            
+        }
+
+        private void ToolStripMenuItemHelp_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://code.google.com/p/learn-english-by-subtitle");
         }
 
     }

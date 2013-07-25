@@ -165,6 +165,7 @@
             // 
             // TimelineAdjustForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 462);
@@ -180,6 +181,8 @@
             this.Controls.Add(this.label1);
             this.Name = "TimelineAdjustForm";
             this.Text = "字幕时间轴调整";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.TimelineAdjustForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.TimelineAdjustForm_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.numTimelineDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

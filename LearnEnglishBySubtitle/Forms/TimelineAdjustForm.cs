@@ -94,5 +94,24 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
             SubtitleFiles = adjustFiles;
         }
+
+        private void TimelineAdjustForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Link;
+            else e.Effect = DragDropEffects.None;
+        }
+
+        private void TimelineAdjustForm_DragDrop(object sender, DragEventArgs e)
+        {
+            var array = (Array)e.Data.GetData(DataFormats.FileDrop);
+            string files = "";
+            foreach (object a in array)
+            {
+                string path = a.ToString();
+                files += path + " | ";
+            }
+            txbFilePath.Text = files.Remove(files.Length - 3);
+        }
     }
 }

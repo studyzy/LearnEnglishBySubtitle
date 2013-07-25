@@ -221,35 +221,36 @@
             // ToolStripMenuItemAdjustSubtitleTimeline
             // 
             this.ToolStripMenuItemAdjustSubtitleTimeline.Name = "ToolStripMenuItemAdjustSubtitleTimeline";
-            this.ToolStripMenuItemAdjustSubtitleTimeline.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemAdjustSubtitleTimeline.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemAdjustSubtitleTimeline.Text = "字幕时间调整";
             this.ToolStripMenuItemAdjustSubtitleTimeline.Click += new System.EventHandler(this.ToolStripMenuItemAdjustSubtitleTimeline_Click);
             // 
             // ToolStripMenuItemLastVersion
             // 
             this.ToolStripMenuItemLastVersion.Name = "ToolStripMenuItemLastVersion";
-            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemLastVersion.Text = "查看最新版本";
             this.ToolStripMenuItemLastVersion.Click += new System.EventHandler(this.ToolStripMenuItemLastVersion_Click);
             // 
             // ToolStripMenuItemHelp
             // 
             this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemHelp.Text = "帮助";
+            this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.ToolStripMenuItemHelp_Click);
             // 
             // ToolStripMenuItemDonate
             // 
             this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
             this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemDonate.Text = "捐赠";
             this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
             // 
             // ToolStripMenuItemAbount
             // 
             this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
-            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemAbount.Text = "关于";
             this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
             // 
