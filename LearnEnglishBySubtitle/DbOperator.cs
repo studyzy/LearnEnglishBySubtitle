@@ -138,17 +138,24 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         }
 
-        public void SaveUserKnownWords(IList<string> words )
+        public void SaveUserKnownWords(IList<string> words)
         {
             BeginTran();
 
             foreach (var w in words)
             {
-                Subtitle_KnownWord word=new Subtitle_KnownWord(){AddTime = DateTime.Now,Word = w};
+
+                Subtitle_KnownWord word = new Subtitle_KnownWord() {AddTime = DateTime.Now, Word = w};
                 Session.SaveOrUpdate(word);
-                UserVocabulary vocabulary=new UserVocabulary();
+                UserVocabulary vocabulary = FindOne<UserVocabulary>(v => v.Word == w);
+                if (vocabulary == null)
+                {
+                    vocabulary = new UserVocabulary();
+                }
+
                 vocabulary.Word = w;
-                vocabulary.KnownStatus=KnownStatus.Known;
+                vocabulary.Source = "Subtitle";
+                vocabulary.KnownStatus = KnownStatus.Known;
                 Session.SaveOrUpdate(vocabulary);
             }
             Commit();
@@ -158,22 +165,39 @@ namespace Studyzy.LearnEnglishBySubtitle
         {
             return FindFirst<UserVocabulary>(v => v.Word == word);
         }
-
-        #endregion
-
-
-        public void SaveSubtitleNewWords(IList<SubtitleWord> newWords,string subtitleName)
+        
+        public void SaveSubtitleNewWords(IList<SubtitleWord> newWords, string subtitleName)
         {
             BeginTran();
-            var q = Session.CreateSQLQuery("delete from Subtitle_NewWord where SubtitleName='"+subtitleName.Replace("'","''")+"'");
+            var q =
+                Session.CreateSQLQuery("delete from Subtitle_NewWord where SubtitleName='" +
+                                       subtitleName.Replace("'", "''") + "'");
             q.ExecuteUpdate();
             foreach (var userNewWord in newWords.Distinct())
             {
-                Subtitle_NewWord entity = new Subtitle_NewWord() { Word = userNewWord.Word,SubtitleName = subtitleName,WordMean = userNewWord.SelectMean};
+                Subtitle_NewWord entity = new Subtitle_NewWord()
+                                              {
+                                                  Word = userNewWord.Word,
+                                                  SubtitleName = subtitleName,
+                                                  Sentence = userNewWord.SubtitleSentence,
+                                                  WordMean = userNewWord.SelectMean
+                                              };
                 Session.SaveOrUpdate(entity);
+
+                UserVocabulary vocabulary = FindOne<UserVocabulary>(v => v.Word == userNewWord.Word);
+                if (vocabulary == null)
+                {
+                    vocabulary = new UserVocabulary();
+                }
+
+                vocabulary.Word = userNewWord.Word;
+                vocabulary.Source = "Subtitle";
+                vocabulary.KnownStatus = KnownStatus.Unknown;
+                Session.SaveOrUpdate(vocabulary);
             }
             Commit();
         }
+        #endregion
 
         public VocabularyRank GetVocabularyRank(string word)
         {

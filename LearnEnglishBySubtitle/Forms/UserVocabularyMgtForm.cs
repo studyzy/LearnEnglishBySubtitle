@@ -105,14 +105,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             foreach (var word in rtbKnownWords.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var uword = service.GetUserWord(word);
-                if (uword == null)
+                if (uword == null||uword.KnownStatus==KnownStatus.Unknown)
                 {
                     vocabulary.Add(new Vocabulary() {Word = word, IsKnown = true});
                 }
+                
             }
 
             service.SaveUserVocabulary(vocabulary, "手工");
             BindList();
+            rtbKnownWords.Clear();
         }
 
         private void btnAddNewWords_Click(object sender, EventArgs e)
@@ -121,7 +123,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             foreach (var word in rtbKnownWords.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var uword = service.GetUserWord(word);
-                if (uword == null)
+                if (uword == null||uword.KnownStatus==KnownStatus.Known)
                 {
                     vocabulary.Add(new Vocabulary() { Word = word, IsKnown = false });
                 }
@@ -129,6 +131,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
             service.SaveUserVocabulary(vocabulary, "手工");
             BindList();
+            rtbKnownWords.Clear();
         }
 
         private void btnExportKnownWords_Click(object sender, EventArgs e)
@@ -159,6 +162,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 FileOperationHelper.WriteFile(saveFileDialog1.FileName, Encoding.UTF8, sb.ToString());
                 MessageBox.Show("导出完成");
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

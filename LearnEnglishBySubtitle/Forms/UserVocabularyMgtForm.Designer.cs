@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnExportKnownWords = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddKnownWords = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbxKnownList = new System.Windows.Forms.CheckedListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnExportUnknownWords = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddNewWords = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,20 +49,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbxUnknownList = new System.Windows.Forms.CheckedListBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnExportKnownWords = new System.Windows.Forms.Button();
-            this.btnExportUnknownWords = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -82,6 +90,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "熟悉的单词";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnExportKnownWords
+            // 
+            this.btnExportKnownWords.Location = new System.Drawing.Point(722, 376);
+            this.btnExportKnownWords.Name = "btnExportKnownWords";
+            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnExportKnownWords.TabIndex = 4;
+            this.btnExportKnownWords.Text = "导 出";
+            this.btnExportKnownWords.UseVisualStyleBackColor = true;
+            this.btnExportKnownWords.Click += new System.EventHandler(this.btnExportKnownWords_Click);
             // 
             // groupBox1
             // 
@@ -166,6 +184,16 @@
             this.tabPage2.Text = "生词本";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnExportUnknownWords
+            // 
+            this.btnExportUnknownWords.Location = new System.Drawing.Point(722, 376);
+            this.btnExportUnknownWords.Name = "btnExportUnknownWords";
+            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnExportUnknownWords.TabIndex = 5;
+            this.btnExportUnknownWords.Text = "导 出";
+            this.btnExportUnknownWords.UseVisualStyleBackColor = true;
+            this.btnExportUnknownWords.Click += new System.EventHandler(this.btnExportUnknownWords_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnAddNewWords);
@@ -238,30 +266,59 @@
             // 
             this.toolTip1.IsBalloon = true;
             // 
-            // btnExportKnownWords
-            // 
-            this.btnExportKnownWords.Location = new System.Drawing.Point(722, 376);
-            this.btnExportKnownWords.Name = "btnExportKnownWords";
-            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 42);
-            this.btnExportKnownWords.TabIndex = 4;
-            this.btnExportKnownWords.Text = "导 出";
-            this.btnExportKnownWords.UseVisualStyleBackColor = true;
-            this.btnExportKnownWords.Click += new System.EventHandler(this.btnExportKnownWords_Click);
-            // 
-            // btnExportUnknownWords
-            // 
-            this.btnExportUnknownWords.Location = new System.Drawing.Point(722, 376);
-            this.btnExportUnknownWords.Name = "btnExportUnknownWords";
-            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 42);
-            this.btnExportUnknownWords.TabIndex = 5;
-            this.btnExportUnknownWords.Text = "导 出";
-            this.btnExportUnknownWords.UseVisualStyleBackColor = true;
-            this.btnExportUnknownWords.Click += new System.EventHandler(this.btnExportUnknownWords_Click);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.Filter = "TXT|*.txt";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridView1);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.btnSearch);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(823, 696);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "单词记录";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(232, 12);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Text = "查 询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 17);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "单词：";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(55, 14);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(140, 21);
+            this.textBox1.TabIndex = 2;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 64);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.Size = new System.Drawing.Size(805, 624);
+            this.dataGridView1.TabIndex = 3;
             // 
             // UserVocabularyMgtForm
             // 
@@ -281,6 +338,9 @@
             this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,5 +368,10 @@
         private System.Windows.Forms.Button btnExportKnownWords;
         private System.Windows.Forms.Button btnExportUnknownWords;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

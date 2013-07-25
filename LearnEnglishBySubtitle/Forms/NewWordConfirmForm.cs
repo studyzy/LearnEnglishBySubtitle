@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         }
         private DbOperator dbOperator = DbOperator.Instance;
         public IList<SubtitleWord> DataSource { get; set; }
-
+        public string SubtitleFileName { get; set; }
 
         private void NewWordConfirmForm_Load(object sender, EventArgs e)
         {
@@ -53,18 +54,20 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
         }
 
-        public IList<SubtitleWord> SelectedNewWords { get; set; } 
+        public IList<SubtitleWord> SelectedNewWords { get; set; }
         private void btnOK_Click(object sender, EventArgs e)
         {
+            Splash.Show();
             var knownWords = new List<String>();
             var unknownWords = new List<SubtitleWord>();
+            Splash.Status = "读取用户选择...";
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var c1 = row.Cells[0].Value;
                 var word = row.Cells[1].Value;
                 if (!Convert.ToBoolean(c1))
                 {
-                  
+
                     knownWords.Add(word.ToString());
                 }
                 else
@@ -74,11 +77,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     unknownWords.Add(s);
                 }
             }
+            Splash.Status = "保存未选中单词为已熟悉单词...";
             dbOperator.SaveUserKnownWords(knownWords);
-            SelectedNewWords = unknownWords;
-           
+            var subtitleName = Path.GetFileNameWithoutExtension(SubtitleFileName);
+            Splash.Status = "保存选中单词为不熟悉的生词...";
+            dbOperator.SaveSubtitleNewWords(unknownWords, subtitleName);
 
-            DialogResult=DialogResult.OK;
+            SelectedNewWords = unknownWords;
+            Splash.Close();
+
+            DialogResult = DialogResult.OK;
         }
 
         private void NewWordConfirmForm_Resize(object sender, EventArgs e)
