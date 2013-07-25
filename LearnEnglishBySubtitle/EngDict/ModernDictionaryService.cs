@@ -18,9 +18,9 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         {
             get { return "Modern.ld2"; }
         }
-        public override IList<string> GetCoreMeans(string xml)
+        public override IList<WordMean> GetCoreMeans(string xml)
         {
-            var result = new List<string>();
+            var result = new List<WordMean>();
             if (xml.IndexOf("<J D=") > 0)
             {
                 xml = xml.Substring(0, xml.IndexOf("<J D="));
@@ -31,7 +31,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             {
                 var val = match.Groups[1].Value;
 
-                result.Add(detailRegex.Replace(val, ""));
+                result.Add(new WordMean{Mean = detailRegex.Replace(val, "")});
             }
             return result;
         }

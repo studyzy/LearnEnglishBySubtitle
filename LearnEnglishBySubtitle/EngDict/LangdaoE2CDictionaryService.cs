@@ -22,9 +22,9 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         {
             get { return Encoding.Unicode; }
         }
-        public override  IList<string> GetCoreMeans(string xml)
+        public override  IList<WordMean> GetCoreMeans(string xml)
         {
-            var result = new List<string>();
+            var result = new List<WordMean>();
             if (xml.IndexOf("<J D=") > 0)
             {
                 xml = xml.Substring(0, xml.IndexOf("<J D="));
@@ -34,13 +34,17 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             foreach (Match match in regex.Matches(xml))
             {
                 var val = match.Groups[1].Value;
-
-                result.Add(detailRegex.Replace(val, ""));
+                var property = "";
+                if (propertyRegex.IsMatch(val))
+                {
+                    property = propertyRegex.Match(val).Groups[1].Value;
+                }
+                result.Add(new WordMean(){Mean = detailRegex.Replace(val, ""),Property = property});
             }
             return result;
         }
         private static Regex detailRegex = new Regex("<.*?/.*?>");
-       
-        private static Regex regex = new Regex("<Q>(.*?)</Q>");
+        private static Regex propertyRegex = new Regex("<U>(.*?)</U>");
+        private static Regex regex = new Regex("<N>(.*?)</N>");
     }
 }

@@ -18,9 +18,9 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         {
             get { return "Oxford.ld2"; }
         }
-        public override IList<string> GetCoreMeans(string xml)
+        public override IList<WordMean> GetCoreMeans(string xml)
         {
-            var result = new List<string>();
+            var result = new List<WordMean>();
           
             foreach (Match match in regex.Matches(xml))
             {
@@ -36,7 +36,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                             m = m.Substring(0, m.IndexOf(":"));//去掉例句
                             //m = eregex.Replace(m, "");//去掉英文注释
                         }
-                        result.Add(m);
+                        result.Add(new WordMean(){Mean = m});
                     }
                 }
 
@@ -47,5 +47,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         //牛津词典比较特别，<N>表示大解释，<n />分割其中的小解释
         private static Regex regex = new Regex("<N>(.*?)</N>");
         private static Regex eregex=new Regex("[a-zA-Z]");
+
+        private static Regex propertyRegex = new Regex("<x K=\"teal\">(.*?)</x>");
     }
 }

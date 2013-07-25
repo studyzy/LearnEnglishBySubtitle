@@ -36,7 +36,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private DbOperator dbOperator;
         private Subtitle subtitle;
         private EnglishWordService englishWordService;
-        private DictionaryService dictionaryService = new ModernDictionaryService();
+        private DictionaryService dictionaryService = new ViconDictionaryService();
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
@@ -126,9 +126,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
            
         }
+        /// <summary>
+        /// 找到字幕中的生词，先进行分词，然后取每个单词的原型，然后看每个单词是否认识，认识则跳过，不认识则注释。
+        /// </summary>
+        /// <param name="subtitles"></param>
+        /// <returns></returns>
         private IDictionary<string, SubtitleWord> PickNewWords(IList<SubtitleLine> subtitles)
         {
             Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
+            var knownVocabulary= dbOperator.FindAll<UserVocabulary>(v=>v.KnownStatus== KnownStatus.Known).Select(v=>v.Word).ToList();
             var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
             {
@@ -136,8 +142,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 foreach (string word in array)
                 {
                     var original = englishWordService.GetOriginalWord(word);
+                    if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original))
+                    {
+                        //认识的单词，忽略
+                        continue;
+                    }
+
                     if (result.ContainsKey(original))
                     {
+                        //重复的单词
                         continue;
                     }
                  

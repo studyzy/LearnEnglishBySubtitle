@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
+using Studyzy.LearnEnglishBySubtitle.Helpers;
 using log4net;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
@@ -22,7 +23,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         }
         private DbOperator dbOperator = DbOperator.Instance;
         Service service=new Service();
-        private DictionaryService dictionaryService = new ModernDictionaryService();
+        private DictionaryService dictionaryService = new ViconDictionaryService();
         private void UserVocabularyMgtForm_Load(object sender, EventArgs e)
         {
             BindList();
@@ -70,6 +71,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void cbxUnknownList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxUnknownList.SelectedValue == null)
+            {
+                return;
+            }
             var word = cbxUnknownList.SelectedValue.ToString();
             var d = dictionaryService.GetChineseMeanInDict(word);
             if (d != null)
@@ -81,6 +86,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void cbxKnownList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxKnownList.SelectedValue == null)
+            {
+                return;
+            }
             var word = cbxKnownList.SelectedValue.ToString();
             var d = dictionaryService.GetChineseMeanInDict(word);
             if (d != null)
@@ -120,6 +129,36 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
             service.SaveUserVocabulary(vocabulary, "手工");
             BindList();
+        }
+
+        private void btnExportKnownWords_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var rows = dbOperator.FindAll<UserVocabulary>(v => v.KnownStatus == KnownStatus.Known);
+                StringBuilder sb=new StringBuilder();
+                foreach (var row in rows)
+                {
+                    sb.Append(row.Word+"\r\n");
+                }
+                FileOperationHelper.WriteFile(saveFileDialog1.FileName, Encoding.UTF8, sb.ToString());
+                MessageBox.Show("导出完成");
+            }
+        }
+
+        private void btnExportUnknownWords_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var rows = dbOperator.FindAll<UserVocabulary>(v => v.KnownStatus == KnownStatus.Unknown);
+                StringBuilder sb = new StringBuilder();
+                foreach (var row in rows)
+                {
+                    sb.Append(row.Word + "\r\n");
+                }
+                FileOperationHelper.WriteFile(saveFileDialog1.FileName, Encoding.UTF8, sb.ToString());
+                MessageBox.Show("导出完成");
+            }
         }
     }
 }

@@ -42,16 +42,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private DictionaryService GetServiceByName(string name)
         {
-            if (name == "牛津高阶英汉双解词典")
-            {
-                return new OxfordDictionaryService();
-            }
-            if (name == "朗道英汉词典")
-                return new LangdaoE2CDictionaryService();
-            if (name == "现代英汉综合大辞典")
-                return new ModernDictionaryService();
-            if (name == "英汉速查词典")
-                return new QuickE2CDictionaryService();
+            //if (name == "牛津高阶英汉双解词典")
+            //{
+            //    return new OxfordDictionaryService();
+            //}
+            //if (name == "朗道英汉词典")
+            //    return new LangdaoE2CDictionaryService();
+            //if (name == "现代英汉综合大辞典")
+            //    return new ModernDictionaryService();
+            //if (name == "英汉速查词典")
+            //    return new QuickE2CDictionaryService();
             if (name == "维科英汉词典")
                 return new ViconDictionaryService();
             return null;

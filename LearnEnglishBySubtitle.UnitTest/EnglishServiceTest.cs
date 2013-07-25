@@ -9,7 +9,7 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
 {
     class EnglishServiceTest
     {
-        EnglishWordService service=new EnglishWordService(new LangdaoE2CDictionaryService());
+        EnglishWordService service = new EnglishWordService(new ModernDictionaryService());
 
         [TestCase("doing","do")]
         [TestCase("stopping","stop")]
@@ -55,7 +55,7 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
             var o = service.GetOriginalWord(word);
             Assert.AreEqual(o, result);
         }
-         [TestCase("tired")]
+        [TestCase("speed")]
         [TestCase("morning")]
         [TestCase("always")]
         [TestCase("miss")]

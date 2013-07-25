@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Studyzy.LearnEnglishBySubtitle.EngDict;
 
 namespace Studyzy.LearnEnglishBySubtitle
 {
@@ -21,7 +22,7 @@ namespace Studyzy.LearnEnglishBySubtitle
         public string WordInSubitle { get; set; }
         public bool IsNewWord { get; set; }
         public string SubtitleSentence { get; set; }
-        public IList<string> Means { get; set; }
+        public IList<WordMean> Means { get; set; }
         public string SelectMean { get; set; }
     }
 }

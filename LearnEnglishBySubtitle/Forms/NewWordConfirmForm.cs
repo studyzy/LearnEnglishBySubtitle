@@ -6,36 +6,43 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using log4net;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
 {
     public partial class NewWordConfirmForm : Form
     {
+        private ILog logger = LogManager.GetLogger(typeof(NewWordConfirmForm));
         public NewWordConfirmForm()
         {
             InitializeComponent();
         }
         private DbOperator dbOperator = DbOperator.Instance;
-        public IList<SubtitleWord> DataSource { get; set; } 
-      
+        public IList<SubtitleWord> DataSource { get; set; }
+
 
         private void NewWordConfirmForm_Load(object sender, EventArgs e)
         {
             this.dataGridView1.Rows.Clear();
             foreach (var subtitleWord in DataSource)
             {
-                DataGridViewRow row=new DataGridViewRow();
+                DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dataGridView1);
                 row.Cells[0].Value = subtitleWord.IsNewWord;
                 row.Cells[1].Value = subtitleWord.Word;
                 row.Cells[2].Value = subtitleWord.SubtitleSentence;
-                var cbx= row.Cells[3] as DataGridViewComboBoxCell;
+                var cbx = row.Cells[3] as DataGridViewComboBoxCell;
                 if (subtitleWord.Means.Count == 1)
                 {
                     row.Cells.Remove(cbx);
-                    DataGridViewTextBoxCell txb=new DataGridViewTextBoxCell();
+                    DataGridViewTextBoxCell txb = new DataGridViewTextBoxCell();
                     row.Cells.Add(txb);
                     txb.Value = subtitleWord.Means[0];
+                }
+                if (subtitleWord.Means.Count == 0)
+                {
+                    logger.Error("can not find the meaning of word '" + subtitleWord.Word + "'");
+                    continue;
                 }
                 foreach (var mean in subtitleWord.Means)
                 {

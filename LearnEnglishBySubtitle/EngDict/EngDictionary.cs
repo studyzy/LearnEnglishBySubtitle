@@ -10,8 +10,27 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
     /// </summary>
     public class EngDictionary
     {
-        public virtual string Word { get; set; }
-        public virtual IList<string> Means { get; set; }
-        public virtual string Detail { get; set; }
+        public  string Word { get; set; }
+        /// <summary>
+        /// 音标
+        /// </summary>
+        public string PhoneticSymbols { get; set; }
+        public IList<WordMean> Means { get; set; }
+        public  string Detail { get; set; }
+    }
+    public struct WordMean
+    {
+        /// <summary>
+        /// 词性
+        /// </summary>
+        public string Property { get; set; }
+        /// <summary>
+        /// 解释
+        /// </summary>
+        public string Mean { get; set; }
+        public override string ToString()
+        {
+            return Mean;
+        }
     }
 }

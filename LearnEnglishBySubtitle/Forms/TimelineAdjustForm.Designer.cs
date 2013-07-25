@@ -179,7 +179,7 @@
             this.Controls.Add(this.txbFilePath);
             this.Controls.Add(this.label1);
             this.Name = "TimelineAdjustForm";
-            this.Text = "去掉中英文字幕中的中文部分";
+            this.Text = "字幕时间轴调整";
             ((System.ComponentModel.ISupportInitialize)(this.numTimelineDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -31,26 +31,29 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAddKnownWords = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rtbKnownWords = new System.Windows.Forms.RichTextBox();
             this.btnToUnknown = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbxKnownList = new System.Windows.Forms.CheckedListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnSetThemKnown = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbxUnknownList = new System.Windows.Forms.CheckedListBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rtbKnownWords = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnAddKnownWords = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddNewWords = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.rtbNewWords = new System.Windows.Forms.RichTextBox();
+            this.btnSetThemKnown = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbxUnknownList = new System.Windows.Forms.CheckedListBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnExportKnownWords = new System.Windows.Forms.Button();
+            this.btnExportUnknownWords = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +70,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnExportKnownWords);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.btnToUnknown);
             this.tabPage1.Controls.Add(this.label1);
@@ -78,6 +82,45 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "熟悉的单词";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnAddKnownWords);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.rtbKnownWords);
+            this.groupBox1.Location = new System.Drawing.Point(333, 91);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(482, 234);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "添加熟悉的单词";
+            // 
+            // btnAddKnownWords
+            // 
+            this.btnAddKnownWords.Location = new System.Drawing.Point(389, 172);
+            this.btnAddKnownWords.Name = "btnAddKnownWords";
+            this.btnAddKnownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnAddKnownWords.TabIndex = 2;
+            this.btnAddKnownWords.Text = "添 加";
+            this.btnAddKnownWords.UseVisualStyleBackColor = true;
+            this.btnAddKnownWords.Click += new System.EventHandler(this.btnAddKnownWords_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(197, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "请输入熟悉的单词，一行一个单词：";
+            // 
+            // rtbKnownWords
+            // 
+            this.rtbKnownWords.Location = new System.Drawing.Point(17, 55);
+            this.rtbKnownWords.Name = "rtbKnownWords";
+            this.rtbKnownWords.Size = new System.Drawing.Size(263, 160);
+            this.rtbKnownWords.TabIndex = 0;
+            this.rtbKnownWords.Text = "";
             // 
             // btnToUnknown
             // 
@@ -110,6 +153,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnExportUnknownWords);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.btnSetThemKnown);
             this.tabPage2.Controls.Add(this.label2);
@@ -122,95 +166,23 @@
             this.tabPage2.Text = "生词本";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnSetThemKnown
-            // 
-            this.btnSetThemKnown.Location = new System.Drawing.Point(725, 19);
-            this.btnSetThemKnown.Name = "btnSetThemKnown";
-            this.btnSetThemKnown.Size = new System.Drawing.Size(75, 38);
-            this.btnSetThemKnown.TabIndex = 3;
-            this.btnSetThemKnown.Text = "标记为熟悉";
-            this.btnSetThemKnown.UseVisualStyleBackColor = true;
-            this.btnSetThemKnown.Click += new System.EventHandler(this.btnSetThemKnown_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(325, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(377, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "经过不断努力，选中的单词我终于记住了，放到熟悉的单词列表里吧：";
-            // 
-            // cbxUnknownList
-            // 
-            this.cbxUnknownList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cbxUnknownList.FormattingEnabled = true;
-            this.cbxUnknownList.Location = new System.Drawing.Point(3, 3);
-            this.cbxUnknownList.Name = "cbxUnknownList";
-            this.cbxUnknownList.Size = new System.Drawing.Size(293, 690);
-            this.cbxUnknownList.TabIndex = 1;
-            this.cbxUnknownList.SelectedIndexChanged += new System.EventHandler(this.cbxUnknownList_SelectedIndexChanged);
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnAddKnownWords);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.rtbKnownWords);
-            this.groupBox1.Location = new System.Drawing.Point(333, 91);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 234);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "添加熟悉的单词";
-            // 
-            // rtbKnownWords
-            // 
-            this.rtbKnownWords.Location = new System.Drawing.Point(17, 55);
-            this.rtbKnownWords.Name = "rtbKnownWords";
-            this.rtbKnownWords.Size = new System.Drawing.Size(263, 160);
-            this.rtbKnownWords.TabIndex = 0;
-            this.rtbKnownWords.Text = "";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(197, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "请输入熟悉的单词，一行一个单词：";
-            // 
-            // btnAddKnownWords
-            // 
-            this.btnAddKnownWords.Location = new System.Drawing.Point(369, 172);
-            this.btnAddKnownWords.Name = "btnAddKnownWords";
-            this.btnAddKnownWords.Size = new System.Drawing.Size(75, 43);
-            this.btnAddKnownWords.TabIndex = 2;
-            this.btnAddKnownWords.Text = "添 加";
-            this.btnAddKnownWords.UseVisualStyleBackColor = true;
-            this.btnAddKnownWords.Click += new System.EventHandler(this.btnAddKnownWords_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnAddNewWords);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.rtbNewWords);
-            this.groupBox2.Location = new System.Drawing.Point(327, 106);
+            this.groupBox2.Location = new System.Drawing.Point(333, 91);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(488, 234);
+            this.groupBox2.Size = new System.Drawing.Size(482, 234);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "添加生词";
             // 
             // btnAddNewWords
             // 
-            this.btnAddNewWords.Location = new System.Drawing.Point(398, 172);
+            this.btnAddNewWords.Location = new System.Drawing.Point(389, 172);
             this.btnAddNewWords.Name = "btnAddNewWords";
-            this.btnAddNewWords.Size = new System.Drawing.Size(75, 43);
+            this.btnAddNewWords.Size = new System.Drawing.Size(75, 42);
             this.btnAddNewWords.TabIndex = 2;
             this.btnAddNewWords.Text = "添 加";
             this.btnAddNewWords.UseVisualStyleBackColor = true;
@@ -233,6 +205,64 @@
             this.rtbNewWords.TabIndex = 0;
             this.rtbNewWords.Text = "";
             // 
+            // btnSetThemKnown
+            // 
+            this.btnSetThemKnown.Location = new System.Drawing.Point(722, 17);
+            this.btnSetThemKnown.Name = "btnSetThemKnown";
+            this.btnSetThemKnown.Size = new System.Drawing.Size(75, 42);
+            this.btnSetThemKnown.TabIndex = 3;
+            this.btnSetThemKnown.Text = "标记为熟悉";
+            this.btnSetThemKnown.UseVisualStyleBackColor = true;
+            this.btnSetThemKnown.Click += new System.EventHandler(this.btnSetThemKnown_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(331, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(377, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "经过不断努力，选中的单词我终于记住了，放到熟悉的单词列表里吧：";
+            // 
+            // cbxUnknownList
+            // 
+            this.cbxUnknownList.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbxUnknownList.FormattingEnabled = true;
+            this.cbxUnknownList.Location = new System.Drawing.Point(3, 3);
+            this.cbxUnknownList.Name = "cbxUnknownList";
+            this.cbxUnknownList.Size = new System.Drawing.Size(293, 690);
+            this.cbxUnknownList.TabIndex = 1;
+            this.cbxUnknownList.SelectedIndexChanged += new System.EventHandler(this.cbxUnknownList_SelectedIndexChanged);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            // 
+            // btnExportKnownWords
+            // 
+            this.btnExportKnownWords.Location = new System.Drawing.Point(722, 376);
+            this.btnExportKnownWords.Name = "btnExportKnownWords";
+            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnExportKnownWords.TabIndex = 4;
+            this.btnExportKnownWords.Text = "导 出";
+            this.btnExportKnownWords.UseVisualStyleBackColor = true;
+            this.btnExportKnownWords.Click += new System.EventHandler(this.btnExportKnownWords_Click);
+            // 
+            // btnExportUnknownWords
+            // 
+            this.btnExportUnknownWords.Location = new System.Drawing.Point(722, 376);
+            this.btnExportUnknownWords.Name = "btnExportUnknownWords";
+            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnExportUnknownWords.TabIndex = 5;
+            this.btnExportUnknownWords.Text = "导 出";
+            this.btnExportUnknownWords.UseVisualStyleBackColor = true;
+            this.btnExportUnknownWords.Click += new System.EventHandler(this.btnExportUnknownWords_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.Filter = "TXT|*.txt";
+            // 
             // UserVocabularyMgtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -245,10 +275,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -275,5 +305,8 @@
         private System.Windows.Forms.Button btnAddNewWords;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox rtbNewWords;
+        private System.Windows.Forms.Button btnExportKnownWords;
+        private System.Windows.Forms.Button btnExportUnknownWords;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

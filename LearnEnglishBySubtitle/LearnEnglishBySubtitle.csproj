@@ -87,11 +87,11 @@
   <ItemGroup>
     <Compile Include="AuditEventListener.cs" />
     <Compile Include="DbOperator.cs" />
+    <Compile Include="EngDict\LangdaoE2CDictionaryService.cs" />
+    <Compile Include="EngDict\ModernDictionaryService.cs" />
     <Compile Include="EngDict\OxfordDictionaryService.cs" />
     <Compile Include="EngDict\QuickE2CDictionaryService.cs" />
     <Compile Include="EngDict\ViconDictionaryService.cs" />
-    <Compile Include="EngDict\LangdaoE2CDictionaryService.cs" />
-    <Compile Include="EngDict\ModernDictionaryService.cs" />
     <Compile Include="EngDict\LingoesLd2.cs" />
     <Compile Include="EnglishWordService.cs" />
     <Compile Include="Entities\Subtitle_NewWord.cs" />
@@ -211,7 +211,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Dictionaries\Modern.ld2">
+    <None Include="Dictionaries\Vicon English-Chinese%28S%29 Dictionary.ld2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config">

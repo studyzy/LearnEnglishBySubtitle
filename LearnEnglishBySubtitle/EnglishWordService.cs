@@ -26,7 +26,7 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         private bool IsInRankTable(string word)
         {
-            return GetRank(word) > 0;
+            return GetRank(word) > 3;
         }
 
         private int GetRank(string word)
