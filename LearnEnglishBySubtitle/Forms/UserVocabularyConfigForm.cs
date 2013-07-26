@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Studyzy.LearnEnglishBySubtitle.Entities;
+using Studyzy.LearnEnglishBySubtitle.Helpers;
 using log4net;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
@@ -29,18 +30,23 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DbOperator dbOperator= DbOperator.Instance;
-            var words = dbOperator.FindAll<VocabularyRank>(v => v.RankValue >= numUserVocabularyRank.Value);
+            var userRank = numUserVocabularyRank.Value;
+            //DbOperator dbOperator= DbOperator.Instance;
+            //var words = dbOperator.FindAll<VocabularyRank>(v => v.RankValue >= numUserVocabularyRank.Value);
+            var words = InnerDictionaryHelper.GetAllVocabularyRanks();
             Service service=new Service();
             var vocabulary = new List<Vocabulary>();
             foreach (var vocabularyRank in words)
             {
-               vocabulary.Add(new Vocabulary(){Word = vocabularyRank.Word,IsKnown = true});
+                if(vocabularyRank.Value>=userRank)
+                {
+                    vocabulary.Add(new Vocabulary(){Word = vocabularyRank.Key,IsKnown = true});
+                }
             }
             service.SaveUserVocabulary(vocabulary,"柯林斯词频分级");
             logger.Debug("柯林斯词频分级保存成功");
             MessageBox.Show("用户词频设置保存成功");
-            RegistryHelper.WTRegedit("Used","Yes");
+            //RegistryHelper.WTRegedit("Used","Yes");
             DialogResult=DialogResult.OK;
             //this.Close();
         }

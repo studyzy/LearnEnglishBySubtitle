@@ -142,6 +142,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 var array = line.Split(new char[] { ' ', ',', '.', '?', ':', '!' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string word in array)
                 {
+                    if (IsEnglishName(word))
+                    {
+                        //英文名，忽略
+                        continue;
+                    }
                     var original = englishWordService.GetOriginalWord(word);
                     if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original))
                     {
@@ -198,13 +203,28 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private IList<string> easyWord;
         private bool IsEasyWord(string word)
         {
-            if(easyWord==null)
-            easyWord = dbOperator.GetAll<EasyWord>().Select(e => e.Word).ToList();
+            easyWord = InnerDictionaryHelper.GetAllEasyWords();
+            //if(easyWord==null)
+            //easyWord = dbOperator.GetAll<EasyWord>().Select(e => e.Word).ToList();
             return easyWord.Contains(word);
+        }
+
+        private bool IsEnglishName(string word)
+        {
+            if (word[0] >= 'A' && word[0] <= 'Z')
+            {
+                var names = InnerDictionaryHelper.GetAllEnglishNames();
+                return names.Contains(word);
+            }
+            return false;
         }
 
         private EngDictionary RemarkWord(string word)
         {
+            if (word.Length == 1)
+            {
+                return null;
+            }
             if (IsEasyWord(word))
             {
                 return null;
@@ -237,18 +257,18 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             return (userVocabularies.Where(v => v.Word == word).FirstOrDefault());
         }
 
-        private IList<VocabularyRank> vocabularyRanks;
-        private VocabularyRank GetVocabularyRank(string word)
-        {
-          if (vocabularyRanks == null||vocabularyRanks.Count==0)
-            {
-                vocabularyRanks = dbOperator.GetAll<VocabularyRank>();
-            }
-            return (vocabularyRanks.Where(v => v.Word == word).FirstOrDefault());
-        }
+        //private IList<VocabularyRank> vocabularyRanks;
+        //private VocabularyRank GetVocabularyRank(string word)
+        //{
+        //  if (vocabularyRanks == null||vocabularyRanks.Count==0)
+        //    {
+        //        vocabularyRanks = dbOperator.GetAll<VocabularyRank>();
+        //    }
+        //    return (vocabularyRanks.Where(v => v.Word == word).FirstOrDefault());
+        //}
         private string CalcAndGetWordAndMean(string word)
         {
- 
+
             var vocabulary = GetUserVocabulary(word);
             if (vocabulary != null)
             {
@@ -263,25 +283,28 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 }
             }
             //用户词汇中没有这个词，那么就查询词频分级表，看有没有分级信息
-            var rank = GetVocabularyRank(word);
-            if (rank != null)
+            var rankData = InnerDictionaryHelper.GetAllVocabularyRanks();
+            //var rank = GetVocabularyRank(word);
+            if (!rankData.ContainsKey(word))
             {
-                if (rank.RankValue < 4)
-                {
-                    return (word);
-                }
-                else
-                {
-                    return "";
-                }
+                return word;
             }
-            return (word);
+            var rank = rankData[word];
 
+
+            if (rank < 4)
+            {
+                return (word);
+            }
+            else
+            {
+                return "";
+            }
         }
 
-      
 
-    
+
+
         private void backgroundLoadDictionary_DoWork(object sender, DoWorkEventArgs e)
         {
             dictionaryService.IsInDictionary("a");

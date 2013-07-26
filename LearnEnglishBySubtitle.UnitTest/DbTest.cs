@@ -31,20 +31,20 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
         //    count = dbOperator.Count<EngDictionary>();
         //    Assert.AreEqual(count, 2);
         //}
-        [Test]
-        public void TestInsertVocabularyRank()
-        {
-            var txt = FileOperationHelper.ReadFile("klsrank.txt");
-             DbOperator dbOperator= DbOperator.Instance;
-            dbOperator.BeginTran();
-            foreach (var line in txt.Split(new string[]{"\r\n"},StringSplitOptions.RemoveEmptyEntries))
-            {
-                var array = line.Split(',');
-                VocabularyRank rank=new VocabularyRank(){Word = array[0],RankValue =Convert.ToInt32(array[1])};
-                dbOperator.Save(rank);
-            }
-            dbOperator.Commit();
-        }
+        //[Test]
+        //public void TestInsertVocabularyRank()
+        //{
+        //    var txt = FileOperationHelper.ReadFile("klsrank.txt");
+        //     DbOperator dbOperator= DbOperator.Instance;
+        //    dbOperator.BeginTran();
+        //    foreach (var line in txt.Split(new string[]{"\r\n"},StringSplitOptions.RemoveEmptyEntries))
+        //    {
+        //        var array = line.Split(',');
+        //        VocabularyRank rank=new VocabularyRank(){Word = array[0],RankValue =Convert.ToInt32(array[1])};
+        //        dbOperator.Save(rank);
+        //    }
+        //    dbOperator.Commit();
+        //}
         //[Test]
         //public void TestBatchInsert()
         //{

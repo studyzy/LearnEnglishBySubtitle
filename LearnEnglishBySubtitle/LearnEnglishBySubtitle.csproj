@@ -95,11 +95,9 @@
     <Compile Include="EngDict\LingoesLd2.cs" />
     <Compile Include="EnglishWordService.cs" />
     <Compile Include="Entities\Subtitle_NewWord.cs" />
-    <Compile Include="Entities\EasyWord.cs" />
     <Compile Include="Entities\Subtitle_KnownWord.cs" />
     <Compile Include="EngDict\EngDictionary.cs" />
     <Compile Include="Entities\UserVocabulary.cs" />
-    <Compile Include="Entities\WordOriginalMap.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +149,7 @@
     </Compile>
     <Compile Include="Helpers\FileOperationHelper.cs" />
     <Compile Include="Helpers\BinFileHelper.cs" />
+    <Compile Include="Helpers\InnerDictionaryHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -159,6 +158,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IAuditEntity.cs" />
+    <Compile Include="InnerDictionary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InnerDictionary.resx</DependentUpon>
+    </Compile>
     <Compile Include="NHibernateHelper.cs" />
     <Compile Include="NhMapping\AutoMapConfiguration.cs" />
     <Compile Include="NhMapping\EnumConvention.cs" />
@@ -166,7 +170,6 @@
     <Compile Include="NhMapping\PersistenceModelGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistryHelper.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Splash.cs" />
     <Compile Include="SQLiteBulkInsert.cs" />
@@ -178,7 +181,6 @@
     <Compile Include="Subtitles\AssOperator.cs" />
     <Compile Include="Subtitles\SrtOperator.cs" />
     <Compile Include="Entities\KnownStatus.cs" />
-    <Compile Include="Entities\VocabularyRank.cs" />
     <Compile Include="Vocabulary.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -208,6 +210,10 @@
     <EmbeddedResource Include="Forms\UserVocabularyMgtForm.resx">
       <DependentUpon>UserVocabularyMgtForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InnerDictionary.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InnerDictionary.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -236,15 +242,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="UserVocabulary.db3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />
+    <None Include="Resources\VocabularyRank.txt" />
+    <None Include="Resources\EasyWord.txt" />
+    <None Include="Resources\WordOriginalMap.txt" />
+    <None Include="Resources\EnglishName.txt" />
+    <None Include="Resources\InitDb.sql" />
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

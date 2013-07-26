@@ -30,6 +30,7 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
             Assert.AreEqual(o, result);
         }
         [TestCase("does", "do")]
+        [TestCase("dies", "die")]
         public void TestVerbEs(string word, string result)
         {
             var o = service.GetOriginalWord(word);

@@ -12,15 +12,15 @@ namespace Studyzy.LearnEnglishBySubtitle.NhMapping
 {
 
   
-    public class WordRankMapping : IAutoMappingOverride<VocabularyRank>
-    {
-        public void Override(AutoMapping<VocabularyRank> mapping)
-        {
-            Debug.WriteLine("Override WordRankMapping");
-            mapping.Id(x => x.Word).GeneratedBy.Assigned();
-        }
+    //public class WordRankMapping : IAutoMappingOverride<VocabularyRank>
+    //{
+    //    public void Override(AutoMapping<VocabularyRank> mapping)
+    //    {
+    //        Debug.WriteLine("Override WordRankMapping");
+    //        mapping.Id(x => x.Word).GeneratedBy.Assigned();
+    //    }
 
-    }
+    //}
  
     //public class EngDictionaryMapping : IAutoMappingOverride<EngDictionary>
     //{
@@ -31,24 +31,24 @@ namespace Studyzy.LearnEnglishBySubtitle.NhMapping
     //    }
     //}
 
-    public class WordOriginalMapMapping : IAutoMappingOverride<WordOriginalMap>
-    {
-        public void Override(AutoMapping<WordOriginalMap> mapping)
-        {
-            Debug.WriteLine("Override WordOriginalMapMapping");
-            mapping.Id(x => x.Word).GeneratedBy.Assigned();
+    //public class WordOriginalMapMapping : IAutoMappingOverride<WordOriginalMap>
+    //{
+    //    public void Override(AutoMapping<WordOriginalMap> mapping)
+    //    {
+    //        Debug.WriteLine("Override WordOriginalMapMapping");
+    //        mapping.Id(x => x.Word).GeneratedBy.Assigned();
 
-        }
-    }
-    public class EasyWordMapping : IAutoMappingOverride<EasyWord>
-    {
-        public void Override(AutoMapping<EasyWord> mapping)
-        {
-            Debug.WriteLine("Override EasyWordMapping");
-            mapping.Id(x => x.Word).GeneratedBy.Assigned();
-        }
+    //    }
+    //}
+    //public class EasyWordMapping : IAutoMappingOverride<EasyWord>
+    //{
+    //    public void Override(AutoMapping<EasyWord> mapping)
+    //    {
+    //        Debug.WriteLine("Override EasyWordMapping");
+    //        mapping.Id(x => x.Word).GeneratedBy.Assigned();
+    //    }
 
-    }
+    //}
     //public class UMapping : IAutoMappingOverride<UploadFile>
     //{
     //    public void Override(AutoMapping<UploadFile> mapping)

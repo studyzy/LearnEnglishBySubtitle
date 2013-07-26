@@ -14,13 +14,15 @@ namespace Studyzy.LearnEnglishBySubtitle
     public class DbOperator
     {
         private ILog logger = LogManager.GetLogger(typeof (DbOperator));
-        NHibernateHelper helper;
+        private NHibernateHelper helper;
+
         private DbOperator()
         {
             helper = new NHibernateHelper();
         }
 
         private static DbOperator op = null;
+
         public static DbOperator Instance
         {
             get
@@ -51,14 +53,17 @@ namespace Studyzy.LearnEnglishBySubtitle
                 return session;
             }
         }
+
         protected ISession NewSession
         {
             get { return helper.GetSession(); }
         }
-        public int Count<T>() where T:class 
+
+        public int Count<T>() where T : class
         {
             return Session.QueryOver<T>().RowCount();
         }
+
         //public void InsertEngDictionary(string word, string description)
         //{
         //    EngDictionary ed = new EngDictionary() {Word = word, Description = description};
@@ -83,15 +88,18 @@ namespace Studyzy.LearnEnglishBySubtitle
         //}
 
         private ITransaction transaction;
+
         public void BeginTran()
         {
             transaction = Session.BeginTransaction();
         }
+
         public void Commit()
         {
             transaction.Commit();
             transaction = null;
         }
+
         //public string GetDecription(string word)
         //{
         //    var result= Session.QueryOver<EngDictionary>().Where(d => d.Word == word).SingleOrDefault();
@@ -109,18 +117,22 @@ namespace Studyzy.LearnEnglishBySubtitle
         {
             return Session.QueryOver<T>().Where(expression).SingleOrDefault();
         }
+
         public T FindFirst<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return Session.Query<T>().Where(expression).FirstOrDefault();
         }
+
         public IList<T> FindAll<T>(Expression<Func<T, bool>> expression) where T : class
         {
             return Session.QueryOver<T>().Where(expression).List();
         }
+
         public IList<T> GetAll<T>() where T : class
         {
             return Session.QueryOver<T>().List();
         }
+
         public T Save<T>(T obj) where T : class
         {
             Session.SaveOrUpdate(obj);
@@ -128,11 +140,11 @@ namespace Studyzy.LearnEnglishBySubtitle
         }
 
         #region User Data
-        
-       
+
+
         public void ClearUserVocabulary()
         {
-         
+
             var q = Session.CreateSQLQuery("delete from User_Vocabulary");
             q.ExecuteUpdate();
 
@@ -165,7 +177,7 @@ namespace Studyzy.LearnEnglishBySubtitle
         {
             return FindFirst<UserVocabulary>(v => v.Word == word);
         }
-        
+
         public void SaveSubtitleNewWords(IList<SubtitleWord> newWords, string subtitleName)
         {
             BeginTran();
@@ -197,11 +209,14 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             Commit();
         }
+
         #endregion
 
-        public VocabularyRank GetVocabularyRank(string word)
+        public void InitDatabase()
         {
-            return FindOne<VocabularyRank>(v => v.Word == word);
+            var q= Session.CreateSQLQuery(InnerDictionary.InitDb);
+            q.ExecuteUpdate();
+            Session.Flush();
         }
     }
 }

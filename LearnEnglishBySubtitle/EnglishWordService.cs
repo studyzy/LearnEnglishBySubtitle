@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
+using Studyzy.LearnEnglishBySubtitle.Helpers;
 
 namespace Studyzy.LearnEnglishBySubtitle
 {
     public class EnglishWordService
     {
-        private DbOperator dbOperator =  DbOperator.Instance;
+        //private DbOperator dbOperator =  DbOperator.Instance;
         private DictionaryService dictionaryService;
 
         public DictionaryService DictionaryService
@@ -22,7 +23,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             this.dictionaryService = dictionaryService;
         }
 
-        private IList<VocabularyRank> rankData;
+        //private IList<VocabularyRank> rankData;
 
         private bool IsInRankTable(string word)
         {
@@ -31,16 +32,22 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         private int GetRank(string word)
         {
-            if (rankData == null)
+            var rankData = InnerDictionaryHelper.GetAllVocabularyRanks();
+            if (rankData.ContainsKey(word))
             {
-                rankData = dbOperator.GetAll<VocabularyRank>();
+                return rankData[word];
             }
-            var x = rankData.SingleOrDefault(r => r.Word == word);
-            if (x == null)
-            {
-                return -1;
-            }
-            return x.RankValue;
+            return -1;
+            //if (rankData == null)
+            //{
+            //    rankData = dbOperator.GetAll<VocabularyRank>();
+            //}
+            //var x = rankData.SingleOrDefault(r => r.Word == word);
+            //if (x == null)
+            //{
+            //    return -1;
+            //}
+            //return x.RankValue;
         }
 
         /// <summary>
@@ -237,7 +244,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             return newWord;
         }
-        private Dictionary<string, string> OriginalWordMaps;
+        private IDictionary<string, string> OriginalWordMaps;
 
         /// <summary>
         /// 获得不规则动词的Mapping，返回不规则动词的原型
@@ -246,15 +253,16 @@ namespace Studyzy.LearnEnglishBySubtitle
         /// <returns></returns>
         private string GetOriginalWordFromDb(string word)
         {
-            if (OriginalWordMaps == null)
-            {
-                OriginalWordMaps = new Dictionary<string, string>();
-                var list = dbOperator.GetAll<WordOriginalMap>();
-                foreach (var wordOriginalMap in list)
-                {
-                    OriginalWordMaps.Add(wordOriginalMap.Word, wordOriginalMap.OriginalWord);
-                }
-            }
+            OriginalWordMaps = InnerDictionaryHelper.GetAllWordOriginalMaps();
+            //if (OriginalWordMaps == null)
+            //{
+            //    OriginalWordMaps = new Dictionary<string, string>();
+            //    var list = dbOperator.GetAll<WordOriginalMap>();
+            //    foreach (var wordOriginalMap in list)
+            //    {
+            //        OriginalWordMaps.Add(wordOriginalMap.Word, wordOriginalMap.OriginalWord);
+            //    }
+            //}
             if (OriginalWordMaps.ContainsKey(word))
             {
                 return OriginalWordMaps[word];
