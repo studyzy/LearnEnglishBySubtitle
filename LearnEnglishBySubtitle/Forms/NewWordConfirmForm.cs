@@ -37,7 +37,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 {
                     row.Cells.Remove(cbx);
                     DataGridViewTextBoxCell txb = new DataGridViewTextBoxCell();
-                    row.Cells.Add(txb);
+                    row.Cells.Insert(3,txb);
+                    txb.ReadOnly = true;
                     txb.Value = subtitleWord.Means[0];
                 }
                 if (subtitleWord.Means.Count == 0)
@@ -73,7 +74,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 else
                 {
                     var s = DataSource.Where(w => w.Word == word).SingleOrDefault();
-                    s.SelectMean = row.Cells[3].Value.ToString();
+                    var userMean = row.Cells[4].Value;
+                    if (userMean==null|| userMean.ToString().Trim() == String.Empty)
+                    {
+                        s.SelectMean = row.Cells[3].Value.ToString();
+                    }
+                    else
+                    {
+                        s.SelectMean = userMean.ToString().Trim();
+                    }
                     unknownWords.Add(s);
                 }
             }

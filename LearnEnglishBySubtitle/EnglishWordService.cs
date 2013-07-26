@@ -194,6 +194,12 @@ namespace Studyzy.LearnEnglishBySubtitle
             var newWord = word.Substring(0, word.Length - 2);
             if (newWord.EndsWith("i"))
             {
+                //dies->die
+                var addeWord = OperateIfAddE(newWord);
+                if (addeWord != newWord)
+                {
+                    return addeWord;
+                }
                 //dries->dry
                 newWord = newWord.Substring(0, newWord.Length - 1) + "y";
             }
@@ -211,7 +217,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             return word;
         }
         /// <summary>
-        /// 传入一个已经去掉词Es、Ed后缀的单词，判断是否需要加上e结尾
+        /// 传入一个已经去掉词Es、Ed后缀的单词，判断是否需要加上e结尾,如果加e后是一个单词，那就返回加e的单词， 如果加3不是单词，那么返回原单词
         /// </summary>
         /// <param name="newWord"></param>
         /// <returns></returns>

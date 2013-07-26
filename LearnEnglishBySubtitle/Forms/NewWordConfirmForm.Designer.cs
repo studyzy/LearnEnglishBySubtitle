@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.IsNewWord = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubtitleSentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Means = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.NewMean = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,41 +52,19 @@
             this.IsNewWord,
             this.Word,
             this.SubtitleSentence,
-            this.Means});
+            this.Means,
+            this.NewMean});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.ShowCellErrors = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
             this.dataGridView1.Size = new System.Drawing.Size(790, 659);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // IsNewWord
-            // 
-            this.IsNewWord.Frozen = true;
-            this.IsNewWord.HeaderText = "是否生词";
-            this.IsNewWord.Name = "IsNewWord";
-            this.IsNewWord.Width = 40;
-            // 
-            // Word
-            // 
-            this.Word.HeaderText = "单词";
-            this.Word.Name = "Word";
-            this.Word.ReadOnly = true;
-            // 
-            // SubtitleSentence
-            // 
-            this.SubtitleSentence.HeaderText = "原文";
-            this.SubtitleSentence.Name = "SubtitleSentence";
-            this.SubtitleSentence.ReadOnly = true;
-            this.SubtitleSentence.Width = 300;
-            // 
-            // Means
-            // 
-            this.Means.HeaderText = "解释";
-            this.Means.Name = "Means";
-            this.Means.Width = 290;
             // 
             // btnOK
             // 
@@ -119,6 +98,38 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "如果是认识的单词，请取消选中。选中的单词会记录到用户的生词本中，未选中的单词记录到用户认识的单词中";
             // 
+            // IsNewWord
+            // 
+            this.IsNewWord.Frozen = true;
+            this.IsNewWord.HeaderText = "是否生词";
+            this.IsNewWord.Name = "IsNewWord";
+            this.IsNewWord.Width = 40;
+            // 
+            // Word
+            // 
+            this.Word.HeaderText = "单词";
+            this.Word.Name = "Word";
+            this.Word.ReadOnly = true;
+            // 
+            // SubtitleSentence
+            // 
+            this.SubtitleSentence.HeaderText = "原文";
+            this.SubtitleSentence.Name = "SubtitleSentence";
+            this.SubtitleSentence.ReadOnly = true;
+            this.SubtitleSentence.Width = 300;
+            // 
+            // Means
+            // 
+            this.Means.HeaderText = "解释";
+            this.Means.Name = "Means";
+            this.Means.Width = 250;
+            // 
+            // NewMean
+            // 
+            this.NewMean.HeaderText = "新解释";
+            this.NewMean.Name = "NewMean";
+            this.NewMean.Width = 80;
+            // 
             // NewWordConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -143,10 +154,11 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsNewWord;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubtitleSentence;
         private System.Windows.Forms.DataGridViewComboBoxColumn Means;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NewMean;
     }
 }

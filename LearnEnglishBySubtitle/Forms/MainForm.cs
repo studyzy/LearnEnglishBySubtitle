@@ -338,7 +338,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 lines.Add(subtitleLine);
             }
             subtitle.Bodies = lines;
-            var bakFile = txbSubtitleFilePath.Text + ".bak";
+            var path = txbSubtitleFilePath.Text;
+            var bakFile = Path.GetDirectoryName(path)+"\\" +Path.GetFileNameWithoutExtension(path)+ "_bak"+Path.GetExtension(path);
             if(!File.Exists(bakFile))
             {
                 File.Copy(txbSubtitleFilePath.Text, bakFile);

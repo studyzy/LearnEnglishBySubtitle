@@ -19,7 +19,21 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         public string StatusInfo
         {
             get { return label1.Text; }
-            set { label1.Text = value; }
+            set
+            {
+                if (label1.InvokeRequired)
+                {
+                    Action<string> del = delegate(string msg)
+                                             {
+                                                 label1.Text = msg;
+                                             };
+                    label1.Invoke(del, value);
+                }
+                else
+                {
+                    label1.Text = value;
+                }
+            }
         }
     }
 }
