@@ -32,12 +32,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void BindList()
         {
             logger.Debug("Begin Load Know Words");
-            var knowns = dbOperator.FindAll<UserVocabulary>(v => v.KnownStatus == KnownStatus.Known).Select(v => v.Word).OrderBy(v=>v).ToList();
+            var knowns = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known).Select(v => v.Word).OrderBy(v=>v).ToList();
             cbxKnownList.ClearSelected();
             cbxKnownList.DataSource = knowns;
             logger.Debug("Finish Load Know Words");
             logger.Debug("Begin Load Unknown Words");
-            var notknown = dbOperator.FindAll<UserVocabulary>(v => v.KnownStatus == KnownStatus.Unknown).Select(v => v.Word).OrderBy(v => v).ToList();
+            var notknown = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown).Select(v => v.Word).OrderBy(v => v).ToList();
             cbxUnknownList.ClearSelected();
             cbxUnknownList.DataSource = notknown;
             logger.Debug("Finish Load Unknown Words");
@@ -138,7 +138,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var rows = dbOperator.FindAll<UserVocabulary>(v => v.KnownStatus == KnownStatus.Known);
+                var rows = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known);
                 StringBuilder sb=new StringBuilder();
                 foreach (var row in rows)
                 {
@@ -153,7 +153,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var rows = dbOperator.FindAll<UserVocabulary>(v => v.KnownStatus == KnownStatus.Unknown);
+                var rows = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown);
                 StringBuilder sb = new StringBuilder();
                 foreach (var row in rows)
                 {
@@ -166,7 +166,51 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            string keyword = txbWordQueryInput.Text;
+            var result = dbOperator.FindAllUserVocabulary(v => v.Word==keyword);
+            var list = new List<VUserWord>();
+            foreach (var userVocabulary in result)
+            {
+                var row = new VUserWord(userVocabulary);
+                var engDic = dictionaryService.GetChineseMeanInDict(userVocabulary.Word);
+                if (engDic != null && engDic.Means.Count>0)
+                {
+                    row.Meaning = engDic.Means[0].Mean;
+                }
+                list.Add(row);
+            }
+            dataGridWordQuery.DataSource = list;
             
         }
+    }
+
+    public class VUserWord
+    {
+        public VUserWord()
+        {
+            
+        }
+        public VUserWord(UserVocabulary v)
+        {
+            Word = v.Word;
+            CreateTime = v.CreateTime;
+            UpdateTime = v.UpdateTime;
+            Source = v.Source;
+            IsNewWord=v.KnownStatus== KnownStatus.Unknown?"是":"否";
+        }
+        public string Meaning { get; set; }
+        public string IsNewWord { get; set; }
+        public string Word { get; set; }
+        /// <summary>
+        /// 我是否已经知道这个词汇
+        /// </summary>
+        public KnownStatus KnownStatus { get; set; }
+        /// <summary>
+        /// 这个状态是从哪个系统得知的
+        /// </summary>
+        public string Source { get; set; }
+
+        public DateTime CreateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
     }
 }

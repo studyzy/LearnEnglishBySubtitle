@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("studyzy")]
 [assembly: AssemblyProduct("深蓝字幕注释小助手")]
-[assembly: AssemblyCopyright("Copyright © studyzy 2013")]
+[assembly: AssemblyCopyright("Copyright © studyzy 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(ConfigFileExtension  = "config", Watch = true)]

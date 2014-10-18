@@ -22,6 +22,9 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         public IList<SubtitleWord> DataSource { get; set; }
         public string SubtitleFileName { get; set; }
 
+        public delegate void ProcessNewWords(IList<SubtitleWord> words);
+
+        public event ProcessNewWords OnClickOkButton;
         private void NewWordConfirmForm_Load(object sender, EventArgs e)
         {
             this.dataGridView1.Rows.Clear();
@@ -96,6 +99,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Splash.Close();
 
             DialogResult = DialogResult.OK;
+            OnClickOkButton(SelectedNewWords);
         }
 
         private void NewWordConfirmForm_Resize(object sender, EventArgs e)

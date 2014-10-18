@@ -103,29 +103,37 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 NewWordConfirmForm form = new NewWordConfirmForm();
                 form.DataSource = subtitleWords.Values.ToList();
                 form.SubtitleFileName = Path.GetFileName(txbSubtitleFilePath.Text);
-                if (form.ShowDialog() == DialogResult.OK)
-                {
+                form.OnClickOkButton += RemarkSubtitle;
+                form.Show();
+                //if (form.ShowDialog() == DialogResult.OK)
+                //{
 
-                    Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
-                    foreach (var subtitleWord in form.SelectedNewWords)
-                    {
-                        result.Add(subtitleWord.Word, subtitleWord);
-                    }
-                    var newSubtitle = new List<SubtitleLine>();
-                    for (int i = 0; i < subtitle.Bodies.Count; i++)
-                    {
-                        var SubtitleLine = subtitle.Bodies[i];
-                        SubtitleLine.EnglishTextWithMeans = StringAndRemarkString(SubtitleLine.EnglishText, result);
-                        newSubtitle.Add(SubtitleLine);
-                    }
-                    subtitle.Bodies = newSubtitle;
-                    ShowSubtitleText(newSubtitle, true);
-                    ClearCache();
-                }
+                //  form.SelectedNewWords
+                //}
             }
 
 
         }
+
+        private void RemarkSubtitle(IList<SubtitleWord>  words)
+        {
+            Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
+            foreach (var subtitleWord in words)
+            {
+                result.Add(subtitleWord.Word, subtitleWord);
+            }
+            var newSubtitle = new List<SubtitleLine>();
+            for (int i = 0; i < subtitle.Bodies.Count; i++)
+            {
+                var SubtitleLine = subtitle.Bodies[i];
+                SubtitleLine.EnglishTextWithMeans = StringAndRemarkString(SubtitleLine.EnglishText, result);
+                newSubtitle.Add(SubtitleLine);
+            }
+            subtitle.Bodies = newSubtitle;
+            ShowSubtitleText(newSubtitle, true);
+            ClearCache();
+        }
+
 
         /// <summary>
         /// 找到字幕中的生词，先进行分词，然后取每个单词的原型，然后看每个单词是否认识，认识则跳过，不认识则注释。
@@ -135,7 +143,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private IDictionary<string, SubtitleWord> PickNewWords(IList<SubtitleLine> subtitles)
         {
             Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
-            var knownVocabulary= dbOperator.FindAll<UserVocabulary>(v=>v.KnownStatus== KnownStatus.Known).Select(v=>v.Word).ToList();
+            var knownVocabulary= dbOperator.FindAllUserVocabulary(v=>v.KnownStatus== KnownStatus.Known).Select(v=>v.Word).ToList();
             var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
             {
@@ -252,7 +260,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             if (userVocabularies == null||userVocabularies.Count==0)
             {
-                userVocabularies = dbOperator.GetAll<UserVocabulary>();
+                userVocabularies = dbOperator.GetAllUserVocabulary();
             }
             return (userVocabularies.Where(v => v.Word == word).FirstOrDefault());
         }

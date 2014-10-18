@@ -48,20 +48,24 @@
             this.btnSetThemKnown = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cbxUnknownList = new System.Windows.Forms.CheckedListBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridWordQuery = new System.Windows.Forms.DataGridView();
+            this.txbWordQueryInput = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cKnownStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMean = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridWordQuery)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -73,7 +77,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(831, 722);
+            this.tabControl1.Size = new System.Drawing.Size(831, 782);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -86,16 +90,16 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(823, 696);
+            this.tabPage1.Size = new System.Drawing.Size(823, 756);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "熟悉的单词";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnExportKnownWords
             // 
-            this.btnExportKnownWords.Location = new System.Drawing.Point(722, 376);
+            this.btnExportKnownWords.Location = new System.Drawing.Point(722, 407);
             this.btnExportKnownWords.Name = "btnExportKnownWords";
-            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 46);
             this.btnExportKnownWords.TabIndex = 4;
             this.btnExportKnownWords.Text = "导 出";
             this.btnExportKnownWords.UseVisualStyleBackColor = true;
@@ -106,18 +110,18 @@
             this.groupBox1.Controls.Add(this.btnAddKnownWords);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.rtbKnownWords);
-            this.groupBox1.Location = new System.Drawing.Point(333, 91);
+            this.groupBox1.Location = new System.Drawing.Point(333, 99);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 234);
+            this.groupBox1.Size = new System.Drawing.Size(482, 254);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "添加熟悉的单词";
             // 
             // btnAddKnownWords
             // 
-            this.btnAddKnownWords.Location = new System.Drawing.Point(389, 172);
+            this.btnAddKnownWords.Location = new System.Drawing.Point(389, 186);
             this.btnAddKnownWords.Name = "btnAddKnownWords";
-            this.btnAddKnownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnAddKnownWords.Size = new System.Drawing.Size(75, 46);
             this.btnAddKnownWords.TabIndex = 2;
             this.btnAddKnownWords.Text = "添 加";
             this.btnAddKnownWords.UseVisualStyleBackColor = true;
@@ -126,25 +130,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 28);
+            this.label3.Location = new System.Drawing.Point(15, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(197, 12);
+            this.label3.Size = new System.Drawing.Size(199, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "请输入熟悉的单词，一行一个单词：";
             // 
             // rtbKnownWords
             // 
-            this.rtbKnownWords.Location = new System.Drawing.Point(17, 55);
+            this.rtbKnownWords.Location = new System.Drawing.Point(17, 60);
             this.rtbKnownWords.Name = "rtbKnownWords";
-            this.rtbKnownWords.Size = new System.Drawing.Size(263, 160);
+            this.rtbKnownWords.Size = new System.Drawing.Size(263, 173);
             this.rtbKnownWords.TabIndex = 0;
             this.rtbKnownWords.Text = "";
             // 
             // btnToUnknown
             // 
-            this.btnToUnknown.Location = new System.Drawing.Point(722, 17);
+            this.btnToUnknown.Location = new System.Drawing.Point(722, 18);
             this.btnToUnknown.Name = "btnToUnknown";
-            this.btnToUnknown.Size = new System.Drawing.Size(75, 42);
+            this.btnToUnknown.Size = new System.Drawing.Size(75, 46);
             this.btnToUnknown.TabIndex = 2;
             this.btnToUnknown.Text = "放到生词本";
             this.btnToUnknown.UseVisualStyleBackColor = true;
@@ -153,9 +157,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(331, 32);
+            this.label1.Location = new System.Drawing.Point(331, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(329, 12);
+            this.label1.Size = new System.Drawing.Size(331, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "选中的这些单词其实我并不是很熟悉，还是放到生词本中吧：";
             // 
@@ -165,7 +169,7 @@
             this.cbxKnownList.FormattingEnabled = true;
             this.cbxKnownList.Location = new System.Drawing.Point(3, 3);
             this.cbxKnownList.Name = "cbxKnownList";
-            this.cbxKnownList.Size = new System.Drawing.Size(293, 690);
+            this.cbxKnownList.Size = new System.Drawing.Size(293, 750);
             this.cbxKnownList.TabIndex = 0;
             this.cbxKnownList.SelectedIndexChanged += new System.EventHandler(this.cbxKnownList_SelectedIndexChanged);
             // 
@@ -179,16 +183,16 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(823, 696);
+            this.tabPage2.Size = new System.Drawing.Size(823, 756);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "生词本";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btnExportUnknownWords
             // 
-            this.btnExportUnknownWords.Location = new System.Drawing.Point(722, 376);
+            this.btnExportUnknownWords.Location = new System.Drawing.Point(722, 407);
             this.btnExportUnknownWords.Name = "btnExportUnknownWords";
-            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 42);
+            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 46);
             this.btnExportUnknownWords.TabIndex = 5;
             this.btnExportUnknownWords.Text = "导 出";
             this.btnExportUnknownWords.UseVisualStyleBackColor = true;
@@ -199,18 +203,18 @@
             this.groupBox2.Controls.Add(this.btnAddNewWords);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.rtbNewWords);
-            this.groupBox2.Location = new System.Drawing.Point(333, 91);
+            this.groupBox2.Location = new System.Drawing.Point(333, 99);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(482, 234);
+            this.groupBox2.Size = new System.Drawing.Size(482, 254);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "添加生词";
             // 
             // btnAddNewWords
             // 
-            this.btnAddNewWords.Location = new System.Drawing.Point(389, 172);
+            this.btnAddNewWords.Location = new System.Drawing.Point(389, 186);
             this.btnAddNewWords.Name = "btnAddNewWords";
-            this.btnAddNewWords.Size = new System.Drawing.Size(75, 42);
+            this.btnAddNewWords.Size = new System.Drawing.Size(75, 46);
             this.btnAddNewWords.TabIndex = 2;
             this.btnAddNewWords.Text = "添 加";
             this.btnAddNewWords.UseVisualStyleBackColor = true;
@@ -219,25 +223,25 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 28);
+            this.label4.Location = new System.Drawing.Point(15, 30);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(209, 12);
+            this.label4.Size = new System.Drawing.Size(211, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "请输入不熟悉的生词，一行一个单词：";
             // 
             // rtbNewWords
             // 
-            this.rtbNewWords.Location = new System.Drawing.Point(17, 55);
+            this.rtbNewWords.Location = new System.Drawing.Point(17, 60);
             this.rtbNewWords.Name = "rtbNewWords";
-            this.rtbNewWords.Size = new System.Drawing.Size(263, 160);
+            this.rtbNewWords.Size = new System.Drawing.Size(263, 173);
             this.rtbNewWords.TabIndex = 0;
             this.rtbNewWords.Text = "";
             // 
             // btnSetThemKnown
             // 
-            this.btnSetThemKnown.Location = new System.Drawing.Point(722, 17);
+            this.btnSetThemKnown.Location = new System.Drawing.Point(722, 18);
             this.btnSetThemKnown.Name = "btnSetThemKnown";
-            this.btnSetThemKnown.Size = new System.Drawing.Size(75, 42);
+            this.btnSetThemKnown.Size = new System.Drawing.Size(75, 46);
             this.btnSetThemKnown.TabIndex = 3;
             this.btnSetThemKnown.Text = "标记为熟悉";
             this.btnSetThemKnown.UseVisualStyleBackColor = true;
@@ -246,9 +250,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(331, 32);
+            this.label2.Location = new System.Drawing.Point(331, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(377, 12);
+            this.label2.Size = new System.Drawing.Size(379, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "经过不断努力，选中的单词我终于记住了，放到熟悉的单词列表里吧：";
             // 
@@ -258,9 +262,63 @@
             this.cbxUnknownList.FormattingEnabled = true;
             this.cbxUnknownList.Location = new System.Drawing.Point(3, 3);
             this.cbxUnknownList.Name = "cbxUnknownList";
-            this.cbxUnknownList.Size = new System.Drawing.Size(293, 690);
+            this.cbxUnknownList.Size = new System.Drawing.Size(293, 750);
             this.cbxUnknownList.TabIndex = 1;
             this.cbxUnknownList.SelectedIndexChanged += new System.EventHandler(this.cbxUnknownList_SelectedIndexChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGridWordQuery);
+            this.tabPage3.Controls.Add(this.txbWordQueryInput);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.btnSearch);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(823, 756);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "单词记录";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridWordQuery
+            // 
+            this.dataGridWordQuery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridWordQuery.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cWord,
+            this.cKnownStatus,
+            this.cMean,
+            this.cSource});
+            this.dataGridWordQuery.Location = new System.Drawing.Point(10, 69);
+            this.dataGridWordQuery.Name = "dataGridWordQuery";
+            this.dataGridWordQuery.RowTemplate.Height = 23;
+            this.dataGridWordQuery.Size = new System.Drawing.Size(805, 676);
+            this.dataGridWordQuery.TabIndex = 3;
+            // 
+            // txbWordQueryInput
+            // 
+            this.txbWordQueryInput.Location = new System.Drawing.Point(55, 15);
+            this.txbWordQueryInput.Name = "txbWordQueryInput";
+            this.txbWordQueryInput.Size = new System.Drawing.Size(140, 20);
+            this.txbWordQueryInput.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "单词：";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(232, 13);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 25);
+            this.btnSearch.TabIndex = 0;
+            this.btnSearch.Text = "查 询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // toolTip1
             // 
@@ -271,60 +329,45 @@
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.Filter = "TXT|*.txt";
             // 
-            // tabPage3
+            // cWord
             // 
-            this.tabPage3.Controls.Add(this.dataGridView1);
-            this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.btnSearch);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(823, 696);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "单词记录";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.cWord.DataPropertyName = "Word";
+            this.cWord.Frozen = true;
+            this.cWord.HeaderText = "Word";
+            this.cWord.Name = "cWord";
+            this.cWord.ReadOnly = true;
             // 
-            // btnSearch
+            // cKnownStatus
             // 
-            this.btnSearch.Location = new System.Drawing.Point(232, 12);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 0;
-            this.btnSearch.Text = "查 询";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.cKnownStatus.DataPropertyName = "IsNewWord";
+            this.cKnownStatus.Frozen = true;
+            this.cKnownStatus.HeaderText = "KnownStatus";
+            this.cKnownStatus.Name = "cKnownStatus";
+            this.cKnownStatus.ReadOnly = true;
             // 
-            // label5
+            // cMean
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "单词：";
+            this.cMean.DataPropertyName = "Meaning";
+            this.cMean.Frozen = true;
+            this.cMean.HeaderText = "Meaning";
+            this.cMean.Name = "cMean";
+            this.cMean.ReadOnly = true;
+            this.cMean.Width = 400;
             // 
-            // textBox1
+            // cSource
             // 
-            this.textBox1.Location = new System.Drawing.Point(55, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 21);
-            this.textBox1.TabIndex = 2;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(805, 624);
-            this.dataGridView1.TabIndex = 3;
+            this.cSource.DataPropertyName = "Source";
+            this.cSource.Frozen = true;
+            this.cSource.HeaderText = "Source";
+            this.cSource.Name = "cSource";
+            this.cSource.ReadOnly = true;
+            this.cSource.Width = 300;
             // 
             // UserVocabularyMgtForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 722);
+            this.ClientSize = new System.Drawing.Size(831, 782);
             this.Controls.Add(this.tabControl1);
             this.Name = "UserVocabularyMgtForm";
             this.Text = "词汇管理";
@@ -340,7 +383,7 @@
             this.groupBox2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridWordQuery)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -369,9 +412,13 @@
         private System.Windows.Forms.Button btnExportUnknownWords;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbWordQueryInput;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridWordQuery;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cWord;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cKnownStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cMean;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSource;
     }
 }

@@ -14,7 +14,7 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         public void SaveUserVocabulary(IList<Vocabulary> userWords,string source )
         {
-            var allUserVocabulary = dbOperator.GetAll<UserVocabulary>();
+            var allUserVocabulary = dbOperator.GetAllUserVocabulary();
 
 
             dbOperator.BeginTran();
@@ -25,13 +25,13 @@ namespace Studyzy.LearnEnglishBySubtitle
                 {
                     dbWord.KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown;
                     dbWord.Source = source;
-                    dbOperator.Save(dbWord);
+                    dbOperator.SaveUserVocabulary(dbWord);
                 }
                 else
                 {
                     UserVocabulary uv = new UserVocabulary() { Word = word.Word,Source = source,KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown };
                     allUserVocabulary.Add(uv);
-                    dbOperator.Save(uv);
+                    dbOperator.SaveUserVocabulary(uv);
                 }
             }
            
@@ -39,7 +39,7 @@ namespace Studyzy.LearnEnglishBySubtitle
         }
         public UserVocabulary GetUserWord(string word)
         {
-            var words = dbOperator.FindAll<UserVocabulary>(u => u.Word == word.Trim());
+            var words = dbOperator.FindAllUserVocabulary(u => u.Word == word.Trim());
             if (words.Count == 0)
             {
                 return null;
