@@ -105,6 +105,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 form.SubtitleFileName = Path.GetFileName(txbSubtitleFilePath.Text);
                 form.OnClickOkButton += RemarkSubtitle;
                 form.Show();
+                form.Focus();
+                form.Activate();
                 //if (form.ShowDialog() == DialogResult.OK)
                 //{
 
@@ -144,6 +146,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
             var knownVocabulary= dbOperator.FindAllUserVocabulary(v=>v.KnownStatus== KnownStatus.Known).Select(v=>v.Word).ToList();
+            var ignores = dbOperator.GetAllIgnoreWords().Select(v=>v.Word).ToList();
             var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
             {
@@ -156,7 +159,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                         continue;
                     }
                     var original = englishWordService.GetOriginalWord(word);
-                    if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original))
+                    if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original)||ignores.Contains(word)||ignores.Contains(original))
                     {
                         //认识的单词，忽略
                         continue;

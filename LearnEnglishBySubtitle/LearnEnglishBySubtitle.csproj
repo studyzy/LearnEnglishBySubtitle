@@ -83,6 +83,7 @@
     <Compile Include="Entities\Subtitle_NewWord.cs" />
     <Compile Include="Entities\Subtitle_KnownWord.cs" />
     <Compile Include="EngDict\EngDictionary.cs" />
+    <Compile Include="Entities\IgnoreWord.cs" />
     <Compile Include="Entities\UserVocabulary.cs" />
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
@@ -223,6 +224,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UserVocabulary.db3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.ico" />

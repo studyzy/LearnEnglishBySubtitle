@@ -82,6 +82,21 @@ namespace Studyzy.LearnEnglishBySubtitle
             return context.UserVocabulary.ToList();
         }
 
+        public void AddIgnoreWord(string word)
+        {
+            var q = context.IgnoreWords.SingleOrDefault(w => w.Word == word);
+            if (q == null)
+            {
+                context.IgnoreWords.Add(new IgnoreWord() {CreateTime = DateTime.Now, Word = word});
+                context.SaveChanges();
+            }
+        }
+
+        public IList<IgnoreWord> GetAllIgnoreWords()
+        {
+            return context.IgnoreWords.ToList();
+        }
+
         public IList<UserVocabulary> FindAllUserVocabulary(Expression<Func<UserVocabulary,bool>> funExpression)
         {
             return context.UserVocabulary.Where(funExpression).ToList();
