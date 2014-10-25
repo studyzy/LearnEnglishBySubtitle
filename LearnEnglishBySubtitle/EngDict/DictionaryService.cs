@@ -23,7 +23,16 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         public abstract string DictionaryName { get; }
         protected LingoesLd2 ld2Parse = new LingoesLd2();
         protected static IDictionary<string, EngDictionary> engDictionary;
+        /// <summary>
+        /// 只关注单词，忽略短语
+        /// </summary>
         public bool IgnorePhrase { get; set; }
+        /// <summary>
+        /// 词型变换的Mapping表
+        /// </summary>
+        protected IDictionary<string,string> WordMapping
+        { get; set; }
+
 
         protected IDictionary<string, EngDictionary> EngDictionary
         {
@@ -38,21 +47,20 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
 #if DEBUG
                     StreamWriter sw = new StreamWriter("C:\\" + Ld2FilePath + ".txt", false, Encoding.UTF8);
 #endif
-                    foreach (var word in dictionary.Keys)
+                    foreach (var word in dictionary)
                     {
+                        string xml = String.Join(",", word.Descriptions.Values);
 #if DEBUG
-                        sw.WriteLine(word + "\t" + dictionary[word]);
+                        sw.WriteLine(word.Word + "\t" + xml);
 #endif
-                        if (IgnorePhrase && word.Contains(" "))
+                        if (IgnorePhrase && word.Word.Contains(" "))
                         {
                             continue;
                         }
-                        var means = GetCoreMeans(dictionary[word]);
-                        if (!engDictionary.ContainsKey(word))
+                        var means = GetCoreMeans(xml);
+                        if (!engDictionary.ContainsKey(word.Word))
                         {
-                            engDictionary.Add(word,
-                                              new EngDictionary()
-                                                  {Word = word, Detail = dictionary[word], Means = means});
+                            engDictionary.Add(word.Word,new EngDictionary() { Word = word.Word, Detail = xml, Means = means });
                         }
                     }
 #if DEBUG

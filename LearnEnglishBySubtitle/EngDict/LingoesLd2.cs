@@ -11,7 +11,17 @@ using Studyzy.LearnEnglishBySubtitle.Helpers;
 
 namespace Studyzy.LearnEnglishBySubtitle.EngDict
 {
- 
+    public class InternalWord
+    {
+        public InternalWord()
+        {
+            Descriptions = new Dictionary<int, string>();
+        }
+
+        public string Word { get; set; }
+        public IDictionary<int, string> Descriptions { get; set; }
+    }
+
     public class LingoesLd2
     {
         public LingoesLd2()
@@ -93,7 +103,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         }
 
 
-        public IDictionary<string, string> Parse(string ld2File)
+        public IList<InternalWord> Parse(string ld2File)
         {
             using (var fs = new FileStream(ld2File, FileMode.Open, FileAccess.Read))
             {
@@ -139,7 +149,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             }
         }
 
-        private IDictionary<string, string> ReadDictionary(FileStream fs, int offsetWithIndex)
+        private IList<InternalWord> ReadDictionary(FileStream fs, int offsetWithIndex)
         {
             fs.Position = offsetWithIndex;
             int type = BinFileHelper.ReadInt32(fs);
@@ -179,7 +189,11 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             byte[] inflatedFile = Inflate(fs, offsetCompressedData, deflateStreams);
 
 
-
+#if DEBUG
+            FileStream fs2=new FileStream("C:\\"+Path.GetFileName(fs.Name)+".bin",FileMode.Create,FileAccess.Write);
+            fs2.Write(inflatedFile,0,inflatedFile.Length);
+            fs2.Close();
+#endif
 
             //fs.Position = offsetIndex;
             //var idxArray = new int[definitions];
@@ -274,24 +288,24 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         /// <param name="offsetDefs"></param>
         /// <param name="offsetXml"></param>
         /// <returns></returns>
-        private IDictionary<string,string> Extract(byte[] dataRawBytes, int offsetDefs, int offsetXml)
+        private IList<InternalWord> Extract(byte[] dataRawBytes, int offsetDefs, int offsetXml)
         {
             int dataLen = 10;
             int defTotal = offsetDefs/dataLen - 1;
             //CountWord = defTotal;
-            var words = new Dictionary<string, string>();
+            var words = new List<InternalWord>();
 
 
          
             for (int i = 0; i < defTotal; i++)
             {
-                var kv = ReadDefinitionData(dataRawBytes, offsetDefs, offsetXml, dataLen, WordEncoding, XmlEncoding, i);
+                var word = ReadDefinitionData(dataRawBytes, offsetDefs, offsetXml, dataLen, WordEncoding, XmlEncoding, i);
 
-                var word = kv.Key;
-                string xml = kv.Value;
+                //var word = kv.Key;
+                //string xml = kv.Value;
 
-                var means = xml;// StringHelper.GetCoreDescriptions(xml);
-                words.Add(word, means);
+                //var means = xml;// StringHelper.GetCoreDescriptions(xml);
+                words.Add(word);
                 //if (IncludeMeaning)
                 //{
                 //    words[i] = word + " = " + (xml);
@@ -316,8 +330,8 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         /// <param name="wordStringDecoder"></param>
         /// <param name="xmlStringDecoder"></param>
         /// <param name="i"></param>
-        /// <returns>Key为词汇，Value为解释</returns>
-        private KeyValuePair<string, string> ReadDefinitionData(byte[] inflatedBytes, int offsetWords,
+        /// <returns></returns>
+        private InternalWord ReadDefinitionData(byte[] inflatedBytes, int offsetWords,
                                                                 int offsetXml, int dataLen, Encoding wordStringDecoder,
                                                                 Encoding xmlStringDecoder, int i)
         {
@@ -326,12 +340,17 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             int lastWordPos = idxData[0];
             int lastXmlPos = idxData[1];
             int flags = idxData[2];
-            int refs = idxData[3];
-            int currentWordOffset = idxData[4];
-            int currenXmlOffset = idxData[5];
+            int refs = idxData[3];//这个词有多少种解释
+            int currentWordOffset = idxData[4];//词的Offset位置
+            int currenXmlOffset = idxData[5];//解释XML的Offset位置
 
+            InternalWord word=new InternalWord();
 
             string xml = xmlStringDecoder.GetString(inflatedBytes, offsetXml + lastXmlPos, currenXmlOffset - lastXmlPos);
+            if (!string.IsNullOrEmpty(xml))
+            {
+                word.Descriptions.Add(currenXmlOffset,xml);
+            }
             while (refs-- > 0)
             {
                 int position = (offsetWords + lastWordPos);
@@ -339,16 +358,15 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                 GetIdxData(inflatedBytes, dataLen*ref1, idxData);
                 lastXmlPos = idxData[1];
                 currenXmlOffset = idxData[5];
-                if (string.IsNullOrEmpty(xml))
-                {
-                    xml = xmlStringDecoder.GetString(inflatedBytes, offsetXml + lastXmlPos, currenXmlOffset - lastXmlPos);
-                }
-                else
-                {
-                    xml =
-                        xmlStringDecoder.GetString(inflatedBytes, offsetXml + lastXmlPos, currenXmlOffset - lastXmlPos) +
-                        ", " + xml;
-                }
+                //if (string.IsNullOrEmpty(xml))
+                //{
+                xml = xmlStringDecoder.GetString(inflatedBytes, offsetXml + lastXmlPos, currenXmlOffset - lastXmlPos);
+                word.Descriptions.Add(currenXmlOffset, xml);
+                //}
+                //else
+                //{
+                //    xml = xmlStringDecoder.GetString(inflatedBytes, offsetXml + lastXmlPos, currenXmlOffset - lastXmlPos);
+                //}
                 lastWordPos += 4;
             }
             //defData[1] = xml;
@@ -356,12 +374,22 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             int position1 = offsetWords + lastWordPos;
 
             byte[] w = BinFileHelper.ReadArray(inflatedBytes, position1, currentWordOffset - lastWordPos);
-            string word = wordStringDecoder.GetString(w);
+            word.Word= wordStringDecoder.GetString(w);
+            //if (word == "buy" || word == "bought")
+            //{
+            //    Debug.Write("Refs:" + currenXmlOffset);
+            //}
             //defData[0] = word;
-            return new KeyValuePair<string, string>(word, xml);
+            //return new KeyValuePair<string, string>(word, xml);
+            return word;
         }
 
-
+        /// <summary>
+        /// 读取二进制数据中的单词Index信息，放入单词IndexData中
+        /// </summary>
+        /// <param name="dataRawBytes"></param>
+        /// <param name="position"></param>
+        /// <param name="wordIdxData"></param>
         private void GetIdxData(byte[] dataRawBytes, int position, int[] wordIdxData)
         {
             wordIdxData[0] = BitConverter.ToInt32(dataRawBytes, position);

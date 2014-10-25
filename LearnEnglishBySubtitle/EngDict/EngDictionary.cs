@@ -16,10 +16,17 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         /// </summary>
         public string PhoneticSymbols { get; set; }
         public IList<WordMean> Means { get; set; }
+        /// <summary>
+        /// XML注释内容
+        /// </summary>
         public  string Detail { get; set; }
     }
     public struct WordMean
     {
+        /// <summary>
+        /// 在字典中的位置
+        /// </summary>
+        public long Index { get; set; }
         /// <summary>
         /// 词性
         /// </summary>

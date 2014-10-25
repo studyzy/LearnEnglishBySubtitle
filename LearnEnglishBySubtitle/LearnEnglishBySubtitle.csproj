@@ -11,7 +11,8 @@
     <RootNamespace>Studyzy.LearnEnglishBySubtitle</RootNamespace>
     <AssemblyName>深蓝字幕注释小助手</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -50,6 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\log4net.2.0.3\lib\net40-client\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -61,6 +66,9 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -108,6 +116,12 @@
     </Compile>
     <Compile Include="Forms\NewWordConfirmForm.Designer.cs">
       <DependentUpon>NewWordConfirmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SentenceTranForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SentenceTranForm.Designer.cs">
+      <DependentUpon>SentenceTranForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SplashForm.cs">
       <SubType>Form</SubType>
@@ -176,6 +190,9 @@
     <EmbeddedResource Include="Forms\NewWordConfirmForm.resx">
       <DependentUpon>NewWordConfirmForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SentenceTranForm.resx">
+      <DependentUpon>SentenceTranForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>

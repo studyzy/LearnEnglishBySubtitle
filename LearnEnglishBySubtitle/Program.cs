@@ -16,6 +16,8 @@ namespace Studyzy.LearnEnglishBySubtitle
         [STAThread]
         static void Main()
         {
+
+
             var dbPath = "UserVocabulary.db3";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -37,7 +39,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             else
             {
-                Application.Run(new MainForm());
+                Application.Run(new SentenceTranForm());
             }
         }
     }
