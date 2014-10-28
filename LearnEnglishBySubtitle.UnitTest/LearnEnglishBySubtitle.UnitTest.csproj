@@ -50,6 +50,7 @@
     <Compile Include="DbTest.cs" />
     <Compile Include="EnglishServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SentenceParseTest.cs" />
     <Compile Include="WebServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>

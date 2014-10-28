@@ -57,9 +57,9 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 {
                     foreach (var mean in subtitleWord.Means)
                     {
-                        cbx.Items.Add(mean.Mean);
+                        cbx.Items.Add(mean.Property+" "+ mean.Mean);
                     }
-                    cbx.Value = subtitleWord.Means[0].Mean;
+                    //cbx.Value = subtitleWord.Means[0].Mean;
                     cbx.ValueType = typeof (string);
                 }
                

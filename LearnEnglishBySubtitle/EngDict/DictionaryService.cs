@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
 
 namespace Studyzy.LearnEnglishBySubtitle.EngDict
@@ -23,6 +24,8 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         public abstract string DictionaryName { get; }
         protected LingoesLd2 ld2Parse = new LingoesLd2();
         protected static IDictionary<string, EngDictionary> engDictionary;
+        protected static IDictionary<string, string[]> wordProperties;
+
         /// <summary>
         /// 只关注单词，忽略短语
         /// </summary>
@@ -33,7 +36,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         protected IDictionary<string,string> WordMapping
         { get; set; }
 
-
+        private static Regex eregex=new Regex("<E>(.*?)</E>");
         protected IDictionary<string, EngDictionary> EngDictionary
         {
             get
@@ -41,6 +44,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                 if (engDictionary == null)
                 {
                     engDictionary = new Dictionary<string, EngDictionary>();
+                    wordProperties=new Dictionary<string, string[]>();
                     ld2Parse.XmlEncoding = MeanEncoding;
                     ld2Parse.WordEncoding = WordEncoding;
                     var dictionary = ld2Parse.Parse("Dictionaries\\" + Ld2FilePath);
@@ -52,6 +56,24 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                         string xml = String.Join(",", word.Descriptions.Values);
 #if DEBUG
                         sw.WriteLine(word.Word + "\t" + xml);
+
+                        //if (eregex.IsMatch(xml))
+                        //{
+                        //    foreach (Match match in eregex.Matches(xml))
+                        //    {
+                        //        var value = match.Groups[1].Value;
+                        //        var array = value.Split('|');
+                        //        if (!array.Contains(word.Word))
+                        //        {
+                        //            foreach (var s in array)
+                        //            {
+                        //                sw.WriteLine(s + "\t" + word.Word);
+                        //            }
+                        //        }
+                        //    }
+
+                        //}
+                        
 #endif
                         if (IgnorePhrase && word.Word.Contains(" "))
                         {
@@ -61,6 +83,11 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                         if (!engDictionary.ContainsKey(word.Word))
                         {
                             engDictionary.Add(word.Word,new EngDictionary() { Word = word.Word, Detail = xml, Means = means });
+                        }
+                        if (!wordProperties.ContainsKey(word.Word))
+                        {
+                            var p = means.Select(m => m.Property).Distinct().ToArray();
+                            wordProperties.Add(word.Word, p);
                         }
                     }
 #if DEBUG
@@ -88,6 +115,20 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         {
             if (EngDictionary.ContainsKey(word))
                 return EngDictionary[word];
+            return null;
+        }
+        /// <summary>
+        /// 获得一个单词的词性
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public string[] GetWordProperties(string word)
+        {
+            //存在于字典中就应该有词性
+            if (EngDictionary.ContainsKey(word))
+            {
+                return wordProperties[word];
+            }
             return null;
         }
         public virtual bool IsInDictionary(string word)

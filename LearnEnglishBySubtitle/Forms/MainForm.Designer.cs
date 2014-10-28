@@ -34,7 +34,6 @@
             this.txbSubtitleFilePath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnParse = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnRemark = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -54,8 +53,18 @@
             this.backgroundLoadDictionary = new System.ComponentModel.BackgroundWorker();
             this.btnSave = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.dgvSubtitleSentence = new System.Windows.Forms.DataGridView();
+            this.TranslateServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YoudaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BaiduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MicrosoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Sentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Operation = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.NewSubtitleSentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpenFile
@@ -103,17 +112,6 @@
             this.btnParse.UseVisualStyleBackColor = true;
             this.btnParse.Click += new System.EventHandler(this.btnParse_Click);
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(14, 120);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(711, 489);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
-            // 
             // btnRemark
             // 
             this.btnRemark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -160,7 +158,8 @@
             this.ToolStripMenuItemUserVocabularyMgt,
             this.ToolStripMenuItemFilterChinese,
             this.ToolStripMenuItemShortMean,
-            this.ToolStripMenuItemMeanStyleConfig});
+            this.ToolStripMenuItemMeanStyleConfig,
+            this.TranslateServiceToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.设置ToolStripMenuItem.Text = "设置";
@@ -270,17 +269,105 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // dgvSubtitleSentence
+            // 
+            this.dgvSubtitleSentence.AllowUserToAddRows = false;
+            this.dgvSubtitleSentence.AllowUserToDeleteRows = false;
+            this.dgvSubtitleSentence.AllowUserToResizeRows = false;
+            this.dgvSubtitleSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvSubtitleSentence.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSubtitleSentence.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Sentence,
+            this.Operation,
+            this.NewSubtitleSentence});
+            this.dgvSubtitleSentence.Location = new System.Drawing.Point(15, 109);
+            this.dgvSubtitleSentence.MultiSelect = false;
+            this.dgvSubtitleSentence.Name = "dgvSubtitleSentence";
+            this.dgvSubtitleSentence.RowHeadersVisible = false;
+            this.dgvSubtitleSentence.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSubtitleSentence.ShowCellErrors = false;
+            this.dgvSubtitleSentence.ShowEditingIcon = false;
+            this.dgvSubtitleSentence.ShowRowErrors = false;
+            this.dgvSubtitleSentence.Size = new System.Drawing.Size(708, 514);
+            this.dgvSubtitleSentence.TabIndex = 15;
+            this.dgvSubtitleSentence.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvSubtitleSentence_EditingControlShowing);
+            // 
+            // TranslateServiceToolStripMenuItem
+            // 
+            this.TranslateServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.YoudaoToolStripMenuItem,
+            this.BaiduToolStripMenuItem,
+            this.MicrosoftToolStripMenuItem,
+            this.GoogleToolStripMenuItem});
+            this.TranslateServiceToolStripMenuItem.Name = "TranslateServiceToolStripMenuItem";
+            this.TranslateServiceToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.TranslateServiceToolStripMenuItem.Text = "整句翻译服务";
+            // 
+            // YoudaoToolStripMenuItem
+            // 
+            this.YoudaoToolStripMenuItem.Checked = true;
+            this.YoudaoToolStripMenuItem.CheckOnClick = true;
+            this.YoudaoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.YoudaoToolStripMenuItem.Name = "YoudaoToolStripMenuItem";
+            this.YoudaoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YoudaoToolStripMenuItem.Text = "有道翻译";
+            this.YoudaoToolStripMenuItem.Click += new System.EventHandler(this.YoudaoToolStripMenuItem_Click);
+            // 
+            // BaiduToolStripMenuItem
+            // 
+            this.BaiduToolStripMenuItem.Name = "BaiduToolStripMenuItem";
+            this.BaiduToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.BaiduToolStripMenuItem.Text = "百度翻译";
+            this.BaiduToolStripMenuItem.Click += new System.EventHandler(this.BaiduToolStripMenuItem_Click);
+            // 
+            // MicrosoftToolStripMenuItem
+            // 
+            this.MicrosoftToolStripMenuItem.Name = "MicrosoftToolStripMenuItem";
+            this.MicrosoftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.MicrosoftToolStripMenuItem.Text = "微软翻译";
+            this.MicrosoftToolStripMenuItem.Click += new System.EventHandler(this.MicrosoftToolStripMenuItem_Click);
+            // 
+            // GoogleToolStripMenuItem
+            // 
+            this.GoogleToolStripMenuItem.Name = "GoogleToolStripMenuItem";
+            this.GoogleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GoogleToolStripMenuItem.Text = "谷歌翻译";
+            this.GoogleToolStripMenuItem.Click += new System.EventHandler(this.GoogleToolStripMenuItem_Click);
+            // 
+            // Sentence
+            // 
+            this.Sentence.HeaderText = "字幕";
+            this.Sentence.Name = "Sentence";
+            this.Sentence.ReadOnly = true;
+            this.Sentence.Width = 400;
+            // 
+            // Operation
+            // 
+            this.Operation.HeaderText = "操作";
+            this.Operation.Items.AddRange(new object[] {
+            "整句翻译",
+            "不注释"});
+            this.Operation.Name = "Operation";
+            // 
+            // NewSubtitleSentence
+            // 
+            this.NewSubtitleSentence.HeaderText = "新字幕";
+            this.NewSubtitleSentence.Name = "NewSubtitleSentence";
+            this.NewSubtitleSentence.Width = 400;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 698);
+            this.Controls.Add(this.dgvSubtitleSentence);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnRemark);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnParse);
             this.Controls.Add(this.txbSubtitleFilePath);
             this.Controls.Add(this.label1);
@@ -297,6 +384,7 @@
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,7 +397,6 @@
         private System.Windows.Forms.TextBox txbSubtitleFilePath;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnParse;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnRemark;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
@@ -329,6 +416,15 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserVocabularyConfig;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemLastVersion;
+        private System.Windows.Forms.DataGridView dgvSubtitleSentence;
+        private System.Windows.Forms.ToolStripMenuItem TranslateServiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem YoudaoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BaiduToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MicrosoftToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GoogleToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sentence;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Operation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NewSubtitleSentence;
     }
 }
 

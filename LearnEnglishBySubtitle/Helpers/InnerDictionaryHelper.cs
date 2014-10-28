@@ -57,11 +57,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Helpers
             if (wordOriginalMaps == null)
             {
                 wordOriginalMaps=new Dictionary<string, string>();
-                var rows = InnerDictionary.WordOriginalMap.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                var rows = InnerDictionary.WordPrototype.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var row in rows)
                 {
-                    var array = row.Split(',');
-                    wordOriginalMaps.Add(array[0],array[1]);
+                    var array = row.Split('\t');
+                    if (!wordOriginalMaps.ContainsKey(array[0]))
+                    {
+                        wordOriginalMaps.Add(array[0],array[1]);
+                    }
                 }
             }
             return wordOriginalMaps;

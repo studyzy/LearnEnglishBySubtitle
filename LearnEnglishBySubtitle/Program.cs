@@ -39,7 +39,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             else
             {
-                Application.Run(new SentenceTranForm());
+                Application.Run(new MainForm());
             }
         }
     }

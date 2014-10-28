@@ -64,9 +64,9 @@ namespace Studyzy.LearnEnglishBySubtitle
         /// <returns></returns>
         public string GetOriginalWord(string word)
         {
-            if (word == "I" || word == "I'm")
-                return word;
-            word = RemoveSimpleWrite(word);
+            //if (word == "I" || word == "I'm")
+            //    return word;
+            //word = RemoveSimpleWrite(word);
             if (word.ToUpper() == word) //全大写
             {
                 return word;
@@ -102,34 +102,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             return word;
         }
 
-        private string RemoveSimpleWrite(string word)
-        {
-            if (word.Contains('\''))
-            {
-              
-              if(word.Contains("n't"))
-              {
-                  return word.Replace("n't","");
-              }
-              if (word.Contains("'ll"))
-              {
-                  return word.Replace("'ll", "");
-              }
-              if (word.Contains("'d"))
-              {
-                  return word.Replace("'d", "");
-              }
-              if (word.Contains("'s"))
-              {
-                  return word.Replace("'s", "");
-              }
-              if (word.Contains("'re"))
-              {
-                  return word.Replace("'re", "");
-              }
-            }
-            return word;
-        }
+       
 
         private string OperateIngWord(string word)
         {

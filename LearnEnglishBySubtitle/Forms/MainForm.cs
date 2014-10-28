@@ -17,6 +17,7 @@ using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
 using Studyzy.LearnEnglishBySubtitle.Subtitles;
+using Studyzy.LearnEnglishBySubtitle.TranslateServices;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
 {
@@ -30,6 +31,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             englishWordService = new EnglishWordService(dictionaryService);
         }
 
+        private TranslateService translateService = new YoudaoTranslateService();
         private ISubtitleOperator stOperator;
         //private int userRank = 4;
         private bool removeChinese = true;
@@ -61,7 +63,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void ShowSubtitleText(IList<SubtitleLine> srts,bool withMean=false )
         {
-            richTextBox1.Clear();
+            dgvSubtitleSentence.Rows.Clear();
             foreach (var SubtitleLine in srts)
             {
                 var txt = SubtitleLine.Text;
@@ -77,7 +79,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     }
                 }
                 if (!string.IsNullOrEmpty(txt.Trim()))
-                    richTextBox1.AppendText(txt + "\r\n");
+                {
+                    DataGridViewRow row=new DataGridViewRow();
+                    row.CreateCells(dgvSubtitleSentence);
+                    row.Cells[0].Value = txt;
+                    dgvSubtitleSentence.Rows.Add(row);
+                }
             }
         }
 
@@ -150,7 +157,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
             {
-                var array = line.Split(new char[] { ' ', ',', '.', '?', ':', '!' }, StringSplitOptions.RemoveEmptyEntries);
+              var   orgLine = SentenceParse.GetOriginalSentence(line);
+                var array = SentenceParse.SplitSentence(orgLine);
                 foreach (string word in array)
                 {
                     if (IsEnglishName(word))
@@ -459,6 +467,71 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void ToolStripMenuItemHelp_Click(object sender, EventArgs e)
         {
             Process.Start("https://code.google.com/p/learn-english-by-subtitle");
+        }
+
+        private void dgvSubtitleSentence_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvSubtitleSentence.CurrentCell.ColumnIndex == 1 && e.Control is ComboBox)
+            {
+                ComboBox comboBox = e.Control as ComboBox;
+                comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
+            }
+        }
+
+        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
+        {
+            var currentcell = dgvSubtitleSentence.CurrentCellAddress;
+            var sendingCB = sender as DataGridViewComboBoxEditingControl;
+            DataGridViewTextBoxCell cel = (DataGridViewTextBoxCell)dgvSubtitleSentence.Rows[currentcell.Y].Cells[0];
+            DataGridViewTextBoxCell newCel = (DataGridViewTextBoxCell)dgvSubtitleSentence.Rows[currentcell.Y].Cells[2];
+            switch (sendingCB.EditingControlFormattedValue.ToString())
+            {
+                case "整句翻译":
+                    newCel.Value = translateService.TranslateToChinese(cel.Value.ToString());
+                    break;
+                    
+                case "不翻译":
+                    break;
+                default:
+                    return;
+            }
+            
+        }
+
+        private void YoudaoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            YoudaoToolStripMenuItem.Checked = true;
+            BaiduToolStripMenuItem.Checked = false;
+            MicrosoftToolStripMenuItem.Checked = false;
+            GoogleToolStripMenuItem.Checked = false;
+            translateService=new YoudaoTranslateService();
+        }
+
+        private void BaiduToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            YoudaoToolStripMenuItem.Checked = false;
+            BaiduToolStripMenuItem.Checked = true;
+            MicrosoftToolStripMenuItem.Checked = false;
+            GoogleToolStripMenuItem.Checked = false;
+            translateService = new BaiduTranslateService();
+        }
+
+        private void MicrosoftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            YoudaoToolStripMenuItem.Checked = false;
+            BaiduToolStripMenuItem.Checked = false;
+            MicrosoftToolStripMenuItem.Checked = true;
+            GoogleToolStripMenuItem.Checked = false;
+            translateService = new MsTranslateService();
+        }
+
+        private void GoogleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            YoudaoToolStripMenuItem.Checked = false;
+            BaiduToolStripMenuItem.Checked = false;
+            MicrosoftToolStripMenuItem.Checked = false;
+            GoogleToolStripMenuItem.Checked = true;
+            translateService = new GoogleTranslateService();
         }
 
     }

@@ -312,53 +312,42 @@ namespace Studyzy.LearnEnglishBySubtitle {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to became,become
-        ///began,begin
-        ///bent,bend
-        ///bit,bite
-        ///bled,bleed
-        ///blew,blow
-        ///broke,break
-        ///bred,breed
-        ///brought,bring
-        ///built,build
-        ///bought,buy
-        ///caught,catch
-        ///chose,choose
-        ///clung,cling
-        ///came,come
-        ///crept,creep
-        ///dealt,deal
-        ///dug,dig
-        ///did,do
-        ///drew,draw
-        ///dreamed,dream
-        ///drank,drink
-        ///drove,drive
-        ///ate,eat
-        ///fell,fall
-        ///fed,feed
-        ///felt,feel
-        ///fought,fight
-        ///found,find
-        ///fled,flee
-        ///flew,fly
-        ///forbade,forbid
-        ///forgot,forget
-        ///forgave,forgive
-        ///froze,freeze
-        ///got,get
-        ///gave,give
-        ///went,go
-        ///grew,grow
-        ///hung,hang
-        ///had,have
-        ///heard,hear
-        ///hid,hi [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to A C	A.C.
+        ///A D	A.D.
+        ///AD	A.D.
+        ///a k a	a.k.a.
+        ///aka	a.k.a.
+        ///A M	A.M.
+        ///AM	A.M.
+        ///A A	AA
+        ///A A A	AAA
+        ///A A M	AAM
+        ///aardvarks	aardvark
+        ///abas	aba
+        ///abaci	abacus
+        ///abacuses	abacus
+        ///abalienates	abalienate
+        ///abalienated	abalienate
+        ///abalienating	abalienate
+        ///abalones	abalone
+        ///abandons	abandon
+        ///abandoned	abandon
+        ///abandoning	abandon
+        ///abandonees	abandonee
+        ///abandoners	abandoner
+        ///abandonments	abandonment
+        ///abases	abase
+        ///abased	abase
+        ///abasing	abase
+        ///abasements	abasement
+        ///abashes	abash
+        ///abashed	abash
+        ///abashing	abash
+        ///abashments	abashme [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string WordOriginalMap {
+        internal static string WordPrototype {
             get {
-                return ResourceManager.GetString("WordOriginalMap", resourceCulture);
+                return ResourceManager.GetString("WordPrototype", resourceCulture);
             }
         }
     }

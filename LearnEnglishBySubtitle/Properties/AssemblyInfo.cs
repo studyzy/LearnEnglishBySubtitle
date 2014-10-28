@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("深蓝字幕注释小助手")]
-[assembly: AssemblyDescription("“深蓝字幕注释小助手”是一款英语学习软件，通过注释英文字幕来实现边看电影，边学英语的目的。支持对srt格式ass格式字幕的操作。")]
+[assembly: AssemblyTitle("深蓝英文字幕助手")]
+[assembly: AssemblyDescription("“深蓝英文字幕助手”是一款英语学习软件，通过注释英文字幕来实现边看电影，边学英语的目的。支持对srt格式ass格式字幕的操作。")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("studyzy")]
-[assembly: AssemblyProduct("深蓝字幕注释小助手")]
+[assembly: AssemblyProduct("深蓝英文字幕助手")]
 [assembly: AssemblyCopyright("Copyright © studyzy 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

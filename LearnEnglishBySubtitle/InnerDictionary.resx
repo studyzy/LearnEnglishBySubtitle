@@ -130,7 +130,7 @@
   <data name="VocabularyRank" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\VocabularyRank.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
-  <data name="WordOriginalMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\WordOriginalMap.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  <data name="WordPrototype" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\WordPrototype.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
