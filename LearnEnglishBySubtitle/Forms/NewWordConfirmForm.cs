@@ -57,9 +57,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 {
                     foreach (var mean in subtitleWord.Means)
                     {
-                        cbx.Items.Add(mean.Property+" "+ mean.Mean);
+                        cbx.Items.Add(mean.ToString());
                     }
-                    //cbx.Value = subtitleWord.Means[0].Mean;
+                    if (string.IsNullOrEmpty(subtitleWord.SelectMean))//系统找不到默认意思，就用第一个意思
+                    {
+                        cbx.Value = subtitleWord.Means[0].ToString();
+                    }
+                    else
+                    {
+                        cbx.Value = subtitleWord.SelectMean;
+                    }
                     cbx.ValueType = typeof (string);
                 }
                
@@ -71,40 +78,34 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void btnOK_Click(object sender, EventArgs e)
         {
             Splash.Show();
-            var knownWords = new List<String>();
-            var unknownWords = new List<SubtitleWord>();
+            //var knownWords = new List<String>();
+            var words = new List<SubtitleWord>();
             Splash.Status = "读取用户选择...";
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                var c1 = row.Cells[1].Value;
-                var word = row.Cells[2].Value;
-                if (!Convert.ToBoolean(c1))
-                {
+                var c1 = Convert.ToBoolean(row.Cells[1].Value);
+                var c2 = row.Cells[2].Value;
+                var word = DataSource.Where(w => w.Word == c2).SingleOrDefault();
+                word.IsNewWord = c1;
 
-                    knownWords.Add(word.ToString());
+                var userMean = row.Cells[5].Value;
+                if (userMean == null || userMean.ToString().Trim() == String.Empty)
+                {
+                    word.SelectMean = row.Cells[4].Value.ToString();
                 }
                 else
                 {
-                    var s = DataSource.Where(w => w.Word == word).SingleOrDefault();
-                    var userMean = row.Cells[5].Value;
-                    if (userMean==null|| userMean.ToString().Trim() == String.Empty)
-                    {
-                        s.SelectMean = row.Cells[4].Value.ToString();
-                    }
-                    else
-                    {
-                        s.SelectMean = userMean.ToString().Trim();
-                    }
-                    unknownWords.Add(s);
+                    word.SelectMean = userMean.ToString().Trim();
                 }
-            }
-            Splash.Status = "保存未选中单词为已熟悉单词...";
-            dbOperator.SaveUserKnownWords(knownWords);
-            var subtitleName = Path.GetFileNameWithoutExtension(SubtitleFileName);
-            Splash.Status = "保存选中单词为不熟悉的生词...";
-            dbOperator.SaveSubtitleNewWords(unknownWords, subtitleName);
+                words.Add(word);
 
-            SelectedNewWords = unknownWords;
+            }
+            Splash.Status = "保存单词中...";
+            //dbOperator.SaveUserKnownWords(knownWords);
+            var subtitleName = Path.GetFileNameWithoutExtension(SubtitleFileName);
+            dbOperator.SaveSubtitleNewWords(words, subtitleName);
+
+            SelectedNewWords = words.Where(w=>w.IsNewWord).ToList();
             Splash.Close();
 
             DialogResult = DialogResult.OK;

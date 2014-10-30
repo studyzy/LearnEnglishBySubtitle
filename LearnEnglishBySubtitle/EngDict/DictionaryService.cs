@@ -36,7 +36,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         protected IDictionary<string,string> WordMapping
         { get; set; }
 
-        private static Regex eregex=new Regex("<E>(.*?)</E>");
+        //private static Regex eregex=new Regex("<E>(.*?)</E>");
         protected IDictionary<string, EngDictionary> EngDictionary
         {
             get

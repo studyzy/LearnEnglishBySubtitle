@@ -119,29 +119,29 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         }
 
-        public void SaveUserKnownWords(IList<string> words)
-        {
-            BeginTran();
+        //public void SaveUserKnownWords(IList<string> words)
+        //{
+        //    BeginTran();
 
-            foreach (var w in words)
-            {
+        //    foreach (var w in words)
+        //    {
 
-                Subtitle_KnownWord word = new Subtitle_KnownWord() {AddTime = DateTime.Now, Word = w};
-                context.KnownWords.Add(word);
-                UserVocabulary vocabulary = context.UserVocabulary.SingleOrDefault(v => v.Word == w);
-                if (vocabulary == null)
-                {
-                    vocabulary = new UserVocabulary();
-                }
+        //        Subtitle_KnownWord word = new Subtitle_KnownWord() {AddTime = DateTime.Now, Word = w};
+        //        context.KnownWords.Add(word);
+        //        UserVocabulary vocabulary = context.UserVocabulary.SingleOrDefault(v => v.Word == w);
+        //        if (vocabulary == null)
+        //        {
+        //            vocabulary = new UserVocabulary();
+        //        }
 
-                vocabulary.Word = w;
-                vocabulary.Source = "Subtitle";
-                vocabulary.KnownStatus = KnownStatus.Known;
-                context.UserVocabulary.AddOrUpdate(vocabulary);
-                context.SaveChanges();
-            }
-            Commit();
-        }
+        //        vocabulary.Word = w;
+        //        vocabulary.Source = "Subtitle";
+        //        vocabulary.KnownStatus = KnownStatus.Known;
+        //        context.UserVocabulary.AddOrUpdate(vocabulary);
+        //        context.SaveChanges();
+        //    }
+        //    Commit();
+        //}
 
         //public UserVocabulary GetUserVocabulary(string word)
         //{
@@ -160,7 +160,9 @@ namespace Studyzy.LearnEnglishBySubtitle
                                                   Word = userNewWord.Word,
                                                   SubtitleName = subtitleName,
                                                   Sentence = userNewWord.SubtitleSentence,
-                                                  WordMean = userNewWord.SelectMean
+                                                  WordMean = userNewWord.SelectMean,
+                                                  CreateTime = DateTime.Now,
+                                                  KnownStatus = userNewWord.IsNewWord?KnownStatus.Unknown : KnownStatus.Known
                                               };
                 context.NewWords.Add(entity);
 
@@ -168,11 +170,14 @@ namespace Studyzy.LearnEnglishBySubtitle
                 if (vocabulary == null)
                 {
                     vocabulary = new UserVocabulary();
+                    vocabulary.CreateTime = DateTime.Now;
                 }
 
                 vocabulary.Word = userNewWord.Word;
                 vocabulary.Source = "Subtitle";
-                vocabulary.KnownStatus = KnownStatus.Unknown;
+                vocabulary.Sentence = userNewWord.SubtitleSentence;
+                vocabulary.KnownStatus = userNewWord.IsNewWord ? KnownStatus.Unknown : KnownStatus.Known;
+                vocabulary.UpdateTime = DateTime.Now;
                 context.UserVocabulary.AddOrUpdate(vocabulary);
                 context.SaveChanges();
             }

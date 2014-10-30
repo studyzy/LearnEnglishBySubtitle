@@ -27,6 +27,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Entities
         /// 这个状态是从哪个系统得知的
         /// </summary>
         public  string Source { get; set; }
+        /// <summary>
+        /// 例句
+        /// </summary>
+        public string Sentence { get; set; }
 
         public  DateTime CreateTime { get; set; }
         public  DateTime UpdateTime { get; set; }

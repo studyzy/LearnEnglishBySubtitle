@@ -17,11 +17,15 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         public string PhoneticSymbols { get; set; }
         public IList<WordMean> Means { get; set; }
         /// <summary>
+        /// 默认的意思
+        /// </summary>
+        public WordMean DefaultMean { get; set; }
+        /// <summary>
         /// XML注释内容
         /// </summary>
         public  string Detail { get; set; }
     }
-    public struct WordMean
+    public class WordMean
     {
         /// <summary>
         /// 在字典中的位置
@@ -37,7 +41,14 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         public string Mean { get; set; }
         public override string ToString()
         {
-            return Mean;
+            if (Property != null && Mean != null)
+            {
+                return Property+" "+ Mean;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

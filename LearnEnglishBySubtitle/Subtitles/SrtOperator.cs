@@ -31,8 +31,20 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
                 result.Add(srt);
             }
             Subtitle st = new Subtitle(){Bodies=result};
+            ReCalcSequence(st);
             return st;
         }
+
+        private void ReCalcSequence(Subtitle subtitle)
+        {
+            var newList = subtitle.Bodies.OrderBy(l => l.StartTime).ToList();
+            for (var i = 1; i < newList.Count; i++)
+            {
+                newList[i].Number = i;
+            }
+            subtitle.Bodies = newList;
+        }
+
         public  string Subtitle2String(Subtitle st )
         {
             StringBuilder sb=new StringBuilder();

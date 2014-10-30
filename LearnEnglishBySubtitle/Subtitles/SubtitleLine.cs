@@ -11,6 +11,9 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
     public class SubtitleLine
     {
         public string OriginalText { get; set; }
+        /// <summary>
+        /// 编号
+        /// </summary>
         public int Number { get; set; }
         /// <summary>
         /// 字幕内容部分
@@ -24,7 +27,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
         /// 注释后的英文部分字幕
         /// </summary>
         public string EnglishTextWithMeans { get; set; }
+        /// <summary>
+        /// 时间轴开始
+        /// </summary>
         public DateTime StartTime { get; set; }
+        /// <summary>
+        /// 时间轴结束
+        /// </summary>
         public DateTime EndTime { get; set; }
+
     }
 }

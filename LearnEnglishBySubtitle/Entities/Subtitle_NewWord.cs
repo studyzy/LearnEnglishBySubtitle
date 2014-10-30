@@ -16,8 +16,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Entities
         [Key]
         public virtual int Id { get; set; }
         public virtual string Word { get; set; }
+        public KnownStatus KnownStatus { get; set; }
         public virtual string SubtitleName	 { get; set; }
         public virtual string Sentence { get; set; }
-        public virtual string WordMean { get; set; } 
+        public virtual string WordMean { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

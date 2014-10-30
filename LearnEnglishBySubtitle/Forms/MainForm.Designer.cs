@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,8 +45,12 @@
             this.ToolStripMenuItemFilterChinese = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemShortMean = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemMeanStyleConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.TranslateServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.YoudaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BaiduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MicrosoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuItemAdjustSubtitleTimeline = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemLastVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemDonate = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,17 +59,15 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.dgvSubtitleSentence = new System.Windows.Forms.DataGridView();
-            this.TranslateServiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.YoudaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BaiduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MicrosoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.GoogleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TimeLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Operation = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.NewSubtitleSentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOpenFile
@@ -108,7 +111,7 @@
             this.btnParse.Name = "btnParse";
             this.btnParse.Size = new System.Drawing.Size(75, 25);
             this.btnParse.TabIndex = 3;
-            this.btnParse.Text = "解析";
+            this.btnParse.Text = "载入字幕";
             this.btnParse.UseVisualStyleBackColor = true;
             this.btnParse.Click += new System.EventHandler(this.btnParse_Click);
             // 
@@ -205,95 +208,6 @@
             this.ToolStripMenuItemMeanStyleConfig.Text = "解释颜色设置";
             this.ToolStripMenuItemMeanStyleConfig.Click += new System.EventHandler(this.ToolStripMenuItemMeanStyleConfig_Click);
             // 
-            // 帮助ToolStripMenuItem
-            // 
-            this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolStripMenuItemAdjustSubtitleTimeline,
-            this.ToolStripMenuItemLastVersion,
-            this.ToolStripMenuItemHelp,
-            this.ToolStripMenuItemDonate,
-            this.ToolStripMenuItemAbount});
-            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.帮助ToolStripMenuItem.Text = "帮助";
-            // 
-            // ToolStripMenuItemAdjustSubtitleTimeline
-            // 
-            this.ToolStripMenuItemAdjustSubtitleTimeline.Name = "ToolStripMenuItemAdjustSubtitleTimeline";
-            this.ToolStripMenuItemAdjustSubtitleTimeline.Size = new System.Drawing.Size(146, 22);
-            this.ToolStripMenuItemAdjustSubtitleTimeline.Text = "字幕时间调整";
-            this.ToolStripMenuItemAdjustSubtitleTimeline.Click += new System.EventHandler(this.ToolStripMenuItemAdjustSubtitleTimeline_Click);
-            // 
-            // ToolStripMenuItemLastVersion
-            // 
-            this.ToolStripMenuItemLastVersion.Name = "ToolStripMenuItemLastVersion";
-            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(146, 22);
-            this.ToolStripMenuItemLastVersion.Text = "查看最新版本";
-            this.ToolStripMenuItemLastVersion.Click += new System.EventHandler(this.ToolStripMenuItemLastVersion_Click);
-            // 
-            // ToolStripMenuItemHelp
-            // 
-            this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(146, 22);
-            this.ToolStripMenuItemHelp.Text = "帮助";
-            this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.ToolStripMenuItemHelp_Click);
-            // 
-            // ToolStripMenuItemDonate
-            // 
-            this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
-            this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(146, 22);
-            this.ToolStripMenuItemDonate.Text = "捐赠";
-            this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
-            // 
-            // ToolStripMenuItemAbount
-            // 
-            this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
-            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(146, 22);
-            this.ToolStripMenuItemAbount.Text = "关于";
-            this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
-            // 
-            // backgroundLoadDictionary
-            // 
-            this.backgroundLoadDictionary.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundLoadDictionary_DoWork);
-            this.backgroundLoadDictionary.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundLoadDictionary_RunWorkerCompleted);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(648, 629);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 25);
-            this.btnSave.TabIndex = 14;
-            this.btnSave.Text = "保存注释";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // dgvSubtitleSentence
-            // 
-            this.dgvSubtitleSentence.AllowUserToAddRows = false;
-            this.dgvSubtitleSentence.AllowUserToDeleteRows = false;
-            this.dgvSubtitleSentence.AllowUserToResizeRows = false;
-            this.dgvSubtitleSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSubtitleSentence.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSubtitleSentence.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Sentence,
-            this.Operation,
-            this.NewSubtitleSentence});
-            this.dgvSubtitleSentence.Location = new System.Drawing.Point(15, 109);
-            this.dgvSubtitleSentence.MultiSelect = false;
-            this.dgvSubtitleSentence.Name = "dgvSubtitleSentence";
-            this.dgvSubtitleSentence.RowHeadersVisible = false;
-            this.dgvSubtitleSentence.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSubtitleSentence.ShowCellErrors = false;
-            this.dgvSubtitleSentence.ShowEditingIcon = false;
-            this.dgvSubtitleSentence.ShowRowErrors = false;
-            this.dgvSubtitleSentence.Size = new System.Drawing.Size(708, 514);
-            this.dgvSubtitleSentence.TabIndex = 15;
-            this.dgvSubtitleSentence.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvSubtitleSentence_EditingControlShowing);
-            // 
             // TranslateServiceToolStripMenuItem
             // 
             this.TranslateServiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -311,51 +225,148 @@
             this.YoudaoToolStripMenuItem.CheckOnClick = true;
             this.YoudaoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.YoudaoToolStripMenuItem.Name = "YoudaoToolStripMenuItem";
-            this.YoudaoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.YoudaoToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.YoudaoToolStripMenuItem.Text = "有道翻译";
             this.YoudaoToolStripMenuItem.Click += new System.EventHandler(this.YoudaoToolStripMenuItem_Click);
             // 
             // BaiduToolStripMenuItem
             // 
             this.BaiduToolStripMenuItem.Name = "BaiduToolStripMenuItem";
-            this.BaiduToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.BaiduToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.BaiduToolStripMenuItem.Text = "百度翻译";
             this.BaiduToolStripMenuItem.Click += new System.EventHandler(this.BaiduToolStripMenuItem_Click);
             // 
             // MicrosoftToolStripMenuItem
             // 
             this.MicrosoftToolStripMenuItem.Name = "MicrosoftToolStripMenuItem";
-            this.MicrosoftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.MicrosoftToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.MicrosoftToolStripMenuItem.Text = "微软翻译";
             this.MicrosoftToolStripMenuItem.Click += new System.EventHandler(this.MicrosoftToolStripMenuItem_Click);
             // 
             // GoogleToolStripMenuItem
             // 
             this.GoogleToolStripMenuItem.Name = "GoogleToolStripMenuItem";
-            this.GoogleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GoogleToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.GoogleToolStripMenuItem.Text = "谷歌翻译";
             this.GoogleToolStripMenuItem.Click += new System.EventHandler(this.GoogleToolStripMenuItem_Click);
+            // 
+            // 帮助ToolStripMenuItem
+            // 
+            this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemLastVersion,
+            this.ToolStripMenuItemHelp,
+            this.ToolStripMenuItemDonate,
+            this.ToolStripMenuItemAbount});
+            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.帮助ToolStripMenuItem.Text = "帮助";
+            // 
+            // ToolStripMenuItemLastVersion
+            // 
+            this.ToolStripMenuItemLastVersion.Name = "ToolStripMenuItemLastVersion";
+            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemLastVersion.Text = "查看最新版本";
+            this.ToolStripMenuItemLastVersion.Click += new System.EventHandler(this.ToolStripMenuItemLastVersion_Click);
+            // 
+            // ToolStripMenuItemHelp
+            // 
+            this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemHelp.Text = "帮助";
+            this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.ToolStripMenuItemHelp_Click);
+            // 
+            // ToolStripMenuItemDonate
+            // 
+            this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
+            this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemDonate.Text = "捐赠";
+            this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
+            // 
+            // ToolStripMenuItemAbount
+            // 
+            this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
+            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemAbount.Text = "关于";
+            this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
+            // 
+            // backgroundLoadDictionary
+            // 
+            this.backgroundLoadDictionary.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundLoadDictionary_DoWork);
+            this.backgroundLoadDictionary.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundLoadDictionary_RunWorkerCompleted);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(648, 634);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 25);
+            this.btnSave.TabIndex = 14;
+            this.btnSave.Text = "保存注释";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // dgvSubtitleSentence
+            // 
+            this.dgvSubtitleSentence.AllowUserToAddRows = false;
+            this.dgvSubtitleSentence.AllowUserToDeleteRows = false;
+            this.dgvSubtitleSentence.AllowUserToResizeRows = false;
+            this.dgvSubtitleSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvSubtitleSentence.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvSubtitleSentence.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSubtitleSentence.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.TimeLine,
+            this.Sentence});
+            this.dgvSubtitleSentence.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgvSubtitleSentence.Location = new System.Drawing.Point(12, 110);
+            this.dgvSubtitleSentence.MultiSelect = false;
+            this.dgvSubtitleSentence.Name = "dgvSubtitleSentence";
+            this.dgvSubtitleSentence.RowHeadersVisible = false;
+            this.dgvSubtitleSentence.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvSubtitleSentence.ShowCellErrors = false;
+            this.dgvSubtitleSentence.ShowEditingIcon = false;
+            this.dgvSubtitleSentence.ShowRowErrors = false;
+            this.dgvSubtitleSentence.Size = new System.Drawing.Size(710, 514);
+            this.dgvSubtitleSentence.TabIndex = 15;
+            this.dgvSubtitleSentence.Resize += new System.EventHandler(this.dgvSubtitleSentence_Resize);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "Number";
+            this.ID.HeaderText = "序号";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 40;
+            // 
+            // TimeLine
+            // 
+            this.TimeLine.HeaderText = "时间轴";
+            this.TimeLine.Name = "TimeLine";
+            this.TimeLine.Width = 101;
             // 
             // Sentence
             // 
             this.Sentence.HeaderText = "字幕";
             this.Sentence.Name = "Sentence";
-            this.Sentence.ReadOnly = true;
-            this.Sentence.Width = 400;
+            this.Sentence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Sentence.Width = 549;
             // 
-            // Operation
+            // contextMenuStrip1
             // 
-            this.Operation.HeaderText = "操作";
-            this.Operation.Items.AddRange(new object[] {
-            "整句翻译",
-            "不注释"});
-            this.Operation.Name = "Operation";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SentenceTranslateToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 26);
             // 
-            // NewSubtitleSentence
+            // SentenceTranslateToolStripMenuItem
             // 
-            this.NewSubtitleSentence.HeaderText = "新字幕";
-            this.NewSubtitleSentence.Name = "NewSubtitleSentence";
-            this.NewSubtitleSentence.Width = 400;
+            this.SentenceTranslateToolStripMenuItem.Name = "SentenceTranslateToolStripMenuItem";
+            this.SentenceTranslateToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
+            this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -376,7 +387,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "深蓝字幕注释小助手";
+            this.Text = "深蓝英文字幕助手";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
@@ -385,6 +396,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,7 +418,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemHelp;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDonate;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAbount;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemAdjustSubtitleTimeline;
         private System.ComponentModel.BackgroundWorker backgroundLoadDictionary;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemUserVocabularyMgt;
         private System.Windows.Forms.Button btnSave;
@@ -422,9 +433,11 @@
         private System.Windows.Forms.ToolStripMenuItem BaiduToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MicrosoftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GoogleToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem SentenceTranslateToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TimeLine;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sentence;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Operation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NewSubtitleSentence;
     }
 }
 

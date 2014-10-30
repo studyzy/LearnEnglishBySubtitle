@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Json;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
@@ -82,7 +83,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 {
                     DataGridViewRow row=new DataGridViewRow();
                     row.CreateCells(dgvSubtitleSentence);
-                    row.Cells[0].Value = txt;
+                    row.Cells[0].Value = SubtitleLine.Number.ToString();
+
+                    string timeLine = SubtitleLine.StartTime.ToString("HH:mm:ss") + "->" + SubtitleLine.EndTime.ToString("HH:mm:ss");
+
+                    row.Cells[1].Value = timeLine;
+                    row.Cells[2].Value = txt;
                     dgvSubtitleSentence.Rows.Add(row);
                 }
             }
@@ -103,7 +109,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void btnRemark_Click(object sender, EventArgs e)
         {
             //userRank = 4;// Convert.ToInt32(numUserVocabularyRank.Value);
-
+            Splash.Show();
+            Splash.Status = "解析字幕中...";
             var subtitleWords = PickNewWords(subtitle.Bodies);
             if (subtitleWords.Count > 0)
             {
@@ -120,10 +127,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 //  form.SelectedNewWords
                 //}
             }
-
+            Splash.Close();
 
         }
-
+        /// <summary>
+        /// 在保存用户认识和不认识的词后将不认识的词传回来，对字幕进行注释
+        /// </summary>
+        /// <param name="words">不认识的词</param>
         private void RemarkSubtitle(IList<SubtitleWord>  words)
         {
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
@@ -134,13 +144,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             var newSubtitle = new List<SubtitleLine>();
             for (int i = 0; i < subtitle.Bodies.Count; i++)
             {
-                var SubtitleLine = subtitle.Bodies[i];
-                SubtitleLine.EnglishTextWithMeans = StringAndRemarkString(SubtitleLine.EnglishText, result);
-                newSubtitle.Add(SubtitleLine);
+                var subtitleLine = subtitle.Bodies[i];
+                subtitleLine.EnglishTextWithMeans = ReplaceSubtitleLineByVocabulary(subtitleLine.EnglishText, result);
+                newSubtitle.Add(subtitleLine);
             }
             subtitle.Bodies = newSubtitle;
             ShowSubtitleText(newSubtitle, true);
-            ClearCache();
+            //ClearCache();
         }
 
 
@@ -151,23 +161,32 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         /// <returns></returns>
         private IDictionary<string, SubtitleWord> PickNewWords(IList<SubtitleLine> subtitles)
         {
-            Dictionary<string,SubtitleWord> result=new Dictionary<string, SubtitleWord>();
-            var knownVocabulary= dbOperator.FindAllUserVocabulary(v=>v.KnownStatus== KnownStatus.Known).Select(v=>v.Word).ToList();
-            var ignores = dbOperator.GetAllIgnoreWords().Select(v=>v.Word).ToList();
+            Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
+            var knownVocabulary =
+                dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known).Select(v => v.Word).ToList();
+            var ignores = dbOperator.GetAllIgnoreWords().Select(v => v.Word).ToList();
             var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
             {
-              var   orgLine = SentenceParse.GetOriginalSentence(line);
+                var orgLine = SentenceParse.GetOriginalSentence(line);
                 var array = SentenceParse.SplitSentence(orgLine);
-                foreach (string word in array)
+                orgLine = orgLine.ToLower();
+                foreach (string w in array)
                 {
-                    if (IsEnglishName(word))
+
+                    if (IsEnglishName(w))
                     {
                         //英文名，忽略
                         continue;
                     }
+                    var word = w.ToLower();
                     var original = englishWordService.GetOriginalWord(word);
-                    if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original)||ignores.Contains(word)||ignores.Contains(original))
+                    if (IsEasyWord(original))
+                    {
+                        continue;
+                    }
+                    if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original) || ignores.Contains(word) ||
+                        ignores.Contains(original))
                     {
                         //认识的单词，忽略
                         continue;
@@ -178,56 +197,79 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                         //重复的单词
                         continue;
                     }
-                 
-                    var mean = RemarkWord(original);
-                    if (mean!=null)
-                        result.Add(original, new SubtitleWord() { Word = original, WordInSubitle = word, Means = mean.Means, SubtitleSentence = line });
+
+                    var mean = SentenceParse.Instance.RemarkWord(orgLine, word, original);
+                    if (mean != null)
+                    {
+                        var wd = new SubtitleWord()
+                        {
+                            Word = original,
+                            WordInSubitle = word,
+                            Means = mean.Means,
+                            SubtitleSentence = line,
+                            SelectMean = mean.DefaultMean == null?mean.Means[0].ToString(): mean.DefaultMean.ToString()
+                        };
+                        result.Add(original,wd);
+                    }
                 }
             }
             return result;
         }
 
-        private string StringAndRemarkString(string line,IDictionary<string,SubtitleWord> words )
+        private string ReplaceSubtitleLineByVocabulary(string line,IDictionary<string,SubtitleWord> words )
         {
-            var array = line.Split(new char[] {' ', ',', '.', '?', ':', '!'}, StringSplitOptions.RemoveEmptyEntries);
+            var array = SentenceParse.SplitSentence(line);
             foreach (string word in array)
             {
-                var w = englishWordService.GetOriginalWord(word);
-                var mean = words.ContainsKey(w) ? words[w].SelectMean : "";
-                if (!string.IsNullOrEmpty(mean))
+                if (words.ContainsKey(word))//这个词需要注释
                 {
-                    if(shortMean)
+                    var mean = words[word].SelectMean;
+                    if (shortMean)
                     {
-                        var meanarray = mean.Split(new char[]{';',','},StringSplitOptions.RemoveEmptyEntries);
+                        var meanarray = mean.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
                         mean = meanarray[0];
+                        mean = mean.Substring(mean.IndexOf(' ')+1);
                     }
                     line = ReplaceNewWord(line, word, mean);
                 }
+                //var w = englishWordService.GetOriginalWord(word);
+                //var mean = words.ContainsKey(w) ? words[w].SelectMean : "";
+                //if (!string.IsNullOrEmpty(mean))
+                //{
+                //    if(shortMean)
+                //    {
+                //        var meanarray = mean.Split(new char[]{';',','},StringSplitOptions.RemoveEmptyEntries);
+                //        mean = meanarray[0];
+                //    }
+                //    line = ReplaceNewWord(line, word, mean);
+                //}
             }
             return line;
         }
 
-        private string ReplaceNewWord(string line,string word,string mean)
+        private string ReplaceNewWord(string line, string word, string mean)
         {
-            string fontFormat = "({0})";
-            if (meanColor != default(Color))
-            {
-                fontFormat = "(<font color='#" + meanColor.R.ToString("x") + meanColor.G.ToString("x") + meanColor.B.ToString("x") +"'>{0}</font>)";
-            }
-            return line.Replace(word, word +string.Format(fontFormat,mean.Trim()) );
+            string fontFormat = "$0({0})";
+           
+            string newStr = string.Format(fontFormat, mean.Trim());
+            Regex wordRegex = new Regex("\\b" + word + "\\b");//匹配单词
+
+            return wordRegex.Replace(line, newStr);
         }
 
-        private Dictionary<string, EngDictionary> cachedDict = new Dictionary<string, EngDictionary>();
 
-        private IList<string> easyWord;
+        //private Dictionary<string, EngDictionary> cachedDict = new Dictionary<string, EngDictionary>();
+
         private bool IsEasyWord(string word)
         {
-            easyWord = InnerDictionaryHelper.GetAllEasyWords();
-            //if(easyWord==null)
-            //easyWord = dbOperator.GetAll<EasyWord>().Select(e => e.Word).ToList();
+            var easyWord = InnerDictionaryHelper.GetAllEasyWords();
             return easyWord.Contains(word);
         }
-
+        /// <summary>
+        /// 判断是否是英文名，首字母大写，而且在英文名列表中的就是英文名
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
         private bool IsEnglishName(string word)
         {
             if (word[0] >= 'A' && word[0] <= 'Z')
@@ -237,44 +279,18 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
             return false;
         }
+       
 
-        private EngDictionary RemarkWord(string word)
-        {
-            if (word.Length == 1)
-            {
-                return null;
-            }
-            if (IsEasyWord(word))
-            {
-                return null;
-            }
-            if (!cachedDict.ContainsKey(word))
-            {
-                var w = CalcAndGetWordAndMean(word);
-                if(!string.IsNullOrEmpty(w))
-                {
-                    var d = dictionaryService.GetChineseMeanInDict(w);
-                    cachedDict[word] = d;
-                }
-                else
-                {
-                    cachedDict[word] = null;
-                }
-              
-            }
-            return cachedDict[word];
-        }
-
-        private IList<UserVocabulary> userVocabularies;
+        //private IList<UserVocabulary> userVocabularies;
  
-        private UserVocabulary GetUserVocabulary(string word)
-        {
-            if (userVocabularies == null||userVocabularies.Count==0)
-            {
-                userVocabularies = dbOperator.GetAllUserVocabulary();
-            }
-            return (userVocabularies.Where(v => v.Word == word).FirstOrDefault());
-        }
+        //private UserVocabulary GetUserVocabulary(string word)
+        //{
+        //    if (userVocabularies == null||userVocabularies.Count==0)
+        //    {
+        //        userVocabularies = dbOperator.GetAllUserVocabulary();
+        //    }
+        //    return (userVocabularies.Where(v => v.Word == word).FirstOrDefault());
+        //}
 
         //private IList<VocabularyRank> vocabularyRanks;
         //private VocabularyRank GetVocabularyRank(string word)
@@ -285,41 +301,41 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         //    }
         //    return (vocabularyRanks.Where(v => v.Word == word).FirstOrDefault());
         //}
-        private string CalcAndGetWordAndMean(string word)
-        {
+        //private string CalcAndGetWordAndMean(string word)
+        //{
 
-            var vocabulary = GetUserVocabulary(word);
-            if (vocabulary != null)
-            {
-                if (vocabulary.KnownStatus == KnownStatus.Known)
-                {
-                    //用户认识这个词，那么就不用替换
-                    return "";
-                }
-                else //用户的生词表中有这个词，
-                {
-                    return (word);
-                }
-            }
-            //用户词汇中没有这个词，那么就查询词频分级表，看有没有分级信息
-            var rankData = InnerDictionaryHelper.GetAllVocabularyRanks();
-            //var rank = GetVocabularyRank(word);
-            if (!rankData.ContainsKey(word))
-            {
-                return word;
-            }
-            var rank = rankData[word];
+        //    var vocabulary = GetUserVocabulary(word);
+        //    if (vocabulary != null)
+        //    {
+        //        if (vocabulary.KnownStatus == KnownStatus.Known)
+        //        {
+        //            //用户认识这个词，那么就不用替换
+        //            return "";
+        //        }
+        //        else //用户的生词表中有这个词，
+        //        {
+        //            return (word);
+        //        }
+        //    }
+        //    //用户词汇中没有这个词，那么就查询词频分级表，看有没有分级信息
+        //    var rankData = InnerDictionaryHelper.GetAllVocabularyRanks();
+        //    //var rank = GetVocabularyRank(word);
+        //    if (!rankData.ContainsKey(word))
+        //    {
+        //        return word;
+        //    }
+        //    var rank = rankData[word];
 
 
-            if (rank < 4)
-            {
-                return (word);
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //    if (rank < 4)
+        //    {
+        //        return (word);
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
 
 
 
@@ -327,6 +343,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void backgroundLoadDictionary_DoWork(object sender, DoWorkEventArgs e)
         {
             dictionaryService.IsInDictionary("a");
+            SentenceParse.Instance.RemarkWord("Test it.", "it", "it");
         }
 
         private void backgroundLoadDictionary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -334,45 +351,83 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             ShowMessage("字典装载完成.");
             btnRemark.Enabled = true;
         }
-        private  void ClearCache()
-        {
-            userVocabularies.Clear();
-            cachedDict.Clear();
-        }
+        //private  void ClearCache()
+        //{
+        //    userVocabularies.Clear();
+        //    cachedDict.Clear();
+        //}
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var lines = new List<SubtitleLine>();
-            foreach (var subtitleLine in subtitle.Bodies)
+            //var lines = new List<SubtitleLine>();
+            //foreach (var subtitleLine in subtitle.Bodies)
+            //{
+            //    if (removeChinese)
+            //    {
+            //        subtitleLine.Text = subtitleLine.EnglishTextWithMeans;
+            //    }
+            //    else
+            //    {
+            //        subtitleLine.Text = subtitleLine.Text.Replace(subtitleLine.EnglishText,subtitleLine.EnglishTextWithMeans);
+            //    }
+            //    lines.Add(subtitleLine);
+            //}
+            //subtitle.Bodies = lines;
+            var nsubtitle = BuildSubtitleFromGrid();
+
+
+            if (meanColor != default(Color))
             {
-                if (removeChinese)
+                Regex r=new Regex(@"\(([^\)]+)\)");
+                var fontFormat = "(<font color='#" + meanColor.R.ToString("x") + meanColor.G.ToString("x") +
+                             meanColor.B.ToString("x") + "'>$1</font>)";
+                foreach (SubtitleLine line in nsubtitle.Bodies)
                 {
-                    subtitleLine.Text = subtitleLine.EnglishTextWithMeans;
+                    if (r.IsMatch(line.Text))
+                    {
+                        line.Text = r.Replace(line.Text, fontFormat);
+                    }
                 }
-                else
-                {
-                    subtitleLine.Text = subtitleLine.Text.Replace(subtitleLine.EnglishText,
-                                                                  subtitleLine.EnglishTextWithMeans);
-                }
-                lines.Add(subtitleLine);
+
+              
             }
-            subtitle.Bodies = lines;
             var path = txbSubtitleFilePath.Text;
             var bakFile = Path.GetDirectoryName(path)+"\\" +Path.GetFileNameWithoutExtension(path)+ "_bak"+Path.GetExtension(path);
             if(!File.Exists(bakFile))
             {
                 File.Copy(txbSubtitleFilePath.Text, bakFile);
             }
-            var str = stOperator.Subtitle2String(subtitle);
+            var str = stOperator.Subtitle2String(nsubtitle);
             FileOperationHelper.WriteFile(txbSubtitleFilePath.Text, Encoding.UTF8, str);
             ShowMessage("保存成功");
         }
 
-        private void ToolStripMenuItemAdjustSubtitleTimeline_Click(object sender, EventArgs e)
+        private Subtitle BuildSubtitleFromGrid()
         {
-            TimelineAdjustForm form=new TimelineAdjustForm();
-            form.Show();
+           Subtitle nsubtitle=new Subtitle();
+            nsubtitle.Header = subtitle.Header;
+            nsubtitle.Footer = nsubtitle.Footer;
+            nsubtitle.Bodies = new List<SubtitleLine>();
+            foreach (DataGridViewRow row in dgvSubtitleSentence.Rows)
+            {
+                SubtitleLine line=new SubtitleLine();
+                line.Number = Convert.ToInt32( row.Cells[0].Value.ToString());
+                var orgLine = subtitle.Bodies.Single(i => i.Number == line.Number);
+                line.StartTime = orgLine.StartTime;
+                line.EndTime = orgLine.EndTime;
+                line.Text = row.Cells[2].Value.ToString();
+                nsubtitle.Bodies.Add(line);
+            }
+            return nsubtitle;
         }
+
+        //private void ToolStripMenuItemAdjustSubtitleTimeline_Click(object sender, EventArgs e)
+        //{
+        //    TimelineAdjustForm form=new TimelineAdjustForm();
+        //    form.Show();
+        //}
+
+        #region Menu
 
         private void ToolStripMenuItemFilterChinese_Click(object sender, EventArgs e)
         {
@@ -442,62 +497,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Process.Start("https://sourceforge.net/projects/learnenglishbysubtitle/files/");
         }
 
-        private void MainForm_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.Link;
-            else e.Effect = DragDropEffects.None;
-        }
-
-        private void MainForm_DragDrop(object sender, DragEventArgs e)
-        {
-            var array = (Array)e.Data.GetData(DataFormats.FileDrop);
-            string files = "";
-
-
-            foreach (object a in array)
-            {
-                string path = a.ToString();
-                files += path + " | ";
-            }
-            txbSubtitleFilePath.Text = files.Remove(files.Length - 3);
-           
-        }
+       
 
         private void ToolStripMenuItemHelp_Click(object sender, EventArgs e)
         {
             Process.Start("https://code.google.com/p/learn-english-by-subtitle");
         }
 
-        private void dgvSubtitleSentence_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if (dgvSubtitleSentence.CurrentCell.ColumnIndex == 1 && e.Control is ComboBox)
-            {
-                ComboBox comboBox = e.Control as ComboBox;
-                comboBox.SelectedIndexChanged += LastColumnComboSelectionChanged;
-            }
-        }
-
-        private void LastColumnComboSelectionChanged(object sender, EventArgs e)
-        {
-            var currentcell = dgvSubtitleSentence.CurrentCellAddress;
-            var sendingCB = sender as DataGridViewComboBoxEditingControl;
-            DataGridViewTextBoxCell cel = (DataGridViewTextBoxCell)dgvSubtitleSentence.Rows[currentcell.Y].Cells[0];
-            DataGridViewTextBoxCell newCel = (DataGridViewTextBoxCell)dgvSubtitleSentence.Rows[currentcell.Y].Cells[2];
-            switch (sendingCB.EditingControlFormattedValue.ToString())
-            {
-                case "整句翻译":
-                    newCel.Value = translateService.TranslateToChinese(cel.Value.ToString());
-                    break;
-                    
-                case "不翻译":
-                    break;
-                default:
-                    return;
-            }
-            
-        }
-
+     
         private void YoudaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             YoudaoToolStripMenuItem.Checked = true;
@@ -532,6 +539,51 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             MicrosoftToolStripMenuItem.Checked = false;
             GoogleToolStripMenuItem.Checked = true;
             translateService = new GoogleTranslateService();
+        }
+
+        #endregion
+
+        #region Drag
+        private void MainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Link;
+            else e.Effect = DragDropEffects.None;
+        }
+
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            var array = (Array)e.Data.GetData(DataFormats.FileDrop);
+            string files = "";
+
+
+            foreach (object a in array)
+            {
+                string path = a.ToString();
+                files += path + " | ";
+            }
+            txbSubtitleFilePath.Text = files.Remove(files.Length - 3);
+
+        }
+
+        #endregion
+
+        private void dgvSubtitleSentence_Resize(object sender, EventArgs e)
+        {
+            dgvSubtitleSentence.Columns[2].Width = dgvSubtitleSentence.Width - 179;
+        }
+
+        private void SentenceTranslateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvSubtitleSentence.SelectedCells.Count > 0)
+            {
+                var cell = dgvSubtitleSentence.SelectedCells[0];
+                if (cell.ColumnIndex == 2)//只对字幕句子进行翻译
+                {
+                    var sentence = cell.Value.ToString();
+                    cell.Value = sentence+"\r\n"+ translateService.TranslateToChinese(sentence);
+                }
+            }
         }
 
     }
