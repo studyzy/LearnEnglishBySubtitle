@@ -9,10 +9,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
     {
         public Subtitle()
         {
-            Bodies=new List<SubtitleLine>();
+            Bodies=new Dictionary<int, SubtitleLine>();
         }
         public string Header { get; set; }
         public string Footer { get; set; }
-        public IList<SubtitleLine> Bodies { get; set; } 
+        public IDictionary<int,SubtitleLine> Bodies { get; set; } 
     }
 }

@@ -80,13 +80,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             {
                 var path = key;
                 richTextBox1.AppendText("----" + path + "----\r\n");
-                IList<SubtitleLine> result = new List<SubtitleLine>();
-                for (int i = 0; i < SubtitleFiles[key].Bodies.Count; i++)
+                var result = new  Dictionary<int, SubtitleLine>();
+                for (int i = 1; i <= SubtitleFiles[key].Bodies.Count; i++)
                 {
-                    var SubtitleLine = SubtitleFiles[key].Bodies[i];
-                    SubtitleLine.StartTime = SubtitleLine.StartTime.AddSeconds((double) numTimelineDelay.Value);
-                    SubtitleLine.EndTime = SubtitleLine.EndTime.AddSeconds((double) numTimelineDelay.Value);
-                    result.Add(SubtitleLine);
+                    var subtitleLine = SubtitleFiles[key].Bodies[i];
+                    subtitleLine.StartTime = subtitleLine.StartTime.AddSeconds((double) numTimelineDelay.Value);
+                    subtitleLine.EndTime = subtitleLine.EndTime.AddSeconds((double) numTimelineDelay.Value);
+                    result.Add(i,subtitleLine);
                 }
                 adjustFiles[key].Bodies = result;
                 var txt = stOperator.Subtitle2String(adjustFiles[key]);

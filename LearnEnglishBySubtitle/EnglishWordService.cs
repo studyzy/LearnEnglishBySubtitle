@@ -13,14 +13,14 @@ namespace Studyzy.LearnEnglishBySubtitle
         //private DbOperator dbOperator =  DbOperator.Instance;
         private DictionaryService dictionaryService;
 
-        public DictionaryService DictionaryService
-        {
-            set { dictionaryService = value; }
-        }
+        //public DictionaryService DictionaryService
+        //{
+        //    set { dictionaryService = value; }
+        //}
 
-        public EnglishWordService(DictionaryService dictionaryService)
+        public EnglishWordService()
         {
-            this.dictionaryService = dictionaryService;
+            this.dictionaryService = Global.DictionaryService;
         }
 
         //private IList<VocabularyRank> rankData;

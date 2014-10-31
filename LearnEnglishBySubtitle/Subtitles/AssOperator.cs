@@ -19,9 +19,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
             subtitle.Header = head;
             str = str.Substring(diagIndex);
             var lines = str.Split(new char[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries);
+            int index = 0;
             foreach (var line in lines)
             {
-                subtitle.Bodies.Add(ParseLine(line));
+                subtitle.Bodies.Add(++index, ParseLine(line));
             }
             return subtitle;
         }
@@ -49,7 +50,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
             sb.Append(st.Header);
             foreach (var subtitleLine in st.Bodies)
             {
-                sb.Append(Line2String(subtitleLine));
+                sb.Append(Line2String(subtitleLine.Value));
                 sb.Append("\r\n");
             }
             return sb.ToString();
@@ -81,12 +82,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
         }
         public Subtitle RemoveChinese(Subtitle subtitle)
         {
-            var newSrts = new List<SubtitleLine>();
+            var newSrts = new Dictionary<int, SubtitleLine>();
             var srts = subtitle.Bodies;
             for (int i = 0; i < subtitle.Bodies.Count; i++)
             {
-                var SubtitleLine = srts[i];
-                var lines = SubtitleLine.Text.Split(new string[] { "\r","\n","\\N" }, StringSplitOptions.RemoveEmptyEntries);
+                var subtitleLine = srts[i];
+                var lines = subtitleLine.Text.Split(new string[] { "\r","\n","\\N" }, StringSplitOptions.RemoveEmptyEntries);
                 IList<string> newLines = new List<string>();
                 foreach (var line in lines)
                 {
@@ -98,13 +99,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
                 }
                 if (newLines.Count > 0)
                 {
-                    SubtitleLine.EnglishText = string.Join("\r\n", newLines.ToArray());
+                    subtitleLine.EnglishText = string.Join("\r\n", newLines.ToArray());
                 }
                 else
                 {
-                    SubtitleLine.EnglishText = " ";
+                    subtitleLine.EnglishText = " ";
                 }
-                newSrts.Add(SubtitleLine);
+                newSrts.Add(subtitleLine.Number,subtitleLine);
             }
             subtitle.Bodies = newSrts;
             return subtitle;

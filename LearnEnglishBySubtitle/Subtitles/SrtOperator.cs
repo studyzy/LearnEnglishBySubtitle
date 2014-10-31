@@ -10,14 +10,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
     {
         public Subtitle Parse(string str)
         {
-            var result = new List<SubtitleLine>();
+            var result = new Dictionary<int, SubtitleLine>();
             var blocks = str.Split(new[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            int index = 0;
             foreach (var block in blocks)
             {
                 var array = block.Split(new string[] {"\r","\n"}, StringSplitOptions.RemoveEmptyEntries);
                 var srt = new SubtitleLine();
                 var num = array[0];
-                srt.Number = Convert.ToInt32(num);
+                srt.Number = ++index;
 
                 var tarray = array[1].Split(new string[] { " --> " }, StringSplitOptions.RemoveEmptyEntries);
                 srt.StartTime = Convert.ToDateTime("2000-01-01 " + tarray[0].Replace(',', '.'));
@@ -28,34 +29,35 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
                 for (var i = 2; i < array.Length;i++ )
                     srt.Text += array[i]+"\r\n";
                 srt.Text= srt.Text.Remove(srt.Text.Length - 2, 2);
-                result.Add(srt);
+                result.Add(index,srt);
             }
             Subtitle st = new Subtitle(){Bodies=result};
-            ReCalcSequence(st);
+            //ReCalcSequence(st);
             return st;
         }
 
-        private void ReCalcSequence(Subtitle subtitle)
-        {
-            var newList = subtitle.Bodies.OrderBy(l => l.StartTime).ToList();
-            for (var i = 1; i < newList.Count; i++)
-            {
-                newList[i].Number = i;
-            }
-            subtitle.Bodies = newList;
-        }
+        //private void ReCalcSequence(Subtitle subtitle)
+        //{
+        //    var newList = subtitle.Bodies.OrderBy(l => l.StartTime).ToList();
+        //    for (var i = 1; i < newList.Count; i++)
+        //    {
+        //        newList[i].Number = i;
+        //    }
+        //    subtitle.Bodies = newList;
+        //}
 
         public  string Subtitle2String(Subtitle st )
         {
             StringBuilder sb=new StringBuilder();
             var srts = st.Bodies;
-            foreach (var SubtitleLine in srts)
+            foreach (var kv in srts)
             {
-                sb.Append(SubtitleLine.Number);
+                var subtitleLine = kv.Value;
+                sb.Append(subtitleLine.Number);
                 sb.Append("\r\n");
-                sb.Append(SubtitleLine.StartTime.ToString("HH:mm:ss,fff") + " --> " + SubtitleLine.EndTime.ToString("HH:mm:ss,fff"));
+                sb.Append(subtitleLine.StartTime.ToString("HH:mm:ss,fff") + " --> " + subtitleLine.EndTime.ToString("HH:mm:ss,fff"));
                 sb.Append("\r\n");
-                sb.Append(SubtitleLine.Text);
+                sb.Append(subtitleLine.Text);
                 sb.Append("\r\n\r\n");
             }
             var result = sb.ToString();
@@ -64,12 +66,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
 
         public Subtitle RemoveChinese(Subtitle subtitle)
         {
-            var newSrts = new List<SubtitleLine>();
+            var newSrts = new Dictionary<int, SubtitleLine>();
             var srts = subtitle.Bodies;
-            for (int i = 0; i < subtitle.Bodies.Count; i++)
+            for (int i = 1; i <= subtitle.Bodies.Count; i++)
             {
-                var SubtitleLine = srts[i];
-                var lines = SubtitleLine.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                var subtitleLine = srts[i];
+                var lines = subtitleLine.Text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
                 IList<string> newLines = new List<string>();
                 foreach (var line in lines)
                 {
@@ -81,13 +83,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
                 }
                 if (newLines.Count > 0)
                 {
-                    SubtitleLine.EnglishText = string.Join("\r\n", newLines.ToArray());
+                    subtitleLine.EnglishText = string.Join("\r\n", newLines.ToArray());
                 }
                 else
                 {
-                    SubtitleLine.EnglishText = " ";
+                    subtitleLine.EnglishText = " ";
                 }
-                newSrts.Add(SubtitleLine);
+                newSrts.Add(subtitleLine.Number, subtitleLine);
             }
             subtitle.Bodies= newSrts;
             return subtitle;

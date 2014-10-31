@@ -28,8 +28,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             InitializeComponent();
             dbOperator = DbOperator.Instance;
-
-            englishWordService = new EnglishWordService(dictionaryService);
+            Global.DictionaryService = new ViconDictionaryService();
+            englishWordService = new EnglishWordService();
         }
 
         private TranslateService translateService = new YoudaoTranslateService();
@@ -39,7 +39,6 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private DbOperator dbOperator;
         private Subtitle subtitle;
         private EnglishWordService englishWordService;
-        private DictionaryService dictionaryService = new ViconDictionaryService();
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
@@ -58,34 +57,35 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
             srts = stOperator.RemoveChinese(srts);
 
-            ShowSubtitleText(srts.Bodies);
+            ShowSubtitleText(srts.Bodies.Values);
             subtitle = srts;
         }
 
-        private void ShowSubtitleText(IList<SubtitleLine> srts,bool withMean=false )
+        private void ShowSubtitleText(ICollection<SubtitleLine> srts,bool withMean=false )
         {
             dgvSubtitleSentence.Rows.Clear();
-            foreach (var SubtitleLine in srts)
+            foreach (var subtitleLine in srts)
             {
-                var txt = SubtitleLine.Text;
+                //var subtitleLine = kv.Value;
+                var txt = subtitleLine.Text;
                 if (removeChinese)
                 {
                     if (withMean)
                     {
-                        txt = SubtitleLine.EnglishTextWithMeans;
+                        txt = subtitleLine.EnglishTextWithMeans;
                     }
                     else
                     {
-                        txt = SubtitleLine.EnglishText;
+                        txt = subtitleLine.EnglishText;
                     }
                 }
                 if (!string.IsNullOrEmpty(txt.Trim()))
                 {
                     DataGridViewRow row=new DataGridViewRow();
                     row.CreateCells(dgvSubtitleSentence);
-                    row.Cells[0].Value = SubtitleLine.Number.ToString();
+                    row.Cells[0].Value = subtitleLine.Number.ToString();
 
-                    string timeLine = SubtitleLine.StartTime.ToString("HH:mm:ss") + "->" + SubtitleLine.EndTime.ToString("HH:mm:ss");
+                    string timeLine = subtitleLine.StartTime.ToString("HH:mm:ss") + "->" + subtitleLine.EndTime.ToString("HH:mm:ss");
 
                     row.Cells[1].Value = timeLine;
                     row.Cells[2].Value = txt;
@@ -98,6 +98,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
      
         private void MainForm_Load(object sender, EventArgs e)
         {
+          
             backgroundLoadDictionary.RunWorkerAsync();
         }
         private void ShowMessage(string message)
@@ -111,7 +112,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             //userRank = 4;// Convert.ToInt32(numUserVocabularyRank.Value);
             Splash.Show();
             Splash.Status = "解析字幕中...";
-            var subtitleWords = PickNewWords(subtitle.Bodies);
+            var subtitleWords = PickNewWords(subtitle.Bodies.Values);
             if (subtitleWords.Count > 0)
             {
                 NewWordConfirmForm form = new NewWordConfirmForm();
@@ -142,13 +143,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 result.Add(subtitleWord.Word, subtitleWord);
             }
             var newSubtitle = new List<SubtitleLine>();
-            for (int i = 0; i < subtitle.Bodies.Count; i++)
+            for (int i = 1; i <= subtitle.Bodies.Count; i++)
             {
                 var subtitleLine = subtitle.Bodies[i];
                 subtitleLine.EnglishTextWithMeans = ReplaceSubtitleLineByVocabulary(subtitleLine.EnglishText, result);
                 newSubtitle.Add(subtitleLine);
             }
-            subtitle.Bodies = newSubtitle;
+            //subtitle.Bodies = newSubtitle;
             ShowSubtitleText(newSubtitle, true);
             //ClearCache();
         }
@@ -159,7 +160,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         /// </summary>
         /// <param name="subtitles"></param>
         /// <returns></returns>
-        private IDictionary<string, SubtitleWord> PickNewWords(IList<SubtitleLine> subtitles)
+        private IDictionary<string, SubtitleWord> PickNewWords(ICollection<SubtitleLine> subtitles)
         {
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
             var knownVocabulary =
@@ -219,8 +220,9 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private string ReplaceSubtitleLineByVocabulary(string line,IDictionary<string,SubtitleWord> words )
         {
             var array = SentenceParse.SplitSentence(line);
-            foreach (string word in array)
+            foreach (string oword in array)
             {
+                var word = oword.ToLower();
                 if (words.ContainsKey(word))//这个词需要注释
                 {
                     var mean = words[word].SelectMean;
@@ -252,7 +254,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             string fontFormat = "$0({0})";
            
             string newStr = string.Format(fontFormat, mean.Trim());
-            Regex wordRegex = new Regex("\\b" + word + "\\b");//匹配单词
+            Regex wordRegex = new Regex("\\b" + word + "\\b",RegexOptions.IgnoreCase);//匹配单词
 
             return wordRegex.Replace(line, newStr);
         }
@@ -342,7 +344,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void backgroundLoadDictionary_DoWork(object sender, DoWorkEventArgs e)
         {
-            dictionaryService.IsInDictionary("a");
+            Global.DictionaryService.IsInDictionary("a");
             SentenceParse.Instance.RemarkWord("Test it.", "it", "it");
         }
 
@@ -379,10 +381,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             if (meanColor != default(Color))
             {
                 Regex r=new Regex(@"\(([^\)]+)\)");
-                var fontFormat = "(<font color='#" + meanColor.R.ToString("x") + meanColor.G.ToString("x") +
-                             meanColor.B.ToString("x") + "'>$1</font>)";
-                foreach (SubtitleLine line in nsubtitle.Bodies)
+                var fontFormat = "(<font color='#" + meanColor.R.ToString("x2") + meanColor.G.ToString("x2") +
+                             meanColor.B.ToString("x2") + "'>$1</font>)";
+                foreach (var kv in nsubtitle.Bodies)
                 {
+                    var line = kv.Value;
                     if (r.IsMatch(line.Text))
                     {
                         line.Text = r.Replace(line.Text, fontFormat);
@@ -392,14 +395,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
               
             }
             var path = txbSubtitleFilePath.Text;
-            var bakFile = Path.GetDirectoryName(path)+"\\" +Path.GetFileNameWithoutExtension(path)+ "_bak"+Path.GetExtension(path);
-            if(!File.Exists(bakFile))
-            {
-                File.Copy(txbSubtitleFilePath.Text, bakFile);
-            }
+            var newFile = Path.GetDirectoryName(path)+"\\" +Path.GetFileNameWithoutExtension(path)+ "_new"+Path.GetExtension(path);
+            //if(!File.Exists(newFile))
+            //{
+            //    File.Copy(txbSubtitleFilePath.Text, newFile);
+            //}
             var str = stOperator.Subtitle2String(nsubtitle);
-            FileOperationHelper.WriteFile(txbSubtitleFilePath.Text, Encoding.UTF8, str);
+            FileOperationHelper.WriteFile(newFile, Encoding.UTF8, str);
             ShowMessage("保存成功");
+            MessageBox.Show("保存成功,文件名："+Path.GetFileName(newFile));
         }
 
         private Subtitle BuildSubtitleFromGrid()
@@ -407,16 +411,17 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
            Subtitle nsubtitle=new Subtitle();
             nsubtitle.Header = subtitle.Header;
             nsubtitle.Footer = nsubtitle.Footer;
-            nsubtitle.Bodies = new List<SubtitleLine>();
+            nsubtitle.Bodies = new Dictionary<int, SubtitleLine>();
             foreach (DataGridViewRow row in dgvSubtitleSentence.Rows)
             {
                 SubtitleLine line=new SubtitleLine();
-                line.Number = Convert.ToInt32( row.Cells[0].Value.ToString());
-                var orgLine = subtitle.Bodies.Single(i => i.Number == line.Number);
+                var number = Convert.ToInt32( row.Cells[0].Value.ToString());
+                var orgLine = subtitle.Bodies[number];//.SingleOrDefault(i => i.Number == number);
+                line.Number = number;
                 line.StartTime = orgLine.StartTime;
                 line.EndTime = orgLine.EndTime;
                 line.Text = row.Cells[2].Value.ToString();
-                nsubtitle.Bodies.Add(line);
+                nsubtitle.Bodies.Add(number,line);
             }
             return nsubtitle;
         }

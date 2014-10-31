@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using com.sun.org.apache.bcel.@internal.generic;
 
 namespace Studyzy.LearnEnglishBySubtitle.EngDict
 {
@@ -24,31 +25,17 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         /// XML注释内容
         /// </summary>
         public  string Detail { get; set; }
-    }
-    public class WordMean
-    {
-        /// <summary>
-        /// 在字典中的位置
-        /// </summary>
-        public long Index { get; set; }
-        /// <summary>
-        /// 词性
-        /// </summary>
-        public string Property { get; set; }
-        /// <summary>
-        /// 解释
-        /// </summary>
-        public string Mean { get; set; }
-        public override string ToString()
+
+        public string GetAllMeans()
         {
-            if (Property != null && Mean != null)
+            StringBuilder sb=new StringBuilder();
+            foreach (var mean in Means)
             {
-                return Property+" "+ Mean;
+                sb.Append(mean.ToString());
+                sb.Append(" ");
             }
-            else
-            {
-                return null;
-            }
+            return sb.ToString();
         }
     }
+  
 }

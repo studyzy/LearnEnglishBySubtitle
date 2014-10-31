@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Data.SQLite;
+using com.sun.org.apache.bcel.@internal.generic;
 using Studyzy.LearnEnglishBySubtitle.Entities;
 using log4net;
 
@@ -101,6 +102,12 @@ namespace Studyzy.LearnEnglishBySubtitle
         {
             return context.UserVocabulary.Where(funExpression).ToList();
         }
+
+        public IList<Subtitle_NewWord> FindSubtitleWords(string word)
+        {
+            return context.NewWords.Where(w => w.Word == word).ToList();
+        }
+
         public void SaveUserVocabulary(UserVocabulary userVocabulary)
         {
             context.UserVocabulary.AddOrUpdate(userVocabulary);
@@ -114,8 +121,9 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         public void ClearUserVocabulary()
         {
-
-            RunSql("delete from User_Vocabulary");
+            RunSql("delete from IgnoreWord");
+            RunSql("delete from UserVocabulary");
+            RunSql("delete from Subtitle_NewWord");
 
         }
 
@@ -174,7 +182,7 @@ namespace Studyzy.LearnEnglishBySubtitle
                 }
 
                 vocabulary.Word = userNewWord.Word;
-                vocabulary.Source = "Subtitle";
+                vocabulary.Source = "字幕";
                 vocabulary.Sentence = userNewWord.SubtitleSentence;
                 vocabulary.KnownStatus = userNewWord.IsNewWord ? KnownStatus.Unknown : KnownStatus.Known;
                 vocabulary.UpdateTime = DateTime.Now;

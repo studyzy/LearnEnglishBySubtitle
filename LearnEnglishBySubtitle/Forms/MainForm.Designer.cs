@@ -119,7 +119,7 @@
             // 
             this.btnRemark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemark.Enabled = false;
-            this.btnRemark.Location = new System.Drawing.Point(648, 78);
+            this.btnRemark.Location = new System.Drawing.Point(647, 65);
             this.btnRemark.Name = "btnRemark";
             this.btnRemark.Size = new System.Drawing.Size(75, 25);
             this.btnRemark.TabIndex = 6;
@@ -131,7 +131,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 676);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 474);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(735, 22);
             this.statusStrip1.TabIndex = 10;
@@ -264,14 +264,14 @@
             // ToolStripMenuItemLastVersion
             // 
             this.ToolStripMenuItemLastVersion.Name = "ToolStripMenuItemLastVersion";
-            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(146, 22);
             this.ToolStripMenuItemLastVersion.Text = "查看最新版本";
             this.ToolStripMenuItemLastVersion.Click += new System.EventHandler(this.ToolStripMenuItemLastVersion_Click);
             // 
             // ToolStripMenuItemHelp
             // 
             this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(146, 22);
             this.ToolStripMenuItemHelp.Text = "帮助";
             this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.ToolStripMenuItemHelp_Click);
             // 
@@ -279,14 +279,14 @@
             // 
             this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
             this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(146, 22);
             this.ToolStripMenuItemDonate.Text = "捐赠";
             this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
             // 
             // ToolStripMenuItemAbount
             // 
             this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
-            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(146, 22);
             this.ToolStripMenuItemAbount.Text = "关于";
             this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
             // 
@@ -298,7 +298,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(648, 634);
+            this.btnSave.Location = new System.Drawing.Point(648, 446);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.TabIndex = 14;
@@ -321,7 +321,7 @@
             this.TimeLine,
             this.Sentence});
             this.dgvSubtitleSentence.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgvSubtitleSentence.Location = new System.Drawing.Point(12, 110);
+            this.dgvSubtitleSentence.Location = new System.Drawing.Point(12, 96);
             this.dgvSubtitleSentence.MultiSelect = false;
             this.dgvSubtitleSentence.Name = "dgvSubtitleSentence";
             this.dgvSubtitleSentence.RowHeadersVisible = false;
@@ -329,7 +329,7 @@
             this.dgvSubtitleSentence.ShowCellErrors = false;
             this.dgvSubtitleSentence.ShowEditingIcon = false;
             this.dgvSubtitleSentence.ShowRowErrors = false;
-            this.dgvSubtitleSentence.Size = new System.Drawing.Size(710, 514);
+            this.dgvSubtitleSentence.Size = new System.Drawing.Size(710, 344);
             this.dgvSubtitleSentence.TabIndex = 15;
             this.dgvSubtitleSentence.Resize += new System.EventHandler(this.dgvSubtitleSentence_Resize);
             // 
@@ -373,7 +373,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 698);
+            this.ClientSize = new System.Drawing.Size(735, 496);
             this.Controls.Add(this.dgvSubtitleSentence);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.statusStrip1);

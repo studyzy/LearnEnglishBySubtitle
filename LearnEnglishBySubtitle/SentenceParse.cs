@@ -22,7 +22,7 @@ namespace Studyzy.LearnEnglishBySubtitle
         private static SentenceParse instance;
         private SentenceParse()
         {
-            dictionaryService=new ViconDictionaryService();
+            //dictionaryService=new ViconDictionaryService();
            string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
            var model = currentFolder + @"\models\english-bidirectional-distsim.tagger";
             // Loading POS Tagger
@@ -61,7 +61,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             return result;
         }
 
-        private DictionaryService dictionaryService;
+        //private DictionaryService dictionaryService;
         /// <summary>
         /// 根据一个句子，找到一个单词在句子中的意思
         /// </summary>
@@ -75,8 +75,8 @@ namespace Studyzy.LearnEnglishBySubtitle
             {
                 return null;
             }
-            var d = dictionaryService.GetChineseMeanInDict(word.ToLower());
-            var originalMean = dictionaryService.GetChineseMeanInDict(original);
+            var d = Global.DictionaryService.GetChineseMeanInDict(word.ToLower());
+            var originalMean = Global.DictionaryService.GetChineseMeanInDict(original);
             if (d == null ||d.Means.Count == 1)//只有一个解释，那么就不用判断了,返回原型的解释
             {
                 if (originalMean != null)
@@ -84,6 +84,10 @@ namespace Studyzy.LearnEnglishBySubtitle
                     return originalMean;
                 }
                 return d;
+            }
+            if (originalMean == null)
+            {
+                originalMean = d;
             }
             var wordList = Parse(sentence)+" ";
             Regex regex=new Regex("\\b"+word+ @"/(.*?)\s");

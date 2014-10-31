@@ -165,6 +165,7 @@
     <Compile Include="EngDict\QuickE2CDictionaryService.cs" />
     <Compile Include="EngDict\ViconDictionaryService.cs" />
     <Compile Include="EngDict\LingoesLd2.cs" />
+    <Compile Include="EngDict\WordMean.cs" />
     <Compile Include="EnglishWordService.cs" />
     <Compile Include="Entities\Subtitle_NewWord.cs" />
     <Compile Include="EngDict\EngDictionary.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Forms\UserVocabularyMgtForm.Designer.cs">
       <DependentUpon>UserVocabularyMgtForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="Helpers\FileOperationHelper.cs" />
     <Compile Include="Helpers\BinFileHelper.cs" />
     <Compile Include="Helpers\InnerDictionaryHelper.cs" />

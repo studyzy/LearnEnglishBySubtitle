@@ -123,6 +123,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult=DialogResult.Cancel;
+            this.Close();
         }
 
 
