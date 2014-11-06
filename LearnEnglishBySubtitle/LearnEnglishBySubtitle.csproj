@@ -183,6 +183,12 @@
     <Compile Include="Forms\DictionaryConfigForm.Designer.cs">
       <DependentUpon>DictionaryConfigForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DonationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DonationForm.Designer.cs">
+      <DependentUpon>DonationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ImportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +275,9 @@
     <EmbeddedResource Include="Forms\DictionaryConfigForm.resx">
       <DependentUpon>DictionaryConfigForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DonationForm.resx">
+      <DependentUpon>DonationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ImportForm.resx">
       <DependentUpon>ImportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +338,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\donate.rtf" />
     <None Include="UserVocabulary.db3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

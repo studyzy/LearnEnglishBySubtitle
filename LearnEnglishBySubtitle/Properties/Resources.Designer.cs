@@ -59,5 +59,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\adeflang1025\ansi\ansicpg1252\uc2\adeff0\deff0\stshfdbch0\stshfloch0\stshfhich0\stshfbi0\deflang1033\deflangfe2052\themelang1033\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f2\fbidi \fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New;}
+        ///{\f13\fbidi \fnil\fcharset134\fprq2{\*\panose 02010600030101010101}\&apos;cb\&apos;ce\&apos;cc\&apos;e5{\*\falt SimSun};}{\f13\fbidi \fnil\fcharset134\fprq2{\*\panose 02010600030101010101}\&apos;cb\&apos;ce\ [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Donate {
+            get {
+                return ResourceManager.GetString("Donate", resourceCulture);
+            }
+        }
     }
 }
