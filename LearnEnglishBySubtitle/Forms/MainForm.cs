@@ -53,16 +53,20 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 txbSubtitleFilePath.Text = openFileDialog1.FileName;
-
-                var txt = FileOperationHelper.ReadFile(txbSubtitleFilePath.Text);
-                stOperator = SubtitleHelper.GetOperatorByFileName(txbSubtitleFilePath.Text);
-                var srts = stOperator.Parse(txt);
-
-                srts = stOperator.RemoveChinese(srts);
-
-                ShowSubtitleText(srts.Bodies.Values);
-                subtitle = srts;
+                ReadAndShowSubtitle();
             }
+        }
+
+        private void ReadAndShowSubtitle()
+        {
+            var txt = FileOperationHelper.ReadFile(txbSubtitleFilePath.Text);
+            stOperator = SubtitleHelper.GetOperatorByFileName(txbSubtitleFilePath.Text);
+            var srts = stOperator.Parse(txt);
+
+            srts = stOperator.RemoveChinese(srts);
+
+            ShowSubtitleText(srts.Bodies.Values);
+            subtitle = srts;
         }
 
         private void ShowSubtitleText(ICollection<SubtitleLine> srts,bool withMean=false )
@@ -128,7 +132,6 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 form.SubtitleFileName = Path.GetFileName(txbSubtitleFilePath.Text);
                 form.OnClickOkButton += RemarkSubtitle;
                 form.Show();
-                form.Focus();
                 form.Activate();
                 //if (form.ShowDialog() == DialogResult.OK)
                 //{
@@ -172,7 +175,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
             var knownVocabulary =
-                dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known).Select(v => v.Word).ToList();
+                dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known).Select(v => v.Word.ToLower()).ToList();
             var ignores = dbOperator.GetAllIgnoreWords().Select(v => v.Word).ToList();
             var texts = subtitles.Select(s => s.EnglishText).ToList();
             foreach (var line in texts)
@@ -186,6 +189,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     if (IsEnglishName(w))
                     {
                         //英文名，忽略
+                        continue;
+                    }
+                    if (w == "s")
+                    {
+                        //xxx's 拆出来的
                         continue;
                     }
                     var word = w.ToLower();
@@ -212,7 +220,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     {
                         var wd = new SubtitleWord()
                         {
-                            Word = original,
+                            Word = mean.Word,
                             WordInSubitle = word,
                             Means = mean.Means,
                             SubtitleSentence = line,
@@ -569,7 +577,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 files += path + " | ";
             }
             txbSubtitleFilePath.Text = files.Remove(files.Length - 3);
-
+            ReadAndShowSubtitle();
         }
 
         #endregion

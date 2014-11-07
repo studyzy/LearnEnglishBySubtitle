@@ -79,26 +79,26 @@ namespace Studyzy.LearnEnglishBySubtitle
             {
                 return original;
             }
-            if (IsInRankTable(word))
-            {
-                return word;
-            }
-            if (word.Length > 4 && word.EndsWith("ing")) //进行时
-            {
-                return OperateIngWord(word);
-            }
-            if (word.Length > 3 && (word.EndsWith("ed"))) //过去式
-            {
-                return OperateEdWord(word);
-            }
-            if (word.Length > 3 && word.EndsWith("es")) //复数
-            {
-                return OperateEsWord(word);
-            }
-            else if (word.EndsWith("s") && word.Length > 3 && word[word.Length - 2] != 's') //复数
-            {
-                return OperateSWord(word);
-            }
+            //if (IsInRankTable(word))
+            //{
+            //    return word;
+            //}
+            //if (word.Length > 4 && word.EndsWith("ing")) //进行时
+            //{
+            //    return OperateIngWord(word);
+            //}
+            //if (word.Length > 3 && (word.EndsWith("ed"))) //过去式
+            //{
+            //    return OperateEdWord(word);
+            //}
+            //if (word.Length > 3 && word.EndsWith("es")) //复数
+            //{
+            //    return OperateEsWord(word);
+            //}
+            //else if (word.EndsWith("s") && word.Length > 3 && word[word.Length - 2] != 's') //复数
+            //{
+            //    return OperateSWord(word);
+            //}
             return word;
         }
 

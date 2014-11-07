@@ -41,7 +41,6 @@ accused,1
 accustom,1
 accustomed,1
 achiever,1
-acid rain,1
 acknowledgement,1
 acne,1
 acquaint,1
@@ -61,7 +60,6 @@ additionally,1
 additive,1
 adept,1
 adhesive,1
-ad hoc,1
 adjacent,1
 adjective,1
 adjoin,1
@@ -92,7 +90,6 @@ affectionate,1
 affidavit,1
 affinity,1
 affirmative,1
-affirmative action,1
 affluent,1
 affordable,1
 affront,1
@@ -105,8 +102,6 @@ Afro-Caribbean,1
 aft,1
 after-hours,1
 after-school,1
-age group,1
-age of consent,1
 age-old,1
 aggravate,1
 aggressor,1
@@ -122,20 +117,14 @@ aground,1
 ailing,1
 ailment,1
 aimless,1
-air base,1
 airborne,1
 air-conditioned,1
 air-conditioning,1
-aircraft carrier,1
 airliner,1
 airfield,1
 airman,1
-air power,1
-air raid,1
 airship,1
-air strike,1
 airstrip,1
-air traffic controller,1
 airwaves,1
 airy,1
 aisle,1
@@ -179,7 +168,6 @@ alright,1
 altar,1
 altitude,1
 alumnus,1
-Alzheimer's Disease,1
 amalgam,1
 amalgamate,1
 amass,1
@@ -187,10 +175,8 @@ amber,1
 ambience,1
 ambivalent,1
 amenity,1
-American football,1
 amiable,1
 amicable,1
-amino acid,1
 ammonia,1
 amphetamine,1
 amphibious,1
@@ -224,7 +210,6 @@ anguish,1
 angst,1
 angular,1
 anguished,1
-animal rights,1
 animosity,1
 annex,1
 annihilate,1
@@ -237,7 +222,6 @@ annuity,1
 anomaly,1
 anorak,1
 anorexia,1
-answering machine,1
 ant,1
 antagonism,1
 antagonist,1
@@ -314,7 +298,6 @@ armament,1
 armchair,1
 armoury,1
 armpit,1
-arms race,1
 A-road,1
 aroma,1
 aromatherapy,1
@@ -323,10 +306,8 @@ arrears,1
 arsenal,1
 arson,1
 artefact,1
-art form,1
 artful,1
 artichoke,1
-artificial intelligence,1
 artisan,1
 artwork,1
 asbestos,1
@@ -337,7 +318,6 @@ ascertain,1
 ascribe,1
 ashore,1
 ashtray,1
-asking price,1
 asparagus,1
 aspen,1
 aspirin,1
@@ -345,7 +325,6 @@ aspiring,1
 assail,1
 assailant,1
 assassin,1
-assembly line,1
 assent,1
 assertive,1
 assessor,1
@@ -376,7 +355,6 @@ attainment,1
 attentive,1
 attest,1
 attic,1
-Attorney General,1
 attributable,1
 attrition,1
 aubergine,1
@@ -387,7 +365,6 @@ audition,1
 auditor,1
 auditorium,1
 augment,1
-au pair,1
 aura,1
 aural,1
 auspices,1
@@ -431,16 +408,13 @@ backer,1
 backfire,1
 backlash,1
 backlog,1
-back room,1
 backside,1
 backstage,1
 backup,1
 backwater,1
 backyard,1
-bad debt,1
 badger,1
 badge,1
-badly off,1
 badminton,1
 baffle,1
 baggage,1
@@ -449,18 +423,13 @@ bailiff,1
 baker,1
 bakery,1
 baking,1
-balance of payment,1
-balance of power,1
-balance sheet,1
 balding,1
 bale,1
 balk,1
 ballad,1
 ballast,1
 ballerina,1
-ball game,1
 ballistic,1
-ballot box,1
 ballroom,1
 balm,1
 bamboo,1
@@ -470,8 +439,6 @@ bandit,1
 bandwagon,1
 banish,1
 banjo,1
-bank account,1
-bank holiday,1
 banknote,1
 banquet,1
 banter,1
@@ -480,7 +447,6 @@ barbarian,1
 barbaric,1
 barbecue,1
 barbed,1
-barbed wire,1
 barber,1
 barefoot,1
 baritone,1
@@ -494,11 +460,9 @@ barren,1
 barring,1
 barter,1
 baseline,1
-base rate,1
 basics,1
 basil,1
 basilica,1
-basis point,1
 bask,1
 bastion,1
 baton,1
@@ -506,7 +470,6 @@ battered,1
 battleground,1
 battleship,1
 bawl,1
-bay leaf,1
 bayonet,1
 bazaar,1
 BC,1
@@ -520,7 +483,6 @@ beater,1
 beat-up,1
 beaver,1
 beckon,1
-bed and breakfast,1
 bedding,1
 bedrock,1
 bedside,1
@@ -562,12 +524,9 @@ bereft,1
 berth,1
 beret,1
 beset,1
-best man,1
 bestow,1
-best seller,1
 best-selling,1
 betrayal,1
-betting shop,1
 beverage,1
 beware,1
 bewildered,1
@@ -576,13 +535,6 @@ biased,1
 biblical,1
 bibliography,1
 bicker,1
-big business,1
-big city,1
-big deal,1
-big fish,1
-big money,1
-big name,1
-big time,1
 biker,1
 bikini,1
 bile,1
@@ -605,22 +557,16 @@ biosphere,1
 biotechnology,1
 bipartisan,1
 birch,1
-birth control,1
 birthplace,1
-birth rate,1
 bisexual,1
 biz,1
 blackberry,1
 blackboard,1
 blackcurrant,1
 blacken,1
-black hole,1
 blackmail,1
-black market,1
 blackness,1
 blackout,1
-black pepper,1
-black smith,1
 bladder,1
 blah,1
 blanch,1
@@ -649,13 +595,10 @@ blockage,1
 blockbuster,1
 bloodshed,1
 bloodstream,1
-blood test,1
-blood vessel,1
 blot,1
 blouse,1
 bludgeon,1
 bluebell,1
-blue chip,1
 blueprint,1
 bluff,1
 blunder,1
@@ -663,13 +606,10 @@ blurt,1
 blush,1
 bluster,1
 boar,1
-boarding school,1
 boardroom,1
 boating,1
 bode,1
-body language,1
 bogey,1
-bogged down,1
 boggle,1
 bogus,1
 bohemian,1
@@ -677,11 +617,9 @@ boiler,1
 boisterous,1
 bombard,1
 bombshell,1
-bona fide,1
 bonanza,1
 bondage,1
 bondholder,1
-bone marrow,1
 bonfire,1
 bonnet,1
 bony,1
@@ -705,7 +643,6 @@ bosom,1
 botanical,1
 botany,1
 botch,1
-bottom line,1
 boulder,1
 boulevard,1
 bouncer,1
@@ -728,7 +665,6 @@ braid,1
 brainchild,1
 bran,1
 brandish,1
-brand name,1
 brandy,1
 brash,1
 brasserie,1
@@ -737,13 +673,11 @@ bravado,1
 bravery,1
 brawl,1
 brazen,1
-bread and butter,1
 breadcrumb,1
 breadth,1
 breakaway,1
 breaker,1
 breastfeed,1
-breathing space,1
 breathless,1
 breathtaking,1
 breezy,1
@@ -767,7 +701,6 @@ broke,1
 broken,1
 broken-down,1
 brokerage,1
-bronze medal,1
 brood,1
 brooding,1
 brook,1
@@ -800,8 +733,6 @@ buffalo,1
 buffer,1
 buffet,1
 buggy,1
-building block,1
-building site,1
 built,1
 built-in,1
 bulge,1
@@ -836,7 +767,6 @@ bushy,1
 busily,1
 businesslike,1
 businesswoman,1
-bus stop,1
 bustle,1
 butch,1
 butcher,1
@@ -898,7 +828,6 @@ canyon,1
 caper,1
 capillary,1
 capitalize,1
-capital punishment,1
 capitulate,1
 capsize,1
 capsule,1
@@ -909,7 +838,6 @@ captor,1
 caramel,1
 carat,1
 caravan,1
-carbon monoxide,1
 carcass,1
 cardboard,1
 cardiac,1
@@ -933,15 +861,11 @@ cartoonist,1
 cartridge,1
 carving,1
 cascade,1
-case study,1
-cash flow,1
 cashier,1
 cashmere,1
 casserole,1
-caster sugar,1
 castigate,1
 casting,1
-cast iron,1
 cast-off,1
 castrate,1
 catalyst,1
@@ -969,7 +893,6 @@ cavern,1
 cavernous,1
 caviar,1
 cavity,1
-CD player,1
 CD-ROM,1
 cedar,1
 cede,1
@@ -986,11 +909,9 @@ censure,1
 centenary,1
 centennial,1
 centimetre,1
-central heating,1
 centralize,1
 centre-forward,1
 centrepiece,1
-centre stage,1
 centrist,1
 cerebral,1
 ceremonial,1
@@ -1001,12 +922,9 @@ cervix,1
 cessation,1
 cf.,1
 CFC,1
-chain reaction,1
 chalet,1
 chalk,1
-chamber of commerce,1
 champ,1
-Chancellor of Exchequer,1
 chandelier,1
 chaotic,1
 chaplain,1
@@ -1025,7 +943,6 @@ chaser,1
 chasm,1
 chassis,1
 chateau,1
-chat show,1
 chatter,1
 chauffeur,1
 chauvinism,1
@@ -1045,11 +962,8 @@ chestnut,1
 chevron,1
 chic,1
 chide,1
-Chief Constable,1
-Chief Justice,1
 chiefly,1
 chiffon,1
-child benefit,1
 childbirth,1
 childcare,1
 childish,1
@@ -1070,9 +984,6 @@ choral,1
 chore,1
 choreography,1
 christen,1
-Christmas card,1
-Christmas Eve,1
-Christmas tree,1
 chrome,1
 chromium,1
 chromosome,1
@@ -1097,13 +1008,9 @@ circumcise,1
 citation,1
 citizenship,1
 citrus,1
-city hall,1
-civil defence,1
 civilize,1
 civilized,1
-civil liberties,1
 clad,1
-civil service,1
 claimant,1
 clam,1
 clamber,1
@@ -1148,7 +1055,6 @@ clockwise,1
 clockwork,1
 clog,1
 clone,1
-close season,1
 closet,1
 close-up,1
 closing,1
@@ -1163,7 +1069,6 @@ clump,1
 clumsy,1
 clutter,1
 c/o,1
-coal mine,1
 coaster,1
 coastguard,1
 coastline,1
@@ -1179,13 +1084,9 @@ cocoa,1
 coconut,1
 cod,1
 coded,1
-code of conduct,1
-code of practice,1
 coding,1
 coerce,1
 coercive,1
-coffee shop,1
-coffee table,1
 coffer,1
 cognac,1
 cognitive,1
@@ -1215,7 +1116,6 @@ colonist,1
 colonize,1
 colossal,1
 colouring,1
-colour scheme,1
 colt,1
 coma,1
 comb,1
@@ -1226,7 +1126,6 @@ comers,1
 comfortably,1
 comforting,1
 comical,1
-comic book,1
 commandant,1
 commander-in-chief,1
 commanding,1
@@ -1236,20 +1135,14 @@ commence,1
 commend,1
 commendable,1
 commentate,1
-commercial bank,1
 commodore,1
 commoner,1
-common market,1
 commonplace,1
 commotion,1
 commune,1
 communion,1
 communiqu¨¦,1
-community centre,1
-community service,1
-compact disc,1
 companionship,1
-company car,1
 compartment,1
 compass,1
 compassionate,1
@@ -1272,12 +1165,10 @@ comptroller,1
 compulsion,1
 compulsive,1
 compute,1
-computer game,1
 comrade,1
 Con.,1
 conceit,1
 conceivable,1
-concentration camp,1
 conceptual,1
 concerted,1
 concerto,1
@@ -1344,7 +1235,6 @@ constabulary,1
 consternation,1
 constellation,1
 constipation,1
-constituent assembly,1
 constrain,1
 constrict,1
 construe,1
@@ -1354,10 +1244,8 @@ consulate,1
 consultancy,1
 consultation,1
 consultative,1
-consumer goods,1
 consumerism,1
 consummate,1
-contact lens,1
 contagious,1
 containment,1
 contemptuous,1
@@ -1415,10 +1303,7 @@ cosmopolitan,1
 cosmos,1
 co-star,1
 cost-effective,1
-cost of living,1
 cot,1
-cotton wool,1
-council tax,1
 countdown,1
 countenance,1
 counteract,1
@@ -1427,11 +1312,7 @@ counterfeit,1
 counter-productive,1
 Countess,1
 counting,1
-county club,1
-county house,1
 countryman,1
-county council,1
-coup d¨¦tat,1
 coupe,1
 coupling,1
 courageous,1
@@ -1440,7 +1321,6 @@ courteous,1
 courthouse,1
 courtier,1
 court-martial,1
-court of appeal,1
 courtroom,1
 courtship,1
 courtyard,1
@@ -1450,7 +1330,6 @@ covenant,1
 covered,1
 covert,1
 cover-up,1
-cover version,1
 coveted,1
 coward,1
 coy,1
@@ -1483,7 +1362,6 @@ cr¨¨che,1
 credence,1
 credentials,1
 creditable,1
-credit rating,1
 creed,1
 creek,1
 creepy,1
@@ -1513,11 +1391,8 @@ crossroads,1
 cross-section,1
 crossword,1
 crow,1
-Crown Prince,1
 Crucifixion,1
 crucify,1
-crude oil,1
-cruise missile,1
 cruiser,1
 crumb,1
 crumple,1
@@ -1527,7 +1402,6 @@ crusty,1
 crutch,1
 crypt,1
 cryptic,1
-crystal clear,1
 crystallize,1
 cub,1
 cubic,1
@@ -1547,12 +1421,9 @@ cultured,1
 cumbersome,1
 cumulative,1
 cunning,1
-cup tie,1
 curate,1
 curator,1
 curly,1
-current account,1
-current affairs,1
 curry,1
 cursed,1
 curt,1
@@ -1567,8 +1438,6 @@ cute,1
 cutlery,1
 cut-price,1
 cutter,1
-cutting edge,1
-cut up,1
 CV,1
 cyanide,1
 cyclical,1
@@ -1576,7 +1445,6 @@ cyclone,1
 cyclist,1
 cypress,1
 cyst,1
-cystic fibrosis,1
 D.A.,1
 dab,1
 dabble,1
@@ -1589,7 +1457,6 @@ daisy,1
 damning,1
 dampen,1
 damsel,1
-dance floor,1
 dandelion,1
 dandy,1
 darkened,1
@@ -1603,17 +1470,13 @@ DAT,1
 database,1
 daughter-in-law,1
 daunting,1
-day care,1
 daydream,1
-day off,1
 daytime,1
-day trip,1
 dazed,1
 dazzle,1
 dazzling,1
 DC,1
 deacon,1
-dead end,1
 deadlock,1
 deadlocked,1
 deafen,1
@@ -1622,12 +1485,6 @@ dealership,1
 dean,1
 dearest,1
 dearly,1
-death penalty,1
-death rate,1
-death row,1
-death sentence,1
-death squad,1
-death toll,1
 debacle,1
 debatable,1
 debilitate,1
@@ -1651,7 +1508,6 @@ decoy,1
 deduce,1
 deed,1
 deep-seated,1
-de facto,1
 defective,1
 defer,1
 deference,1
@@ -1726,7 +1582,6 @@ descended,1
 descent,1
 descriptive,1
 desecrate,1
-desert island,1
 deserving,1
 desolate,1
 desperation,1
@@ -1797,15 +1652,11 @@ diminutive,1
 din,1
 diner,1
 dinghy,1
-dining table,1
-dinner party,1
-dinner table,1
 diocese,1
 diploma,1
 dire,1
 directly,1
 directorate,1
-dirty trick,1
 disable,1
 disadvantaged,1
 disaffected,1
@@ -1885,7 +1736,6 @@ distract,1
 distracted,1
 distraction,1
 distraught,1
-District Attorney,1
 distrust,1
 disused,1
 dither,1
@@ -1924,9 +1774,7 @@ dormitory,1
 dosage,1
 dossier,1
 dotted,1
-double cream,1
 doublespeak,1
-double standard,1
 doubly,1
 doubtless,1
 dough,1
@@ -1937,7 +1785,6 @@ dove,1
 downfall,1
 downgrade,1
 downhill,1
-down payment,1
 downplay,1
 downpour,1
 downright,1
@@ -1945,7 +1792,6 @@ downside,1
 downstream,1
 down-to-earth,1
 downturn,1
-down under,1
 dowse,1
 doze,1
 drab,1
@@ -1957,8 +1803,6 @@ dramatize,1
 drape,1
 draper,1
 drawback,1
-drawing board,1
-drawing room,1
 drawn,1
 drawl,1
 drawn-out,1
@@ -1969,17 +1813,12 @@ dreary,1
 dredge,1
 drench,1
 dressing,1
-dressing gown,1
-dressing room,1
-dressing table,1
 dressing-up,1
 dribble,1
 drinker,1
-drinking water,1
 drive-in,1
 driveway,1
 driving,1
-driving licence,1
 drizzle,1
 drone,1
 droop,1
@@ -2068,7 +1907,6 @@ electrode,1
 electromagnetic,1
 elemental,1
 elementary,1
-elementary school,1
 elevator,1
 elicit,1
 elitist,1
@@ -2090,7 +1928,6 @@ embody,1
 embroider,1
 embroidery,1
 emerald,1
-emergency services,1
 emigrant,1
 ¨¦migr¨¦,1
 eminence,1
@@ -2127,7 +1964,6 @@ endear,1
 endearing,1
 endemic,1
 endow,1
-end result,1
 endurance,1
 energize,1
 engaging,1
@@ -2142,7 +1978,6 @@ enlightened,1
 enlightenment,1
 enlist,1
 enliven,1
-en masse,1
 enrage,1
 enrich,1
 enrol,1
@@ -2198,7 +2033,6 @@ estuary,1
 etch,1
 eternity,1
 ethereal,1
-ethnic cleansing,1
 ethos,1
 etiquette,1
 eucalyptus,1
@@ -2213,7 +2047,6 @@ evasion,1
 evasive,1
 eventuality,1
 evergreen,1
-ever more,1
 evict,1
 evocative,1
 evolutionary,1
@@ -2242,7 +2075,6 @@ exhaustive,1
 exhibitor,1
 exhilarated,1
 exhort,1
-exit visa,1
 exodus,1
 expanse,1
 expansive,1
@@ -2259,14 +2091,12 @@ exposition,1
 expound,1
 expressive,1
 extended,1
-extended family,1
 exterior,1
 exterminate,1
 extinct,1
 extinguish,1
 extol,1
 extort,1
-extra time,1
 extravagance,1
 extravagant,1
 extravaganza,1
@@ -2284,51 +2114,37 @@ fabricate,1
 facade,1
 faceless,1
 facet,1
-face value,1
 facilitate,1
 fact-finding,1
-fact of life,1
 factual,1
 fad,1
 faeces,1
 failing,1
 fairground,1
 fairness,1
-fair play,1
 fairway,1
-fairy tale,1
 fallacy,1
-fallopian tube,1
 fallout,1
-false start,1
 falsify,1
 falter,1
-family doctor,1
-family planning,1
 famously,1
 fanatic,1
 fancier,1
 fanciful,1
-fan club,1
 fanfare,1
 fang,1
 fantasize,1
 fanzine,1
 faraway,1
 farce,1
-Far East,1
 farmhouse,1
 farmland,1
-far off,1
-far out,1
 far-reaching,1
 fart,1
 fascinate,1
 fascination,1
 fasten,1
-fast food,1
 fastidious,1
-fast track,1
 fatality,1
 fated,1
 fateful,1
@@ -2343,7 +2159,6 @@ fearsome,1
 feasible,1
 feathered,1
 featherweight,1
-feature film,1
 federalism,1
 federated,1
 feeble,1
@@ -2383,7 +2198,6 @@ fickle,1
 fictitious,1
 fiddle,1
 fidelity,1
-field marshal,1
 fiery,1
 fig,1
 fig.,1
@@ -2394,39 +2208,26 @@ filler,1
 fillet,1
 filling,1
 film-maker,1
-film star,1
 filth,1
 filthy,1
 finale,1
 finalize,1
-financial year,1
 finch,1
 financier,1
 finesse,1
-fine art,1
 fingernail,1
 fingerprint,1
 fingertip,1
 finite,1
 fir,1
 firearm,1
-fire brigade,1
 fireman,1
 fireplace,1
 firepower,1
 firewood,1
 firework,1
-first aid,1
-first ever,1
-first floor,1
-first hand,1
-First Lady,1
 firstly,1
-first name,1
-first night,1
-first person,1
 first-rate,1
-fiscal year,1
 fitted,1
 fiver,1
 fizz,1
@@ -2456,7 +2257,6 @@ fleck,1
 fledgling,1
 fleece,1
 fleeting,1
-Fleet Street,1
 Flemish,1
 flex,1
 flicker,1
@@ -2490,7 +2290,6 @@ flyer,1
 foam,1
 foal,1
 focal,1
-focal point,1
 fodder,1
 foe,1
 foetus,1
@@ -2499,13 +2298,8 @@ folder,1
 foliage,1
 folklore,1
 follicle,1
-follow on,1
 follow-through,1
 folly,1
-food poisoning,1
-food chain,1
-food processor,1
-food stamp,1
 foodstuff,1
 footballing,1
 foothills,1
@@ -2544,38 +2338,29 @@ forsake,1
 forthright,1
 fortify,1
 fortress,1
-fossil fuel,1
 founded,1
 founder,1
-founder member,1
-founding father,1
 foursome,1
 fowl,1
 foyer,1
 Fr,1
 fragrant,1
 frail,1
-frame of mind,1
 franchisee,1
 fraternity,1
 fraudulent,1
 fraught,1
 fray,1
 freebie,1
-freedom fighter,1
-free enterprise,1
-free kick,1
 freelance,1
 freestyle,1
 freeway,1
-free will,1
 freezer,1
 freezing,1
 freighter,1
 frenetic,1
 frenzy,1
 fresco,1
-fresh air,1
 freshman,1
 freshwater,1
 fret,1
@@ -2598,7 +2383,6 @@ fruitful,1
 fruition,1
 fruitless,1
 fruity,1
-frying pan,1
 fuchsia,1
 fudge,1
 fugitive,1
@@ -2626,7 +2410,6 @@ furnishings,1
 furore,1
 furrow,1
 furry,1
-further education,1
 furthest,1
 furtive,1
 fuse,1
@@ -2656,15 +2439,12 @@ gamma,1
 gangster,1
 gape,1
 garbage,1
-garden centre,1
 garish,1
 garland,1
 garner,1
 garnish,1
 garrison,1
 gash,1
-gas mask,1
-gas station,1
 gastric,1
 gateway,1
 gaudy,1
@@ -2679,11 +2459,7 @@ gelding,1
 gem,1
 generalized,1
 generalize,1
-general public,1
-general strike,1
 generic,1
-gene therapy,1
-genetic engineering,1
 genial,1
 genital,1
 genocide,1
@@ -2745,11 +2521,7 @@ go-between,1
 godfather,1
 goggle,1
 go-go,1
-golden age,1
 goldfish,1
-golf ball,1
-golf club,1
-golf course,1
 gong,1
 good-natured,1
 goodnight,1
@@ -2770,15 +2542,12 @@ graduation,1
 graffiti,1
 graft,1
 Grail,1
-grammar school,1
 gran,1
 granddaughter,1
 grandeur,1
 grandiose,1
-grand jury,1
 grandma,1
 grandparent,1
-Grand Slam,1
 grandson,1
 grandstand,1
 granite,1
@@ -2790,7 +2559,6 @@ graph,1
 graphite,1
 grapple,1
 grassland,1
-grass roots,1
 grassy,1
 gratify,1
 gratitude,1
@@ -2803,9 +2571,6 @@ grease,1
 greasy,1
 greed,1
 greenery,1
-greenhouse effect,1
-greenhouse gas,1
-Green Party,1
 greeting,1
 grenade,1
 greyhound,1
@@ -2825,14 +2590,9 @@ groom,1
 grooming,1
 groovy,1
 grope,1
-gross domestic,1
 grotesque,1
-ground floor,1
 grounding,1
-ground rule,1
-ground work,1
 grouping,1
-group therapy,1
 grouse,1
 growl,1
 grown,1
@@ -2848,7 +2608,6 @@ grumpy,1
 grunt,1
 guardsman,1
 guinea,1
-guinea pig,1
 guise,1
 gullible,1
 gully,1
@@ -2872,7 +2631,6 @@ haemoglobin,1
 haemophilia,1
 haemorrhage,1
 haggle,1
-ha ha,1
 haircut,1
 hairdresser,1
 hairstyle,1
@@ -2894,7 +2652,6 @@ hamstring,1
 handbag,1
 handbook,1
 handcuff,1
-hand grenade,1
 handgun,1
 handheld,1
 handkerchief,1
@@ -2917,8 +2674,6 @@ happily,1
 harassed,1
 hardback,1
 hard-boiled,1
-hard core,1
-hard currency,1
 hard-hitting,1
 hard-pressed,1
 hardwood,1
@@ -2936,13 +2691,11 @@ hassle,1
 haste,1
 hasten,1
 hatchet,1
-hat trick,1
 haunted,1
 haunting,1
 havoc,1
 hawthorn,1
 hay,1
-hay fever,1
 hazardous,1
 haze,1
 hazel,1
@@ -2953,18 +2706,13 @@ headlong,1
 headmaster,1
 headmistress,1
 headphones,1
-head start,1
-head teacher,1
-head way,1
 heady,1
 healer,1
-health food,1
 heaped,1
 heartache,1
 heartbeat,1
 heartbreak,1
 hearten,1
-heart failure,1
 heartfelt,1
 heartland,1
 hearth,1
@@ -2975,8 +2723,6 @@ heather,1
 heave,1
 heavy-duty,1
 heavy-handed,1
-heavy industry,1
-heavy metal,1
 Hebrew,1
 heck,1
 heckle,1
@@ -3012,27 +2758,17 @@ hesitation,1
 heyday,1
 hiccup,1
 hideous,1
-hiding place,1
 hierarchical,1
 hifi,1
 high-class,1
-high Command,1
-High Commission,1
-High Commissioner,1
 high-flyer,1
-high ground,1
-high heels,1
-high lands,1
 Highness,1
 high-pitched,1
-high point,1
 high-powered,1
 high-profile,1
 high-ranking,1
 high-rise,1
-high technology,1
 high-up,1
-high water,1
 hijack,1
 hilarious,1
 hillside,1
@@ -3048,7 +2784,6 @@ hippie,1
 hiss,1
 hitch,1
 hitherto,1
-hit list,1
 hitter,1
 hive,1
 HM,1
@@ -3069,12 +2804,10 @@ holly,1
 holocaust,1
 homage,1
 homecoming,1
-Home Counties,1
 home-grown,1
 homely,1
 home-made,1
 homeopathy,1
-home owner,1
 homesick,1
 homestead,1
 hometown,1
@@ -3106,7 +2839,6 @@ horrific,1
 horrifying,1
 horseback,1
 horseman,1
-horse racing,1
 horseshoe,1
 hose,1
 hospice,1
@@ -3115,27 +2847,16 @@ hospitality,1
 hospitalize,1
 hostess,1
 hostilities,1
-hot air,1
-hot dog,1
 hotelier,1
 hotline,1
 hotly,1
-hot spot,1
 hourly,1
-house arrest,1
 householder,1
 housekeeper,1
 housekeeping,1
-House of Representatives,1
-House of Lords,1
-Houses of Parliament,1
 house-to-house,1
 housewife,1
 housework,1
-housing association,1
-housing benefit,1
-housing estate,1
-housing project,1
 HQ,1
 hr,1
 HRT,1
@@ -3146,9 +2867,6 @@ huff,1
 hulk,1
 humane,1
 humanism,1
-human nature,1
-human race,1
-human resources,1
 humid,1
 humidity,1
 humiliate,1
@@ -3157,8 +2875,6 @@ humorous,1
 hump,1
 hunch,1
 hundredth,1
-hunger strike,1
-hung up,1
 hunk,1
 huntsman,1
 hurdler,1
@@ -3183,12 +2899,9 @@ hypothetical,1
 hysterectomy,1
 hysteria,1
 hysterical,1
-Ice Age,1
 iceberg,1
 iced,1
-ice hockey,1
 icing,1
-icing sugar,1
 icon,1
 icy,1
 ID,1
@@ -3198,7 +2911,6 @@ idealize,1
 ideally,1
 identifiable,1
 identification,1
-identity card,1
 idiom,1
 idol,1
 idyllic,1
@@ -3206,7 +2918,6 @@ ignite,1
 ignition,1
 illegitimate,1
 ill-fated,1
-ill health,1
 illicit,1
 illiterate,1
 illogical,1
@@ -3292,7 +3003,6 @@ incline,1
 inclined,1
 inclusive,1
 incoherent,1
-income support,1
 incoming,1
 incompatible,1
 incompetent,1
@@ -3332,10 +3042,7 @@ individuality,1
 indoors,1
 induction,1
 indulgent,1
-industrial action,1
-industrial estate,1
 industrialist,1
-industrial relations,1
 ineffective,1
 ineffectual,1
 inept,1
@@ -3372,7 +3079,6 @@ inflow,1
 influx,1
 info,1
 informant,1
-information technology,1
 informative,1
 informer,1
 informed,1
@@ -3395,11 +3101,9 @@ inhuman,1
 initiation,1
 injunction,1
 injure,1
-Inland Revenue,1
 in-laws,1
 inlet,1
 innate,1
-inner circle,1
 innocently,1
 innocuous,1
 innovator,1
@@ -3419,7 +3123,6 @@ inshore,1
 insidious,1
 insignificant,1
 insistent,1
-insofar as,1
 insolvent,1
 insomnia,1
 inspectorate,1
@@ -3442,7 +3145,6 @@ intangible,1
 integral,1
 intellect,1
 intelligentsia,1
-intensive care,1
 intentional,1
 interactive,1
 intercept,1
@@ -3450,14 +3152,12 @@ interchange,1
 interchangeable,1
 interestingly,1
 interface,1
-interior design,1
 interlock,1
 interlude,1
 Intermediary,1
 interminable,1
 intermittent,1
 intern,1
-international relations,1
 interpersonal,1
 interrogate,1
 interspersed,1
@@ -3507,7 +3207,6 @@ iodine,1
 ion,1
 IQ,1
 iris,1
-Iron Curtain,1
 irradiate,1
 irrational,1
 irreparable,1
@@ -3546,7 +3245,6 @@ jeopardy,1
 jerky,1
 jest,1
 Jesuit,1
-jet lag,1
 jettison,1
 jetty,1
 jeweller,1
@@ -3629,8 +3327,6 @@ Koran,1
 kudos,1
 laborious,1
 labourer,1
-labour force,1
-labour market,1
 labyrinth,1
 lacklustre,1
 lacquer,1
@@ -3685,8 +3381,6 @@ layman,1
 layoff,1
 layout,1
 LCD,1
-leading article,1
-lead singer,1
 leafy,1
 learned,1
 ledge,1
@@ -3697,17 +3391,14 @@ leeway,1
 left-handed,1
 leftist,1
 leftover,1
-legal aid,1
 legalize,1
 leggings,1
 legion,1
 legislate,1
 legislator,1
 legitimize,1
-leisure centre,1
 leisurely,1
 lemonade,1
-lending rate,1
 lengthen,1
 lenient,1
 lentil,1
@@ -3725,9 +3416,7 @@ liaise,1
 liaison,1
 liar,1
 lib,1
-Lib Dem,1
 liberalism,1
-Liberal party,1
 libertarian,1
 librarian,1
 licensed,1
@@ -3736,26 +3425,18 @@ lick,1
 lie-down,1
 lie-in,1
 lieu,1
-life assurance,1
 lifeboat,1
-life cycle,1
-life expectancy,1
-life imprisonment,1
-life insurance,1
 lifeless,1
 lifeline,1
 lifelong,1
 lifesaving,1
-life sentence,1
 life-threatening,1
 lift-off,1
 ligament,1
-light bulb,1
 lighten,1
 lighter,1
 light-hearted,1
 light-house,1
-light year,1
 likeable,1
 likeminded,1
 liken,1
@@ -3767,7 +3448,6 @@ limbo,1
 limelight,1
 limerick,1
 limestone,1
-limited edition,1
 limitless,1
 limousine,1
 linden,1
@@ -3778,8 +3458,6 @@ linguistics,1
 lingerie,1
 linkage,1
 link-up,1
-lion's share,1
-lip service,1
 liqueur,1
 liquidate,1
 liquor,1
@@ -3789,11 +3467,9 @@ litany,1
 literacy,1
 literal,1
 literate,1
-little finger,1
 livelihood,1
 livery,1
 livestock,1
-living standard,1
 lizard,1
 lo,1
 loaf,1
@@ -3802,10 +3478,8 @@ lob,1
 lobe,1
 lobster,1
 locality,1
-local time,1
 loch,1
 locker,1
-locker room,1
 locust,1
 lodger,1
 lodging,1
@@ -3825,7 +3499,6 @@ loo,1
 lookout,1
 loony,1
 loophole,1
-loose end,1
 Lordship,1
 lore,1
 lotion,1
@@ -3834,9 +3507,6 @@ loudspeaker,1
 louse,1
 lousy,1
 lovable,1
-love affair,1
-love life,1
-love story,1
 low-key,1
 lowly,1
 low-paid,1
@@ -3855,12 +3525,10 @@ lull,1
 lumber,1
 luminary,1
 luminous,1
-lump sum,1
 lumpy,1
 lunar,1
 lunatic,1
 luncheon,1
-luncheon meat,1
 lunge,1
 lurch,1
 lurid,1
@@ -3873,13 +3541,11 @@ Lycra,1
 lyrical,1
 ma¡¯am,1
 macabre,1
-machine tool,1
 machinist,1
 macho,1
 mackerel,1
 macro,1
 madam,1
-mad cow disease,1
 madly,1
 madman,1
 Madonna,1
@@ -3890,7 +3556,6 @@ magician,1
 magnate,1
 magnesium,1
 magnet,1
-magnetic field,1
 magnify,1
 magnitude,1
 magnolia,1
@@ -3900,7 +3565,6 @@ maiden,1
 mailbox,1
 maim,1
 mainframe,1
-main road,1
 mainstay,1
 maize,1
 Maj.,1
@@ -3939,7 +3603,6 @@ mankind,1
 manly,1
 man-made,1
 mannered,1
-manor house,1
 manpower,1
 manslaughter,1
 mantle,1
@@ -3961,9 +3624,7 @@ marker,1
 marketable,1
 marketeer,1
 marketer,1
-market forces,1
 marketplace,1
-market research,1
 marking,1
 marksman,1
 marmalade,1
@@ -3973,8 +3634,6 @@ marquee,1
 marquis,1
 marrow,1
 marsh,1
-martial art,1
-martial law,1
 martyr,1
 marvel,1
 Marxism,1
@@ -3986,7 +3645,6 @@ masked,1
 masochism,1
 mason,1
 masquerade,1
-mass media,1
 mass-produce,1
 mast,1
 mastermind,1
@@ -4037,7 +3695,6 @@ medium-sized,1
 medium-term,1
 medley,1
 meek,1
-meeting place,1
 megabyte,1
 melancholy,1
 mellow,1
@@ -4066,7 +3723,6 @@ mercantile,1
 mercenary,1
 merchandise,1
 merchandising,1
-merchant bank,1
 mercifully,1
 merciless,1
 mercury,1
@@ -4092,20 +3748,16 @@ methodical,1
 methodology,1
 meticulous,1
 metric,1
-metric ton,1
 Metro,1
 metropolis,1
 mews,1
 mg,1
-Mickey Mouse,1
 microchip,1
 micro-organism,1
 microprocessor,1
 microscope,1
 microscopic,1
 midday,1
-middle age,1
-Middle Ages,1
 middleman,1
 midsummer,1
 midway,1
@@ -4117,11 +3769,8 @@ mike,1
 mileage,1
 milestone,1
 milieu,1
-military police,1
-military service,1
 militiaman,1
 milky,1
-Milky Way,1
 millennium,1
 millet,1
 milligram,1
@@ -4133,16 +3782,13 @@ minder,1
 mindful,1
 mindless,1
 minefield,1
-mineral water,1
 mingle,1
 minibus,1
 minimalist,1
 mink,1
 minstrel,1
 miraculous,1
-mirror image,1
 miscalculate,1
-miscarriage of justice,1
 mischief,1
 miscellaneous,1
 mischievous,1
@@ -4167,13 +3813,10 @@ misunderstood,1
 misuse,1
 mite,1
 mitigate,1
-mixed up,1
 mixer,1
 Mk,1
 ml,1
 moat,1
-mobile home,1
-mobile phone,1
 mockery,1
 mod,1
 moderation,1
@@ -4186,15 +3829,12 @@ mogul,1
 moist,1
 moisturize,1
 mole,1
-molecular biology,1
 molest,1
 molten,1
 momentary,1
 momentous,1
 momma,1
 monastery,1
-money market,1
-money supply,1
 mono,1
 monologue,1
 monopolize,1
@@ -4223,17 +3863,14 @@ mother-in-law,1
 motherland,1
 motif,1
 motionless,1
-motion picture,1
 motley,1
 motorbike,1
-motor car,1
 motorcycle,1
 motoring,1
 motto,1
 moulding,1
 moult,1
 mound,1
-mountain bike,1
 mountainous,1
 mountainside,1
 mourn,1
@@ -4264,7 +3901,6 @@ mullet,1
 multilateral,1
 multimedia,1
 multimillionaire,1
-multiple sclerosis,1
 multitude,1
 mumble,1
 mummy,1
@@ -4275,8 +3911,6 @@ munitions,1
 mural,1
 murderous,1
 murky,1
-musical instrument,1
-music hall,1
 musket,1
 mussel,1
 mustard,1
@@ -4285,7 +3919,6 @@ mutant,1
 mutate,1
 mutilate,1
 mutiny,1
-mutual fund,1
 muzzle,1
 myriad,1
 mystic,1
@@ -4303,18 +3936,8 @@ nappy,1
 narcotic,1
 narrate,1
 nasal,1
-national anthem,1
-national government,1
-National Health Service,1
-national insurance,1
 nationalize,1
-national service,1
-nation state,1
-Native American,1
-natural gas,1
-natural history,1
 naturalist,1
-natural resources,1
 naughty,1
 nausea,1
 nautical,1
@@ -4332,13 +3955,10 @@ negate,1
 negligent,1
 negligible,1
 negotiable,1
-negotiating table,1
 Negro,1
 neoclassical,1
 neon,1
 nephew,1
-nervous breakdown,1
-nervous system,1
 nestle,1
 nettle,1
 networking,1
@@ -4348,17 +3968,12 @@ neurosis,1
 neutralize,1
 neutron,1
 never-ending,1
-new Age,1
 newborn,1
 new-face,1
-new found,1
 newsagent,1
 newscast,1
 newsletter,1
 newsroom,1
-new Testament,1
-new town,1
-new wave,1
 niacin,1
 nibble,1
 niche,1
@@ -4380,7 +3995,6 @@ nocturnal,1
 node,1
 nomad,1
 nomadic,1
-no-man's land,1
 non-aligned,1
 nonchalant,1
 non-existent,1
@@ -4415,16 +4029,12 @@ novelty,1
 nozzle,1
 nr.,1
 nuance,1
-nuclear reactor,1
 nucleus,1
 nude,1
 nudge,1
 nuisance,1
 numb,1
-number plate,1
 numerical,1
-nursery school,1
-nursing home,1
 nutmeg,1
 nutritional,1
 nutritious,1
@@ -4467,29 +4077,17 @@ odour,1
 odyssey,1
 oestrogen,1
 off-balance,1
-off duty,1
 offending,1
 offshoot,1
 offside,1
 offspring,1
 off-the-wall,1
 oilfield,1
-oil slick,1
-oil tanker,1
-oil well,1
 oily,1
 ointment,1
-old age,1
-old girl,1
-old guard,1
 oldie,1
-old lady,1
-old man,1
-old master,1
 old-style,1
-Old Testament,1
 old-time,1
-O level,1
 ombudsman,1
 omelette,1
 omen,1
@@ -4516,19 +4114,11 @@ open-air,1
 open-door,1
 open-ended,1
 opener,1
-opening night,1
-open letter,1
-open market,1
 open-minded,1
-Open University,1
-opera house,1
-operating system,1
 opium,1
 opportunist,1
 opportunistic,1
 opposing,1
-opposite number,1
-opposite sex,1
 oppressive,1
 optic,1
 optical,1
@@ -4548,7 +4138,6 @@ ordinance,1
 ordinarily,1
 ordnance,1
 ore,1
-organized crime,1
 orgasm,1
 orgy,1
 orientation,1
@@ -4570,7 +4159,6 @@ outcry,1
 outdated,1
 outdo,1
 outdoors,1
-outer space,1
 outflow,1
 outgoing,1
 outgrow,1
@@ -4581,9 +4169,7 @@ outlying,1
 outnumber,1
 out-of-date,1
 out-of-the-way,1
-out of touch,1
 out-of-town,1
-out of work,1
 outpace,1
 outpatient,1
 outperform,1
@@ -4598,7 +4184,6 @@ outweigh,1
 ovary,1
 ovation,1
 ovarian,1
-overall majority,1
 overboard,1
 overcharge,1
 overcoat,1
@@ -4639,13 +4224,11 @@ overview,1
 overweight,1
 overwork,1
 ovulate,1
-own goal,1
 ox,1
 Oxbridge,1
 oxide,1
 oxidize,1
 oyster,1
-ozone layer,1
 pacifist,1
 pacify,1
 paddle,1
@@ -4707,7 +4290,6 @@ parenthood,1
 parenting,1
 parity,1
 parked,1
-parking lot,1
 parkland,1
 parliamentarian,1
 parlour,1
@@ -4719,9 +4301,6 @@ parrot,1
 parting,1
 partisan,1
 partition,1
-party line,1
-party politics,1
-party political,1
 passageway,1
 passer-by,1
 paste,1
@@ -4759,13 +4338,11 @@ payoff,1
 payout,1
 payroll,1
 PE,1
-Peace Corps,1
 peacefully,1
 peacekeeper,1
 peacetime,1
 peacock,1
 peanut,1
-peanut butter,1
 pear,1
 peasantry,1
 pebble,1
@@ -4786,19 +4363,15 @@ pelvic,1
 pelvis,1
 penal,1
 penalize,1
-penalty area,1
 penchant,1
 pendulum,1
 penetrating,1
 pennant,1
 penniless,1
-pen pal,1
 pent-up,1
 penultimate,1
 pep,1
 peppermint,1
-per annum,1
-per capita,1
 perceptive,1
 percussion,1
 perfectionist,1
@@ -4822,7 +4395,6 @@ perpetuate,1
 persecute,1
 persevere,1
 persona,1
-personal best,1
 personalize,1
 personify,1
 persuasion,1
@@ -4840,8 +4412,6 @@ petal,1
 peter,1
 petite,1
 petrochemical,1
-petrol bomb,1
-petrol station,1
 pew,1
 pewter,1
 PG,1
@@ -4868,7 +4438,6 @@ pianist,1
 piazza,1
 pic,1
 picket,1
-picket line,1
 pickle,1
 pictorial,1
 picturesque,1
@@ -4929,7 +4498,6 @@ playful,1
 playground,1
 playgroup,1
 playhouse,1
-playing field,1
 play-off,1
 plaza,1
 pleading,1
@@ -4963,7 +4531,6 @@ plywood,1
 PMS,1
 pneumonia,1
 poach,1
-pocket money,1
 pod,1
 podium,1
 poetic,1
@@ -4978,21 +4545,15 @@ polar,1
 polarize,1
 Polaroid,1
 polemic,1
-pole position,1
 policewoman,1
 policyholder,1
 policy-making,1
 polio,1
 politburo,1
-political asylum,1
-political correctness,1
-political prisoner,1
-political science,1
 politicize,1
 polka,1
 pollen,1
 polling,1
-polling station,1
 pollster,1
 pollutant,1
 polo,1
@@ -5048,11 +4609,8 @@ pounce,1
 pout,1
 POW,1
 powdered,1
-power base,1
 powerhouse,1
 powerless,1
-power line,1
-power plant,1
 power-sharing,1
 practicality,1
 pragmatic,1
@@ -5065,7 +4623,6 @@ preacher,1
 precarious,1
 precedence,1
 precinct,1
-precious metal,1
 precipitate,1
 precipitous,1
 preclude,1
@@ -5090,16 +4647,12 @@ preoccupy,1
 prep,1
 preparatory,1
 preposterous,1
-prep school,1
 prerequisite,1
 prerogative,1
 presently,1
 present-day,1
 preservative,1
 pressing,1
-press officer,1
-press release,1
-pressure group,1
 pressurized,1
 presumption,1
 pretence,1
@@ -5111,8 +4664,6 @@ prevalent,1
 preventive,1
 pre-war,1
 priceless,1
-price tag,1
-price war,1
 prick,1
 prickly,1
 priestess,1
@@ -5120,23 +4671,16 @@ priesthood,1
 primacy,1
 primal,1
 primate,1
-prime rate,1
-prime time,1
 primrose,1
 principally,1
 priory,1
 prise,1
-prisoner of war,1
 pristine,1
-private enterprise,1
-private eye,1
 privately,1
-private school,1
 privy,1
 probability,1
 probable,1
 probation,1
-probation officer,1
 problematic,1
 procedural,1
 proclamation,1
@@ -5144,12 +4688,10 @@ procure,1
 prod,1
 prodigious,1
 prodigy,1
-production line,1
 Prof,1
 profess,1
 proffer,1
 profit-taking,1
-profit margin,1
 profusion,1
 progesterone,1
 prognosis,1
@@ -5181,7 +4723,6 @@ prophet,1
 prophetic,1
 proponent,1
 proportional,1
-proportional representation,1
 proportionate,1
 proprietary,1
 proprietor,1
@@ -5218,11 +4759,7 @@ psychosis,1
 psychotic,1
 pt,1
 puberty,1
-public company,1
 publicist,1
-public service,1
-public works,1
-publishing house,1
 puddle,1
 puff,1
 pulp,1
@@ -5261,7 +4798,6 @@ quail,1
 quaint,1
 quake,1
 qualitative,1
-quality control,1
 qualm,1
 quantify,1
 quantitative,1
@@ -5275,7 +4811,6 @@ quay,1
 queer,1
 quell,1
 questionable,1
-question mark,1
 questionnaire,1
 quicken,1
 quid,1
@@ -5292,7 +4827,6 @@ rabies,1
 racecourse,1
 racehorse,1
 racer,1
-race relations,1
 racket,1
 radiant,1
 radiate,1
@@ -5326,7 +4860,6 @@ ranch,1
 R&B,1
 R&D,1
 ranger,1
-rank and file,1
 ransack,1
 ransom,1
 rant,1
@@ -5425,11 +4958,8 @@ red-hot,1
 redirect,1
 rediscover,1
 redistribute,1
-red light,1
-red pepper,1
 redraw,1
 redress,1
-red tape,1
 reed,1
 reef,1
 reek,1
@@ -5498,7 +5028,6 @@ remittance,1
 remix,1
 remnant,1
 remorse,1
-remote control,1
 remotely,1
 removed,1
 rename,1
@@ -5620,13 +5149,11 @@ rewarding,1
 rework,1
 rewrite,1
 rhetorical,1
-rheumatoid arthritis,1
 rhino,1
 rhododendron,1
 rhyme,1
 rhythmic,1
 richly,1
-Richter scale,1
 riddle,1
 riddled,1
 ridicule,1
@@ -5635,7 +5162,6 @@ rife,1
 riff,1
 rift,1
 rigging,1
-right angle,1
 righteous,1
 rightful,1
 right-handed,1
@@ -5646,7 +5172,6 @@ rind,1
 ringing,1
 rink,1
 rinse,1
-riot police,1
 ripen,1
 rip-off,1
 ripple,1
@@ -5661,16 +5186,11 @@ roaring,1
 robber,1
 robe,1
 robot,1
-rock and roll,1
-rock bottom,1
 rocker,1
-rock garden,1
 rocky,1
 rodent,1
 rodeo,1
 rogue,1
-role model,1
-role play,1
 rolled-up,1
 roller-coaster,1
 rolling,1
@@ -5689,17 +5209,13 @@ rotary,1
 rotor,1
 roundabout,1
 rounded,1
-round table,1
-round trip,1
 roundup,1
 rouse,1
 rout,1
 rowdy,1
 rowing,1
-Royal Highness,1
 royalist,1
 rpm,1
-rubber stamp,1
 rubble,1
 ruby,1
 ruck,1
@@ -5711,7 +5227,6 @@ rueful,1
 ruffle,1
 rugged,1
 ruined,1
-rule of law,1
 rum,1
 rumble,1
 rumbling,1
@@ -5722,13 +5237,11 @@ runaway,1
 rundown,1
 rune,1
 rung,1
-running mate,1
 runny,1
 runway,1
 rupee,1
 rupture,1
 ruse,1
-rush hour,1
 rust,1
 rustic,1
 rustle,1
@@ -5742,16 +5255,11 @@ sac,1
 sacking,1
 sadden,1
 sadistic,1
-safe area,1
-safe haven,1
-safe sex,1
-safety net,1
 saffron,1
 sag,1
 saga,1
 sage,1
 salaried,1
-sales tax,1
 salient,1
 saliva,1
 saloon,1
@@ -5766,7 +5274,6 @@ sanguine,1
 sanitary,1
 sanitation,1
 sanity,1
-Santa Claus,1
 sap,1
 sapphire,1
 sarcasm,1
@@ -5817,15 +5324,11 @@ scepticism,1
 schizophrenia,1
 schizophrenic,1
 scholarly,1
-school board,1
-school boy,1
 schoolchild,1
 schoolgirl,1
 schooling,1
-school leaver,1
 schoolteacher,1
 schoolmaster,1
-science fiction,1
 sci-fi,1
 scissors,1
 sclerosis,1
@@ -5843,7 +5346,6 @@ scrawl,1
 screech,1
 screenplay,1
 screenwriter,1
-screwed up,1
 scribble,1
 scripture,1
 scroll,1
@@ -5860,7 +5362,6 @@ scurry,1
 scuttle,1
 seafood,1
 seagull,1
-sea level,1
 seam,1
 seaman,1
 seamless,1
@@ -5868,30 +5369,22 @@ searing,1
 seaside,1
 seasoned,1
 seasoning,1
-season ticket,1
-seat belt,1
 seating,1
 seaweed,1
 secede,1
 secession,1
 secessionist,1
 secluded,1
-secondary school,1
-second best,1
 second-class,1
 second-hand,1
 second-rate,1
-second thought,1
 secretarial,1
 secretariat,1
 secrete,1
 secretive,1
-secret police,1
-secret service,1
 sect,1
 sectarian,1
 secular,1
-security guard,1
 sedan,1
 sedate,1
 sedative,1
@@ -5906,7 +5399,6 @@ see-through,1
 segregated,1
 seismic,1
 seizure,1
-select committee,1
 self-conscious,1
 self-contained,1
 self-control,1
@@ -5949,10 +5441,8 @@ sermon,1
 serpent,1
 serum,1
 server,1
-service industry,1
 serving,1
 sesame,1
-set piece,1
 settee,1
 setter,1
 sever,1
@@ -5960,13 +5450,8 @@ sew,1
 sewage,1
 sewing,1
 sewer,1
-sewing machine,1
-sex education,1
-sex appeal,1
 sexism,1
 sexist,1
-sexual harassment,1
-sexual intercourse,1
 sh,1
 shabby,1
 shack,1
@@ -5989,7 +5474,6 @@ shameless,1
 shampoo,1
 shank,1
 shanty,1
-share index,1
 shark,1
 sharpen,1
 shatter,1
@@ -6012,19 +5496,13 @@ shipbuilding,1
 shipyard,1
 shire,1
 shoal,1
-shock wave,1
 shoddy,1
 shooter,1
 shoot-out,1
-shop assistant,1
 shopkeeper,1
 shoplift,1
-shopping centre,1
-shopping list,1
-shopping mall,1
 shoreline,1
 shortcoming,1
-short cut,1
 shorten,1
 shortfall,1
 shorthand,1
@@ -6032,13 +5510,10 @@ shortlist,1
 short-lived,1
 short-range,1
 short-sighted,1
-short story,1
 shotgun,1
 shovel,1
-show business,1
 showcase,1
 showdown,1
-show jumping,1
 show-off,1
 showpiece,1
 showroom,1
@@ -6078,7 +5553,6 @@ silicone,1
 silky,1
 sill,1
 silt,1
-silver medal,1
 silvery,1
 simplicity,1
 simplify,1
@@ -6089,7 +5563,6 @@ sincerely,1
 singer-songwriter,1
 single-handed,1
 single-minded,1
-single parent,1
 singular,1
 sinus,1
 siphon,1
@@ -6100,7 +5573,6 @@ sitar,1
 sitcom,1
 sitting-room,1
 sixteenth,1
-sixth form,1
 sizeable,1
 sizzle,1
 skein,1
@@ -6130,8 +5602,6 @@ sleazy,1
 sledge,1
 sleek,1
 sleeper,1
-sleeping bag,1
-sleeping pill,1
 sleepless,1
 sleepy,1
 slender,1
@@ -6147,20 +5617,17 @@ sloppy,1
 slouch,1
 slough,1
 slowdown,1
-slow motion,1
 sludge,1
 slug,1
 sluggish,1
 slum,1
 slur,1
 sly,1
-small print,1
 small-scale,1
 smartly,1
 smelly,1
 smirk,1
 smog,1
-smoked salmon,1
 smoky,1
 smother,1
 smoulder,1
@@ -6192,24 +5659,15 @@ snub,1
 snuff,1
 snug,1
 so-and-so,1
-soap opera,1
 sob,1
 sobering,1
 sociable,1
-social democratic,1
-social life,1
-social order,1
-social science,1
-social work,1
 socio-economic,1
 socket,1
 soda,1
 sodden,1
-soft drink,1
 soggy,1
 solace,1
-sold out,1
-soar system,1
 solicit,1
 solitary,1
 solitude,1
@@ -6218,7 +5676,6 @@ solstice,1
 soluble,1
 solvent,1
 sombre,1
-some day,1
 someplace,1
 sonata,1
 songwriter,1
@@ -6237,7 +5694,6 @@ sought-after,1
 sortie,1
 soulful,1
 soundly,1
-sound system,1
 south-eastern,1
 southerner,1
 southwestern,1
@@ -6245,15 +5701,11 @@ souvenir,1
 soya,1
 spa,1
 spacecraft,1
-space shuttle,1
-space station,1
 spacious,1
 spade,1
 spaghetti,1
 spanner,1
 spar,1
-spare part,1
-spare time,1
 sparing,1
 sparkling,1
 sparrow,1
@@ -6266,23 +5718,17 @@ spawn,1
 spear,1
 spearhead,1
 spec,1
-Special Branch,1
-special effect,1
 speciality,1
 specially,1
-special needs,1
-special offer,1
 specialty,1
 specification,1
 specifics,1
 speck,1
 spectre,1
 speculative,1
-speed limit,1
 speedy,1
 spelling,1
 spender,1
-spending money,1
 spew,1
 spiced,1
 spicy,1
@@ -6298,7 +5744,6 @@ splatter,1
 spleen,1
 splendour,1
 splinter,1
-split second,1
 splutter,1
 spokesperson,1
 sponge,1
@@ -6310,17 +5755,14 @@ spool,1
 spoonful,1
 sporadic,1
 spore,1
-sports car,1
 sportsman,1
 sporty,1
 spot-on,1
 spotter,1
 spout,1
 sprawl,1
-spread out,1
 spree,1
 sprig,1
-spring onion,1
 sprinter,1
 sprout,1
 spruce,1
@@ -6349,8 +5791,6 @@ stag,1
 stagger,1
 stagnant,1
 stagnate,1
-stained glass,1
-stainless steel,1
 staircase,1
 stairway,1
 stale,1
@@ -6359,14 +5799,10 @@ stallion,1
 stalwart,1
 stamina,1
 stammer,1
-stamp duty,1
-stamped addressed envelope,1
 stampede,1
 standardize,1
-standard of living,1
 standby,1
 standing,1
-standing ovation,1
 stand-off,1
 standpoint,1
 standstill,1
@@ -6375,22 +5811,16 @@ stanza,1
 starboard,1
 starch,1
 stardom,1
-starting point,1
 stash,1
 statehood,1
 stately,1
-stately home,1
-state of affairs,1
-state of mind,1
 state-of-the-art,1
-state school,1
 statewide,1
 static,1
 stationary,1
 stationery,1
 statistician,1
 stature,1
-status quo,1
 statute,1
 staunch,1
 stave,1
@@ -6404,23 +5834,19 @@ steeped,1
 steeple,1
 steeplechase,1
 steering,1
-steering wheel,1
 stench,1
 stencil,1
 stepfather,1
 stepmother,1
-stepping stone,1
 sterile,1
 sterilize,1
 steroid,1
 stew,1
 sticker,1
-sticking point,1
 stiffen,1
 stifle,1
 stifling,1
 stigma,1
-still life,1
 stimulant,1
 stink,1
 stint,1
@@ -6447,7 +5873,6 @@ stout,1
 stove,1
 stow,1
 straddle,1
-straight away,1
 straighten,1
 strained,1
 strait,1
@@ -6479,7 +5904,6 @@ stud,1
 studded,1
 stuffing,1
 stuffy,1
-stumbling block,1
 stunt,1
 sturdy,1
 stutter,1
@@ -6492,7 +5916,6 @@ subconscious,1
 subdue,1
 subdued,1
 subjective,1
-subject matter,1
 sublime,1
 submerge,1
 submission,1
@@ -6510,12 +5933,10 @@ subtract,1
 subversive,1
 subvert,1
 subway,1
-success story,1
 succinct,1
 succumb,1
 succulent,1
 sucker,1
-sudden death,1
 suede,1
 suffice,1
 sufficiency,1
@@ -6531,13 +5952,11 @@ sulphate,1
 sulphur,1
 sultan,1
 summarize,1
-summer time,1
 summing-up,1
 summons,1
 sumo,1
 sumptuous,1
 sunbathe,1
-Sunday school,1
 sundry,1
 sunflower,1
 sunglasses,1
@@ -6586,7 +6005,6 @@ swathe,1
 sweatshirt,1
 sweaty,1
 sweeping,1
-sweet corn,1
 sweeten,1
 sweetener,1
 sweetheart,1
@@ -6608,7 +6026,6 @@ symbolize,1
 symmetrical,1
 symmetry,1
 sympathize,1
-symphony orchestra,1
 symposium,1
 symptomatic,1
 synagogue,1
@@ -6626,7 +6043,6 @@ ta,1
 tab,1
 tableau,1
 tablecloth,1
-table tennis,1
 taboo,1
 tacit,1
 tacky,1
@@ -6635,7 +6051,6 @@ tactful,1
 tailor-made,1
 taint,1
 taker,1
-talk show,1
 tally,1
 tame,1
 tamper,1
@@ -6647,7 +6062,6 @@ tantalize,1
 tantamount,1
 tantrum,1
 taper,1
-tape recorder,1
 tapestry,1
 tar,1
 tarmac,1
@@ -6664,11 +6078,7 @@ taunt,1
 taut,1
 tavern,1
 taxable,1
-tax break,1
-tax evasion,1
 tax-free,1
-tax relief,1
-tax return,1
 TB,1
 teak,1
 teapot,1
@@ -6683,7 +6093,6 @@ teem,1
 teeter,1
 telegram,1
 telegraph,1
-telephone number,1
 telex,1
 teller,1
 telling,1
@@ -6711,14 +6120,10 @@ terrier,1
 terrorize,1
 terse,1
 testament,1
-test case,1
 tester,1
 testicle,1
 testimonial,1
-test match,1
 testosterone,1
-test pilot,1
-test tube,1
 tether,1
 textbook,1
 textured,1
@@ -6726,7 +6131,6 @@ thankful,1
 thanksgiving,1
 thatch,1
 thaw,1
-theme park,1
 theologian,1
 theology,1
 theorist,1
@@ -6740,7 +6144,6 @@ thicket,1
 thinker,1
 think-tank,1
 thirdly,1
-third party,1
 thirst,1
 thirsty,1
 thorn,1
@@ -6771,20 +6174,14 @@ thy,1
 thyme,1
 tickle,1
 tidal,1
-tidal wave,1
-tied up,1
 tier,1
 tiger,1
 tightrope,1
 tights,1
 time-consuming,1
 timeless,1
-time limit,1
 timely,1
-time out,1
 timer,1
-time trial,1
-time zone,1
 timid,1
 tinge,1
 tingle,1
@@ -6800,7 +6197,6 @@ tiring,1
 tit,1
 titanium,1
 titillate,1
-title track,1
 toad,1
 toddler,1
 toil,1
@@ -6817,7 +6213,6 @@ top-class,1
 topless,1
 top-level,1
 topping,1
-top secret,1
 top-up,1
 torn,1
 tornado,1
@@ -6835,27 +6230,17 @@ totter,1
 touchdown,1
 touchline,1
 toughen,1
-tour operator,1
 tout,1
-tower block,1
 towering,1
-town hall,1
 toxin,1
-track record,1
-track suit,1
 tract,1
 traction,1
 tractor,1
-trade mark,1
 trade-off,1
-trade unionist,1
 traditionalist,1
-traffic jam,1
 trafficker,1
-traffic light,1
 trainee,1
 trainer,1
-training camp,1
 trait,1
 traitor,1
 trajectory,1
@@ -6879,7 +6264,6 @@ transvestite,1
 trappings,1
 trash,1
 traumatize,1
-travel agent,1
 traverse,1
 trawl,1
 trawler,1
@@ -6918,7 +6302,6 @@ trudge,1
 truffle,1
 trump,1
 trundle,1
-trust fund,1
 trusting,1
 trustworthy,1
 truthful,1
@@ -6940,7 +6323,6 @@ turf,1
 turkey,1
 turnaround,1
 turning,1
-turning point,1
 turnip,1
 turnout,1
 turquoise,1
@@ -7060,7 +6442,6 @@ unfulfilled,1
 unfurl,1
 unharmed,1
 unhealthy,1
-unheard of,1
 unhelpful,1
 unhurt,1
 uniformity,1
@@ -7072,10 +6453,8 @@ unintelligible,1
 unintentional,1
 uninterrupted,1
 unionism,1
-Union Jack,1
 unison,1
 unitary,1
-unit trust,1
 Univ.,1
 unjust,1
 unjustified,1
@@ -7168,7 +6547,6 @@ up-and-coming,1
 upbeat,1
 upbringing,1
 upcoming,1
-up front,1
 upheaval,1
 uphill,1
 upholstered,1
@@ -7177,13 +6555,9 @@ upkeep,1
 upland,1
 uplifting,1
 upmarket,1
-upper class,1
-Upper House,1
-upper lip,1
 uppermost,1
 uproar,1
 uproot,1
-upside down,1
 upstage,1
 upstart,1
 uptown,1
@@ -7209,7 +6583,6 @@ vacancy,1
 vacant,1
 vacate,1
 vaccinate,1
-vacuum cleaner,1
 vagary,1
 vagina,1
 vaguely,1
@@ -7224,7 +6597,6 @@ vandal,1
 vandalism,1
 vanguard,1
 vanity,1
-vantage point,1
 vapour,1
 variance,1
 variant,1
@@ -7254,13 +6626,11 @@ venison,1
 venom,1
 vent,1
 ventilate,1
-venture capital,1
 verb,1
 verify,1
 veritable,1
 vertebra,1
 verve,1
-vested interest,1
 vestige,1
 veterinary,1
 vibe,1
@@ -7268,11 +6638,8 @@ vibrant,1
 vibrate,1
 vicarage,1
 vice-chancellor,1
-vice versa,1
 vicinity,1
-vicious circle,1
 victorious,1
-video recorder,1
 vie,1
 viewfinder,1
 vigil,1
@@ -7289,7 +6656,6 @@ violet,1
 VIP,1
 viral,1
 virile,1
-virtual reality,1
 virtuoso,1
 virtuous,1
 virulent,1
@@ -7315,8 +6681,6 @@ voltage,1
 voluptuous,1
 vomit,1
 vortex,1
-vote of confidence,1
-vote of no confidence,1
 vowel,1
 vulgar,1
 vulture,1
@@ -7330,15 +6694,12 @@ wag,1
 wager,1
 wail,1
 waistcoat,1
-waiting list,1
-waiting room,1
 waitress,1
 waive,1
 waiver,1
 walker,1
 walking,1
 Walkman,1
-walk of life,1
 walk-on,1
 walkout,1
 walk-up,1
@@ -7363,7 +6724,6 @@ warship,1
 wart,1
 washer,1
 washing,1
-washing machine,1
 washing-up,1
 wasp,1
 wasteful,1
@@ -7378,7 +6738,6 @@ waterfall,1
 waterfront,1
 waterproof,1
 watershed,1
-water supply,1
 waterway,1
 watery,1
 watt,1
@@ -7393,10 +6752,8 @@ weekday,1
 weighty,1
 weir,1
 weld,1
-welfare state,1
 well-balanced,1
 well-defined,1
-well done,1
 well-dressed,1
 well-established,1
 well-informed,1
@@ -7443,7 +6800,6 @@ widowed,1
 width,1
 wield,1
 wiggle,1
-wild flower,1
 wilful,1
 willow,1
 willpower,1
@@ -7457,13 +6813,11 @@ windmill,1
 windscreen,1
 wind-up,1
 windy,1
-wine bar,1
 winged,1
 wink,1
 winnings,1
 wireless,1
 wiring,1
-wishful thinking,1
 wisp,1
 wistful,1
 witchcraft,1
@@ -7477,8 +6831,6 @@ woe,1
 woeful,1
 wolf,1
 womb,1
-Woman's Liberation,1
-woman's movement,1
 wonderland,1
 wondrous,1
 wooded,1
@@ -7486,31 +6838,22 @@ woodwork,1
 woollen,1
 woolly,1
 wording,1
-word processor,1
 workable,1
 workaholic,1
-working capital,1
-working group,1
-working party,1
 workload,1
 workman,1
-work of art,1
 workout,1
 workstation,1
 world-class,1
 world-famous,1
 worldly,1
-world view,1
 worn,1
-worn out,1
 worse,1
 worst,1
 worthless,1
 would-be,1
-wound up,1
 wow,1
 wrangle,1
-wrapped up,1
 wrapping,1
 wrath,1
 wreak,1
@@ -7529,7 +6872,6 @@ write-off,1
 writhe,1
 wrongdoing,1
 wrongful,1
-wrought iron,1
 wry,1
 Xerox,1
 yachting,1
@@ -7622,13 +6964,11 @@ aggregate,2
 aggression,2
 agony,2
 aide,2
-ain't,2
 airlift,2
 airplane,2
 airway,2
 albeit,2
 alcoholic,2
-A  level,2
 alien,2
 alienate,2
 align,2
@@ -7800,7 +7140,6 @@ birdie,2
 biscuit,2
 bitch,2
 bizarre,2
-black and white,2
 blade,2
 bland,2
 blank,2
@@ -7816,12 +7155,10 @@ bloc,2
 blockade,2
 bloke,2
 blonde,2
-blood pressure,2
 bloom,2
 blossom,2
 blunt,2
 blur,2
-boat people,2
 bob,2
 bodily,2
 bodyguard,2
@@ -7846,7 +7183,6 @@ bowler,2
 bowling,2
 boxer,2
 boxing,2
-box office,2
 boycott,2
 boyfriend,2
 Br.,2
@@ -7855,7 +7191,6 @@ brake,2
 brand-new,2
 brass,2
 breach,2
-break down,2
 break-in,2
 break-through,2
 break-up,2
@@ -7883,7 +7218,6 @@ bucket,2
 bud,2
 bug,2
 builder,2
-building society,2
 build-up,2
 bulb,2
 bulk,2
@@ -7921,18 +7255,15 @@ cannon,2
 canvas,2
 capability,2
 cape,2
-capital gains,2
 capitalism,2
 capitalist,2
 Capt,2
 captive,2
 carbohydrate,2
-carbon dioxide,2
 cardinal,2
 cargo,2
 carnival,2
 carp,2
-car park,2
 carpet,2
 carriage,2
 carrot,2
@@ -7958,7 +7289,6 @@ cement,2
 cemetery,2
 census,2
 cent,2
-central government,2
 ceramic,2
 cereal,2
 certainty,2
@@ -7985,7 +7315,6 @@ cherry,2
 chess,2
 chew,2
 chick,2
-chief of Staff,2
 chill,2
 chilli,2
 chin,2
@@ -8007,8 +7336,6 @@ circulation,2
 circus,2
 civic,2
 civilization,2
-civil rights,2
-civil servant,2
 clamp,2
 clan,2
 clarify,2
@@ -8046,7 +7373,6 @@ coin,2
 coincide,2
 coincidence,2
 cola,2
-Cold War,2
 collaboration,2
 collar,2
 collected,2
@@ -8065,7 +7391,6 @@ commemorate,2
 commentary,2
 commitment,2
 commodity,2
-common sense,2
 commonwealth,2
 communal,2
 commute,2
@@ -8127,7 +7452,6 @@ consensus,2
 consent,2
 consequently,2
 conservation,2
-Conservative Party,2
 conserve,2
 consideration,2
 console,2
@@ -8197,7 +7521,6 @@ crawl,2
 creation,2
 creature,2
 credible,2
-credit card,2
 creditor,2
 creep,2
 cripple,2
@@ -8208,7 +7531,6 @@ cross-country,2
 crossing,2
 crouch,2
 crowded,2
-Crown Court,2
 crude,2
 cruel,2
 crumble,2
@@ -8288,7 +7610,6 @@ dense,2
 dental,2
 dentist,2
 depart,2
-department store,2
 depict,2
 deplete,2
 deploy,2
@@ -8342,12 +7663,10 @@ dim,2
 dimension,2
 diminish,2
 dine,2
-dining room,2
 dinosaur,2
 dip,2
 diplomacy,2
 directive,2
-director general,2
 directory,2
 dirt,2
 disability,2
@@ -8423,8 +7742,6 @@ doorway,2
 dose,2
 dot,2
 doubtful,2
-Downing Street,2
-down stairs,2
 downtown,2
 downwards,2
 dragon,2
@@ -8657,8 +7974,6 @@ footballer,2
 forbid,2
 forbidden,2
 forehead,2
-foreign exchange,2
-Foreign Office,2
 foresee,2
 forever,2
 forgive,2
@@ -8699,9 +8014,7 @@ fridge,2
 frighten,2
 fringe,2
 frontier,2
-front line,2
 frontiers,2
-front page,2
 frown,2
 frozen,2
 ft,2
@@ -8747,7 +8060,6 @@ glare,2
 gleam,2
 glimpse,2
 glitter,2
-global warming,2
 globe,2
 gloom,2
 gloomy,2
@@ -8763,7 +8075,6 @@ go-ahead,2
 goalkeeper,2
 goat,2
 goddess,2
-gold medal,2
 goodbye,2
 good-looking,2
 goodness,2
@@ -8781,7 +8092,6 @@ grammar,2
 grandchild,2
 grandfather,2
 grandmother,2
-Grand Prix,2
 grape,2
 graphic,2
 grasp,2
@@ -8789,7 +8099,6 @@ grate,2
 grateful,2
 gravity,2
 graze,2
-Great Britain,2
 greater,2
 greenhouse,2
 greet,2
@@ -8846,10 +8155,8 @@ haven,2
 hawk,2
 hazard,2
 headache,2
-head of state,2
 head-on,2
 heap,2
-heart attack,2
 heated,2
 heating,2
 heavyweight,2
@@ -8876,11 +8183,6 @@ hey,2
 hidden,2
 hiding,2
 hierarchy,2
-High Court,2
-higher education,2
-high school,2
-high street,2
-high tech,2
 highway,2
 hike,2
 Hindu,2
@@ -8891,8 +8193,6 @@ hockey,2
 holding,2
 hollow,2
 homeland,2
-Home Office,2
-Home Secretary,2
 honestly,2
 honesty,2
 honey,2
@@ -8908,14 +8208,12 @@ horrify,2
 hostel,2
 hostile,2
 hound,2
-House of Commons,2
 hover,2
 howl,2
 hug,2
 huh,2
 hull,2
 hum,2
-human being,2
 humanitarian,2
 humanity,2
 humble,2
@@ -8932,7 +8230,6 @@ hybrid,2
 hydrogen,2
 hype,2
 ibid,2
-ice cream,2
 identical,2
 ideological,2
 ideology,2
@@ -8945,7 +8242,6 @@ imaginative,2
 IMF,2
 immense,2
 imminent,2
-immune system,2
 impatient,2
 imperial,2
 implicit,2
@@ -8957,7 +8253,6 @@ inadequate,2
 inappropriate,2
 incentive,2
 incidentally,2
-income tax,2
 incorporate,2
 incumbent,2
 incur,2
@@ -8991,7 +8286,6 @@ ink,2
 inland,2
 inmate,2
 inn,2
-inner city,2
 inning,2
 innings,2
 innocence,2
@@ -9081,7 +8375,6 @@ Jun.,2
 junction,2
 jungle,2
 junk,2
-junk bond,2
 justification,2
 justified,2
 juvenile,2
@@ -9111,7 +8404,6 @@ lash,2
 lasting,2
 lately,2
 lavish,2
-law and order,2
 lawmaker,2
 lawn,2
 lawsuit,2
@@ -9138,7 +8430,6 @@ levy,2
 liability,2
 liable,2
 libel,2
-Liberal Democrat,2
 liberalize,2
 license,2
 lid,2
@@ -9169,7 +8460,6 @@ litre,2
 litter,2
 lively,2
 liver,2
-living room,2
 loaded,2
 locate,2
 locked,2
@@ -9200,7 +8490,6 @@ lung,2
 lure,2
 lynch,2
 lyric,2
-machine gun,2
 machinery,2
 made,2
 mafia,2
@@ -9210,14 +8499,9 @@ magistrate,2
 magnetic,2
 magnificent,2
 maid,2
-mail order,2
-main land,2
-main stream,2
 maintenance,2
 majesty,2
 making,2
-managing director,2
-man date,2
 manifest,2
 manifesto,2
 manipulate,2
@@ -9232,7 +8516,6 @@ marathon,2
 marble,2
 mare,2
 marginal,2
-market share,2
 marshal,2
 martial,2
 marvellous,2
@@ -9256,7 +8539,6 @@ meditate,2
 Mediterranean,2
 melody,2
 melt,2
-Member of Parliament,2
 memorable,2
 memorial,2
 menu,2
@@ -9348,9 +8630,7 @@ nanny,2
 narrative,2
 NASA,2
 nasty,2
-National curriculum,2
 nationality,2
-national park,2
 nationwide,2
 necessity,2
 needle,2
@@ -9360,11 +8640,7 @@ neighbouring,2
 nest,2
 neutral,2
 newcomer,2
-news conference,2
 newsreel,2
-New World,2
-New Year,2
-next door,2
 NHS,2
 nicely,2
 nick,2
@@ -9389,7 +8665,6 @@ Nov.,2
 novelist,2
 novice,2
 nowadays,2
-number one,2
 nun,2
 nursery,2
 nurture,2
@@ -9413,11 +8688,7 @@ offend,2
 offender,2
 offset,2
 offshore,2
-old boy,2
-old fashioned,2
 olive,2
-olive oil,2
-Olympic Games,2
 omit,2
 one-off,2
 one-time,2
@@ -9429,7 +8700,6 @@ OPEC,2
 openly,2
 operational,2
 operative,2
-opinion poll,2
 optimism,2
 oral,2
 orbit,2
@@ -9540,7 +8810,6 @@ perennial,2
 perfume,2
 persist,2
 persistent,2
-personal computer,2
 pest,2
 pesticide,2
 petition,2
@@ -9551,7 +8820,6 @@ pharmaceutical,2
 phenomenon,2
 philosopher,2
 philosophical,2
-phone call,2
 photographic,2
 photography,2
 physician,2
@@ -9586,15 +8854,11 @@ plight,2
 plough,2
 plug,2
 p.m.,2
-PO Box,2
 pointed,2
 poised,2
 poison,2
-police force,2
-police station,2
 polish,2
 polite,2
-poll tax,2
 pollute,2
 polytechnic,2
 pond,2
@@ -9613,14 +8877,12 @@ possession,2
 postal,2
 postcard,2
 poster,2
-post office,2
 postpone,2
 posture,2
 postwar,2
 potent,2
 potter,2
 powder,2
-power station,2
 PR,2
 practically,2
 practise,2
@@ -9649,7 +8911,6 @@ prescription,2
 presentation,2
 preside,2
 president-elect,2
-press conference,2
 prestige,2
 prestigious,2
 presume,2
@@ -9659,11 +8920,9 @@ prevail,2
 preview,2
 prey,2
 primarily,2
-primary school,2
 primitive,2
 printer,2
 privacy,2
-private sector,2
 privilege,2
 privileged,2
 pro,2
@@ -9705,10 +8964,6 @@ psychiatry,2
 psychic,2
 psychotherapy,2
 publicize,2
-public opinion,2
-public relations,2
-public school,2
-public sector,2
 pudding,2
 pulse,2
 punish,2
@@ -9719,7 +8974,6 @@ purple,2
 purse,2
 pursuit,2
 put-down,2
-put out,2
 putt,2
 puzzle,2
 QC,2
@@ -9758,11 +9012,8 @@ RC,2
 Rd.,2
 reactor,2
 readily,2
-real estate,2
 realistic,2
-real life,2
 realm,2
-real world,2
 reassure,2
 rebellion,2
 rebuild,2
@@ -9775,7 +9026,6 @@ reconcile,2
 recorder,2
 recreation,2
 recycle,2
-Red Cross,2
 redundancy,2
 redundant,2
 re-elect,2
@@ -9881,13 +9131,11 @@ robust,2
 rob,2
 rod,2
 roller,2
-Roman Catholic,2
 romance,2
 rope,2
 rot,2
 rotten,2
 rouble,2
-royal family,2
 royalty,2
 rub,2
 rubber,2
@@ -9951,7 +9199,6 @@ sculpture,2
 seasonal,2
 secondary,2
 secondly,2
-Second World War,2
 secrecy,2
 seduce,2
 seldom,2
@@ -9963,7 +9210,6 @@ seller,2
 semi-final,2
 seminar,2
 sensation,2
-sense of humour,2
 sentiment,2
 sentimental,2
 Sep.,2
@@ -10064,9 +9310,6 @@ soar,2
 sober,2
 socialism,2
 socialize,2
-social security,2
-social services,2
-social worker,2
 sociology,2
 sock,2
 sodium,2
@@ -10228,7 +9471,6 @@ sweater,2
 swell,2
 swift,2
 swimming,2
-swimming pool,2
 sword,2
 symbolic,2
 sympathetic,2
@@ -10248,7 +9490,6 @@ tan,2
 tangle,2
 tanker,2
 tariff,2
-task force,2
 taxation,2
 taxi,2
 taxpayer,2
@@ -10334,7 +9575,6 @@ towel,2
 township,2
 toxic,2
 trade-in,2
-trade union,2
 tragic,2
 trailer,2
 transcript,2
@@ -10382,7 +9622,6 @@ two-thirds,2
 typically,2
 tyre,2
 ugly,2
-uh huh,2
 umbrella,2
 umpire,2
 unacceptable,2
@@ -10415,7 +9654,6 @@ unfortunate,2
 unification,2
 unify,2
 unite,2
-United Kingdom,2
 universal,2
 unleash,2
 unnecessary,2
@@ -10436,7 +9674,6 @@ uphold,2
 upright,2
 uprising,2
 upstairs,2
-up to date,2
 upwards,2
 uranium,2
 urine,2
@@ -10519,7 +9756,6 @@ warrior,2
 wartime,2
 wary,2
 wax,2
-way of life,2
 weakness,2
 wealthy,2
 weary,2
@@ -10543,7 +9779,6 @@ whisky,2
 whisk,2
 whistle,2
 Whitehall,2
-White Paper,2
 whoever,2
 wholesale,2
 wholly,2
@@ -10564,7 +9799,6 @@ woo,2
 woodland,2
 wool,2
 workforce,2
-working class,2
 workplace,2
 workshop,2
 worm,2
@@ -10617,8 +9851,6 @@ agenda,3
 aggressive,3
 agricultural,3
 agriculture,3
-ahead of,3
-air force,3
 alarm,3
 alcohol,3
 alert,3
@@ -10658,7 +9890,6 @@ appreciate,3
 appropriate,3
 approval,3
 arise,3
-armed forces,3
 arrangement,3
 arrival,3
 assault,3
@@ -10808,7 +10039,6 @@ circuit,3
 circumstance,3
 cite,3
 civilian,3
-civil war,3
 clash,3
 classical,3
 clever,3
@@ -11049,7 +10279,6 @@ examination,3
 exception,3
 excerpt,3
 excess,3
-exchanger ate,3
 exciting,3
 excuse,3
 execute,3
@@ -11129,7 +10358,6 @@ gap,3
 gate,3
 gear,3
 gene,3
-general election,3
 generate,3
 generous,3
 gentle,3
@@ -11174,7 +10402,6 @@ heaven,3
 height,3
 helicopter,3
 hell,3
-he'll,3
 hello,3
 hero,3
 hi,3
@@ -11195,7 +10422,6 @@ honour,3
 hook,3
 horror,3
 household,3
-human rights,3
 humour,3
 hunt,3
 hunter,3
@@ -11252,7 +10478,6 @@ involvement,3
 iron,3
 Islam,3
 Islamic,3
-it'll,3
 jacket,3
 jail,3
 jazz,3
@@ -11308,7 +10533,6 @@ live-in,3
 living,3
 load,3
 lobby,3
-local authority,3
 location,3
 lock,3
 lonely,3
@@ -11424,11 +10648,9 @@ obtain,3
 occasional,3
 occupation,3
 ocean,3
-o'clock,3
 offence,3
 offensive,3
 offering,3
-one's,3
 onto,3
 opening,3
 opera,3
@@ -11519,10 +10741,8 @@ pocket,3
 poem,3
 poet,3
 poetry,3
-point of view,3
 pole,3
 policeman,3
-police officer,3
 pollution,3
 pool,3
 pop,3
@@ -11723,7 +10943,6 @@ shore,3
 shortage,3
 shortly,3
 short-term,3
-shouldn't,3
 shout,3
 shut,3
 sick,3
@@ -11788,8 +11007,6 @@ steel,3
 stem,3
 stimulate,3
 stir,3
-stock exchange,3
-stock market,3
 stomach,3
 storm,3
 strain,3
@@ -11856,7 +11073,6 @@ theme,3
 therapy,3
 thick,3
 thin,3
-Third World,3
 thorough,3
 threatening,3
 throat,3
@@ -11958,7 +11174,6 @@ warning,3
 wash,3
 weaken,3
 wealth,3
-we'd,3
 wedding,3
 weekly,3
 weigh,3
@@ -11981,7 +11196,6 @@ wise,3
 withdrawal,3
 witness,3
 wooden,3
-world war,3
 worldwide,3
 worried,3
 wrap,3
@@ -12025,7 +11239,6 @@ airline,4
 airport,4
 album,4
 allege,4
-all right,4
 ally,4
 alone,4
 alternative,4
@@ -12043,7 +11256,6 @@ apply,4
 approach,4
 approve,4
 April,4
-aren't,4
 argue,4
 argument,4
 armed,4
@@ -12123,50 +11335,50 @@ cash,4
 cast,4
 catch,4
 cell,4
- certain,4
- certainly,4
- chair,4
- chairman,4
- challenge,4
- champion,4
- championship,4
- channel,4
- chapter,4
- character,4
- cheap,4
- check,4
- chemical,4
- choice,4
- choose,4
- Christian,4
- Christmas,4
- church,4
- circle,4
- citizen,4
- City,4
- civil,4
- classic,4
- clean,4
- clothes,4
- coach,4
- coast,4
- cold,4
- collapse,4
- colleague,4
- collect,4
- collection,4
- college,4
- comment,4
- commercial,4
- commission,4
- commit,4
- communist,4
- compared,4
- competition,4
- complain,4
- complex,4
- computer,4
- conduct,4
+certain,4
+certainly,4
+chair,4
+chairman,4
+challenge,4
+champion,4
+championship,4
+channel,4
+chapter,4
+character,4
+cheap,4
+check,4
+chemical,4
+choice,4
+choose,4
+Christian,4
+Christmas,4
+church,4
+circle,4
+citizen,4
+City,4
+civil,4
+classic,4
+clean,4
+clothes,4
+coach,4
+coast,4
+cold,4
+collapse,4
+colleague,4
+collect,4
+collection,4
+college,4
+comment,4
+commercial,4
+commission,4
+commit,4
+communist,4
+compared,4
+competition,4
+complain,4
+complex,4
+computer,4
+conduct,4
 confidence,4
 confirm,4
 conflict,4
@@ -12413,18 +11625,14 @@ guest,4
 guide,4
 gun,4
 guy,4
-hadn't,4
 hair,4
 handle,4
 hang,4
 happy,4
 hardly,4
-hasn't,4
-haven't,4
 heart,4
 heat,4
 heavy,4
-he'd,4
 highly,4
 hole,4
 holiday,4
@@ -12509,7 +11717,6 @@ league,4
 leg,4
 legal,4
 length,4
-let's,4
 liberal,4
 lie,4
 lift,4
@@ -12585,7 +11792,6 @@ ninetieth,4
 ninth,4
 nobody,4
 Done,4
-no One,4
 nor,4
 normal,4
 north-east,4
@@ -12693,7 +11899,7 @@ publish,4
 pull,4
 purchase,4
 purpose,4
-push ,4
+push,4
 quality,4
 quarter,4
 queen,4
@@ -12806,8 +12012,6 @@ shake,4
 shall,4
 shape,4
 sharp,4
-she'd,4
-she's,4
 ship,4
 shock,4
 shoot,4
@@ -12815,7 +12019,7 @@ shop,4
 shot,4
 shoulder,4
 sight,4
-stgnificant,4
+significant,4
 similar,4
 simple,4
 simply,4
@@ -12916,9 +12120,6 @@ territory,4
 theatre,4
 theory,4
 therefore,4
-they'd,4
-they'll,4
-they've,4
 thinking,4
 third,4
 thirteenth,4
@@ -12992,12 +12193,8 @@ Wednesday,4
 weekend,4
 weight,4
 welcome,4
-we'll,4
-weren't,4
 whatever,4
-what's,4
 whom,4
-who's,4
 wild,4
 willing,4
 wind,4
@@ -13023,7 +12220,6 @@ able,5
 about,5
 accept,5
 accord,5
-according to,5
 account,5
 across,5
 act,5
@@ -13107,7 +12303,6 @@ by,5
 call,5
 campaign,5
 can,5
-can't,5
 capital,5
 car,5
 care,5
@@ -13144,7 +12339,6 @@ continue,5
 control,5
 cost,5
 could,5
-couldn't,5
 council,5
 country,5
 course,5
@@ -13165,16 +12359,13 @@ describe,5
 design,5
 develop,5
 developmentt,5
-didn't,5
 die,5
 different,5
 difficult,5
 direct,5
 director,5
 do,5
-doesn't,5
 dollar,5
-don't,5
 door,5
 down,5
 draw,5
@@ -13278,7 +12469,6 @@ help,5
 her,5
 here,5
 herself,5
-he's,5
 him,5
 himself,5
 his,5
@@ -13296,11 +12486,8 @@ however,5
 human,5
 hundred,5
 I,5
-I'd,5
 idea,5
 if,5
-I'll,5
-I'm,5
 important,5
 in,5
 include,5
@@ -13311,13 +12498,10 @@ information,5
 interest,5
 international,5
 into,5
-isn't,5
 issue,5
 it,5
 its,5
-it's,5
 itself,5
-I've,5
 job,5
 join,5
 just,5
@@ -13414,7 +12598,6 @@ nothing,5
 now,5
 number,5
 of,5
-of course,5
 off,5
 offer,5
 office,5
@@ -13595,7 +12778,6 @@ test,5
 than,5
 thank,5
 that,5
-that's,5
 the,5
 their,5
 them,5
@@ -13604,7 +12786,6 @@ then,5
 there,5
 these,5
 they,5
-they're,5
 thing,5
 think,5
 thirteen,5
@@ -13651,7 +12832,6 @@ walk,5
 wall,5
 want,5
 war,5
-wasn't,5
 watch,5
 water,5
 way,5
@@ -13659,9 +12839,7 @@ we,5
 week,5
 well,5
 went,5
-we're,5
 west,5
-we've,5
 what,5
 when,5
 where,5
@@ -13681,14 +12859,12 @@ with,5
 within,5
 without,5
 woman,5
-won't,5
 word,5
 work,5
 worker,5
 working,5
 world,5
 would,5
-wouldn't,5
 write,5
 year,5
 yes,5
@@ -13697,6 +12873,4 @@ yet,5
 you,5
 young,5
 your,5
-you're,5
-you've,5
 

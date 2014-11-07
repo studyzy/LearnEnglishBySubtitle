@@ -80,9 +80,9 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                             continue;
                         }
                         var means = GetCoreMeans(xml);
-                        if (!engDictionary.ContainsKey(word.Word))
+                        if (!engDictionary.ContainsKey(word.Word.ToLower()))
                         {
-                            engDictionary.Add(word.Word,new EngDictionary() { Word = word.Word, Detail = xml, Means = means });
+                            engDictionary.Add(word.Word.ToLower(),new EngDictionary() { Word = word.Word, Detail = xml, Means = means });
                         }
                         if (!wordProperties.ContainsKey(word.Word))
                         {

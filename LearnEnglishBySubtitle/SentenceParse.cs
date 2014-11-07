@@ -176,11 +176,13 @@ WRB	adv.";
             {
                 sentence= sentence.Replace("I'm", "I am");
                 sentence= sentence.Replace("'re", " are");
+                sentence = sentence.Replace("won't", "will not");
                 sentence= sentence.Replace("n't", " not");
                 sentence= sentence.Replace("'d", " would");
                 sentence= sentence.Replace("'n", " and");
                 sentence= sentence.Replace("'ll", " will");
-                sentence= sentence.Replace("'s", " is");
+                sentence= sentence.Replace("'ve", " have");
+                //sentence = sentence.Replace("'s", " is");
                 //'s 最复杂
                 
             }
@@ -190,7 +192,7 @@ WRB	adv.";
 
         public static string[] SplitSentence(string sentence)
         {
-            var array = sentence.Split(new char[] { ' ', ',', '.', '?', ':', '!' }, StringSplitOptions.RemoveEmptyEntries);
+            var array = sentence.Split(new char[] { ' ', ',', '.', '?', ':', '!','\'' }, StringSplitOptions.RemoveEmptyEntries);
             return array;
         }
     }
