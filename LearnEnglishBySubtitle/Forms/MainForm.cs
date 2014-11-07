@@ -50,15 +50,19 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnParse_Click(object sender, EventArgs e)
         {
+            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txbSubtitleFilePath.Text = openFileDialog1.FileName;
 
-            var txt = FileOperationHelper.ReadFile(txbSubtitleFilePath.Text);
-            stOperator = SubtitleHelper.GetOperatorByFileName(txbSubtitleFilePath.Text);
-            var srts = stOperator.Parse(txt);
+                var txt = FileOperationHelper.ReadFile(txbSubtitleFilePath.Text);
+                stOperator = SubtitleHelper.GetOperatorByFileName(txbSubtitleFilePath.Text);
+                var srts = stOperator.Parse(txt);
 
-            srts = stOperator.RemoveChinese(srts);
+                srts = stOperator.RemoveChinese(srts);
 
-            ShowSubtitleText(srts.Bodies.Values);
-            subtitle = srts;
+                ShowSubtitleText(srts.Bodies.Values);
+                subtitle = srts;
+            }
         }
 
         private void ShowSubtitleText(ICollection<SubtitleLine> srts,bool withMean=false )
@@ -109,7 +113,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnRemark_Click(object sender, EventArgs e)
         {
-            //userRank = 4;// Convert.ToInt32(numUserVocabularyRank.Value);
+            if (subtitle == null || subtitle.Bodies.Count == 0)
+            {
+                MessageBox.Show("请先点击“载入字幕”按钮打开字幕文件");
+                return;
+            }
             Splash.Show();
             Splash.Status = "解析字幕中...";
             var subtitleWords = PickNewWords(subtitle.Bodies.Values);
@@ -361,23 +369,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //var lines = new List<SubtitleLine>();
-            //foreach (var subtitleLine in subtitle.Bodies)
-            //{
-            //    if (removeChinese)
-            //    {
-            //        subtitleLine.Text = subtitleLine.EnglishTextWithMeans;
-            //    }
-            //    else
-            //    {
-            //        subtitleLine.Text = subtitleLine.Text.Replace(subtitleLine.EnglishText,subtitleLine.EnglishTextWithMeans);
-            //    }
-            //    lines.Add(subtitleLine);
-            //}
-            //subtitle.Bodies = lines;
+         
             var nsubtitle = BuildSubtitleFromGrid();
-
-
+            if (nsubtitle == null || nsubtitle.Bodies.Count == 0)
+            {
+                MessageBox.Show("请先点击“载入字幕”按钮打开字幕文件");
+                return;
+            }
             if (meanColor != default(Color))
             {
                 Regex r=new Regex(@"\(([^\)]+)\)");

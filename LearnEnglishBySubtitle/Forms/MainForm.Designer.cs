@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.btnOpenFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txbSubtitleFilePath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -59,28 +58,16 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.dgvSubtitleSentence = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnOpenFile
-            // 
-            this.btnOpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOpenFile.Location = new System.Drawing.Point(592, 34);
-            this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(36, 25);
-            this.btnOpenFile.TabIndex = 0;
-            this.btnOpenFile.Text = "...";
-            this.btnOpenFile.UseVisualStyleBackColor = true;
-            this.btnOpenFile.Click += new System.EventHandler(this.btnOpenFile_Click);
             // 
             // label1
             // 
@@ -97,17 +84,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txbSubtitleFilePath.Location = new System.Drawing.Point(83, 36);
             this.txbSubtitleFilePath.Name = "txbSubtitleFilePath";
-            this.txbSubtitleFilePath.Size = new System.Drawing.Size(503, 20);
+            this.txbSubtitleFilePath.ReadOnly = true;
+            this.txbSubtitleFilePath.Size = new System.Drawing.Size(444, 20);
             this.txbSubtitleFilePath.TabIndex = 2;
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "Srt Files|*.srt|All Files|*.*";
+            this.openFileDialog1.Filter = "Srt Files|*.srt|Ass Files|*.ass";
             // 
             // btnParse
             // 
             this.btnParse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnParse.Location = new System.Drawing.Point(648, 34);
+            this.btnParse.Location = new System.Drawing.Point(544, 33);
             this.btnParse.Name = "btnParse";
             this.btnParse.Size = new System.Drawing.Size(75, 25);
             this.btnParse.TabIndex = 3;
@@ -119,7 +107,7 @@
             // 
             this.btnRemark.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemark.Enabled = false;
-            this.btnRemark.Location = new System.Drawing.Point(647, 65);
+            this.btnRemark.Location = new System.Drawing.Point(648, 33);
             this.btnRemark.Name = "btnRemark";
             this.btnRemark.Size = new System.Drawing.Size(75, 25);
             this.btnRemark.TabIndex = 6;
@@ -279,7 +267,7 @@
             // 
             this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
             this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(146, 22);
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemDonate.Text = "捐赠";
             this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
             // 
@@ -321,7 +309,7 @@
             this.TimeLine,
             this.Sentence});
             this.dgvSubtitleSentence.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgvSubtitleSentence.Location = new System.Drawing.Point(12, 96);
+            this.dgvSubtitleSentence.Location = new System.Drawing.Point(12, 64);
             this.dgvSubtitleSentence.MultiSelect = false;
             this.dgvSubtitleSentence.Name = "dgvSubtitleSentence";
             this.dgvSubtitleSentence.RowHeadersVisible = false;
@@ -329,30 +317,9 @@
             this.dgvSubtitleSentence.ShowCellErrors = false;
             this.dgvSubtitleSentence.ShowEditingIcon = false;
             this.dgvSubtitleSentence.ShowRowErrors = false;
-            this.dgvSubtitleSentence.Size = new System.Drawing.Size(710, 344);
+            this.dgvSubtitleSentence.Size = new System.Drawing.Size(710, 376);
             this.dgvSubtitleSentence.TabIndex = 15;
             this.dgvSubtitleSentence.Resize += new System.EventHandler(this.dgvSubtitleSentence_Resize);
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "Number";
-            this.ID.HeaderText = "序号";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 40;
-            // 
-            // TimeLine
-            // 
-            this.TimeLine.HeaderText = "时间轴";
-            this.TimeLine.Name = "TimeLine";
-            this.TimeLine.Width = 101;
-            // 
-            // Sentence
-            // 
-            this.Sentence.HeaderText = "字幕";
-            this.Sentence.Name = "Sentence";
-            this.Sentence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Sentence.Width = 549;
             // 
             // contextMenuStrip1
             // 
@@ -368,6 +335,28 @@
             this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
             this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "Number";
+            this.ID.HeaderText = "序号";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 40;
+            // 
+            // TimeLine
+            // 
+            this.TimeLine.HeaderText = "时间轴";
+            this.TimeLine.Name = "TimeLine";
+            this.TimeLine.ReadOnly = true;
+            this.TimeLine.Width = 101;
+            // 
+            // Sentence
+            // 
+            this.Sentence.HeaderText = "字幕";
+            this.Sentence.Name = "Sentence";
+            this.Sentence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Sentence.Width = 549;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -382,7 +371,6 @@
             this.Controls.Add(this.btnParse);
             this.Controls.Add(this.txbSubtitleFilePath);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnOpenFile);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -404,7 +392,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txbSubtitleFilePath;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;

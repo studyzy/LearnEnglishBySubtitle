@@ -22,7 +22,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
             int index = 0;
             foreach (var line in lines)
             {
-                subtitle.Bodies.Add(++index, ParseLine(line));
+                var number = ++index;
+                var sub = ParseLine(line);
+                sub.Number = number;
+                subtitle.Bodies.Add(number,sub);
             }
             return subtitle;
         }
@@ -84,7 +87,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
         {
             var newSrts = new Dictionary<int, SubtitleLine>();
             var srts = subtitle.Bodies;
-            for (int i = 0; i < subtitle.Bodies.Count; i++)
+            for (int i = 1; i <= subtitle.Bodies.Count; i++)
             {
                 var subtitleLine = srts[i];
                 var lines = subtitleLine.Text.Split(new string[] { "\r","\n","\\N" }, StringSplitOptions.RemoveEmptyEntries);
