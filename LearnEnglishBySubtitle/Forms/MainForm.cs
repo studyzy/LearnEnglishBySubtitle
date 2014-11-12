@@ -40,13 +40,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private Subtitle subtitle;
         private EnglishWordService englishWordService;
 
-        private void btnOpenFile_Click(object sender, EventArgs e)
-        {
-            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                txbSubtitleFilePath.Text = openFileDialog1.FileName;
-            }
-        }
+        //private void btnOpenFile_Click(object sender, EventArgs e)
+        //{
+        //    if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+        //    {
+        //        txbSubtitleFilePath.Text = openFileDialog1.FileName;
+        //    }
+        //}
 
         private void btnParse_Click(object sender, EventArgs e)
         {
@@ -106,8 +106,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
      
         private void MainForm_Load(object sender, EventArgs e)
         {
-          
             backgroundLoadDictionary.RunWorkerAsync();
+            PronunciationDownloader.DownloadPronunciation();
         }
         private void ShowMessage(string message)
         {
@@ -598,6 +598,21 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     cell.Value = sentence+"\r\n"+ translateService.TranslateToChinese(sentence);
                 }
             }
+        }
+
+        private void PronunciationSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PronunciationForm form=new PronunciationForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadConfig();
+            }
+        }
+
+
+        private void LoadConfig()
+        {
+            
         }
 
     }

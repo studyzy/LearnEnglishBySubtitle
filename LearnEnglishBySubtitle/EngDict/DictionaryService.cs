@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using com.sun.org.apache.bcel.@internal.generic;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
 
 namespace Studyzy.LearnEnglishBySubtitle.EngDict
@@ -82,7 +83,9 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                         var means = GetCoreMeans(xml);
                         if (!engDictionary.ContainsKey(word.Word.ToLower()))
                         {
-                            engDictionary.Add(word.Word.ToLower(),new EngDictionary() { Word = word.Word, Detail = xml, Means = means });
+                            var d = new EngDictionary() {Word = word.Word, Detail = xml, Means = means};
+                            d.PhoneticSymbols = GetPhoneticSymbols(xml);
+                            engDictionary.Add(word.Word.ToLower(),d);
                         }
                         if (!wordProperties.ContainsKey(word.Word))
                         {
@@ -96,6 +99,15 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                 }
                 return engDictionary;
             }
+        }
+        private static Regex phoneticRegex = new Regex("<M>(.*?)</M>");
+        protected virtual string GetPhoneticSymbols(string xml)
+        {
+            if (phoneticRegex.IsMatch(xml))
+            {
+                return phoneticRegex.Match(xml).Groups[1].Value;
+            }
+            return null;
         }
 
         /// <summary>

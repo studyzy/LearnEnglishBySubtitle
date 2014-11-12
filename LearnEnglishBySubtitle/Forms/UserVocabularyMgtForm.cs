@@ -4,10 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
-using com.sun.corba.se.impl.oa.poa;
+using NAudio.Wave;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
@@ -27,8 +31,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         //private DictionaryService dictionaryService = new ViconDictionaryService();
         private void UserVocabularyMgtForm_Load(object sender, EventArgs e)
         {
+           
             BindList();
             this.Activate();
+            
         }
 
         private void BindList()
@@ -38,9 +44,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known)
                 .Select(w=>new VUserWord(w))
                 .OrderBy(v => v.Word).ToList();
-            //dgvKnownWords.Rows.Clear();
+      
             dgvKnownWords.AutoGenerateColumns = false;
             dgvKnownWords.DataSource = knowns;
+            tabPage1.Text = string.Format("熟悉的单词({0})", knowns.Count);
+            //this.toolTip1.SetToolTip(this.tabPage1, "词汇量:"+ knowns.Count.ToString());
+        
 
             logger.Debug("Finish Load Know Words");
             logger.Debug("Begin Load Unknown Words");
@@ -53,40 +62,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             dgvUnknownWords.AutoGenerateColumns = false;
             //cbxUnknownList.ClearSelected();
             dgvUnknownWords.DataSource = notknown;
+            //tabPage2.ToolTipText = notknown.ToString();
+            //this.toolTip1.SetToolTip(this.tabPage2, "生词:" + notknown.Count.ToString());
+            tabPage2.Text = string.Format("生词本({0})", notknown.Count);
             logger.Debug("Finish Load Unknown Words");
         }
 
 
-
-        //private void cbxUnknownList_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cbxUnknownList.SelectedValue == null)
-        //    {
-        //        return;
-        //    }
-        //    var word = cbxUnknownList.SelectedValue.ToString();
-        //    var d = dictionaryService.GetChineseMeanInDict(word);
-        //    if (d != null)
-        //    {
-        //        var mean = string.Join("\r\n", d.Means);
-        //        this.toolTip1.SetToolTip(this.cbxUnknownList, mean);
-        //    }
-        //}
-
-        //private void cbxKnownList_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    if (cbxKnownList.SelectedValue == null)
-        //    {
-        //        return;
-        //    }
-        //    var word = cbxKnownList.SelectedValue.ToString();
-        //    var d = dictionaryService.GetChineseMeanInDict(word);
-        //    if (d != null)
-        //    {
-        //        var mean = string.Join("\r\n", d.Means);
-        //        this.toolTip1.SetToolTip(this.cbxKnownList, mean);
-        //    }
-        //}
 
         private void btnAddKnownWords_Click(object sender, EventArgs e)
         {
@@ -186,14 +168,27 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void add2UnknownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var vocabulary = new List<Vocabulary>();
+            int idx = 0;
             foreach (DataGridViewRow row in dgvKnownWords.SelectedRows)
             {
                 var word = row.Cells[0].Value.ToString();
-                vocabulary.Add(new Vocabulary() { Word = word, IsKnown = false });
+                vocabulary.Add(new Vocabulary() {Word = word, IsKnown = false});
+                idx = row.Index;
             }
 
             service.SaveUserVocabulary(vocabulary, "手工");
+
+
+            int firstIndex = dgvKnownWords.FirstDisplayedScrollingRowIndex;
             BindList();
+            if (idx >= dgvKnownWords.RowCount)
+            {
+                idx = dgvKnownWords.RowCount - 1;
+            }
+            var currentRow = dgvKnownWords.Rows[idx];
+            dgvKnownWords.FirstDisplayedScrollingRowIndex = firstIndex;
+            dgvKnownWords.CurrentCell = currentRow.Cells[0];
+
         }
 
         private void move2KnownToolStripMenuItem_Click(object sender, EventArgs e)
@@ -232,6 +227,33 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 btnSearch_Click(null,null);
             }
         }
+
+        private void deleteKnownWordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvKnownWords.SelectedRows)
+            {
+                var word = row.Cells[0].Value.ToString();
+                service.DeleteWord(word);
+            }
+            BindList();
+        }
+
+        private void SoundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvKnownWords.SelectedRows)
+            {
+                var word = row.Cells[0].Value.ToString();
+                PronunciationDownloader.DownloadAndPlay(word);
+            }
+
+        }
+
+        private void dgvKnownWords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string word = dgvKnownWords.Rows[e.RowIndex].Cells[0].Value.ToString();
+            PronunciationDownloader.DownloadAndPlay(word);
+        }
+
     }
 
     public class VUserWord
@@ -246,12 +268,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Word = v.Word;
             CreateTime = v.CreateTime;
             UpdateTime = v.UpdateTime;
-            var m = Global.DictionaryService.GetChineseMeanInDict(v.Word);
+            var m = Global.DictionaryService.GetChineseMeanInDict(v.Word.ToLower());
             if (m != null)
             {
                 Meaning = m.GetAllMeans();
+                PhoneticSymbols = m.PhoneticSymbols;
             }
             Source = v.Source;
+            
             Sentence = v.Sentence;
             IsNewWord = v.KnownStatus == KnownStatus.Unknown ? "是" : "否";
         }
@@ -259,6 +283,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         public string Meaning { get; set; }
         public string IsNewWord { get; set; }
         public string Word { get; set; }
+        public string PhoneticSymbols { get; set; }
         /// <summary>
         /// 我是否已经知道这个词汇
         /// </summary>

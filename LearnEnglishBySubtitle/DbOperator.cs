@@ -56,7 +56,18 @@ namespace Studyzy.LearnEnglishBySubtitle
             context.Database.ExecuteSqlCommand(sql);
         }
 
-       
+        public string GetConfigValue(string key)
+        {
+            var config = context.Configs.SingleOrDefault(c => c.ConfigKey == key);
+            return config==null?null:config.ConfigValue;
+        }
+
+        public void SetConfigValue(string key, string value)
+        {
+            Config config=new Config(){ConfigKey = key,ConfigValue = value};
+            context.Configs.AddOrUpdate(config);
+            context.SaveChanges();
+        }
         //public T FindOne<T>(Expression<Func<T, bool>> expression) where T : class
         //{
         //    return Session.QueryOver<T>().Where(expression).SingleOrDefault();
@@ -103,6 +114,21 @@ namespace Studyzy.LearnEnglishBySubtitle
             return context.UserVocabulary.Where(funExpression).ToList();
         }
 
+        public void DeleteUserVocabulary(string word)
+        {
+            var u = context.UserVocabulary.SingleOrDefault(w => w.Word == word);
+            if (u != null)
+            {
+                context.UserVocabulary.Remove(u);
+                context.SaveChanges();
+            }
+        }
+        public void DeleteSubtitleWords(string word)
+        {
+            var list= context.NewWords.Where(w => w.Word == word);
+            context.NewWords.RemoveRange(list);
+            context.SaveChanges();
+        }
         public IList<Subtitle_NewWord> FindSubtitleWords(string word)
         {
             return context.NewWords.Where(w => w.Word == word).ToList();

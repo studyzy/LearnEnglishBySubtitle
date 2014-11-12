@@ -46,5 +46,11 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             return words[0];
         }
+
+        public void DeleteWord(string word)
+        {
+            dbOperator.DeleteSubtitleWords(word);
+            dbOperator.DeleteUserVocabulary(word);
+        }
     }
 }

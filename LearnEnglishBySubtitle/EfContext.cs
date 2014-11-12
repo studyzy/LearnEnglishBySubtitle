@@ -12,5 +12,6 @@ namespace Studyzy.LearnEnglishBySubtitle
         public DbSet<Subtitle_NewWord> NewWords { get; set; }
         public DbSet<UserVocabulary> UserVocabulary { get; set; }
         public DbSet<IgnoreWord> IgnoreWords { get; set; }
+        public DbSet<Config> Configs { get; set; }
     }
 }

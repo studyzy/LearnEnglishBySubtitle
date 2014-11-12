@@ -41,6 +41,7 @@
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserVocabularyConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemUserVocabularyMgt = new System.Windows.Forms.ToolStripMenuItem();
+            this.PronunciationSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemFilterChinese = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemShortMean = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemMeanStyleConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,11 +59,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.dgvSubtitleSentence = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).BeginInit();
@@ -147,6 +148,7 @@
             this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemUserVocabularyConfig,
             this.ToolStripMenuItemUserVocabularyMgt,
+            this.PronunciationSetupToolStripMenuItem,
             this.ToolStripMenuItemFilterChinese,
             this.ToolStripMenuItemShortMean,
             this.ToolStripMenuItemMeanStyleConfig,
@@ -168,6 +170,13 @@
             this.ToolStripMenuItemUserVocabularyMgt.Size = new System.Drawing.Size(170, 22);
             this.ToolStripMenuItemUserVocabularyMgt.Text = "用户词汇管理";
             this.ToolStripMenuItemUserVocabularyMgt.Click += new System.EventHandler(this.ToolStripMenuItemUserVocabularyMgt_Click);
+            // 
+            // PronunciationSetupToolStripMenuItem
+            // 
+            this.PronunciationSetupToolStripMenuItem.Name = "PronunciationSetupToolStripMenuItem";
+            this.PronunciationSetupToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.PronunciationSetupToolStripMenuItem.Text = "真人发音设置";
+            this.PronunciationSetupToolStripMenuItem.Click += new System.EventHandler(this.PronunciationSetupToolStripMenuItem_Click);
             // 
             // ToolStripMenuItemFilterChinese
             // 
@@ -267,7 +276,7 @@
             // 
             this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
             this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(146, 22);
             this.ToolStripMenuItemDonate.Text = "捐赠";
             this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
             // 
@@ -321,20 +330,6 @@
             this.dgvSubtitleSentence.TabIndex = 15;
             this.dgvSubtitleSentence.Resize += new System.EventHandler(this.dgvSubtitleSentence_Resize);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SentenceTranslateToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 26);
-            // 
-            // SentenceTranslateToolStripMenuItem
-            // 
-            this.SentenceTranslateToolStripMenuItem.Name = "SentenceTranslateToolStripMenuItem";
-            this.SentenceTranslateToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
-            this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
-            // 
             // ID
             // 
             this.ID.DataPropertyName = "Number";
@@ -356,6 +351,20 @@
             this.Sentence.Name = "Sentence";
             this.Sentence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Sentence.Width = 549;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SentenceTranslateToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 26);
+            // 
+            // SentenceTranslateToolStripMenuItem
+            // 
+            this.SentenceTranslateToolStripMenuItem.Name = "SentenceTranslateToolStripMenuItem";
+            this.SentenceTranslateToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
+            this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -425,6 +434,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeLine;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sentence;
+        private System.Windows.Forms.ToolStripMenuItem PronunciationSetupToolStripMenuItem;
     }
 }
 

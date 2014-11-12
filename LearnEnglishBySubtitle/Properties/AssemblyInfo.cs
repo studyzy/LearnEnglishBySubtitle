@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("深蓝英文字幕助手")]
-[assembly: AssemblyDescription("“深蓝英文字幕助手”是一款英语学习软件，通过注释英文字幕来实现边看电影，边学英语的目的。支持对srt格式ass格式字幕的操作。")]
+[assembly: AssemblyDescription("“深蓝英文字幕助手”是一款英语学习软件，通过注释英文字幕来实现边看电影，边学英语的目的。若有任何问题或建议请联系studyzy@163.com")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("studyzy")]
 [assembly: AssemblyProduct("深蓝英文字幕助手")]
