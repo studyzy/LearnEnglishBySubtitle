@@ -15,11 +15,13 @@ namespace Studyzy.LearnEnglishBySubtitle
     public class DbOperator
     {
         private ILog logger = LogManager.GetLogger(typeof (DbOperator));
+        private ILog eflogger = LogManager.GetLogger("Entity Framework");
 
         private EfContext context;
         private DbOperator()
         {
             context=new EfContext();
+            context.Database.Log = l => eflogger.Debug(l);
         }
 
         private static DbOperator op = null;

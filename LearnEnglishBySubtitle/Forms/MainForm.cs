@@ -29,17 +29,19 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             InitializeComponent();
             dbOperator = DbOperator.Instance;
             Global.DictionaryService = new ViconDictionaryService();
+            Global.RemoveChinese = true;
+            Global.ShortMean = true;
             englishWordService = new EnglishWordService();
         }
 
         private TranslateService translateService = new YoudaoTranslateService();
         private ISubtitleOperator stOperator;
         //private int userRank = 4;
-        private bool removeChinese = true;
+        
         private DbOperator dbOperator;
         private Subtitle subtitle;
         private EnglishWordService englishWordService;
-
+        
         //private void btnOpenFile_Click(object sender, EventArgs e)
         //{
         //    if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -76,7 +78,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             {
                 //var subtitleLine = kv.Value;
                 var txt = subtitleLine.Text;
-                if (removeChinese)
+                if (Global.RemoveChinese)
                 {
                     if (withMean)
                     {
@@ -106,6 +108,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
      
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LoadConfig();
             backgroundLoadDictionary.RunWorkerAsync();
             PronunciationDownloader.DownloadPronunciation();
         }
@@ -242,7 +245,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 if (words.ContainsKey(word))//这个词需要注释
                 {
                     var mean = words[word].SelectMean;
-                    if (shortMean)
+                    if (Global.ShortMean)
                     {
                         var meanarray = mean.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
                         mean = meanarray[0];
@@ -442,13 +445,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void ToolStripMenuItemFilterChinese_Click(object sender, EventArgs e)
         {
-            removeChinese = ToolStripMenuItemFilterChinese.Checked;
+            Global.RemoveChinese = ToolStripMenuItemFilterChinese.Checked;
         }
 
-        private bool shortMean = true;
         private void ToolStripMenuItemShortMean_Click(object sender, EventArgs e)
         {
-            shortMean = ToolStripMenuItemShortMean.Checked;
+            Global.ShortMean = ToolStripMenuItemShortMean.Checked;
         }
 
         private void ToolStripMenuItemMeanStyleConfig_Click(object sender, EventArgs e)
@@ -612,7 +614,9 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void LoadConfig()
         {
-            
+            Global.PronunciationType = DbOperator.Instance.GetConfigValue("PronunciationType");
+            Global.PronunciationDownload = Convert.ToBoolean(DbOperator.Instance.GetConfigValue("PronunciationDownload"));
+
         }
 
     }
