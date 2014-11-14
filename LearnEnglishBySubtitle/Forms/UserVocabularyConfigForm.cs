@@ -37,7 +37,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             //DbOperator dbOperator= DbOperator.Instance;
             //var words = dbOperator.FindAll<VocabularyRank>(v => v.RankValue >= numUserVocabularyRank.Value);
             var words = InnerDictionaryHelper.GetAllVocabularyRanks();
-            Service service=new Service();
+     
             var vocabulary = new List<Vocabulary>();
             foreach (var vocabularyRank in words)
             {
@@ -46,7 +46,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     vocabulary.Add(new Vocabulary(){Word = vocabularyRank.Key,IsKnown = true});
                 }
             }
-            service.SaveUserVocabulary(vocabulary,"柯林斯词频分级");
+            DbOperator.Instance.SaveUserVocabulary(vocabulary,"柯林斯词频分级");
             logger.Debug("柯林斯词频分级保存成功");
             MessageBox.Show("用户词频设置保存成功");
             //RegistryHelper.WTRegedit("Used","Yes");

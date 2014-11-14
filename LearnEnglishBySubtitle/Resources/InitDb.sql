@@ -29,3 +29,11 @@ CREATE UNIQUE INDEX idx_UserVocabulary ON UserVocabulary (
     KnownStatus,
     Word 
 );
+
+CREATE TABLE Config ( 
+    ConfigKey   VARCHAR( 50 )   PRIMARY KEY,
+    ConfigValue VARCHAR( 200 )  NOT NULL 
+);
+
+INSERT INTO Config VALUES('PronunciationType','US');
+INSERT INTO Config VALUES('PronunciationDownload','False');

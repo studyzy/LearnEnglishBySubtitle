@@ -72,6 +72,9 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.RemoveWordFromUnknowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PronunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKnownWords)).BeginInit();
@@ -327,15 +330,17 @@
             // unknownContextMenuStrip
             // 
             this.unknownContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.move2KnownToolStripMenuItem});
+            this.move2KnownToolStripMenuItem,
+            this.RemoveWordFromUnknowToolStripMenuItem,
+            this.PronunToolStripMenuItem});
             this.unknownContextMenuStrip.Name = "unknownContextMenuStrip";
-            this.unknownContextMenuStrip.Size = new System.Drawing.Size(171, 26);
+            this.unknownContextMenuStrip.Size = new System.Drawing.Size(207, 92);
             // 
             // move2KnownToolStripMenuItem
             // 
             this.move2KnownToolStripMenuItem.Name = "move2KnownToolStripMenuItem";
-            this.move2KnownToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.move2KnownToolStripMenuItem.Text = "终于记住了！移除";
+            this.move2KnownToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.move2KnownToolStripMenuItem.Text = "终于记住了！移出生词本";
             this.move2KnownToolStripMenuItem.Click += new System.EventHandler(this.move2KnownToolStripMenuItem_Click);
             // 
             // btnExportUnknownWords
@@ -513,6 +518,24 @@
             this.saveFileDialog1.DefaultExt = "txt";
             this.saveFileDialog1.Filter = "TXT|*.txt";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // RemoveWordFromUnknowToolStripMenuItem
+            // 
+            this.RemoveWordFromUnknowToolStripMenuItem.Name = "RemoveWordFromUnknowToolStripMenuItem";
+            this.RemoveWordFromUnknowToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.RemoveWordFromUnknowToolStripMenuItem.Text = "不是单词，删除";
+            this.RemoveWordFromUnknowToolStripMenuItem.Click += new System.EventHandler(this.RemoveWordFromUnknowToolStripMenuItem_Click);
+            // 
+            // PronunToolStripMenuItem
+            // 
+            this.PronunToolStripMenuItem.Name = "PronunToolStripMenuItem";
+            this.PronunToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.PronunToolStripMenuItem.Text = "真人发音";
+            this.PronunToolStripMenuItem.Click += new System.EventHandler(this.PronunToolStripMenuItem_Click);
+            // 
             // UserVocabularyMgtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,6 +544,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "UserVocabularyMgtForm";
             this.Text = "词汇管理";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.UserVocabularyMgtForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -583,5 +607,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.ToolStripMenuItem deleteKnownWordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SoundToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolStripMenuItem RemoveWordFromUnknowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PronunToolStripMenuItem;
     }
 }

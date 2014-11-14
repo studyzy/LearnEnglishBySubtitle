@@ -12,6 +12,8 @@ using edu.stanford.nlp.tagger.maxent;
 using ikvm.extensions;
 using java.util;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
+using Studyzy.LearnEnglishBySubtitle.Entities;
+using Studyzy.LearnEnglishBySubtitle.Helpers;
 using StringReader = java.io.StringReader;
 
 namespace Studyzy.LearnEnglishBySubtitle
@@ -60,6 +62,83 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             return result;
         }
+
+
+         private EnglishWordService englishWordService = new EnglishWordService();
+        private IList<string> knownVocabulary;
+        private IList<string> ignores;
+        /// <summary>
+        /// 找出一个句子中的所有生词
+        /// </summary>
+        /// <param name="line">一句英文句子</param>
+        /// <returns>Key为生词的原型，Value为生词在句子中的形式</returns>
+        public IList<KeyValuePair<string,string>> Pickup(string line)
+        {
+            if (knownVocabulary == null)
+            {
+                knownVocabulary =
+                    DbOperator.Instance.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known)
+                        .Select(v => v.Word.ToLower())
+                        .ToList();
+                ignores = DbOperator.Instance.GetAllIgnoreWords().Select(v => v.Word).ToList();
+            }
+            var orgLine = GetOriginalSentence(line);
+            var array = SplitSentence(orgLine);
+            //orgLine = orgLine.ToLower();
+            var result = new List<KeyValuePair<string, string>>();
+            foreach (string w in array)
+            {
+
+                if (IsEnglishName(w))
+                {
+                    //英文名，忽略
+                    continue;
+                }
+                if (w == "s")
+                {
+                    //xxx's 拆出来的
+                    continue;
+                }
+                var word = w.ToLower();
+                var original = englishWordService.GetOriginalWord(word);
+                if (IsEasyWord(original))
+                {
+                    continue;
+                }
+                if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original) || ignores.Contains(word) ||
+                    ignores.Contains(original))
+                {
+                    //认识的单词，忽略
+                    continue;
+                }
+                result.Add(new KeyValuePair<string, string>(original,w));
+               
+
+               
+            }
+            return result;
+        }
+        private bool IsEasyWord(string word)
+        {
+            var easyWord = InnerDictionaryHelper.GetAllEasyWords();
+            return easyWord.Contains(word);
+        }
+        /// <summary>
+        /// 判断是否是英文名，首字母大写，而且在英文名列表中的就是英文名
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        private bool IsEnglishName(string word)
+        {
+            if (word[0] >= 'A' && word[0] <= 'Z')
+            {
+                var names = InnerDictionaryHelper.GetAllEnglishNames();
+                return names.Contains(word);
+            }
+            return false;
+        }
+       
+
 
         //private DictionaryService dictionaryService;
         /// <summary>
@@ -172,7 +251,7 @@ WRB	adv.";
         /// <returns></returns>
         public static string GetOriginalSentence(string sentence)
         {
-            if (sentence.IndexOf("'") > 0)
+            if (sentence.IndexOf("'") >= 0)
             {
                 sentence= sentence.Replace("I'm", "I am");
                 sentence= sentence.Replace("'re", " are");

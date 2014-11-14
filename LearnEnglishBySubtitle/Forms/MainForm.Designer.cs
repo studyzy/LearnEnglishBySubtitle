@@ -64,6 +64,8 @@
             this.Sentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.工具ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).BeginInit();
@@ -136,7 +138,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.设置ToolStripMenuItem,
-            this.帮助ToolStripMenuItem});
+            this.帮助ToolStripMenuItem,
+            this.工具ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(735, 24);
@@ -366,6 +369,21 @@
             this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
             this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
             // 
+            // 工具ToolStripMenuItem
+            // 
+            this.工具ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PreviewToolStripMenuItem});
+            this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
+            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.工具ToolStripMenuItem.Text = "工具";
+            // 
+            // PreviewToolStripMenuItem
+            // 
+            this.PreviewToolStripMenuItem.Name = "PreviewToolStripMenuItem";
+            this.PreviewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.PreviewToolStripMenuItem.Text = "生词预习";
+            this.PreviewToolStripMenuItem.Click += new System.EventHandler(this.PreviewToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -435,6 +453,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TimeLine;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sentence;
         private System.Windows.Forms.ToolStripMenuItem PronunciationSetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 工具ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PreviewToolStripMenuItem;
     }
 }
 

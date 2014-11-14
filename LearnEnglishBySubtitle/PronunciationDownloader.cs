@@ -16,6 +16,10 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         public static void DownloadPronunciation()
         {
+            if (!Global.PronunciationDownload)
+            {
+                return;
+            }
             var words =
                 DbOperator.Instance.GetAllUserVocabulary()
                     .Select(w => w.Word)

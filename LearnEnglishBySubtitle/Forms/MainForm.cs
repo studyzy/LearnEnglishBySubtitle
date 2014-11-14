@@ -31,7 +31,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Global.DictionaryService = new ViconDictionaryService();
             Global.RemoveChinese = true;
             Global.ShortMean = true;
-            englishWordService = new EnglishWordService();
+            //englishWordService = new EnglishWordService();
         }
 
         private TranslateService translateService = new YoudaoTranslateService();
@@ -40,7 +40,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         
         private DbOperator dbOperator;
         private Subtitle subtitle;
-        private EnglishWordService englishWordService;
+        //private EnglishWordService englishWordService;
         
         //private void btnOpenFile_Click(object sender, EventArgs e)
         //{
@@ -177,48 +177,21 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private IDictionary<string, SubtitleWord> PickNewWords(ICollection<SubtitleLine> subtitles)
         {
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
-            var knownVocabulary =
-                dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known).Select(v => v.Word.ToLower()).ToList();
-            var ignores = dbOperator.GetAllIgnoreWords().Select(v => v.Word).ToList();
+           
             var texts = subtitles.Select(s => s.EnglishText).ToList();
+           
             foreach (var line in texts)
             {
-                var orgLine = SentenceParse.GetOriginalSentence(line);
-                var array = SentenceParse.SplitSentence(orgLine);
-                orgLine = orgLine.ToLower();
-                foreach (string w in array)
+                var lineResult = SentenceParse.Instance.Pickup(line);
+                foreach (KeyValuePair<string, string> keyValuePair in lineResult)
                 {
-
-                    if (IsEnglishName(w))
-                    {
-                        //英文名，忽略
-                        continue;
-                    }
-                    if (w == "s")
-                    {
-                        //xxx's 拆出来的
-                        continue;
-                    }
-                    var word = w.ToLower();
-                    var original = englishWordService.GetOriginalWord(word);
-                    if (IsEasyWord(original))
+                    if (result.ContainsKey(keyValuePair.Key))
                     {
                         continue;
                     }
-                    if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original) || ignores.Contains(word) ||
-                        ignores.Contains(original))
-                    {
-                        //认识的单词，忽略
-                        continue;
-                    }
-
-                    if (result.ContainsKey(original))
-                    {
-                        //重复的单词
-                        continue;
-                    }
-
-                    var mean = SentenceParse.Instance.RemarkWord(orgLine, word, original);
+                    string original = keyValuePair.Key;
+                    string word = keyValuePair.Value;
+                    var mean = SentenceParse.Instance.RemarkWord(line, word, original);
                     if (mean != null)
                     {
                         var wd = new SubtitleWord()
@@ -227,11 +200,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                             WordInSubitle = word,
                             Means = mean.Means,
                             SubtitleSentence = line,
-                            SelectMean = mean.DefaultMean == null?mean.Means[0].ToString(): mean.DefaultMean.ToString()
+                            SelectMean = mean.DefaultMean == null ? mean.Means[0].ToString() : mean.DefaultMean.ToString()
                         };
-                        result.Add(original,wd);
+                        result.Add(original, wd);
                     }
                 }
+                
             }
             return result;
         }
@@ -281,26 +255,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         //private Dictionary<string, EngDictionary> cachedDict = new Dictionary<string, EngDictionary>();
 
-        private bool IsEasyWord(string word)
-        {
-            var easyWord = InnerDictionaryHelper.GetAllEasyWords();
-            return easyWord.Contains(word);
-        }
-        /// <summary>
-        /// 判断是否是英文名，首字母大写，而且在英文名列表中的就是英文名
-        /// </summary>
-        /// <param name="word"></param>
-        /// <returns></returns>
-        private bool IsEnglishName(string word)
-        {
-            if (word[0] >= 'A' && word[0] <= 'Z')
-            {
-                var names = InnerDictionaryHelper.GetAllEnglishNames();
-                return names.Contains(word);
-            }
-            return false;
-        }
-       
+        
 
         //private IList<UserVocabulary> userVocabularies;
  
@@ -617,6 +572,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Global.PronunciationType = DbOperator.Instance.GetConfigValue("PronunciationType");
             Global.PronunciationDownload = Convert.ToBoolean(DbOperator.Instance.GetConfigValue("PronunciationDownload"));
 
+        }
+
+        private void PreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreviewVocabularyForm form=new PreviewVocabularyForm();
+            form.Show();
+            form.Activate();
         }
 
     }

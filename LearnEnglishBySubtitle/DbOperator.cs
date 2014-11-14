@@ -70,26 +70,46 @@ namespace Studyzy.LearnEnglishBySubtitle
             context.Configs.AddOrUpdate(config);
             context.SaveChanges();
         }
-        //public T FindOne<T>(Expression<Func<T, bool>> expression) where T : class
-        //{
-        //    return Session.QueryOver<T>().Where(expression).SingleOrDefault();
-        //}
+        public void SaveUserVocabulary(IList<Vocabulary> userWords, string source)
+        {
+            var allUserVocabulary = GetAllUserVocabulary();
 
-        //public T FindFirst<T>(Expression<Func<T, bool>> expression) where T : class
-        //{
-        //    return Session.Query<T>().Where(expression).FirstOrDefault();
-        //}
 
-        //public IList<T> FindAll<T>(Expression<Func<T, bool>> expression) where T : class
-        //{
-        //    return Session.QueryOver<T>().Where(expression).List();
-        //}
+            BeginTran();
+            foreach (var word in userWords)
+            {
+                var dbWord = allUserVocabulary.SingleOrDefault(v => v.Word == word.Word);
+                if (dbWord != null)
+                {
+                    dbWord.KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown;
+                    dbWord.Source = source;
+                    SaveUserVocabulary(dbWord);
+                }
+                else
+                {
+                    UserVocabulary uv = new UserVocabulary() { Word = word.Word, Source = source, KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown };
+                    allUserVocabulary.Add(uv);
+                    SaveUserVocabulary(uv);
+                }
+            }
 
-        //public IList<T> GetAll<T>() where T : class
-        //{
-        //    //return Session.QueryOver<T>().List();
-        //    return context.Database.SqlQuery<T>("").ToList();
-        //}
+            Commit();
+        }
+        public UserVocabulary GetUserWord(string word)
+        {
+            var words = FindAllUserVocabulary(u => u.Word == word.Trim());
+            if (words.Count == 0)
+            {
+                return null;
+            }
+            return words[0];
+        }
+
+        public void DeleteWord(string word)
+        {
+            DeleteSubtitleWords(word);
+            DeleteUserVocabulary(word);
+        }
 
         public IList<UserVocabulary> GetAllUserVocabulary()
         {
