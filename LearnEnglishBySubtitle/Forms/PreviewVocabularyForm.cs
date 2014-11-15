@@ -7,7 +7,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ikvm.extensions;
 using log4net;
+using Studyzy.LearnEnglishBySubtitle.Entities;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
 using Studyzy.LearnEnglishBySubtitle.Subtitles;
 
@@ -27,6 +29,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             {
                 return;
             }
+            SentenceParse sentenceParse=new SentenceParse();
             DirectoryInfo directoryInfo = new DirectoryInfo(folderBrowserDialog1.SelectedPath);
             List<string> sentences=new List<string>();
 
@@ -46,7 +49,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             IDictionary<string,VPreviewWord> previewWords=new Dictionary<string, VPreviewWord>();
             foreach (var sentence in sentences)
             {
-                var newWords = SentenceParse.Instance.Pickup(sentence);
+                var newWords = sentenceParse.Pickup(sentence);
                 foreach (KeyValuePair<string, string> keyValuePair in newWords)
                 {
                     string original = keyValuePair.Key;
@@ -57,7 +60,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     }
                     else
                     {
-                        var mean = SentenceParse.Instance.RemarkWord(sentence, word, original);
+                        var mean = sentenceParse.RemarkWord(sentence, word, original);
                         if (mean != null)
                         {
 
@@ -100,13 +103,51 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 dataGridView1.Rows.Add(row);
             }
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                string w = dataGridView1.Rows[e.RowIndex].Cells["Word"].Value.ToString();
+                DbOperator.Instance.AddIgnoreWord(w);
+                dataGridView1.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            Splash.Show();
+            //var knownWords = new List<String>();
+            //var words = new List<SubtitleWord>();
+            Splash.Status = "保存单词中...";
+            IList<Vocabulary> vocabularies=new List<Vocabulary>();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                var c1 = Convert.ToBoolean(row.Cells[1].Value);
+                var c2 = row.Cells[2].Value.ToString();
+                var c4 = row.Cells[2].Value.ToString();
+                if (!c1)//已经记住了的词
+                {
+                    vocabularies.Add(new Vocabulary(){Word = c2,IsKnown = true});//,Source = "生词预习",CreateTime = DateTime.Now});
+                }
+
+            }
+            DbOperator.Instance.SaveUserVocabulary(vocabularies, "生词预习");
+            Splash.Close();
+
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+
+        public class VPreviewWord
+        {
+            public string Word { get; set; }
+            public string Sentence { get; set; }
+            public string Mean { get; set; }
+            public int Rank { get; set; }
+        }
     }
 
-    public class VPreviewWord
-    {
-        public string Word { get; set; }
-        public string Sentence { get; set; }
-        public string Mean { get; set; }
-        public int Rank { get; set; }
-    }
+ 
 }

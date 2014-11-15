@@ -21,27 +21,28 @@ namespace Studyzy.LearnEnglishBySubtitle
     public class SentenceParse
     {
         private static MaxentTagger tagger;
-        private static SentenceParse instance;
-        private SentenceParse()
+        //private static SentenceParse instance;
+        public SentenceParse()
         {
             //dictionaryService=new ViconDictionaryService();
            string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
            var model = currentFolder + @"\models\english-bidirectional-distsim.tagger";
             // Loading POS Tagger
+            if(tagger==null)
             tagger = new MaxentTagger(model);
         }
 
-        public static SentenceParse Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance=new SentenceParse();
-                }
-                return instance;
-            }
-        }
+        //public static SentenceParse Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //        {
+        //            instance=new SentenceParse();
+        //        }
+        //        return instance;
+        //    }
+        //}
 
         private string Parse(string subtitleLine)
         {
@@ -67,6 +68,7 @@ namespace Studyzy.LearnEnglishBySubtitle
          private EnglishWordService englishWordService = new EnglishWordService();
         private IList<string> knownVocabulary;
         private IList<string> ignores;
+        public IList<string> SpecialWords = new List<string>(); 
         /// <summary>
         /// 找出一个句子中的所有生词
         /// </summary>
@@ -83,29 +85,33 @@ namespace Studyzy.LearnEnglishBySubtitle
                 ignores = DbOperator.Instance.GetAllIgnoreWords().Select(v => v.Word).ToList();
             }
             var orgLine = GetOriginalSentence(line);
-            var array = SplitSentence(orgLine);
-            //orgLine = orgLine.ToLower();
+            var sentences = GetSentences(orgLine);
+            var array = SplitSentence2Words(orgLine);
             var result = new List<KeyValuePair<string, string>>();
             foreach (string w in array)
             {
-
+                var wordLow = w.ToLower();
+                if (IsEasyWord(wordLow))
+                {
+                    continue;
+                }
                 if (IsEnglishName(w))
                 {
                     //英文名，忽略
                     continue;
                 }
-                if (w == "s")
+                if (IsSpecialName(w, sentences))
                 {
-                    //xxx's 拆出来的
+                    if (!SpecialWords.Contains(w))
+                    {
+                        SpecialWords.Add(w);
+                    }
                     continue;
                 }
-                var word = w.ToLower();
-                var original = englishWordService.GetOriginalWord(word);
-                if (IsEasyWord(original))
-                {
-                    continue;
-                }
-                if (knownVocabulary.Contains(word) || knownVocabulary.Contains(original) || ignores.Contains(word) ||
+              
+                var original = englishWordService.GetOriginalWord(wordLow);
+               
+                if (knownVocabulary.Contains(wordLow) || knownVocabulary.Contains(original) || ignores.Contains(wordLow) ||
                     ignores.Contains(original))
                 {
                     //认识的单词，忽略
@@ -118,8 +124,58 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
             return result;
         }
+        /// <summary>
+        /// 首字母大写，但是找到的解释的词却不是首字母大写
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="sentences"></param>
+        /// <returns></returns>
+        private bool IsSpecialName(string s, IEnumerable<string> sentences)
+        {
+            char firstChar = s[0];
+            if (firstChar >= 'A' && firstChar <= 'Z')//首字母大写
+            {
+                if (SpecialWords.Contains(s))
+                {
+                    return true;
+                }
+                if (s.ToUpper() == s)//全是大写字母
+                {
+                    return true;
+                }
+                foreach (var sentence in sentences)
+                {
+                    if (sentence.IndexOf(s, StringComparison.Ordinal) > 0)
+                    {
+                        var mean = Global.DictionaryService.GetChineseMeanInDict(s);
+                        if (mean == null)//首字母大写的情况下，找不到意思，按特殊词处理
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        /// <summary>
+        /// 把一段话拆分成多个句子
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        private IList<string> GetSentences(string line)
+        {
+            return line.Split(new[] {'.', '"', '\r', '\n', '?', '!'},StringSplitOptions.RemoveEmptyEntries)
+                .Select(s=>s.Trim()).ToList();//去掉句子前后的空格
+          
+        }
+
+        private static string[] EasyWordPart = new[] {"re", "m", "s", "t", "d", "n", "ll"};
         private bool IsEasyWord(string word)
         {
+            if (EasyWordPart.Contains(word))
+            {
+                return true;
+            }
             var easyWord = InnerDictionaryHelper.GetAllEasyWords();
             return easyWord.Contains(word);
         }
@@ -154,7 +210,11 @@ namespace Studyzy.LearnEnglishBySubtitle
             {
                 return null;
             }
-            var d = Global.DictionaryService.GetChineseMeanInDict(word.ToLower());
+            var d = Global.DictionaryService.GetChineseMeanInDict(word);
+            if (d == null)
+            {
+                d = Global.DictionaryService.GetChineseMeanInDict(word.ToLower());
+            }
             var originalMean = Global.DictionaryService.GetChineseMeanInDict(original);
             if (d == null ||d.Means.Count == 1)//只有一个解释，那么就不用判断了,返回原型的解释
             {
@@ -268,8 +328,12 @@ WRB	adv.";
 
             return sentence;
         }
-
-        public static string[] SplitSentence(string sentence)
+        /// <summary>
+        /// 把句子拆分成单词
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns></returns>
+        public static string[] SplitSentence2Words(string sentence)
         {
             var array = sentence.Split(new char[] { ' ', ',', '.', '?', ':', '!','\'' }, StringSplitOptions.RemoveEmptyEntries);
             return array;

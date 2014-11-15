@@ -308,7 +308,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Word = v.Word;
             CreateTime = v.CreateTime;
             UpdateTime = v.UpdateTime;
-            var m = Global.DictionaryService.GetChineseMeanInDict(v.Word.ToLower());
+            var m = Global.DictionaryService.GetChineseMeanInDict(v.Word);
             if (m != null)
             {
                 Meaning = m.GetAllMeans();

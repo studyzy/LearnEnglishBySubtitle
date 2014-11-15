@@ -24,6 +24,10 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
         //}
         public abstract string DictionaryName { get; }
         protected LingoesLd2 ld2Parse = new LingoesLd2();
+
+        /// <summary>
+        /// 单词作为Key（区分大小写），意思作为Value的内存字典
+        /// </summary>
         protected static IDictionary<string, EngDictionary> engDictionary;
         protected static IDictionary<string, string[]> wordProperties;
 
@@ -81,11 +85,11 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                             continue;
                         }
                         var means = GetCoreMeans(xml);
-                        if (!engDictionary.ContainsKey(word.Word.ToLower()))
+                        if (!engDictionary.ContainsKey(word.Word))
                         {
                             var d = new EngDictionary() {Word = word.Word, Detail = xml, Means = means};
                             d.PhoneticSymbols = GetPhoneticSymbols(xml);
-                            engDictionary.Add(word.Word.ToLower(),d);
+                            engDictionary.Add(word.Word,d);
                         }
                         if (!wordProperties.ContainsKey(word.Word))
                         {

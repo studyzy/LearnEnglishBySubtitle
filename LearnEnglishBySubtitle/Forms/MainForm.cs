@@ -34,6 +34,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             //englishWordService = new EnglishWordService();
         }
 
+        private SentenceParse sentenceParse;
         private TranslateService translateService = new YoudaoTranslateService();
         private ISubtitleOperator stOperator;
         //private int userRank = 4;
@@ -125,8 +126,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 MessageBox.Show("请先点击“载入字幕”按钮打开字幕文件");
                 return;
             }
+        
             Splash.Show();
             Splash.Status = "解析字幕中...";
+            sentenceParse = new SentenceParse();
             var subtitleWords = PickNewWords(subtitle.Bodies.Values);
             if (subtitleWords.Count > 0)
             {
@@ -182,7 +185,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
            
             foreach (var line in texts)
             {
-                var lineResult = SentenceParse.Instance.Pickup(line);
+                var lineResult = sentenceParse.Pickup(line);
                 foreach (KeyValuePair<string, string> keyValuePair in lineResult)
                 {
                     if (result.ContainsKey(keyValuePair.Key))
@@ -191,7 +194,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     }
                     string original = keyValuePair.Key;
                     string word = keyValuePair.Value;
-                    var mean = SentenceParse.Instance.RemarkWord(line, word, original);
+                    var mean = sentenceParse.RemarkWord(line, word, original);
                     if (mean != null)
                     {
                         var wd = new SubtitleWord()
@@ -212,7 +215,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private string ReplaceSubtitleLineByVocabulary(string line,IDictionary<string,SubtitleWord> words )
         {
-            var array = SentenceParse.SplitSentence(line);
+            var array = SentenceParse.SplitSentence2Words(line);
             foreach (string oword in array)
             {
                 var word = oword.ToLower();
@@ -319,7 +322,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void backgroundLoadDictionary_DoWork(object sender, DoWorkEventArgs e)
         {
             Global.DictionaryService.IsInDictionary("a");
-            SentenceParse.Instance.RemarkWord("Test it.", "it", "it");
+            sentenceParse.RemarkWord("Test it.", "it", "it");
         }
 
         private void backgroundLoadDictionary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

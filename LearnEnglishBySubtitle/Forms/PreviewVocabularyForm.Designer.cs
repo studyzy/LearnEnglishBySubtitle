@@ -28,28 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnPickupNewWords = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.dgbtnIgnore = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IsNewWord = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WordRank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubtitleSentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Means = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnPickupNewWords = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnOK
             // 
-            this.button1.Location = new System.Drawing.Point(762, 459);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "确定";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnOK.Location = new System.Drawing.Point(762, 459);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "确定";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // dataGridView1
             // 
@@ -77,25 +78,7 @@
             this.dataGridView1.ShowRowErrors = false;
             this.dataGridView1.Size = new System.Drawing.Size(825, 397);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(663, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "单击“字幕分析”按钮选择字幕所在文件夹，系统将根据用户词汇量分析出高频生词，用户记住这些高频生词更容易看懂字幕。";
-            // 
-            // btnPickupNewWords
-            // 
-            this.btnPickupNewWords.Location = new System.Drawing.Point(762, 9);
-            this.btnPickupNewWords.Name = "btnPickupNewWords";
-            this.btnPickupNewWords.Size = new System.Drawing.Size(75, 32);
-            this.btnPickupNewWords.TabIndex = 3;
-            this.btnPickupNewWords.Text = "字幕分析";
-            this.btnPickupNewWords.UseVisualStyleBackColor = true;
-            this.btnPickupNewWords.Click += new System.EventHandler(this.btnPickupNewWords_Click);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // dgbtnIgnore
             // 
@@ -141,6 +124,25 @@
             this.Means.ReadOnly = true;
             this.Means.Width = 300;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(663, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "单击“字幕分析”按钮选择字幕所在文件夹，系统将根据用户词汇量分析出高频生词，用户记住这些高频生词更容易看懂字幕。";
+            // 
+            // btnPickupNewWords
+            // 
+            this.btnPickupNewWords.Location = new System.Drawing.Point(762, 9);
+            this.btnPickupNewWords.Name = "btnPickupNewWords";
+            this.btnPickupNewWords.Size = new System.Drawing.Size(75, 32);
+            this.btnPickupNewWords.TabIndex = 3;
+            this.btnPickupNewWords.Text = "字幕分析";
+            this.btnPickupNewWords.UseVisualStyleBackColor = true;
+            this.btnPickupNewWords.Click += new System.EventHandler(this.btnPickupNewWords_Click);
+            // 
             // PreviewVocabularyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,8 +151,9 @@
             this.Controls.Add(this.btnPickupNewWords);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnOK);
             this.Name = "PreviewVocabularyForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "生词预习";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -160,7 +163,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPickupNewWords;

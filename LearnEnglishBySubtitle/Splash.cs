@@ -24,18 +24,18 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         }
 
-        static public void Show()
+        static public void Show(string txt="Loading")
         {
 
             if (MySplashThread != null)
 
                 return;
-
+         
             MySplashThread = new Thread(new ThreadStart(Splash.ShowThread));
 
             MySplashThread.IsBackground = true;
 
-            MySplashThread.ApartmentState = ApartmentState.STA;
+            MySplashThread.TrySetApartmentState(ApartmentState.STA);
 
             MySplashThread.Start();
 
