@@ -47,13 +47,10 @@
             this.rtbKnownWords = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvUnknownWords = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.音标 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unknownContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.move2KnownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveWordFromUnknowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PronunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExportUnknownWords = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAddNewWords = new System.Windows.Forms.Button();
@@ -73,8 +70,12 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.RemoveWordFromUnknowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PronunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.IsStar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.音标 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKnownWords)).BeginInit();
@@ -272,6 +273,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUnknownWords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUnknownWords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IsStar,
             this.dataGridViewTextBoxColumn1,
             this.音标,
             this.dataGridViewTextBoxColumn3,
@@ -289,43 +291,7 @@
             this.dgvUnknownWords.ShowRowErrors = false;
             this.dgvUnknownWords.Size = new System.Drawing.Size(873, 631);
             this.dgvUnknownWords.TabIndex = 6;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Word";
-            this.dataGridViewTextBoxColumn1.HeaderText = "单词";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // 音标
-            // 
-            this.音标.DataPropertyName = "PhoneticSymbols";
-            this.音标.HeaderText = "音标";
-            this.音标.Name = "音标";
-            this.音标.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Meaning";
-            this.dataGridViewTextBoxColumn3.HeaderText = "解释";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 400;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Sentence";
-            this.dataGridViewTextBoxColumn2.HeaderText = "例句";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 400;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Source";
-            this.dataGridViewTextBoxColumn4.HeaderText = "来源";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dgvUnknownWords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnknownWords_CellClick);
             // 
             // unknownContextMenuStrip
             // 
@@ -334,7 +300,7 @@
             this.RemoveWordFromUnknowToolStripMenuItem,
             this.PronunToolStripMenuItem});
             this.unknownContextMenuStrip.Name = "unknownContextMenuStrip";
-            this.unknownContextMenuStrip.Size = new System.Drawing.Size(207, 92);
+            this.unknownContextMenuStrip.Size = new System.Drawing.Size(207, 70);
             // 
             // move2KnownToolStripMenuItem
             // 
@@ -342,6 +308,20 @@
             this.move2KnownToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.move2KnownToolStripMenuItem.Text = "终于记住了！移出生词本";
             this.move2KnownToolStripMenuItem.Click += new System.EventHandler(this.move2KnownToolStripMenuItem_Click);
+            // 
+            // RemoveWordFromUnknowToolStripMenuItem
+            // 
+            this.RemoveWordFromUnknowToolStripMenuItem.Name = "RemoveWordFromUnknowToolStripMenuItem";
+            this.RemoveWordFromUnknowToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.RemoveWordFromUnknowToolStripMenuItem.Text = "不是单词，删除";
+            this.RemoveWordFromUnknowToolStripMenuItem.Click += new System.EventHandler(this.RemoveWordFromUnknowToolStripMenuItem_Click);
+            // 
+            // PronunToolStripMenuItem
+            // 
+            this.PronunToolStripMenuItem.Name = "PronunToolStripMenuItem";
+            this.PronunToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.PronunToolStripMenuItem.Text = "真人发音";
+            this.PronunToolStripMenuItem.Click += new System.EventHandler(this.PronunToolStripMenuItem_Click);
             // 
             // btnExportUnknownWords
             // 
@@ -522,19 +502,56 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // RemoveWordFromUnknowToolStripMenuItem
+            // IsStar
             // 
-            this.RemoveWordFromUnknowToolStripMenuItem.Name = "RemoveWordFromUnknowToolStripMenuItem";
-            this.RemoveWordFromUnknowToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.RemoveWordFromUnknowToolStripMenuItem.Text = "不是单词，删除";
-            this.RemoveWordFromUnknowToolStripMenuItem.Click += new System.EventHandler(this.RemoveWordFromUnknowToolStripMenuItem_Click);
+            this.IsStar.DataPropertyName = "IsStar";
+            this.IsStar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IsStar.Frozen = true;
+            this.IsStar.HeaderText = "☆";
+            this.IsStar.Name = "IsStar";
+            this.IsStar.ReadOnly = true;
+            this.IsStar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsStar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsStar.Text = "☆";
+            this.IsStar.ToolTipText = "如果觉得这个生词很重要，需要优先记忆，可以点亮该星";
+            this.IsStar.Width = 30;
             // 
-            // PronunToolStripMenuItem
+            // dataGridViewTextBoxColumn1
             // 
-            this.PronunToolStripMenuItem.Name = "PronunToolStripMenuItem";
-            this.PronunToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.PronunToolStripMenuItem.Text = "真人发音";
-            this.PronunToolStripMenuItem.Click += new System.EventHandler(this.PronunToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Word";
+            this.dataGridViewTextBoxColumn1.HeaderText = "单词";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // 音标
+            // 
+            this.音标.DataPropertyName = "PhoneticSymbols";
+            this.音标.HeaderText = "音标";
+            this.音标.Name = "音标";
+            this.音标.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Meaning";
+            this.dataGridViewTextBoxColumn3.HeaderText = "解释";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 400;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Sentence";
+            this.dataGridViewTextBoxColumn2.HeaderText = "例句";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 400;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Source";
+            this.dataGridViewTextBoxColumn4.HeaderText = "来源";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // UserVocabularyMgtForm
             // 
@@ -594,11 +611,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mean;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sentence;
         private System.Windows.Forms.DataGridViewTextBoxColumn Source;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 音标;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn IsNewWord;
@@ -610,5 +622,11 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolStripMenuItem RemoveWordFromUnknowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PronunToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewButtonColumn IsStar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 音标;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

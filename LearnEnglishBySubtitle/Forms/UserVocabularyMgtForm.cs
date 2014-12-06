@@ -57,7 +57,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             var notknown =
                 dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown)
                     .Select(w => new VUserWord(w))
-                    .OrderBy(v => v.Word)
+                   .OrderByDescending(v=>v.IsStar)
+                    .ThenBy(v => v.Word)
                     .ToList();
             //dgvUnknownWords.Rows.Clear();
             dgvUnknownWords.AutoGenerateColumns = false;
@@ -210,7 +211,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             var vocabulary = new List<Vocabulary>();
             foreach (DataGridViewRow row in dgvUnknownWords.SelectedRows)
             {
-                var word = row.Cells[0].Value.ToString();
+                var word = row.Cells[1].Value.ToString();
                 vocabulary.Add(new Vocabulary() { Word = word, IsKnown = true });
             }
             dbOperator.SaveUserVocabulary(vocabulary, "手工");
@@ -278,7 +279,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             foreach (DataGridViewRow row in dgvUnknownWords.SelectedRows)
             {
-                var word = row.Cells[0].Value.ToString();
+                var word = row.Cells[1].Value.ToString();
                 dbOperator.DeleteUserVocabulary(word);
                 dbOperator.AddIgnoreWord(word);
             }
@@ -291,6 +292,25 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             {
                 var word = row.Cells[0].Value.ToString();
                 PronunciationDownloader.DownloadAndPlay(word);
+            }
+        }
+
+        private void dgvUnknownWords_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                string word = dgvUnknownWords.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string star = dgvUnknownWords.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (star == "☆")
+                {
+                    dgvUnknownWords.Rows[e.RowIndex].Cells[0].Value = "★";
+                    dbOperator.UpdateStarFlag(word,true);
+                }
+                else if (star == "★")
+                {
+                    dgvUnknownWords.Rows[e.RowIndex].Cells[0].Value = "☆";
+                    dbOperator.UpdateStarFlag(word, false);
+                }
             }
         }
 
@@ -318,11 +338,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             
             Sentence = v.Sentence;
             IsNewWord = v.KnownStatus == KnownStatus.Unknown ? "是" : "否";
+            IsStar = v.IsStar ? "★" : "☆";
         }
 
         public string Meaning { get; set; }
         public string IsNewWord { get; set; }
         public string Word { get; set; }
+        public string IsStar { get; set; }
+
         public string PhoneticSymbols { get; set; }
         /// <summary>
         /// 我是否已经知道这个词汇

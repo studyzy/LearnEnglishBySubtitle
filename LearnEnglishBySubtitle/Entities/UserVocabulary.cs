@@ -31,7 +31,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Entities
         /// 例句
         /// </summary>
         public string Sentence { get; set; }
-
+        /// <summary>
+        /// 是否加星
+        /// </summary>
+        public bool IsStar { get; set; }
         public  DateTime CreateTime { get; set; }
         public  DateTime UpdateTime { get; set; }
     }

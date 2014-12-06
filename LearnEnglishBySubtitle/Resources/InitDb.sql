@@ -6,7 +6,8 @@ CREATE TABLE UserVocabulary (
     CreateTime  DATETIME        NOT NULL,
     UpdateTime  DATETIME        NOT NULL,
     Source      VARCHAR( 200 ),
-    Sentence    VARCHAR( 500 ) 
+    Sentence    VARCHAR( 500 ),
+	IsStar      BOOLEAN         NOT NULL  
 );
 
 CREATE TABLE IgnoreWord ( 

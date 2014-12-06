@@ -128,6 +128,16 @@ namespace Studyzy.LearnEnglishBySubtitle
             }
         }
 
+        public void UpdateStarFlag(string word,bool isStar)
+        {
+            var wrd = context.UserVocabulary.SingleOrDefault(w => w.Word == word);
+            if (wrd != null)
+            {
+                wrd.IsStar = isStar;
+                context.UserVocabulary.AddOrUpdate(wrd);
+                context.SaveChanges();
+            }
+        }
         public IList<IgnoreWord> GetAllIgnoreWords()
         {
             return context.IgnoreWords.ToList();
