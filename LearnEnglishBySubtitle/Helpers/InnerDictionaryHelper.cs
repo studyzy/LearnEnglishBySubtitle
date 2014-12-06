@@ -52,6 +52,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Helpers
         }
 
         private static IDictionary<string,string> wordOriginalMaps;
+        /// <summary>
+        /// 获得单词变形对应原型的集合
+        /// </summary>
+        /// <returns></returns>
         public static IDictionary<string, string> GetAllWordOriginalMaps()
         {
             if (wordOriginalMaps == null)
@@ -70,6 +74,32 @@ namespace Studyzy.LearnEnglishBySubtitle.Helpers
             return wordOriginalMaps;
         }
 
+        private static IDictionary<string, IList<string>> wordFormatMaps;
+        /// <summary>
+        /// 获得单词变形对应原型的集合
+        /// </summary>
+        /// <returns></returns>
+        public static IDictionary<string, IList<string>> GetAllWordFormatMaps()
+        {
+            if (wordFormatMaps == null)
+            {
+                wordFormatMaps = new Dictionary<string, IList<string>>();
+                var rows = InnerDictionary.WordPrototype.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var row in rows)
+                {
+                    var array = row.Split('\t');
+                    if (!wordFormatMaps.ContainsKey(array[1]))
+                    {
+                        wordFormatMaps.Add(array[1], new List<string>(){ array[0] });
+                    }
+                    else
+                    {
+                        wordFormatMaps[array[1]].Add(array[0]);
+                    }
+                }
+            }
+            return wordFormatMaps;
+        }
 
         private static IDictionary<string, int> vocabularyRanks;
         public static IDictionary<string, int> GetAllVocabularyRanks()

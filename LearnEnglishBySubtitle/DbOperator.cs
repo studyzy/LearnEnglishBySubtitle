@@ -21,7 +21,9 @@ namespace Studyzy.LearnEnglishBySubtitle
         private DbOperator()
         {
             context=new EfContext();
+#if DEBUG
             context.Database.Log = l => eflogger.Debug(l);
+#endif
         }
 
         private static DbOperator op = null;

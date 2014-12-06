@@ -37,14 +37,14 @@
             // 
             // numUserVocabularyRank
             // 
-            this.numUserVocabularyRank.Location = new System.Drawing.Point(143, 11);
+            this.numUserVocabularyRank.Location = new System.Drawing.Point(143, 12);
             this.numUserVocabularyRank.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
             this.numUserVocabularyRank.Name = "numUserVocabularyRank";
-            this.numUserVocabularyRank.Size = new System.Drawing.Size(37, 21);
+            this.numUserVocabularyRank.Size = new System.Drawing.Size(37, 20);
             this.numUserVocabularyRank.TabIndex = 15;
             this.numUserVocabularyRank.Value = new decimal(new int[] {
             4,
@@ -55,20 +55,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 15);
+            this.label3.Location = new System.Drawing.Point(12, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 12);
+            this.label3.Size = new System.Drawing.Size(127, 13);
             this.label3.TabIndex = 14;
             this.label3.Text = "用户词汇量词频等级：";
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(197, 9);
+            this.btnOK.Location = new System.Drawing.Point(197, 10);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
-            this.btnOK.Text = "确定";
+            this.btnOK.Text = "确 定";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -77,17 +77,17 @@
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(12, 41);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 44);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(260, 209);
+            this.richTextBox1.Size = new System.Drawing.Size(260, 226);
             this.richTextBox1.TabIndex = 17;
             this.richTextBox1.Text = "";
             // 
             // UserVocabularyConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(284, 284);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.numUserVocabularyRank);

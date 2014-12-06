@@ -108,7 +108,19 @@ namespace Studyzy.LearnEnglishBySubtitle
                     }
                     continue;
                 }
-              
+                if(w[0]>='A'&&w[0]<='Z')//首字母大写的情况下，判断这个单词是不是特殊词汇，如果是，则保持首字母大写
+                {
+                    if (Global.DictionaryService.IsInDictionary(w))
+                    {
+                        if (knownVocabulary.Contains(w) || ignores.Contains(w))
+                        {
+                            //认识的单词，忽略
+                            continue;
+                        }
+                        result.Add(new KeyValuePair<string, string>(w, w));
+                        continue;
+                    }
+                }
                 var original = englishWordService.GetOriginalWord(wordLow);
                
                 if (knownVocabulary.Contains(wordLow) || knownVocabulary.Contains(original) || ignores.Contains(wordLow) ||
@@ -337,6 +349,30 @@ WRB	adv.";
         {
             var array = sentence.Split(new char[] { ' ', ',', '.', '?', ':', '!','\'' }, StringSplitOptions.RemoveEmptyEntries);
             return array;
+        }
+        public static ICollection<string> SplitSentence(string sentence)
+        {
+            List<string> result=new List<string>();
+            StringBuilder sb=new StringBuilder();
+            foreach (char c in sentence)
+            {
+                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+                {
+                    sb.Append(c);
+                }
+                else
+                {
+                    string word = sb.ToString();
+                    if (word != "")
+                    {
+                        result.Add(word);
+                    }
+                    sb.Clear();
+                    result.Add(c.ToString());
+                }
+            }
+            return result;
+
         }
     }
 }

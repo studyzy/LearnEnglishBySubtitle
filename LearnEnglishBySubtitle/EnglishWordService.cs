@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using com.sun.org.apache.bcel.@internal.generic;
 using Studyzy.LearnEnglishBySubtitle.EngDict;
 using Studyzy.LearnEnglishBySubtitle.Entities;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
@@ -11,43 +12,58 @@ namespace Studyzy.LearnEnglishBySubtitle
     public class EnglishWordService
     {
         //private DbOperator dbOperator =  DbOperator.Instance;
-        private DictionaryService dictionaryService;
+        //private DictionaryService dictionaryService;
 
         //public DictionaryService DictionaryService
         //{
         //    set { dictionaryService = value; }
         //}
 
-        public EnglishWordService()
-        {
-            this.dictionaryService = Global.DictionaryService;
-        }
+        //public EnglishWordService()
+        //{
+        //    //this.dictionaryService = Global.DictionaryService;
+        //}
 
-        //private IList<VocabularyRank> rankData;
+        ////private IList<VocabularyRank> rankData;
 
-        private bool IsInRankTable(string word)
-        {
-            return GetRank(word) > 3;
-        }
+        //private bool IsInRankTable(string word)
+        //{
+        //    return GetRank(word) > 3;
+        //}
 
-        private int GetRank(string word)
+        //private int GetRank(string word)
+        //{
+        //    var rankData = InnerDictionaryHelper.GetAllVocabularyRanks();
+        //    if (rankData.ContainsKey(word))
+        //    {
+        //        return rankData[word];
+        //    }
+        //    return -1;
+        //    //if (rankData == null)
+        //    //{
+        //    //    rankData = dbOperator.GetAll<VocabularyRank>();
+        //    //}
+        //    //var x = rankData.SingleOrDefault(r => r.Word == word);
+        //    //if (x == null)
+        //    //{
+        //    //    return -1;
+        //    //}
+        //    //return x.RankValue;
+        //}
+        /// <summary>
+        /// 传入一个单词的原型，获得其复数、进行时、过去式等形式,找不到则返回0元素的集合
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
+        public static IList<string> GetWordAllFormat(string word)
         {
-            var rankData = InnerDictionaryHelper.GetAllVocabularyRanks();
-            if (rankData.ContainsKey(word))
+            var wordFormatMaps = InnerDictionaryHelper.GetAllWordFormatMaps();
+            if (wordFormatMaps.ContainsKey(word))
             {
-                return rankData[word];
+                return wordFormatMaps[word];
             }
-            return -1;
-            //if (rankData == null)
-            //{
-            //    rankData = dbOperator.GetAll<VocabularyRank>();
-            //}
-            //var x = rankData.SingleOrDefault(r => r.Word == word);
-            //if (x == null)
-            //{
-            //    return -1;
-            //}
-            //return x.RankValue;
+            return new List<string>();
+
         }
 
         /// <summary>
@@ -101,129 +117,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             //}
             return word;
         }
-
-       
-
-        private string OperateIngWord(string word)
-        {
-            var newWord = word.Substring(0, word.Length - 3);
-            if (!dictionaryService.IsInDictionary(newWord) && newWord[newWord.Length - 1] == newWord[newWord.Length - 2])
-            {
-                //stopping->stop
-                newWord = newWord.Substring(0, newWord.Length - 1);
-            }
-            if (dictionaryService.IsInDictionary(newWord))
-            {
-                return newWord;
-            }
-            newWord += "e";
-            if (dictionaryService.IsInDictionary(newWord))
-            {
-                return newWord;
-            }
-            return word;
-        }
-
-        private string OperateEdWord(string word)
-        {
-            var newWord = word.Substring(0, word.Length - 2);
-            if (newWord.EndsWith("i"))
-            {
-                //dried->dry
-                newWord = newWord.Substring(0, newWord.Length - 1) + "y";
-            }
-            if (!dictionaryService.IsInDictionary(newWord) && newWord[newWord.Length - 1] == newWord[newWord.Length - 2])
-            {
-                //stopped->stop
-                newWord = newWord.Substring(0, newWord.Length - 1);
-            }
-            return OperateIfAddE(newWord); 
-            //if (dictionaryService.IsInDictionary(newWord))
-            //{
-            //    if (IsSameMean(newWord, word))
-            //        return newWord;
-            //    var n = newWord + "e";
-            //    if (dictionaryService.IsInDictionary(n))
-            //    {
-            //        return n;
-            //    }
-            //    else
-            //    {
-            //        return newWord;
-            //    }
-
-            //}
-            //newWord += "e";
-            //if (dictionaryService.IsInDictionary(newWord))
-            //{
-            //    return newWord;
-            //}
-            //return word;
-        }
-
-        private string OperateEsWord(string word)
-        {
-            //与Ed结果的变化不同的是，这里不会出现双写结尾的变化
-            var newWord = word.Substring(0, word.Length - 2);
-            if (newWord.EndsWith("i"))
-            {
-                //dies->die
-                var addeWord = OperateIfAddE(newWord);
-                if (addeWord != newWord)
-                {
-                    return addeWord;
-                }
-                //dries->dry
-                newWord = newWord.Substring(0, newWord.Length - 1) + "y";
-            }
-
-            return OperateIfAddE(newWord);
-        }
-
-        private string OperateSWord(string word)
-        {
-            var newWord = word.Substring(0, word.Length - 1);
-            if (dictionaryService.IsInDictionary(newWord))
-            {
-                return newWord;
-            }
-            return word;
-        }
-        /// <summary>
-        /// 传入一个已经去掉词Es、Ed后缀的单词，判断是否需要加上e结尾,如果加e后是一个单词，那就返回加e的单词， 如果加3不是单词，那么返回原单词
-        /// </summary>
-        /// <param name="newWord"></param>
-        /// <returns></returns>
-        private string OperateIfAddE(string newWord)
-        {
-            var rank1 = GetRank(newWord);
-            
-            var addEword = newWord + "e";
-            var rank2 = GetRank(addEword);
-            if (rank1>0&&rank2>0)//加不加e都是单词
-            {
-                if (rank1 > rank2)
-                {
-                    return newWord;
-                }
-                return addEword;
-            }
-            if (rank1 > 0 && rank2 < 0)
-            {
-                return newWord;
-            }
-            if (rank1 < 0 && rank2 > 0)
-            {
-                return addEword;
-            }
-
-            if (dictionaryService.IsInDictionary(addEword))
-            {
-                return addEword;
-            }
-            return newWord;
-        }
-        private IDictionary<string, string> OriginalWordMaps;
+        //private IDictionary<string, string> OriginalWordMaps;
 
         /// <summary>
         /// 获得不规则动词的Mapping，返回不规则动词的原型
@@ -232,7 +126,7 @@ namespace Studyzy.LearnEnglishBySubtitle
         /// <returns></returns>
         private string GetOriginalWordFromDb(string word)
         {
-            OriginalWordMaps = InnerDictionaryHelper.GetAllWordOriginalMaps();
+           var originalWordMaps = InnerDictionaryHelper.GetAllWordOriginalMaps();
             //if (OriginalWordMaps == null)
             //{
             //    OriginalWordMaps = new Dictionary<string, string>();
@@ -242,12 +136,134 @@ namespace Studyzy.LearnEnglishBySubtitle
             //        OriginalWordMaps.Add(wordOriginalMap.Word, wordOriginalMap.OriginalWord);
             //    }
             //}
-            if (OriginalWordMaps.ContainsKey(word))
+            if (originalWordMaps.ContainsKey(word))
             {
-                return OriginalWordMaps[word];
+                return originalWordMaps[word];
             }
             return null;
         }
+       
+
+        //private string OperateIngWord(string word)
+        //{
+        //    var newWord = word.Substring(0, word.Length - 3);
+        //    if (!dictionaryService.IsInDictionary(newWord) && newWord[newWord.Length - 1] == newWord[newWord.Length - 2])
+        //    {
+        //        //stopping->stop
+        //        newWord = newWord.Substring(0, newWord.Length - 1);
+        //    }
+        //    if (dictionaryService.IsInDictionary(newWord))
+        //    {
+        //        return newWord;
+        //    }
+        //    newWord += "e";
+        //    if (dictionaryService.IsInDictionary(newWord))
+        //    {
+        //        return newWord;
+        //    }
+        //    return word;
+        //}
+
+        //private string OperateEdWord(string word)
+        //{
+        //    var newWord = word.Substring(0, word.Length - 2);
+        //    if (newWord.EndsWith("i"))
+        //    {
+        //        //dried->dry
+        //        newWord = newWord.Substring(0, newWord.Length - 1) + "y";
+        //    }
+        //    if (!dictionaryService.IsInDictionary(newWord) && newWord[newWord.Length - 1] == newWord[newWord.Length - 2])
+        //    {
+        //        //stopped->stop
+        //        newWord = newWord.Substring(0, newWord.Length - 1);
+        //    }
+        //    return OperateIfAddE(newWord); 
+        //    //if (dictionaryService.IsInDictionary(newWord))
+        //    //{
+        //    //    if (IsSameMean(newWord, word))
+        //    //        return newWord;
+        //    //    var n = newWord + "e";
+        //    //    if (dictionaryService.IsInDictionary(n))
+        //    //    {
+        //    //        return n;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        return newWord;
+        //    //    }
+
+        //    //}
+        //    //newWord += "e";
+        //    //if (dictionaryService.IsInDictionary(newWord))
+        //    //{
+        //    //    return newWord;
+        //    //}
+        //    //return word;
+        //}
+
+        //private string OperateEsWord(string word)
+        //{
+        //    //与Ed结果的变化不同的是，这里不会出现双写结尾的变化
+        //    var newWord = word.Substring(0, word.Length - 2);
+        //    if (newWord.EndsWith("i"))
+        //    {
+        //        //dies->die
+        //        var addeWord = OperateIfAddE(newWord);
+        //        if (addeWord != newWord)
+        //        {
+        //            return addeWord;
+        //        }
+        //        //dries->dry
+        //        newWord = newWord.Substring(0, newWord.Length - 1) + "y";
+        //    }
+
+        //    return OperateIfAddE(newWord);
+        //}
+
+        //private string OperateSWord(string word)
+        //{
+        //    var newWord = word.Substring(0, word.Length - 1);
+        //    if (dictionaryService.IsInDictionary(newWord))
+        //    {
+        //        return newWord;
+        //    }
+        //    return word;
+        //}
+        /// <summary>
+        /// 传入一个已经去掉词Es、Ed后缀的单词，判断是否需要加上e结尾,如果加e后是一个单词，那就返回加e的单词， 如果加3不是单词，那么返回原单词
+        /// </summary>
+        /// <param name="newWord"></param>
+        /// <returns></returns>
+        //private string OperateIfAddE(string newWord)
+        //{
+        //    var rank1 = GetRank(newWord);
+            
+        //    var addEword = newWord + "e";
+        //    var rank2 = GetRank(addEword);
+        //    if (rank1>0&&rank2>0)//加不加e都是单词
+        //    {
+        //        if (rank1 > rank2)
+        //        {
+        //            return newWord;
+        //        }
+        //        return addEword;
+        //    }
+        //    if (rank1 > 0 && rank2 < 0)
+        //    {
+        //        return newWord;
+        //    }
+        //    if (rank1 < 0 && rank2 > 0)
+        //    {
+        //        return addEword;
+        //    }
+
+        //    if (dictionaryService.IsInDictionary(addEword))
+        //    {
+        //        return addEword;
+        //    }
+        //    return newWord;
+        //}
+      
 
 
       

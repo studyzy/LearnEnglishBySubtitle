@@ -26,13 +26,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 "柯林斯词典提供了按词频分级的词汇表，他一共包含33320个单词和词组，按照词频分为六级，5级词汇包含1342个词，最常用的也是最简单的，"+
                 "然后4级1388个，3级1831个，2级3407个，1级8228个，0级包含17124个\r\n"+
                 "注意：0级是最难最不常用的，5级是最常用的！！\r\n"+
-                "设置后可以在“用户词汇管理”中进行单词认识程度的进一步调整";
+                "设置后可以在“用户词汇管理”中进行单词认识程度的进一步调整。";
             richTextBox1.Text = remark;
 
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            Splash.Show();
+            Splash.Status = "生成用户词汇表中...";
+
             var userRank = numUserVocabularyRank.Value;
             //DbOperator dbOperator= DbOperator.Instance;
             //var words = dbOperator.FindAll<VocabularyRank>(v => v.RankValue >= numUserVocabularyRank.Value);
@@ -52,6 +55,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             //RegistryHelper.WTRegedit("Used","Yes");
             DialogResult=DialogResult.OK;
             //this.Close();
+            Splash.Close();
         }
     }
 }

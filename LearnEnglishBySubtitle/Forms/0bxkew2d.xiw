@@ -157,16 +157,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
             foreach (var subtitleWord in words)
             {
-              
                 result.Add(subtitleWord.Word, subtitleWord);
-                var formats = EnglishWordService.GetWordAllFormat(subtitleWord.Word);
-                foreach (var wordFormat in formats)
-                {
-                    if (!result.ContainsKey(wordFormat))
-                    {
-                        result.Add(wordFormat,subtitleWord);
-                    }
-                }
             }
             var newSubtitle = new List<SubtitleLine>();
             for (int i = 1; i <= subtitle.Bodies.Count; i++)
@@ -235,25 +226,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 else
                 {
                     var word = s.ToLower();
-                    string mean = "";
-                    if (words.ContainsKey(s))//这个词需要注释
+                    if (words.ContainsKey(word))//这个词需要注释
                     {
-                         mean = words[s].SelectMean;
-                    }
-                    else if (words.ContainsKey(word))
-                    {
-                        mean = words[word].SelectMean;
-                    }
-
-                    if (mean != "")
-                    {
+                        var mean = words[word].SelectMean;
                         if (Global.ShortMean)
                         {
                             var meanarray = mean.Split(new char[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
                             mean = meanarray[0];
                             mean = mean.Substring(mean.IndexOf(' ') + 1);
                         }
-                        sb.Append(string.Format("{0}({1})", s, mean.Trim()));
+                        sb.Append(string.Format("{0}({1})", s, mean));
                     }
                     else
                     {
