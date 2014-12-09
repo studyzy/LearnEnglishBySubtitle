@@ -111,13 +111,17 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnExportKnownWords_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.FileName = "known.txt";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var rows = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known);
+                var rows = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known)
+                    .OrderBy(v => v.Word)
+                    .Select(w => w.Word)
+                    .ToList();
                 StringBuilder sb = new StringBuilder();
                 foreach (var row in rows)
                 {
-                    sb.Append(row.Word + "\r\n");
+                    sb.Append(row + "\r\n");
                 }
                 FileOperationHelper.WriteFile(saveFileDialog1.FileName, Encoding.UTF8, sb.ToString());
                 MessageBox.Show("导出完成");
@@ -126,13 +130,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void btnExportUnknownWords_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.FileName = "unknown.txt";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                var rows = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown);
+                var rows = dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown)
+                    .OrderBy(v=>v.Word).Select(w=>w.Word);
                 StringBuilder sb = new StringBuilder();
                 foreach (var row in rows)
                 {
-                    sb.Append(row.Word + "\r\n");
+                    sb.Append(row + "\r\n");
                 }
                 FileOperationHelper.WriteFile(saveFileDialog1.FileName, Encoding.UTF8, sb.ToString());
                 MessageBox.Show("导出完成");
@@ -164,7 +170,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 v.Sentence = subtitleNewWord.Sentence;
                 list.Add(v);
             }
-
+            dgvQueryResult.AutoGenerateColumns = false;
             dgvQueryResult.DataSource = list;
 
         }
@@ -266,8 +272,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void dgvKnownWords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string word = dgvKnownWords.Rows[e.RowIndex].Cells[0].Value.ToString();
-            PronunciationDownloader.DownloadAndPlay(word);
+            try
+            {
+                string word = dgvKnownWords.Rows[e.RowIndex].Cells[0].Value.ToString();
+                PronunciationDownloader.DownloadAndPlay(word);
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -311,6 +324,41 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     dgvUnknownWords.Rows[e.RowIndex].Cells[0].Value = "☆";
                     dbOperator.UpdateStarFlag(word, false);
                 }
+            }
+        }
+
+        private const int RollWidth = 22;
+        private void dgvKnownWords_Resize(object sender, EventArgs e)
+        {
+            int otherWidth = dgvKnownWords.Columns[0].Width + dgvKnownWords.Columns[1].Width +
+                            dgvKnownWords.Columns[2].Width + dgvKnownWords.Columns[4].Width;
+            dgvKnownWords.Columns[3].Width = dgvKnownWords.Width - otherWidth - RollWidth;
+        }
+
+        private void dgvUnknownWords_Resize(object sender, EventArgs e)
+        {
+            int otherWidth = dgvUnknownWords.Columns[0].Width + dgvUnknownWords.Columns[1].Width +
+                          dgvUnknownWords.Columns[2].Width +dgvUnknownWords.Columns[3].Width + dgvUnknownWords.Columns[5].Width;
+            dgvUnknownWords.Columns[4].Width = dgvUnknownWords.Width - otherWidth - RollWidth;
+        }
+
+        private void dgvQueryResult_Resize(object sender, EventArgs e)
+        {
+            int otherWidth = dgvQueryResult.Columns[0].Width + dgvQueryResult.Columns[1].Width +
+                            dgvQueryResult.Columns[2].Width + dgvQueryResult.Columns[3].Width+ dgvQueryResult.Columns[5].Width;
+            dgvQueryResult.Columns[4].Width = dgvQueryResult.Width - otherWidth - RollWidth;
+        }
+
+        private void dgvUnknownWords_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string word = dgvUnknownWords.Rows[e.RowIndex].Cells[1].Value.ToString();
+                PronunciationDownloader.DownloadAndPlay(word);
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

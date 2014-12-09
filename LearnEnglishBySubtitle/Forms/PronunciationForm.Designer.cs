@@ -42,6 +42,7 @@
             this.rbUK.Name = "rbUK";
             this.rbUK.Size = new System.Drawing.Size(73, 17);
             this.rbUK.TabIndex = 0;
+            this.rbUK.TabStop = true;
             this.rbUK.Text = "英式发音";
             this.rbUK.UseVisualStyleBackColor = true;
             // 
@@ -89,6 +90,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PronunciationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PronunciationForm";
             this.Load += new System.EventHandler(this.PronunciationForm_Load);
             this.ResumeLayout(false);

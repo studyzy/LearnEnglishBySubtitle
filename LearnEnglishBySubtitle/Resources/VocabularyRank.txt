@@ -9811,7 +9811,6 @@ wreck,2
 wrist,2
 X-ray,2
 yell,2
-zero,2
 zinc,2
 zoo,2
 zoom,2
@@ -11694,7 +11693,7 @@ journalist,4
 judge,4
 July,4
 jump,4
-]une,4
+June,4
 justice,4
 key,4
 kick,4
@@ -12872,4 +12871,4 @@ yet,5
 you,5
 young,5
 your,5
-
+zero,5

@@ -14,23 +14,23 @@ namespace Studyzy.LearnEnglishBySubtitle
         static SplashForm MySplashForm = null;
 
         static Thread MySplashThread = null;
-
+        private static string text;
         static void ShowThread()
         {
 
             MySplashForm = new SplashForm();
-
+            MySplashForm.StatusInfo = text;
             Application.Run(MySplashForm);
 
         }
 
-        static public void Show(string txt="Loading")
+        static public void Show(string txt="Loading...")
         {
 
             if (MySplashThread != null)
 
                 return;
-         
+            text = txt;
             MySplashThread = new Thread(new ThreadStart(Splash.ShowThread));
 
             MySplashThread.IsBackground = true;

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvKnownWords = new System.Windows.Forms.DataGridView();
@@ -47,6 +48,12 @@
             this.rtbKnownWords = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvUnknownWords = new System.Windows.Forms.DataGridView();
+            this.IsStar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.音标 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unknownContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.move2KnownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveWordFromUnknowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,12 +77,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.IsStar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.音标 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKnownWords)).BeginInit();
@@ -118,6 +119,7 @@
             // 
             this.dgvKnownWords.AllowUserToAddRows = false;
             this.dgvKnownWords.AllowUserToDeleteRows = false;
+            this.dgvKnownWords.AllowUserToResizeRows = false;
             this.dgvKnownWords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -141,6 +143,7 @@
             this.dgvKnownWords.Size = new System.Drawing.Size(873, 623);
             this.dgvKnownWords.TabIndex = 5;
             this.dgvKnownWords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKnownWords_CellDoubleClick);
+            this.dgvKnownWords.Resize += new System.EventHandler(this.dgvKnownWords_Resize);
             // 
             // Word
             // 
@@ -268,6 +271,7 @@
             // 
             this.dgvUnknownWords.AllowUserToAddRows = false;
             this.dgvUnknownWords.AllowUserToDeleteRows = false;
+            this.dgvUnknownWords.AllowUserToResizeRows = false;
             this.dgvUnknownWords.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -292,6 +296,65 @@
             this.dgvUnknownWords.Size = new System.Drawing.Size(873, 631);
             this.dgvUnknownWords.TabIndex = 6;
             this.dgvUnknownWords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnknownWords_CellClick);
+            this.dgvUnknownWords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnknownWords_CellDoubleClick);
+            this.dgvUnknownWords.Resize += new System.EventHandler(this.dgvUnknownWords_Resize);
+            // 
+            // IsStar
+            // 
+            this.IsStar.DataPropertyName = "IsStar";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Blue;
+            this.IsStar.DefaultCellStyle = dataGridViewCellStyle5;
+            this.IsStar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.IsStar.Frozen = true;
+            this.IsStar.HeaderText = "☆";
+            this.IsStar.Name = "IsStar";
+            this.IsStar.ReadOnly = true;
+            this.IsStar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsStar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsStar.Text = "☆";
+            this.IsStar.ToolTipText = "如果觉得这个生词很重要，需要优先记忆，可以点亮该星";
+            this.IsStar.Width = 30;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Word";
+            this.dataGridViewTextBoxColumn1.HeaderText = "单词";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // 音标
+            // 
+            this.音标.DataPropertyName = "PhoneticSymbols";
+            this.音标.HeaderText = "音标";
+            this.音标.Name = "音标";
+            this.音标.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Meaning";
+            this.dataGridViewTextBoxColumn3.HeaderText = "解释";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 400;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Sentence";
+            this.dataGridViewTextBoxColumn2.HeaderText = "例句";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 400;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Source";
+            this.dataGridViewTextBoxColumn4.HeaderText = "来源";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // unknownContextMenuStrip
             // 
@@ -416,6 +479,7 @@
             this.dgvQueryResult.ShowRowErrors = false;
             this.dgvQueryResult.Size = new System.Drawing.Size(873, 672);
             this.dgvQueryResult.TabIndex = 7;
+            this.dgvQueryResult.Resize += new System.EventHandler(this.dgvQueryResult_Resize);
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -501,57 +565,6 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
-            // IsStar
-            // 
-            this.IsStar.DataPropertyName = "IsStar";
-            this.IsStar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IsStar.Frozen = true;
-            this.IsStar.HeaderText = "☆";
-            this.IsStar.Name = "IsStar";
-            this.IsStar.ReadOnly = true;
-            this.IsStar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsStar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsStar.Text = "☆";
-            this.IsStar.ToolTipText = "如果觉得这个生词很重要，需要优先记忆，可以点亮该星";
-            this.IsStar.Width = 30;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Word";
-            this.dataGridViewTextBoxColumn1.HeaderText = "单词";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // 音标
-            // 
-            this.音标.DataPropertyName = "PhoneticSymbols";
-            this.音标.HeaderText = "音标";
-            this.音标.Name = "音标";
-            this.音标.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Meaning";
-            this.dataGridViewTextBoxColumn3.HeaderText = "解释";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 400;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Sentence";
-            this.dataGridViewTextBoxColumn2.HeaderText = "例句";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 400;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Source";
-            this.dataGridViewTextBoxColumn4.HeaderText = "来源";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // UserVocabularyMgtForm
             // 
