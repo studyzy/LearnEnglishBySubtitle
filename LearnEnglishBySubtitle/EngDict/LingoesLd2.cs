@@ -190,7 +190,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
 
 
 #if DEBUG
-            FileStream fs2=new FileStream("C:\\"+Path.GetFileName(fs.Name)+".bin",FileMode.Create,FileAccess.Write);
+            FileStream fs2=new FileStream("C:\\Temp\\"+Path.GetFileName(fs.Name)+".bin",FileMode.Create,FileAccess.Write);
             fs2.Write(inflatedFile,0,inflatedFile.Length);
             fs2.Close();
 #endif

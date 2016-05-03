@@ -54,7 +54,7 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
                     ld2Parse.WordEncoding = WordEncoding;
                     var dictionary = ld2Parse.Parse("Dictionaries\\" + Ld2FilePath);
 #if DEBUG
-                    StreamWriter sw = new StreamWriter("C:\\" + Ld2FilePath + ".txt", false, Encoding.UTF8);
+                    StreamWriter sw = new StreamWriter("C:\\Temp\\" + Ld2FilePath + ".txt", false, Encoding.UTF8);
 #endif
                     foreach (var word in dictionary)
                     {

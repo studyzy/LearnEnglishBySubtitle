@@ -57,12 +57,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LearnEnglishBySubtitle.Import.Youdao\LearnEnglishBySubtitle.Import.Youdao.csproj">
-      <Project>{f38f963f-1416-4e5f-8260-8df84a9a8a9c}</Project>
-      <Name>LearnEnglishBySubtitle.Import.Youdao</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

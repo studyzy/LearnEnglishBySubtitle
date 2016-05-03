@@ -53,12 +53,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LearnEnglishBySubtitle.Import.Iciba\LearnEnglishBySubtitle.Import.Iciba.csproj">
-      <Project>{9A0488A6-00F8-4AA4-9563-093A23EBC8F8}</Project>
-      <Name>LearnEnglishBySubtitle.Import.Iciba</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ciba.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

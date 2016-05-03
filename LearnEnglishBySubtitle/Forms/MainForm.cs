@@ -67,7 +67,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             var srts = stOperator.Parse(txt);
 
             srts = stOperator.RemoveChinese(srts);
-
+            srts = stOperator.RemoveFormat(srts);
             ShowSubtitleText(srts.Bodies.Values);
             subtitle = srts;
         }
@@ -199,6 +199,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 {
                     if (result.ContainsKey(keyValuePair.Key))
                     {
+                        result[keyValuePair.Key].ShowCount++;
                         continue;
                     }
                     string original = keyValuePair.Key;
@@ -209,6 +210,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                         var wd = new SubtitleWord()
                         {
                             Word = mean.Word,
+                            ShowCount = 1,
                             WordInSubitle = word,
                             Means = mean.Means,
                             SubtitleSentence = line,

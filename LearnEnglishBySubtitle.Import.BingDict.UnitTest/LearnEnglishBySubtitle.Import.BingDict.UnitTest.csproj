@@ -58,12 +58,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LearnEnglishBySubtitle.Import.BingDict\LearnEnglishBySubtitle.Import.BingDict.csproj">
-      <Project>{6A7D2019-1381-4BD6-B547-F0DB54E1E2D4}</Project>
-      <Name>LearnEnglishBySubtitle.Import.BingDict</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

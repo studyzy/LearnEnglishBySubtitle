@@ -240,19 +240,31 @@ namespace Studyzy.LearnEnglishBySubtitle
             {
                 originalMean = d;
             }
-            var wordList = Parse(sentence)+" ";
-            Regex regex=new Regex("\\b"+word+ @"/(.*?)\s");
-            var match = regex.Match(wordList);
-            var p= match.Groups[1].Value;
-            //var kv = wordList.SingleOrDefault(w => w.Key == word);
-            var pro = ConvertTag(p);
-            var mean = originalMean.Means.FirstOrDefault(m => m.Property == pro);
+            var pro = GetTag(word, sentence);
+            WordMean mean = null;
+            if (pro!=null)//知道单词的词性
+            {
+                mean = originalMean.Means.FirstOrDefault(m => m.Property == pro);
+            }
+            else//不知道词性，就去取第一个意思
+            {
+                mean = originalMean.Means.FirstOrDefault();
+            }
             if (mean != null)
             {
                 originalMean.DefaultMean = mean;
                 return originalMean;
             }
-           mean= d.Means.FirstOrDefault(m => m.Property == pro);
+            //根本没有所谓的原型形式，直接用该单词查找意思。
+            if (pro != null)//知道单词的词性
+            {
+                mean = d.Means.FirstOrDefault(m => m.Property == pro);
+            }
+            else//不知道词性，就去取第一个意思
+            {
+                mean = d.Means.FirstOrDefault();
+            }
+
            if (mean != null)
            {
                d.DefaultMean = mean;
@@ -260,6 +272,21 @@ namespace Studyzy.LearnEnglishBySubtitle
            }
             return d;
 
+        }
+
+        private string GetTag(string word, string sentence)
+        {
+            var wordList = Parse(sentence) + " ";
+            Regex regex = new Regex("\\b" + word + @"/(.*?)\s");
+            var match = regex.Match(wordList);
+
+            if (match.Success) //知道单词的词性
+            {
+                var p = match.Groups[1].Value;
+                var pro = ConvertTag(p);
+                return pro;
+            }
+            return null;
         }
 
         private const string mappingTable = @"CC	conj.

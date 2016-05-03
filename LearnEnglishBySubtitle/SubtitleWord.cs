@@ -13,6 +13,10 @@ namespace Studyzy.LearnEnglishBySubtitle
             IsNewWord = true;
         }
         /// <summary>
+        /// 在该字母中的词频
+        /// </summary>
+        public int ShowCount { get; set; }
+        /// <summary>
         /// 单词原型
         /// </summary>
         public string Word { get; set; }

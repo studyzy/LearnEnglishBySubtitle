@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
 
 namespace Studyzy.LearnEnglishBySubtitle.Subtitles
@@ -92,6 +93,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
                 newSrts.Add(subtitleLine.Number, subtitleLine);
             }
             subtitle.Bodies= newSrts;
+            return subtitle;
+        }
+        private static Regex formatRegex=new Regex("{[^}]+}");
+        public Subtitle RemoveFormat(Subtitle subtitle)
+        {
+            foreach (KeyValuePair<int, SubtitleLine> subtitleLine in subtitle.Bodies)
+            {
+                subtitle.Bodies[subtitleLine.Key].EnglishText = formatRegex.Replace(subtitleLine.Value.EnglishText, "");
+            }
             return subtitle;
         }
     }

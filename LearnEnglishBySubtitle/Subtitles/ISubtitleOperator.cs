@@ -10,5 +10,6 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
         Subtitle Parse(string str);
         string Subtitle2String(Subtitle st);
         Subtitle RemoveChinese(Subtitle subtitle);
+        Subtitle RemoveFormat(Subtitle subtitle);
     }
 }
