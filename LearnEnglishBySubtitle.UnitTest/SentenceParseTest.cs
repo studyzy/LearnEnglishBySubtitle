@@ -19,8 +19,8 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
             //DictionaryService service=new ViconDictionaryService();
             //var dic = service.GetChineseMeanInDict(word);
             //var dic2 = service.GetChineseMeanInDict(originalWord);
-
-            var r = SentenceParse.Instance.RemarkWord(sentence,word,originalWord);
+          
+            var r = new SentenceParse().RemarkWord(sentence,word,originalWord);
             Assert.AreEqual(r.DefaultMean.Property, property);
             Assert.AreEqual(r.Word,decideWord);
         }
@@ -31,7 +31,7 @@ namespace Studyzy.LeanEnglishBySubtitle.UnitTest
         {
             //DictionaryService service = new ViconDictionaryService();
             //var dic = service.GetChineseMeanInDict(word);
-            var r = SentenceParse.Instance.RemarkWord(sentence,word,word);
+            var r = new SentenceParse().RemarkWord(sentence,word,word);
             Assert.AreEqual(r.DefaultMean.Property, property);
         }
 

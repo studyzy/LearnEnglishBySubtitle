@@ -51,11 +51,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
             DbOperator.Instance.SaveUserVocabulary(vocabulary,"柯林斯词频分级");
             logger.Debug("柯林斯词频分级保存成功");
+            Splash.Close();
             MessageBox.Show("用户词频设置保存成功");
             //RegistryHelper.WTRegedit("Used","Yes");
             DialogResult=DialogResult.OK;
-            //this.Close();
-            Splash.Close();
+            this.Close();
+          
         }
     }
 }

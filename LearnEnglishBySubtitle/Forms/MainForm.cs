@@ -127,8 +127,8 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 return;
             }
         
-            Splash.Show();
-            Splash.Status = "解析字幕中...";
+            Splash.Show("解析字幕中...");
+          
             sentenceParse = new SentenceParse();
             var subtitleWords = PickNewWords(subtitle.Bodies.Values);
             if (subtitleWords.Count > 0)
@@ -157,16 +157,19 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
             foreach (var subtitleWord in words)
             {
-              
-                result.Add(subtitleWord.Word, subtitleWord);
-                var formats = EnglishWordService.GetWordAllFormat(subtitleWord.Word);
-                foreach (var wordFormat in formats)
+                foreach (var wordInSubtitle in subtitleWord.WordInSubtitle)
                 {
-                    if (!result.ContainsKey(wordFormat))
-                    {
-                        result.Add(wordFormat,subtitleWord);
-                    }
+                    result.Add(wordInSubtitle, subtitleWord);
                 }
+               
+                //var formats = EnglishWordService.GetWordAllFormat(subtitleWord.Word);
+                //foreach (var wordFormat in formats)
+                //{
+                //    if (!result.ContainsKey(wordFormat))
+                //    {
+                //        result.Add(wordFormat,subtitleWord);
+                //    }
+                //}
             }
             var newSubtitle = new List<SubtitleLine>();
             for (int i = 1; i <= subtitle.Bodies.Count; i++)
@@ -189,7 +192,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private IDictionary<string, SubtitleWord> PickNewWords(ICollection<SubtitleLine> subtitles)
         {
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
-           
+            var knownWords = DbOperator.Instance.GetAllUserKnownVocabulary().Select(v=>v.Word).ToList();
             var texts = subtitles.Select(s => s.EnglishText).ToList();
            
             foreach (var line in texts)
@@ -197,13 +200,21 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 var lineResult = sentenceParse.Pickup(line);
                 foreach (KeyValuePair<string, string> keyValuePair in lineResult)
                 {
-                    if (result.ContainsKey(keyValuePair.Key))
+                    string original = keyValuePair.Key;
+                    if (knownWords.Contains(original)) continue;
+                    string word = keyValuePair.Value;
+                  
+                    if(knownWords.Contains(word)) continue;
+                    if (result.ContainsKey(original))
                     {
-                        result[keyValuePair.Key].ShowCount++;
+                        result[original].ShowCount++;
+                        if (!result[original].WordInSubtitle.Contains(word))
+                        {
+                            result[original].WordInSubtitle.Add(word);
+                        }
                         continue;
                     }
-                    string original = keyValuePair.Key;
-                    string word = keyValuePair.Value;
+                 
                     var mean = sentenceParse.RemarkWord(line, word, original);
                     if (mean != null)
                     {
@@ -211,7 +222,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                         {
                             Word = mean.Word,
                             ShowCount = 1,
-                            WordInSubitle = word,
+                            WordInSubtitle = new List<string>() {word},
                             Means = mean.Means,
                             SubtitleSentence = line,
                             SelectMean = mean.DefaultMean == null ? mean.Means[0].ToString() : mean.DefaultMean.ToString()
@@ -223,7 +234,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
             return result;
         }
-
+        /// <summary>
+        /// 将一个句子中的生词进行注释
+        /// </summary>
+        /// <param name="line"></param>
+        /// <param name="words"></param>
+        /// <returns></returns>
         private string ReplaceSubtitleLineByVocabulary(string line,IDictionary<string,SubtitleWord> words )
         {
 

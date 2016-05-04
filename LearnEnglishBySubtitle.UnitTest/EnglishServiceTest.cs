@@ -9,7 +9,7 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
 {
     class EnglishServiceTest
     {
-        EnglishWordService service = new EnglishWordService(new ModernDictionaryService());
+        EnglishWordService service = new EnglishWordService();
 
         [TestCase("doing","do")]
         [TestCase("stopping","stop")]

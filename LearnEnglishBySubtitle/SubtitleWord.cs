@@ -23,7 +23,7 @@ namespace Studyzy.LearnEnglishBySubtitle
         /// <summary>
         /// 单词在字幕中的形式
         /// </summary>
-        public string WordInSubitle { get; set; }
+        public IList<string> WordInSubtitle { get; set; }=new List<string>();
         public bool IsNewWord { get; set; }
         public string SubtitleSentence { get; set; }
         public IList<WordMean> Means { get; set; }

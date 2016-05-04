@@ -25,7 +25,8 @@ namespace Studyzy.LearnEnglishBySubtitle
         public SentenceParse()
         {
             //dictionaryService=new ViconDictionaryService();
-           string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+           //string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string currentFolder = System.AppDomain.CurrentDomain.BaseDirectory;
            var model = currentFolder + @"\models\english-bidirectional-distsim.tagger";
             // Loading POS Tagger
             if(tagger==null)
@@ -377,13 +378,18 @@ WRB	adv.";
             var array = sentence.Split(new char[] { ' ', ',', '.', '?', ':', '!','\'' }, StringSplitOptions.RemoveEmptyEntries);
             return array;
         }
+        /// <summary>
+        /// 将一个句子分成单词和符号（空格）组成的数组
+        /// </summary>
+        /// <param name="sentence"></param>
+        /// <returns></returns>
         public static ICollection<string> SplitSentence(string sentence)
         {
             List<string> result=new List<string>();
             StringBuilder sb=new StringBuilder();
             foreach (char c in sentence)
             {
-                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')||c=='-')
                 {
                     sb.Append(c);
                 }
@@ -397,6 +403,11 @@ WRB	adv.";
                     sb.Clear();
                     result.Add(c.ToString());
                 }
+            }
+            var last = sb.ToString();
+            if (last != "")
+            {
+                result.Add(last);
             }
             return result;
 

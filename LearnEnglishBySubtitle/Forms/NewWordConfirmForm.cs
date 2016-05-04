@@ -81,16 +81,16 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         public IList<SubtitleWord> SelectedNewWords { get; set; }
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Splash.Show();
+            Splash.Show("读取用户选择...");
             //var knownWords = new List<String>();
             var words = new List<SubtitleWord>();
-            Splash.Status = "读取用户选择...";
+          
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                var c1 = Convert.ToBoolean(row.Cells[1].Value);
+                //var c1 = Convert.ToBoolean(row.Cells[1].Value);
                 var c2 = row.Cells[2].Value;
                 var word = DataSource.Where(w => w.Word == c2).SingleOrDefault();
-                word.IsNewWord = c1;
+                word.IsNewWord = true;
 
                 var userMean = row.Cells[6].Value;
                 if (userMean == null || userMean.ToString().Trim() == String.Empty)
@@ -161,6 +161,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 userVo.UpdateTime = DateTime.Now;
                 dbOperator.SaveUserVocabulary(userVo);
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2) //双击单词本身
+            {
+                string word = dataGridView1.Rows[e.RowIndex].Cells["Word"].Value.ToString();
+                PronunciationDownloader.DownloadAndPlay(word);
             }
         }
     }

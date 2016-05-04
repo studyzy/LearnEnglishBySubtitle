@@ -22,14 +22,17 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
                 srt.Number = ++index;
 
                 var tarray = array[1].Split(new string[] { " --> " }, StringSplitOptions.RemoveEmptyEntries);
-                srt.StartTime = Convert.ToDateTime("2000-01-01 " + tarray[0].Replace(',', '.'));
-                srt.EndTime = Convert.ToDateTime("2000-01-01 " + tarray[1].Replace(',', '.'));
+                srt.StartTime = Convert.ToDateTime("2000-01-01 " + tarray[0].Replace(',', '.').Replace(" ",""));
+                srt.EndTime = Convert.ToDateTime("2000-01-01 " + tarray[1].Replace(',', '.').Replace(" ", ""));
 
                 
                 srt.Text = "";
                 for (var i = 2; i < array.Length;i++ )
                     srt.Text += array[i]+"\r\n";
-                srt.Text= srt.Text.Remove(srt.Text.Length - 2, 2);
+                if (srt.Text != "")
+                {
+                    srt.Text= srt.Text.Remove(srt.Text.Length - 2, 2);
+                }
                 result.Add(index,srt);
             }
             Subtitle st = new Subtitle(){Bodies=result};

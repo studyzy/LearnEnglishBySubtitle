@@ -89,9 +89,10 @@ namespace Studyzy.LearnEnglishBySubtitle
                 }
                 else
                 {
+
                     UserVocabulary uv = new UserVocabulary() { Word = word.Word, Source = source, KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown };
                     allUserVocabulary.Add(uv);
-                    SaveUserVocabulary(uv);
+                    //SaveUserVocabulary(uv);
                 }
             }
 
@@ -117,7 +118,10 @@ namespace Studyzy.LearnEnglishBySubtitle
         {
             return context.UserVocabulary.ToList();
         }
-
+        public IList<UserVocabulary> GetAllUserKnownVocabulary()
+        {
+            return context.UserVocabulary.Where(v=>v.KnownStatus== KnownStatus.Known).ToList();
+        }
         public void AddIgnoreWord(string word)
         {
             var q = context.IgnoreWords.SingleOrDefault(w => w.Word == word);

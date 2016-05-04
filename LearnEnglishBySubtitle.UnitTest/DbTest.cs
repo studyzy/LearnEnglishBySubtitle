@@ -78,10 +78,10 @@ namespace Studyzy.LearnEnglishBySubtitle.UnitTest
             {
                 list.Add(new Vocabulary(){Word = line.Split(',')[1]});
             }
-            Service service=new Service();
-            Debug.WriteLine("Start:"+DateTime.Now);
-            service.SaveUserVocabulary(list,"单元测试");
-            Debug.WriteLine("Finish:" + DateTime.Now);
+            //Service service=new Service();
+            //Debug.WriteLine("Start:"+DateTime.Now);
+            //service.SaveUserVocabulary(list,"单元测试");
+            //Debug.WriteLine("Finish:" + DateTime.Now);
         }
     }
 }
