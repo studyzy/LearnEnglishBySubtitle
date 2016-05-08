@@ -11608,7 +11608,7 @@ generally,4
 generation,4
 glass,4
 goal,4
-god,4
+God,4
 gold,4
 gone,4
 goods,4
@@ -12387,6 +12387,7 @@ election,5
 eleven,5
 else,5
 end,5
+English,5
 enough,5
 even,5
 event,5
@@ -12769,6 +12770,7 @@ take,5
 talk,5
 tax,5
 team,5
+teacher,5
 tell,5
 ten,5
 term,5

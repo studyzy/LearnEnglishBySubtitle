@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvKnownWords = new System.Windows.Forms.DataGridView();
@@ -44,9 +44,11 @@
             this.SoundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExportKnownWords = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnAddKnownWords = new System.Windows.Forms.Button();
             this.rtbKnownWords = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txbNewWordSearch = new System.Windows.Forms.TextBox();
             this.dgvUnknownWords = new System.Windows.Forms.DataGridView();
             this.IsStar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +62,7 @@
             this.PronunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExportUnknownWords = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnAddNewWords = new System.Windows.Forms.Button();
             this.rtbNewWords = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -99,7 +102,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(897, 742);
+            this.tabControl1.Size = new System.Drawing.Size(897, 685);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -110,7 +113,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(889, 716);
+            this.tabPage1.Size = new System.Drawing.Size(889, 659);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "熟悉的单词";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -140,7 +143,7 @@
             this.dgvKnownWords.ShowCellToolTips = false;
             this.dgvKnownWords.ShowEditingIcon = false;
             this.dgvKnownWords.ShowRowErrors = false;
-            this.dgvKnownWords.Size = new System.Drawing.Size(873, 623);
+            this.dgvKnownWords.Size = new System.Drawing.Size(873, 575);
             this.dgvKnownWords.TabIndex = 5;
             this.dgvKnownWords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKnownWords_CellDoubleClick);
             this.dgvKnownWords.Resize += new System.EventHandler(this.dgvKnownWords_Resize);
@@ -189,35 +192,35 @@
             this.deleteKnownWordToolStripMenuItem,
             this.SoundToolStripMenuItem});
             this.knownContextMenuStrip.Name = "knownContextMenuStrip";
-            this.knownContextMenuStrip.Size = new System.Drawing.Size(195, 70);
+            this.knownContextMenuStrip.Size = new System.Drawing.Size(197, 70);
             // 
             // add2UnknownToolStripMenuItem
             // 
             this.add2UnknownToolStripMenuItem.Name = "add2UnknownToolStripMenuItem";
-            this.add2UnknownToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.add2UnknownToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.add2UnknownToolStripMenuItem.Text = "不记得了，加入生词本";
             this.add2UnknownToolStripMenuItem.Click += new System.EventHandler(this.add2UnknownToolStripMenuItem_Click);
             // 
             // deleteKnownWordToolStripMenuItem
             // 
             this.deleteKnownWordToolStripMenuItem.Name = "deleteKnownWordToolStripMenuItem";
-            this.deleteKnownWordToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteKnownWordToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.deleteKnownWordToolStripMenuItem.Text = "不是单词，删除";
             this.deleteKnownWordToolStripMenuItem.Click += new System.EventHandler(this.deleteKnownWordToolStripMenuItem_Click);
             // 
             // SoundToolStripMenuItem
             // 
             this.SoundToolStripMenuItem.Name = "SoundToolStripMenuItem";
-            this.SoundToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.SoundToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.SoundToolStripMenuItem.Text = "真人发音";
             this.SoundToolStripMenuItem.Click += new System.EventHandler(this.SoundToolStripMenuItem_Click);
             // 
             // btnExportKnownWords
             // 
             this.btnExportKnownWords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportKnownWords.Location = new System.Drawing.Point(779, 654);
+            this.btnExportKnownWords.Location = new System.Drawing.Point(779, 604);
             this.btnExportKnownWords.Name = "btnExportKnownWords";
-            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 46);
+            this.btnExportKnownWords.Size = new System.Drawing.Size(75, 42);
             this.btnExportKnownWords.TabIndex = 4;
             this.btnExportKnownWords.Text = "导 出";
             this.btnExportKnownWords.UseVisualStyleBackColor = true;
@@ -226,20 +229,30 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnAddKnownWords);
             this.groupBox1.Controls.Add(this.rtbKnownWords);
-            this.groupBox1.Location = new System.Drawing.Point(8, 635);
+            this.groupBox1.Location = new System.Drawing.Point(8, 586);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(482, 73);
+            this.groupBox1.Size = new System.Drawing.Size(523, 67);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "添加熟悉的单词";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(209, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(173, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "一个单词一行，不要带标点符号";
+            // 
             // btnAddKnownWords
             // 
-            this.btnAddKnownWords.Location = new System.Drawing.Point(363, 17);
+            this.btnAddKnownWords.Location = new System.Drawing.Point(435, 17);
             this.btnAddKnownWords.Name = "btnAddKnownWords";
-            this.btnAddKnownWords.Size = new System.Drawing.Size(75, 46);
+            this.btnAddKnownWords.Size = new System.Drawing.Size(75, 42);
             this.btnAddKnownWords.TabIndex = 2;
             this.btnAddKnownWords.Text = "添 加";
             this.btnAddKnownWords.UseVisualStyleBackColor = true;
@@ -247,25 +260,34 @@
             // 
             // rtbKnownWords
             // 
-            this.rtbKnownWords.Location = new System.Drawing.Point(6, 19);
+            this.rtbKnownWords.Location = new System.Drawing.Point(6, 18);
             this.rtbKnownWords.Name = "rtbKnownWords";
-            this.rtbKnownWords.Size = new System.Drawing.Size(197, 44);
+            this.rtbKnownWords.Size = new System.Drawing.Size(197, 41);
             this.rtbKnownWords.TabIndex = 0;
             this.rtbKnownWords.Text = "";
             this.toolTip1.SetToolTip(this.rtbKnownWords, "请输入您认识的单词，一行一个单词");
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txbNewWordSearch);
             this.tabPage2.Controls.Add(this.dgvUnknownWords);
             this.tabPage2.Controls.Add(this.btnExportUnknownWords);
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(889, 716);
+            this.tabPage2.Size = new System.Drawing.Size(889, 659);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "生词本";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txbNewWordSearch
+            // 
+            this.txbNewWordSearch.Location = new System.Drawing.Point(8, 6);
+            this.txbNewWordSearch.Name = "txbNewWordSearch";
+            this.txbNewWordSearch.Size = new System.Drawing.Size(135, 21);
+            this.txbNewWordSearch.TabIndex = 7;
+            this.txbNewWordSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbNewWordSearch_KeyDown);
             // 
             // dgvUnknownWords
             // 
@@ -284,7 +306,7 @@
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn4});
             this.dgvUnknownWords.ContextMenuStrip = this.unknownContextMenuStrip;
-            this.dgvUnknownWords.Location = new System.Drawing.Point(8, 6);
+            this.dgvUnknownWords.Location = new System.Drawing.Point(8, 33);
             this.dgvUnknownWords.Name = "dgvUnknownWords";
             this.dgvUnknownWords.ReadOnly = true;
             this.dgvUnknownWords.RowHeadersVisible = false;
@@ -293,7 +315,7 @@
             this.dgvUnknownWords.ShowCellToolTips = false;
             this.dgvUnknownWords.ShowEditingIcon = false;
             this.dgvUnknownWords.ShowRowErrors = false;
-            this.dgvUnknownWords.Size = new System.Drawing.Size(873, 631);
+            this.dgvUnknownWords.Size = new System.Drawing.Size(873, 555);
             this.dgvUnknownWords.TabIndex = 6;
             this.dgvUnknownWords.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnknownWords_CellClick);
             this.dgvUnknownWords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnknownWords_CellDoubleClick);
@@ -302,12 +324,12 @@
             // IsStar
             // 
             this.IsStar.DataPropertyName = "IsStar";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Blue;
-            this.IsStar.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
+            this.IsStar.DefaultCellStyle = dataGridViewCellStyle1;
             this.IsStar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.IsStar.Frozen = true;
             this.IsStar.HeaderText = "☆";
@@ -363,35 +385,35 @@
             this.RemoveWordFromUnknowToolStripMenuItem,
             this.PronunToolStripMenuItem});
             this.unknownContextMenuStrip.Name = "unknownContextMenuStrip";
-            this.unknownContextMenuStrip.Size = new System.Drawing.Size(207, 70);
+            this.unknownContextMenuStrip.Size = new System.Drawing.Size(209, 70);
             // 
             // move2KnownToolStripMenuItem
             // 
             this.move2KnownToolStripMenuItem.Name = "move2KnownToolStripMenuItem";
-            this.move2KnownToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.move2KnownToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.move2KnownToolStripMenuItem.Text = "终于记住了！移出生词本";
             this.move2KnownToolStripMenuItem.Click += new System.EventHandler(this.move2KnownToolStripMenuItem_Click);
             // 
             // RemoveWordFromUnknowToolStripMenuItem
             // 
             this.RemoveWordFromUnknowToolStripMenuItem.Name = "RemoveWordFromUnknowToolStripMenuItem";
-            this.RemoveWordFromUnknowToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.RemoveWordFromUnknowToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.RemoveWordFromUnknowToolStripMenuItem.Text = "不是单词，删除";
             this.RemoveWordFromUnknowToolStripMenuItem.Click += new System.EventHandler(this.RemoveWordFromUnknowToolStripMenuItem_Click);
             // 
             // PronunToolStripMenuItem
             // 
             this.PronunToolStripMenuItem.Name = "PronunToolStripMenuItem";
-            this.PronunToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.PronunToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.PronunToolStripMenuItem.Text = "真人发音";
             this.PronunToolStripMenuItem.Click += new System.EventHandler(this.PronunToolStripMenuItem_Click);
             // 
             // btnExportUnknownWords
             // 
             this.btnExportUnknownWords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportUnknownWords.Location = new System.Drawing.Point(762, 662);
+            this.btnExportUnknownWords.Location = new System.Drawing.Point(762, 611);
             this.btnExportUnknownWords.Name = "btnExportUnknownWords";
-            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 46);
+            this.btnExportUnknownWords.Size = new System.Drawing.Size(75, 42);
             this.btnExportUnknownWords.TabIndex = 5;
             this.btnExportUnknownWords.Text = "导 出";
             this.btnExportUnknownWords.UseVisualStyleBackColor = true;
@@ -400,20 +422,30 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.btnAddNewWords);
             this.groupBox2.Controls.Add(this.rtbNewWords);
-            this.groupBox2.Location = new System.Drawing.Point(8, 643);
+            this.groupBox2.Location = new System.Drawing.Point(8, 594);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(482, 73);
+            this.groupBox2.Size = new System.Drawing.Size(482, 67);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "添加生词";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(182, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(173, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "一个单词一行，不要带标点符号";
+            // 
             // btnAddNewWords
             // 
-            this.btnAddNewWords.Location = new System.Drawing.Point(371, 19);
+            this.btnAddNewWords.Location = new System.Drawing.Point(371, 18);
             this.btnAddNewWords.Name = "btnAddNewWords";
-            this.btnAddNewWords.Size = new System.Drawing.Size(75, 46);
+            this.btnAddNewWords.Size = new System.Drawing.Size(75, 42);
             this.btnAddNewWords.TabIndex = 2;
             this.btnAddNewWords.Text = "添 加";
             this.btnAddNewWords.UseVisualStyleBackColor = true;
@@ -421,9 +453,9 @@
             // 
             // rtbNewWords
             // 
-            this.rtbNewWords.Location = new System.Drawing.Point(6, 19);
+            this.rtbNewWords.Location = new System.Drawing.Point(6, 18);
             this.rtbNewWords.Name = "rtbNewWords";
-            this.rtbNewWords.Size = new System.Drawing.Size(263, 46);
+            this.rtbNewWords.Size = new System.Drawing.Size(143, 43);
             this.rtbNewWords.TabIndex = 0;
             this.rtbNewWords.Text = "";
             // 
@@ -437,16 +469,16 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(889, 716);
+            this.tabPage3.Size = new System.Drawing.Size(889, 659);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "单词记录";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btnCleanAll
             // 
-            this.btnCleanAll.Location = new System.Drawing.Point(722, 14);
+            this.btnCleanAll.Location = new System.Drawing.Point(722, 13);
             this.btnCleanAll.Name = "btnCleanAll";
-            this.btnCleanAll.Size = new System.Drawing.Size(93, 23);
+            this.btnCleanAll.Size = new System.Drawing.Size(93, 21);
             this.btnCleanAll.TabIndex = 8;
             this.btnCleanAll.Text = "清空所有记录";
             this.btnCleanAll.UseVisualStyleBackColor = true;
@@ -468,7 +500,7 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn8});
             this.dgvQueryResult.ContextMenuStrip = this.unknownContextMenuStrip;
-            this.dgvQueryResult.Location = new System.Drawing.Point(10, 44);
+            this.dgvQueryResult.Location = new System.Drawing.Point(10, 41);
             this.dgvQueryResult.Name = "dgvQueryResult";
             this.dgvQueryResult.ReadOnly = true;
             this.dgvQueryResult.RowHeadersVisible = false;
@@ -477,7 +509,7 @@
             this.dgvQueryResult.ShowCellToolTips = false;
             this.dgvQueryResult.ShowEditingIcon = false;
             this.dgvQueryResult.ShowRowErrors = false;
-            this.dgvQueryResult.Size = new System.Drawing.Size(873, 672);
+            this.dgvQueryResult.Size = new System.Drawing.Size(873, 620);
             this.dgvQueryResult.TabIndex = 7;
             this.dgvQueryResult.Resize += new System.EventHandler(this.dgvQueryResult_Resize);
             // 
@@ -528,26 +560,26 @@
             // 
             // txbWordQueryInput
             // 
-            this.txbWordQueryInput.Location = new System.Drawing.Point(55, 15);
+            this.txbWordQueryInput.Location = new System.Drawing.Point(55, 14);
             this.txbWordQueryInput.Name = "txbWordQueryInput";
-            this.txbWordQueryInput.Size = new System.Drawing.Size(140, 20);
+            this.txbWordQueryInput.Size = new System.Drawing.Size(140, 21);
             this.txbWordQueryInput.TabIndex = 2;
             this.txbWordQueryInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbWordQueryInput_KeyDown);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 18);
+            this.label5.Location = new System.Drawing.Point(8, 17);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 1;
             this.label5.Text = "单词：";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(232, 13);
+            this.btnSearch.Location = new System.Drawing.Point(232, 12);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 25);
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "查 询";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -568,9 +600,9 @@
             // 
             // UserVocabularyMgtForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(897, 742);
+            this.ClientSize = new System.Drawing.Size(897, 685);
             this.Controls.Add(this.tabControl1);
             this.Name = "UserVocabularyMgtForm";
             this.Text = "词汇管理";
@@ -581,10 +613,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvKnownWords)).EndInit();
             this.knownContextMenuStrip.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnknownWords)).EndInit();
             this.unknownContextMenuStrip.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueryResult)).EndInit();
@@ -641,5 +676,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txbNewWordSearch;
+        private System.Windows.Forms.Label label2;
     }
 }

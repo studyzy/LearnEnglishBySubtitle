@@ -61,11 +61,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.dgvSubtitleSentence = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TimeLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SentenceTranslateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubtitleSentence)).BeginInit();
@@ -93,7 +93,7 @@
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.Filter = "Srt Files|*.srt|Ass Files|*.ass";
+            this.openFileDialog1.Filter = "Srt Files|*.srt|Ass Files|*.ass|Txt Files|*.txt";
             // 
             // btnParse
             // 
@@ -348,20 +348,6 @@
             this.dgvSubtitleSentence.TabIndex = 15;
             this.dgvSubtitleSentence.Resize += new System.EventHandler(this.dgvSubtitleSentence_Resize);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SentenceTranslateToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
-            // 
-            // SentenceTranslateToolStripMenuItem
-            // 
-            this.SentenceTranslateToolStripMenuItem.Name = "SentenceTranslateToolStripMenuItem";
-            this.SentenceTranslateToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
-            this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
-            // 
             // ID
             // 
             this.ID.DataPropertyName = "Number";
@@ -383,6 +369,20 @@
             this.Sentence.Name = "Sentence";
             this.Sentence.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Sentence.Width = 539;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SentenceTranslateToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // SentenceTranslateToolStripMenuItem
+            // 
+            this.SentenceTranslateToolStripMenuItem.Name = "SentenceTranslateToolStripMenuItem";
+            this.SentenceTranslateToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.SentenceTranslateToolStripMenuItem.Text = "整句翻译";
+            this.SentenceTranslateToolStripMenuItem.Click += new System.EventHandler(this.SentenceTranslateToolStripMenuItem_Click);
             // 
             // MainForm
             // 

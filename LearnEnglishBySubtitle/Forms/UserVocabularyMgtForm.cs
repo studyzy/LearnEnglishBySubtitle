@@ -40,6 +40,12 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void BindList()
         {
+            BindKnownWordsList();
+            BindUnknowWordsList();
+        }
+
+        private void BindKnownWordsList()
+        {
             logger.Debug("Begin Load Know Words");
             var knowns =
                 dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known)
@@ -53,11 +59,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
 
             logger.Debug("Finish Load Know Words");
+        }
+
+        private void BindUnknowWordsList()
+        {
             logger.Debug("Begin Load Unknown Words");
             var notknown =
                 dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown)
                     .Select(w => new VUserWord(w))
-                   .OrderByDescending(v=>v.IsStar)
+                   .OrderByDescending(v => v.IsStar)
                     .ThenBy(v => v.Word)
                     .ToList();
             //dgvUnknownWords.Rows.Clear();
@@ -362,6 +372,27 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
         }
 
+        private void txbNewWordSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            string keyword = txbNewWordSearch.Text;
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (keyword == "")
+                {
+                    BindUnknowWordsList();
+                }
+                else
+                {
+                    var notknown =
+                dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown&& v.Word.Contains(keyword))
+                    .Select(w => new VUserWord(w))
+                   .OrderByDescending(v => v.IsStar)
+                    .ThenBy(v => v.Word)
+                    .ToList();
+                    dgvUnknownWords.DataSource = notknown;
+                }
+            }
+        }
     }
 
     public class VUserWord

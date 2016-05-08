@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgbtnIgnore = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IsNewWord = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IsStar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Word = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShowCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubtitleSentence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Means = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.NewMean = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +54,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgbtnIgnore,
             this.IsNewWord,
+            this.IsStar,
             this.Word,
             this.ShowCount,
             this.SubtitleSentence,
@@ -70,60 +72,8 @@
             this.dataGridView1.Size = new System.Drawing.Size(790, 402);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
-            // 
-            // dgbtnIgnore
-            // 
-            this.dgbtnIgnore.FillWeight = 50F;
-            this.dgbtnIgnore.HeaderText = "忽略";
-            this.dgbtnIgnore.Name = "dgbtnIgnore";
-            this.dgbtnIgnore.ReadOnly = true;
-            this.dgbtnIgnore.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgbtnIgnore.Text = "X";
-            this.dgbtnIgnore.ToolTipText = "不是单词或没记忆的必要，以后不会再出现";
-            this.dgbtnIgnore.Width = 40;
-            // 
-            // IsNewWord
-            // 
-            this.IsNewWord.HeaderText = "是否生词";
-            this.IsNewWord.Name = "IsNewWord";
-            this.IsNewWord.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsNewWord.Text = "认识";
-            this.IsNewWord.ToolTipText = "已牢记该单词，以后不再显示";
-            this.IsNewWord.Width = 40;
-            // 
-            // Word
-            // 
-            this.Word.HeaderText = "单词";
-            this.Word.Name = "Word";
-            this.Word.ReadOnly = true;
-            this.Word.Width = 75;
-            // 
-            // ShowCount
-            // 
-            this.ShowCount.HeaderText = "词频";
-            this.ShowCount.Name = "ShowCount";
-            this.ShowCount.ReadOnly = true;
-            this.ShowCount.Width = 30;
-            // 
-            // SubtitleSentence
-            // 
-            this.SubtitleSentence.HeaderText = "原文";
-            this.SubtitleSentence.Name = "SubtitleSentence";
-            this.SubtitleSentence.ReadOnly = true;
-            this.SubtitleSentence.Width = 300;
-            // 
-            // Means
-            // 
-            this.Means.HeaderText = "解释";
-            this.Means.Name = "Means";
-            this.Means.Width = 240;
-            // 
-            // NewMean
-            // 
-            this.NewMean.HeaderText = "新解释";
-            this.NewMean.Name = "NewMean";
-            this.NewMean.Width = 80;
             // 
             // btnOK
             // 
@@ -156,6 +106,65 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "如果某单词是地名人名或太生僻，不想记录，请点忽略按钮。\r\n是认识的单词，请点记住按钮。\r\n剩下的单词会记录到用户的生词本中，并在字幕中进行注释。";
             // 
+            // dgbtnIgnore
+            // 
+            this.dgbtnIgnore.FillWeight = 50F;
+            this.dgbtnIgnore.HeaderText = "忽略";
+            this.dgbtnIgnore.Name = "dgbtnIgnore";
+            this.dgbtnIgnore.ReadOnly = true;
+            this.dgbtnIgnore.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgbtnIgnore.Text = "X";
+            this.dgbtnIgnore.ToolTipText = "不是单词或没记忆的必要，以后不会再出现";
+            this.dgbtnIgnore.Width = 40;
+            // 
+            // IsNewWord
+            // 
+            this.IsNewWord.HeaderText = "是否生词";
+            this.IsNewWord.Name = "IsNewWord";
+            this.IsNewWord.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsNewWord.Text = "认识";
+            this.IsNewWord.ToolTipText = "已牢记该单词，以后不再显示";
+            this.IsNewWord.Width = 40;
+            // 
+            // IsStar
+            // 
+            this.IsStar.HeaderText = "关注";
+            this.IsStar.Name = "IsStar";
+            this.IsStar.Width = 30;
+            // 
+            // Word
+            // 
+            this.Word.HeaderText = "单词";
+            this.Word.Name = "Word";
+            this.Word.ReadOnly = true;
+            this.Word.Width = 75;
+            // 
+            // ShowCount
+            // 
+            this.ShowCount.HeaderText = "词频";
+            this.ShowCount.Name = "ShowCount";
+            this.ShowCount.ReadOnly = true;
+            this.ShowCount.Width = 30;
+            // 
+            // SubtitleSentence
+            // 
+            this.SubtitleSentence.HeaderText = "原文";
+            this.SubtitleSentence.Name = "SubtitleSentence";
+            this.SubtitleSentence.ReadOnly = true;
+            this.SubtitleSentence.Width = 300;
+            // 
+            // Means
+            // 
+            this.Means.HeaderText = "解释";
+            this.Means.Name = "Means";
+            this.Means.Width = 240;
+            // 
+            // NewMean
+            // 
+            this.NewMean.HeaderText = "自定义解释";
+            this.NewMean.Name = "NewMean";
+            this.NewMean.Width = 80;
+            // 
             // NewWordConfirmForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -184,6 +193,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewButtonColumn dgbtnIgnore;
         private System.Windows.Forms.DataGridViewButtonColumn IsNewWord;
+        private System.Windows.Forms.DataGridViewButtonColumn IsStar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word;
         private System.Windows.Forms.DataGridViewTextBoxColumn ShowCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubtitleSentence;

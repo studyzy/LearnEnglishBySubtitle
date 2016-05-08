@@ -192,7 +192,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private IDictionary<string, SubtitleWord> PickNewWords(ICollection<SubtitleLine> subtitles)
         {
             Dictionary<string, SubtitleWord> result = new Dictionary<string, SubtitleWord>();
-            var knownWords = DbOperator.Instance.GetAllUserKnownVocabulary().Select(v=>v.Word).ToList();
+            var unknownWords = DbOperator.Instance.GetAllUserUnKnownVocabulary().ToDictionary(s=>s.Word,s=>s.IsStar);
             var texts = subtitles.Select(s => s.EnglishText).ToList();
            
             foreach (var line in texts)
@@ -201,10 +201,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 foreach (KeyValuePair<string, string> keyValuePair in lineResult)
                 {
                     string original = keyValuePair.Key;
-                    if (knownWords.Contains(original)) continue;
+                    //if (knownWords.Contains(original)) continue;
                     string word = keyValuePair.Value;
                   
-                    if(knownWords.Contains(word)) continue;
+                    //if(knownWords.Contains(word)) continue;
                     if (result.ContainsKey(original))
                     {
                         result[original].ShowCount++;
@@ -227,6 +227,10 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                             SubtitleSentence = line,
                             SelectMean = mean.DefaultMean == null ? mean.Means[0].ToString() : mean.DefaultMean.ToString()
                         };
+                        if (unknownWords.ContainsKey(mean.Word))
+                        {
+                            wd.IsStar = unknownWords[mean.Word];
+                        }
                         result.Add(original, wd);
                     }
                 }
@@ -254,16 +258,17 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 {
                     var word = s.ToLower();
                     string mean = "";
+                    SubtitleWord wordWithMean = null;
                     if (words.ContainsKey(s))//这个词需要注释
                     {
-                         mean = words[s].SelectMean;
+                        wordWithMean = words[s];
                     }
                     else if (words.ContainsKey(word))
                     {
-                        mean = words[word].SelectMean;
+                        wordWithMean = words[word];
                     }
-
-                    if (mean != "")
+                    mean = wordWithMean?.SelectMean;
+                    if (!String.IsNullOrEmpty(mean))
                     {
                         if (Global.ShortMean)
                         {
@@ -271,7 +276,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                             mean = meanarray[0];
                             mean = mean.Substring(mean.IndexOf(' ') + 1);
                         }
-                        sb.Append(string.Format("{0}({1})", s, mean.Trim()));
+                        var formatted = string.Format("{0}({1})", s, mean.Trim());
+                        if (wordWithMean.IsStar)
+                        {
+                            //标星的单词，需要突出显示
+                            formatted = String.Format("<font color='{0}'>{1}</font>", ColorTranslator.ToHtml(meanColor), formatted);
+                        }
+                        sb.Append(formatted);
                     }
                     else
                     {
@@ -394,22 +405,22 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 MessageBox.Show("请先点击“载入字幕”按钮打开字幕文件");
                 return;
             }
-            if (meanColor != default(Color))
-            {
-                Regex r=new Regex(@"\(([^\)]+)\)");
-                var fontFormat = "(<font color='#" + meanColor.R.ToString("x2") + meanColor.G.ToString("x2") +
-                             meanColor.B.ToString("x2") + "'>$1</font>)";
-                foreach (var kv in nsubtitle.Bodies)
-                {
-                    var line = kv.Value;
-                    if (r.IsMatch(line.Text))
-                    {
-                        line.Text = r.Replace(line.Text, fontFormat);
-                    }
-                }
+            //if (meanColor != default(Color))
+            //{
+            //    Regex r=new Regex(@"\(([^\)]+)\)");
+            //    var fontFormat = "(<font color='#" + meanColor.R.ToString("x2") + meanColor.G.ToString("x2") +
+            //                 meanColor.B.ToString("x2") + "'>$1</font>)";
+            //    foreach (var kv in nsubtitle.Bodies)
+            //    {
+            //        var line = kv.Value;
+            //        if (r.IsMatch(line.Text))
+            //        {
+            //            line.Text = r.Replace(line.Text, fontFormat);
+            //        }
+            //    }
 
               
-            }
+            //}
             var path = txbSubtitleFilePath.Text;
             var newFile = Path.GetDirectoryName(path)+"\\" +Path.GetFileNameWithoutExtension(path)+ "_new"+Path.GetExtension(path);
             //if(!File.Exists(newFile))
@@ -473,7 +484,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             }
         }
 
-        private Color meanColor;
+        private Color meanColor=Color.Red;
 
         private void ToolStripMenuItemDictionaryConfig_Click(object sender, EventArgs e)
         {

@@ -69,9 +69,9 @@ namespace Studyzy.LearnEnglishBySubtitle
          private EnglishWordService englishWordService = new EnglishWordService();
         private IList<string> knownVocabulary;
         private IList<string> ignores;
-        public IList<string> SpecialWords = new List<string>(); 
+        public IList<string> SpecialWords = new List<string>();
         /// <summary>
-        /// 找出一个句子中的所有生词
+        /// 找出一个句子中的所有生词（Key为生词的原型，Value为生词在句子中的形式）
         /// </summary>
         /// <param name="line">一句英文句子</param>
         /// <returns>Key为生词的原型，Value为生词在句子中的形式</returns>
@@ -81,7 +81,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             {
                 knownVocabulary =
                     DbOperator.Instance.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Known)
-                        .Select(v => v.Word.ToLower())
+                        .Select(v => v.Word)
                         .ToList();
                 ignores = DbOperator.Instance.GetAllIgnoreWords().Select(v => v.Word).ToList();
             }
@@ -92,7 +92,7 @@ namespace Studyzy.LearnEnglishBySubtitle
             foreach (string w in array)
             {
                 var wordLow = w.ToLower();
-                if (IsEasyWord(wordLow))
+                if (IsEasyWord(wordLow))//简单词汇，忽略
                 {
                     continue;
                 }
@@ -123,17 +123,28 @@ namespace Studyzy.LearnEnglishBySubtitle
                     }
                 }
                 var original = englishWordService.GetOriginalWord(wordLow);
-               
+               //改成小写后，判断小写单词和其原型是否认识
                 if (knownVocabulary.Contains(wordLow) || knownVocabulary.Contains(original) || ignores.Contains(wordLow) ||
                     ignores.Contains(original))
                 {
                     //认识的单词，忽略
                     continue;
                 }
+                if (original != wordLow)
+                {
+                    var wordMean = Global.DictionaryService.GetChineseMeanInDict(wordLow);
+                    if (wordMean != null)
+                    {
+                      var originalMean=  Global.DictionaryService.GetChineseMeanInDict(original);
+                        if (!wordMean.Detail.Contains( originalMean.Detail))
+                        {
+                            //找到的原型不对
+                            original = wordLow;
+                        }
+                    }
+                }
                 result.Add(new KeyValuePair<string, string>(original,w));
-               
 
-               
             }
             return result;
         }

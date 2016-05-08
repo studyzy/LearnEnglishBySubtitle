@@ -312,6 +312,7 @@
       <DependentUpon>InnerDictionary.resx</DependentUpon>
     </Compile>
     <Compile Include="PronunciationDownloader.cs" />
+    <Compile Include="Subtitles\TxtOperator.cs" />
     <Compile Include="TranslateServices\BaiduTranslateService.cs" />
     <Compile Include="TranslateServices\GoogleTranslateService.cs" />
     <Compile Include="TranslateServices\MsTranslateService.cs" />

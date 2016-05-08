@@ -92,7 +92,7 @@ namespace Studyzy.LearnEnglishBySubtitle
 
                     UserVocabulary uv = new UserVocabulary() { Word = word.Word, Source = source, KnownStatus = word.IsKnown ? KnownStatus.Known : KnownStatus.Unknown };
                     allUserVocabulary.Add(uv);
-                    //SaveUserVocabulary(uv);
+                    SaveUserVocabulary(uv);
                 }
             }
 
@@ -121,6 +121,10 @@ namespace Studyzy.LearnEnglishBySubtitle
         public IList<UserVocabulary> GetAllUserKnownVocabulary()
         {
             return context.UserVocabulary.Where(v=>v.KnownStatus== KnownStatus.Known).ToList();
+        }
+        public IList<UserVocabulary> GetAllUserUnKnownVocabulary()
+        {
+            return context.UserVocabulary.Where(v => v.KnownStatus == KnownStatus.Unknown).ToList();
         }
         public void AddIgnoreWord(string word)
         {
@@ -245,9 +249,12 @@ namespace Studyzy.LearnEnglishBySubtitle
                     vocabulary = new UserVocabulary();
                     vocabulary.CreateTime = DateTime.Now;
                 }
-
+                else
+                {
+                   vocabulary.IsStar = userNewWord.IsStar;
+                }
                 vocabulary.Word = userNewWord.Word;
-                vocabulary.Source = "字幕";
+                vocabulary.Source = subtitleName;
                 vocabulary.Sentence = userNewWord.SubtitleSentence;
                 vocabulary.KnownStatus = userNewWord.IsNewWord ? KnownStatus.Unknown : KnownStatus.Known;
                 vocabulary.UpdateTime = DateTime.Now;

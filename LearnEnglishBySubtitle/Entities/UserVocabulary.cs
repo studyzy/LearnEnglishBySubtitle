@@ -32,7 +32,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Entities
         /// </summary>
         public string Sentence { get; set; }
         /// <summary>
-        /// 是否加星
+        /// 是否加星（加星表示这个单词很重要，以后每次出现，我都应该着重显示）
         /// </summary>
         public bool IsStar { get; set; }
         public  DateTime CreateTime { get; set; }

@@ -17,6 +17,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
             foreach (var block in blocks)
             {
                 var array = block.Split(new string[] {"\r","\n"}, StringSplitOptions.RemoveEmptyEntries);
+                if(array.Length<3) continue;
                 var srt = new SubtitleLine();
                 var num = array[0];
                 srt.Number = ++index;

@@ -11,7 +11,12 @@ namespace Studyzy.LearnEnglishBySubtitle
         public SubtitleWord()
         {
             IsNewWord = true;
+            IsStar = false;
         }
+        /// <summary>
+        /// 是否是标星的单词
+        /// </summary>
+        public bool IsStar { get; set; }
         /// <summary>
         /// 在该字母中的词频
         /// </summary>

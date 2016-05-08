@@ -8,7 +8,7 @@ using System.Text;
 namespace Studyzy.LearnEnglishBySubtitle.Entities
 {
     /// <summary>
-    /// 记录了用户的生词
+    /// 记录了用户的生词的出现情况
     /// </summary>
     [Table("Subtitle_NewWord")]
     public class Subtitle_NewWord

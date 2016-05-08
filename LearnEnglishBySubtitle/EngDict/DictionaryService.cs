@@ -147,6 +147,11 @@ namespace Studyzy.LearnEnglishBySubtitle.EngDict
             }
             return null;
         }
+        /// <summary>
+        /// 字典中是否有这个词
+        /// </summary>
+        /// <param name="word"></param>
+        /// <returns></returns>
         public virtual bool IsInDictionary(string word)
         {
             return EngDictionary.ContainsKey(word);

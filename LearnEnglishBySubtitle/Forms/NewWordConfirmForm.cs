@@ -39,16 +39,18 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 btn.Value = "X";
                 var btn1 = row.Cells[1] as DataGridViewButtonCell;
                 btn1.Value = "记住";
+                var btn2 = row.Cells[2] as DataGridViewButtonCell;
+                btn2.Value = subtitleWord.IsStar? "★": "☆";
                 //row.Cells[1].Value = subtitleWord.IsNewWord;
-                row.Cells[2].Value = subtitleWord.Word;
-                row.Cells[3].Value = subtitleWord.ShowCount;
-                row.Cells[4].Value = subtitleWord.SubtitleSentence;
-                var cbx = row.Cells[5] as DataGridViewComboBoxCell;
+                row.Cells[3].Value = subtitleWord.Word;
+                row.Cells[4].Value = subtitleWord.ShowCount;
+                row.Cells[5].Value = subtitleWord.SubtitleSentence;
+                var cbx = row.Cells[6] as DataGridViewComboBoxCell;
                 if (subtitleWord.Means.Count == 1)
                 {
                     row.Cells.Remove(cbx);
                     DataGridViewTextBoxCell txb = new DataGridViewTextBoxCell();
-                    row.Cells.Insert(5,txb);
+                    row.Cells.Insert(6,txb);
                     txb.ReadOnly = true;
                     txb.Value = subtitleWord.Means[0];
                 }
@@ -88,14 +90,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 //var c1 = Convert.ToBoolean(row.Cells[1].Value);
-                var c2 = row.Cells[2].Value;
-                var word = DataSource.Where(w => w.Word == c2).SingleOrDefault();
+                var c3 = row.Cells[3].Value;
+                var word = DataSource.Where(w => w.Word == c3).SingleOrDefault();
                 word.IsNewWord = true;
-
-                var userMean = row.Cells[6].Value;
+                word.IsStar = row.Cells[2].Value == "★";
+                var userMean = row.Cells[7].Value;
                 if (userMean == null || userMean.ToString().Trim() == String.Empty)
                 {
-                    word.SelectMean = row.Cells[5].Value.ToString();
+                    word.SelectMean = row.Cells[6].Value.ToString();
                 }
                 else
                 {
@@ -119,9 +121,9 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void NewWordConfirmForm_Resize(object sender, EventArgs e)
         {
-            var rest= this.Width - 300;
-            dataGridView1.Columns[4].Width = rest/2;
+            var rest= this.Width - 330;
             dataGridView1.Columns[5].Width = rest/2;
+            dataGridView1.Columns[6].Width = rest/2;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -133,15 +135,19 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            string word = null;
+            if (e.RowIndex >= 0)
+            {
+                word= dataGridView1.Rows[e.RowIndex].Cells["Word"].Value.ToString();
+            }
             if (e.ColumnIndex == 0)
             {
-                string w = dataGridView1.Rows[e.RowIndex].Cells["Word"].Value.ToString();
-                dbOperator.AddIgnoreWord(w);
+            
+                dbOperator.AddIgnoreWord(word);
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
             }
             if (e.ColumnIndex == 1) //已经记住该单词
             {
-                string word = dataGridView1.Rows[e.RowIndex].Cells["Word"].Value.ToString();
                 string sentence = dataGridView1.Rows[e.RowIndex].Cells["SubtitleSentence"].Value.ToString();
                 //var subtitleName = Path.GetFileNameWithoutExtension(SubtitleFileName);
                 var userVo = dbOperator.GetUserWord(word);
@@ -152,7 +158,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     
                         Word = word,
                         Sentence = sentence,
-                        Source = "字幕",
+                        Source = this.SubtitleFileName,
                         CreateTime = DateTime.Now
                    
                     };
@@ -162,15 +168,34 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 dbOperator.SaveUserVocabulary(userVo);
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
             }
+            else if (e.ColumnIndex == 2) //IsStar
+            {
+               var star = dataGridView1.Rows[e.RowIndex].Cells["IsStar"].Value;
+                if (star == "☆")
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = "★";
+                    dbOperator.UpdateStarFlag(word, true);
+                }
+                else if (star == "★")
+                {
+                    dataGridView1.Rows[e.RowIndex].Cells[2].Value = "☆";
+                    dbOperator.UpdateStarFlag(word, false);
+                }
+            }
         }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 2) //双击单词本身
+            if (e.ColumnIndex == 3) //双击单词本身
             {
                 string word = dataGridView1.Rows[e.RowIndex].Cells["Word"].Value.ToString();
                 PronunciationDownloader.DownloadAndPlay(word);
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
             {
                 case ".srt":return new SrtOperator();
                 case ".ass":return new AssOperator();
+                case ".txt":return new TxtOperator();
                 default:throw new Exception("unkown file extension:"+ex);
             }
         }
