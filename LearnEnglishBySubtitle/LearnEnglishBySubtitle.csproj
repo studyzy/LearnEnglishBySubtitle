@@ -173,12 +173,8 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="slf4j-api, Version=1.7.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stanford.NLP.POSTagger.3.6.0.0\lib\slf4j-api.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="stanford-postagger-3.6.0, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stanford.NLP.POSTagger.3.6.0.0\lib\stanford-postagger-3.6.0.dll</HintPath>
+    <Reference Include="stanford-postagger-3.7.0, Version=3.7.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stanford.NLP.POSTagger.3.7.0.1\lib\stanford-postagger-3.7.0.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -45,16 +45,19 @@ namespace Studyzy.LearnEnglishBySubtitle
         //    }
         //}
 
-        private string Parse(string subtitleLine)
+        private List<string> Parse(string subtitleLine)
         {
             //IList<KeyValuePair<string, string>> list=new List<KeyValuePair<string, string>>();
-            string result = "";
+            List<string> result = new List<string>();
             var sentences = MaxentTagger.tokenizeText(new StringReader(subtitleLine)).toArray();
             foreach (ArrayList sentence in sentences)
             {
                 var taggedSentence = tagger.tagSentence(sentence);
-                string r = Sentence.listToString(taggedSentence, false);
-                result += r;
+                //string r = Sentence.listToString(taggedSentence, false);
+                foreach (var o in taggedSentence.toArray())
+                {
+                    result.Add(o.ToString());
+                }
                 //var array = result.Split(' ');
                 //foreach (string s in array)
                 //{
@@ -288,17 +291,28 @@ namespace Studyzy.LearnEnglishBySubtitle
 
         private string GetTag(string word, string sentence)
         {
-            var wordList = Parse(sentence) + " ";
-            Regex regex = new Regex("\\b" + word + @"/(.*?)\s");
-            var match = regex.Match(wordList);
+            var wordList = Parse(sentence);
 
-            if (match.Success) //知道单词的词性
+            foreach (var item in wordList)
             {
-                var p = match.Groups[1].Value;
-                var pro = ConvertTag(p);
-                return pro;
+                if (item.StartsWith(word+"/"))
+                {
+                    var p = item.Substring(word.Length+1);
+                    var pro = ConvertTag(p);
+                    return pro;
+                }
             }
             return null;
+            //Regex regex = new Regex("\\b" + word + @"/(.*?)\s");
+            //var match = regex.Match(wordList);
+
+            //if (match.Success) //知道单词的词性
+            //{
+            //    var p = match.Groups[1].Value;
+            //    var pro = ConvertTag(p);
+            //    return pro;
+            //}
+            //return null;
         }
 
         private const string mappingTable = @"CC	conj.
