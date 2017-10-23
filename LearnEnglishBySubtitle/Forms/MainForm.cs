@@ -520,7 +520,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void ToolStripMenuItemDonate_Click(object sender, EventArgs e)
         {
-            //Process.Start("http://imewlconverter.googlecode.com/svn/wiki/donate.html");
+           
             DonationForm donation=new DonationForm();
             donation.Show();
             donation.Activate();
@@ -528,14 +528,14 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
         private void ToolStripMenuItemLastVersion_Click(object sender, EventArgs e)
         {
-            Process.Start("https://sourceforge.net/projects/learnenglishbysubtitle/files/");
+            Process.Start("https://github.com/studyzy/LearnEnglishBySubtitle/releases");
         }
 
        
 
         private void ToolStripMenuItemHelp_Click(object sender, EventArgs e)
         {
-            Process.Start("https://code.google.com/p/learn-english-by-subtitle");
+            Process.Start("https://github.com/studyzy/LearnEnglishBySubtitle/wiki");
         }
 
      
@@ -615,7 +615,15 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 if (cell.ColumnIndex == 2)//只对字幕句子进行翻译
                 {
                     var sentence = cell.Value.ToString();
-                    cell.Value = sentence+"\r\n"+ translateService.TranslateToChinese(sentence);
+                    try
+                    {
+                        cell.Value = sentence + "\r\n" + translateService.TranslateToChinese(sentence);
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        MessageBox.Show("整句翻译服务调用失败，请尝试其他服务");
+                    }
                 }
             }
         }

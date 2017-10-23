@@ -225,28 +225,30 @@
             this.YoudaoToolStripMenuItem.CheckOnClick = true;
             this.YoudaoToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.YoudaoToolStripMenuItem.Name = "YoudaoToolStripMenuItem";
-            this.YoudaoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.YoudaoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.YoudaoToolStripMenuItem.Text = "有道翻译";
             this.YoudaoToolStripMenuItem.Click += new System.EventHandler(this.YoudaoToolStripMenuItem_Click);
             // 
             // BaiduToolStripMenuItem
             // 
             this.BaiduToolStripMenuItem.Name = "BaiduToolStripMenuItem";
-            this.BaiduToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.BaiduToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.BaiduToolStripMenuItem.Text = "百度翻译";
             this.BaiduToolStripMenuItem.Click += new System.EventHandler(this.BaiduToolStripMenuItem_Click);
             // 
             // MicrosoftToolStripMenuItem
             // 
+            this.MicrosoftToolStripMenuItem.Enabled = false;
             this.MicrosoftToolStripMenuItem.Name = "MicrosoftToolStripMenuItem";
-            this.MicrosoftToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.MicrosoftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.MicrosoftToolStripMenuItem.Text = "微软翻译";
             this.MicrosoftToolStripMenuItem.Click += new System.EventHandler(this.MicrosoftToolStripMenuItem_Click);
             // 
             // GoogleToolStripMenuItem
             // 
+            this.GoogleToolStripMenuItem.Enabled = false;
             this.GoogleToolStripMenuItem.Name = "GoogleToolStripMenuItem";
-            this.GoogleToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.GoogleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GoogleToolStripMenuItem.Text = "谷歌翻译";
             this.GoogleToolStripMenuItem.Click += new System.EventHandler(this.GoogleToolStripMenuItem_Click);
             // 
@@ -279,14 +281,14 @@
             // ToolStripMenuItemLastVersion
             // 
             this.ToolStripMenuItemLastVersion.Name = "ToolStripMenuItemLastVersion";
-            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemLastVersion.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemLastVersion.Text = "查看最新版本";
             this.ToolStripMenuItemLastVersion.Click += new System.EventHandler(this.ToolStripMenuItemLastVersion_Click);
             // 
             // ToolStripMenuItemHelp
             // 
             this.ToolStripMenuItemHelp.Name = "ToolStripMenuItemHelp";
-            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemHelp.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemHelp.Text = "帮助";
             this.ToolStripMenuItemHelp.Click += new System.EventHandler(this.ToolStripMenuItemHelp_Click);
             // 
@@ -294,14 +296,14 @@
             // 
             this.ToolStripMenuItemDonate.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuItemDonate.Image")));
             this.ToolStripMenuItemDonate.Name = "ToolStripMenuItemDonate";
-            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemDonate.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemDonate.Text = "捐赠";
             this.ToolStripMenuItemDonate.Click += new System.EventHandler(this.ToolStripMenuItemDonate_Click);
             // 
             // ToolStripMenuItemAbount
             // 
             this.ToolStripMenuItemAbount.Name = "ToolStripMenuItemAbount";
-            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(148, 22);
+            this.ToolStripMenuItemAbount.Size = new System.Drawing.Size(152, 22);
             this.ToolStripMenuItemAbount.Text = "关于";
             this.ToolStripMenuItemAbount.Click += new System.EventHandler(this.ToolStripMenuItemAbount_Click);
             // 

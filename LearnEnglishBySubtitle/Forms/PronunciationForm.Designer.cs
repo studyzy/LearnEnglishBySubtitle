@@ -38,9 +38,9 @@
             // 
             this.rbUK.AutoSize = true;
             this.rbUK.Checked = true;
-            this.rbUK.Location = new System.Drawing.Point(23, 26);
+            this.rbUK.Location = new System.Drawing.Point(23, 24);
             this.rbUK.Name = "rbUK";
-            this.rbUK.Size = new System.Drawing.Size(73, 17);
+            this.rbUK.Size = new System.Drawing.Size(71, 16);
             this.rbUK.TabIndex = 0;
             this.rbUK.TabStop = true;
             this.rbUK.Text = "英式发音";
@@ -49,9 +49,9 @@
             // rbUS
             // 
             this.rbUS.AutoSize = true;
-            this.rbUS.Location = new System.Drawing.Point(128, 26);
+            this.rbUS.Location = new System.Drawing.Point(128, 24);
             this.rbUS.Name = "rbUS";
-            this.rbUS.Size = new System.Drawing.Size(73, 17);
+            this.rbUS.Size = new System.Drawing.Size(71, 16);
             this.rbUS.TabIndex = 0;
             this.rbUS.Text = "美式发音";
             this.rbUS.UseVisualStyleBackColor = true;
@@ -61,18 +61,18 @@
             this.cbxDownload.AutoSize = true;
             this.cbxDownload.Checked = true;
             this.cbxDownload.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxDownload.Location = new System.Drawing.Point(23, 75);
+            this.cbxDownload.Location = new System.Drawing.Point(23, 69);
             this.cbxDownload.Name = "cbxDownload";
-            this.cbxDownload.Size = new System.Drawing.Size(146, 17);
+            this.cbxDownload.Size = new System.Drawing.Size(144, 16);
             this.cbxDownload.TabIndex = 1;
             this.cbxDownload.Text = "自动下载所有单词发音";
             this.cbxDownload.UseVisualStyleBackColor = true;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(241, 122);
+            this.btnOK.Location = new System.Drawing.Point(241, 113);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(75, 21);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -80,9 +80,9 @@
             // 
             // PronunciationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(343, 160);
+            this.ClientSize = new System.Drawing.Size(343, 148);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.cbxDownload);
             this.Controls.Add(this.rbUS);
@@ -91,7 +91,7 @@
             this.MinimizeBox = false;
             this.Name = "PronunciationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PronunciationForm";
+            this.Text = "真人发音设置";
             this.Load += new System.EventHandler(this.PronunciationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
