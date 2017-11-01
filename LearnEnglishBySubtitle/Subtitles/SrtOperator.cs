@@ -16,29 +16,34 @@ namespace Studyzy.LearnEnglishBySubtitle.Subtitles
             int index = 0;
             foreach (var block in blocks)
             {
-                var array = block.Split(new string[] {"\r","\n"}, StringSplitOptions.RemoveEmptyEntries);
-                if(array.Length<3) continue;
-                var srt = new SubtitleLine();
-                var num = array[0];
-                srt.Number = ++index;
-
-                var tarray = array[1].Split(new string[] { " --> " }, StringSplitOptions.RemoveEmptyEntries);
-                srt.StartTime = Convert.ToDateTime("2000-01-01 " + tarray[0].Replace(',', '.').Replace(" ",""));
-                srt.EndTime = Convert.ToDateTime("2000-01-01 " + tarray[1].Replace(',', '.').Replace(" ", ""));
-
-                
-                srt.Text = "";
-                for (var i = 2; i < array.Length;i++ )
-                    srt.Text += array[i]+"\r\n";
-                if (srt.Text != "")
-                {
-                    srt.Text= srt.Text.Remove(srt.Text.Length - 2, 2);
-                }
-                result.Add(index,srt);
+                index++;
+                result.Add(index,ParseLine(block,index));
             }
             Subtitle st = new Subtitle(){Bodies=result};
-            //ReCalcSequence(st);
             return st;
+        }
+
+        private SubtitleLine ParseLine(string block,int number)
+        {
+            var array = block.Split(new string[] { "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            if (array.Length < 3) return null;
+            var srt = new SubtitleLine();
+            var num = array[0];
+            srt.Number = number;
+
+            var tarray = array[1].Split(new string[] { " --> " }, StringSplitOptions.RemoveEmptyEntries);
+            srt.StartTime = Convert.ToDateTime("2000-01-01 " + tarray[0].Replace(',', '.').Replace(" ", ""));
+            srt.EndTime = Convert.ToDateTime("2000-01-01 " + tarray[1].Replace(',', '.').Replace(" ", ""));
+
+
+            srt.Text = "";
+            for (var i = 2; i < array.Length; i++)
+                srt.Text += array[i] + " ";
+            if (srt.Text != "")
+            {
+                srt.Text = srt.Text.Trim();
+            }
+            return srt;
         }
 
         //private void ReCalcSequence(Subtitle subtitle)

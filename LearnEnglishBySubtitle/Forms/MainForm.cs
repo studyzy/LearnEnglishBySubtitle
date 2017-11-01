@@ -448,6 +448,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 line.StartTime = orgLine.StartTime;
                 line.EndTime = orgLine.EndTime;
                 line.Text = row.Cells[2].Value.ToString();
+                line.OriginalText = orgLine.OriginalText;
                 nsubtitle.Bodies.Add(number,line);
             }
             return nsubtitle;
