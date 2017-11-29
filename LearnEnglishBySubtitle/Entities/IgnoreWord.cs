@@ -18,8 +18,13 @@ namespace Studyzy.LearnEnglishBySubtitle.Entities
         /// </summary>
         [Key]
         public  long Id { get; set; }
+        /// <summary>
+        /// 单词
+        /// </summary>
         public  string Word { get; set; }
-    
+        /// <summary>
+        /// 忽略的时间
+        /// </summary>
         public  DateTime CreateTime { get; set; }
      
     }

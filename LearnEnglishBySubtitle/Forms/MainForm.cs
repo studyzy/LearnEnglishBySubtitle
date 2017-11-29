@@ -19,6 +19,7 @@ using Studyzy.LearnEnglishBySubtitle.Entities;
 using Studyzy.LearnEnglishBySubtitle.Helpers;
 using Studyzy.LearnEnglishBySubtitle.Subtitles;
 using Studyzy.LearnEnglishBySubtitle.TranslateServices;
+using System.Reflection;
 
 namespace Studyzy.LearnEnglishBySubtitle.Forms
 {
@@ -110,6 +111,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadConfig();
+            LoadTitle();
             backgroundLoadDictionary.RunWorkerAsync();
             PronunciationDownloader.DownloadPronunciation();
         }
@@ -637,7 +639,11 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                 LoadConfig();
             }
         }
-
+        private void LoadTitle()
+        {
+            Version v = Assembly.GetExecutingAssembly().GetName().Version;
+            Text = "深蓝英文字幕助手" + v.Major + "." + v.Minor;
+        }
 
         private void LoadConfig()
         {

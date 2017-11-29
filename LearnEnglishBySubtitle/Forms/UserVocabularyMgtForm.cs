@@ -42,6 +42,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             BindKnownWordsList();
             BindUnknowWordsList();
+            BindIgnoreWordsList();
         }
 
         private void BindKnownWordsList()
@@ -79,7 +80,20 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
             tabPage2.Text = string.Format("生词本({0})", notknown.Count);
             logger.Debug("Finish Load Unknown Words");
         }
-
+        private void BindIgnoreWordsList()
+        {
+            logger.Debug("Begin Load ignore Words");
+            var ignores =
+                dbOperator.GetAllIgnoreWords().Select(w=>new{Word=w.Word,CreateTime=w.CreateTime,ButtonText="移除"}).ToList();
+            //dgvUnknownWords.Rows.Clear();
+            dgvIgnores.AutoGenerateColumns = false;
+            //cbxUnknownList.ClearSelected();
+            dgvIgnores.DataSource = ignores;
+            //tabPage2.ToolTipText = notknown.ToString();
+            //this.toolTip1.SetToolTip(this.tabPage2, "生词:" + notknown.Count.ToString());
+            tabPage4.Text = string.Format("忽略词({0})", ignores.Count);
+            logger.Debug("Finish Load ignore Words");
+        }
 
 
         private void btnAddKnownWords_Click(object sender, EventArgs e)
@@ -105,7 +119,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
         {
             var vocabulary = new List<Vocabulary>();
             foreach (
-                var word in rtbKnownWords.Text.Split(new char[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries))
+                var word in rtbNewWords.Text.Split(new char[] {'\r', '\n'}, StringSplitOptions.RemoveEmptyEntries))
             {
                 var uword = dbOperator.GetUserWord(word);
                 if (uword == null || uword.KnownStatus == KnownStatus.Known)
@@ -116,7 +130,7 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
 
             dbOperator.SaveUserVocabulary(vocabulary, "手工");
             BindList();
-            rtbKnownWords.Clear();
+            rtbNewWords.Clear();
         }
 
         private void btnExportKnownWords_Click(object sender, EventArgs e)
@@ -391,6 +405,89 @@ namespace Studyzy.LearnEnglishBySubtitle.Forms
                     .ToList();
                     dgvUnknownWords.DataSource = notknown;
                 }
+            }
+        }
+
+        private void txbIgnoreSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            string keyword = txbIgnoreSearch.Text;
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (keyword == "")
+                {
+                    BindUnknowWordsList();
+                }
+                else
+                {
+                    var notknown =
+                dbOperator.FindAllUserVocabulary(v => v.KnownStatus == KnownStatus.Unknown && v.Word.Contains(keyword))
+                    .Select(w => new VUserWord(w))
+                   .OrderByDescending(v => v.IsStar)
+                    .ThenBy(v => v.Word)
+                    .ToList();
+                    dgvUnknownWords.DataSource = notknown;
+                }
+            }
+        }
+
+        private void dgvIgnores_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                string word = dgvIgnores.Rows[e.RowIndex].Cells[1].Value.ToString();
+                dbOperator.DeleteIgnoreWord(word);
+                BindIgnoreWordsList();
+            }
+        }
+
+
+        private void allAdd2UnknowntoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var vocabulary = new List<Vocabulary>();
+
+            foreach (DataGridViewRow row in dgvQueryResult.SelectedRows)
+            {
+                var word = row.Cells[0].Value.ToString();
+                row.Cells[2].Value = "是";
+                vocabulary.Add(new Vocabulary() { Word = word, IsKnown = false });
+
+            }
+
+            dbOperator.SaveUserVocabulary(vocabulary, "手工");
+            BindUnknowWordsList();
+           
+        }
+
+        private void allRememberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var vocabulary = new List<Vocabulary>();
+            foreach (DataGridViewRow row in dgvQueryResult.SelectedRows)
+            {
+                var word = row.Cells[0].Value.ToString();
+                row.Cells[2].Value = "否";
+                vocabulary.Add(new Vocabulary() { Word = word, IsKnown = true });
+            }
+            dbOperator.SaveUserVocabulary(vocabulary, "手工");
+            BindKnownWordsList();
+        }
+
+        private void allIgnoretoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvQueryResult.SelectedRows)
+            {
+                var word = row.Cells[0].Value.ToString();
+                dbOperator.DeleteUserVocabulary(word);
+                dbOperator.AddIgnoreWord(word);
+            }
+            BindIgnoreWordsList();
+        }
+
+        private void allSoundtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvQueryResult.SelectedRows)
+            {
+                var word = row.Cells[0].Value.ToString();
+                PronunciationDownloader.DownloadAndPlay(word);
             }
         }
     }

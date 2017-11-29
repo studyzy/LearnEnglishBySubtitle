@@ -148,9 +148,14 @@ namespace Studyzy.LearnEnglishBySubtitle
         }
         public IList<IgnoreWord> GetAllIgnoreWords()
         {
-            return context.IgnoreWords.ToList();
+            return context.IgnoreWords.OrderBy(w=>w.Word).ToList();
         }
-
+        public void DeleteIgnoreWord(string word)
+        {
+            var list = context.IgnoreWords.Where(w => w.Word == word);
+            context.IgnoreWords.RemoveRange(list);
+            context.SaveChanges();
+        }
         public IList<UserVocabulary> FindAllUserVocabulary(Expression<Func<UserVocabulary,bool>> funExpression)
         {
             return context.UserVocabulary.Where(funExpression).ToList();

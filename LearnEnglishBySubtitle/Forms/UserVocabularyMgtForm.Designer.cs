@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvKnownWords = new System.Windows.Forms.DataGridView();
@@ -65,6 +66,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddNewWords = new System.Windows.Forms.Button();
             this.rtbNewWords = new System.Windows.Forms.RichTextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txbIgnoreSearch = new System.Windows.Forms.TextBox();
+            this.dgvIgnores = new System.Windows.Forms.DataGridView();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnCleanAll = new System.Windows.Forms.Button();
             this.dgvQueryResult = new System.Windows.Forms.DataGridView();
@@ -80,6 +87,11 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.allWordContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.allAdd2UnknowntoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allIgnoretoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allSoundtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allRememberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKnownWords)).BeginInit();
@@ -89,14 +101,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnknownWords)).BeginInit();
             this.unknownContextMenuStrip.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIgnores)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueryResult)).BeginInit();
+            this.allWordContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -324,12 +340,12 @@
             // IsStar
             // 
             this.IsStar.DataPropertyName = "IsStar";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Blue;
-            this.IsStar.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Blue;
+            this.IsStar.DefaultCellStyle = dataGridViewCellStyle9;
             this.IsStar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.IsStar.Frozen = true;
             this.IsStar.HeaderText = "☆";
@@ -459,6 +475,87 @@
             this.rtbNewWords.TabIndex = 0;
             this.rtbNewWords.Text = "";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.txbIgnoreSearch);
+            this.tabPage4.Controls.Add(this.dgvIgnores);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(889, 659);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "忽略词";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // txbIgnoreSearch
+            // 
+            this.txbIgnoreSearch.Location = new System.Drawing.Point(8, 6);
+            this.txbIgnoreSearch.Name = "txbIgnoreSearch";
+            this.txbIgnoreSearch.Size = new System.Drawing.Size(135, 21);
+            this.txbIgnoreSearch.TabIndex = 9;
+            this.txbIgnoreSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txbIgnoreSearch_KeyDown);
+            // 
+            // dgvIgnores
+            // 
+            this.dgvIgnores.AllowUserToAddRows = false;
+            this.dgvIgnores.AllowUserToDeleteRows = false;
+            this.dgvIgnores.AllowUserToResizeRows = false;
+            this.dgvIgnores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvIgnores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvIgnores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewButtonColumn1,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn13});
+            this.dgvIgnores.Location = new System.Drawing.Point(8, 33);
+            this.dgvIgnores.Name = "dgvIgnores";
+            this.dgvIgnores.ReadOnly = true;
+            this.dgvIgnores.RowHeadersVisible = false;
+            this.dgvIgnores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvIgnores.ShowCellErrors = false;
+            this.dgvIgnores.ShowCellToolTips = false;
+            this.dgvIgnores.ShowEditingIcon = false;
+            this.dgvIgnores.ShowRowErrors = false;
+            this.dgvIgnores.Size = new System.Drawing.Size(873, 555);
+            this.dgvIgnores.TabIndex = 8;
+            this.dgvIgnores.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIgnores_CellClick);
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.DataPropertyName = "ButtonText";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Blue;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Blue;
+            this.dataGridViewButtonColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewButtonColumn1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.dataGridViewButtonColumn1.Frozen = true;
+            this.dataGridViewButtonColumn1.HeaderText = "移除";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.ReadOnly = true;
+            this.dataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewButtonColumn1.Text = "移除";
+            this.dataGridViewButtonColumn1.ToolTipText = "也许应该记住，别忽略了！";
+            this.dataGridViewButtonColumn1.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Word";
+            this.dataGridViewTextBoxColumn9.HeaderText = "单词";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "CreateTime";
+            this.dataGridViewTextBoxColumn13.HeaderText = "创建时间";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 150;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.btnCleanAll);
@@ -499,7 +596,7 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn8});
-            this.dgvQueryResult.ContextMenuStrip = this.unknownContextMenuStrip;
+            this.dgvQueryResult.ContextMenuStrip = this.allWordContextMenuStrip;
             this.dgvQueryResult.Location = new System.Drawing.Point(10, 41);
             this.dgvQueryResult.Name = "dgvQueryResult";
             this.dgvQueryResult.ReadOnly = true;
@@ -598,6 +695,44 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
+            // allWordContextMenuStrip
+            // 
+            this.allWordContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allAdd2UnknowntoolStripMenuItem,
+            this.allRememberToolStripMenuItem,
+            this.allIgnoretoolStripMenuItem,
+            this.allSoundtoolStripMenuItem});
+            this.allWordContextMenuStrip.Name = "knownContextMenuStrip";
+            this.allWordContextMenuStrip.Size = new System.Drawing.Size(197, 114);
+            // 
+            // allAdd2UnknowntoolStripMenuItem
+            // 
+            this.allAdd2UnknowntoolStripMenuItem.Name = "allAdd2UnknowntoolStripMenuItem";
+            this.allAdd2UnknowntoolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.allAdd2UnknowntoolStripMenuItem.Text = "不记得了，加入生词本";
+            this.allAdd2UnknowntoolStripMenuItem.Click += new System.EventHandler(this.allAdd2UnknowntoolStripMenuItem_Click);
+            // 
+            // allIgnoretoolStripMenuItem
+            // 
+            this.allIgnoretoolStripMenuItem.Name = "allIgnoretoolStripMenuItem";
+            this.allIgnoretoolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.allIgnoretoolStripMenuItem.Text = "不是单词，删除";
+            this.allIgnoretoolStripMenuItem.Click += new System.EventHandler(this.allIgnoretoolStripMenuItem_Click);
+            // 
+            // allSoundtoolStripMenuItem
+            // 
+            this.allSoundtoolStripMenuItem.Name = "allSoundtoolStripMenuItem";
+            this.allSoundtoolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.allSoundtoolStripMenuItem.Text = "真人发音";
+            this.allSoundtoolStripMenuItem.Click += new System.EventHandler(this.allSoundtoolStripMenuItem_Click);
+            // 
+            // allRememberToolStripMenuItem
+            // 
+            this.allRememberToolStripMenuItem.Name = "allRememberToolStripMenuItem";
+            this.allRememberToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.allRememberToolStripMenuItem.Text = "记住了，不再陌生！";
+            this.allRememberToolStripMenuItem.Click += new System.EventHandler(this.allRememberToolStripMenuItem_Click);
+            // 
             // UserVocabularyMgtForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -620,9 +755,13 @@
             this.unknownContextMenuStrip.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvIgnores)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQueryResult)).EndInit();
+            this.allWordContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -679,5 +818,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txbNewWordSearch;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox txbIgnoreSearch;
+        private System.Windows.Forms.DataGridView dgvIgnores;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.ContextMenuStrip allWordContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem allAdd2UnknowntoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allIgnoretoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allSoundtoolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allRememberToolStripMenuItem;
     }
 }
