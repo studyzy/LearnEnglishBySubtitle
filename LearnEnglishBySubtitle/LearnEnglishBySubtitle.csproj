@@ -172,9 +172,8 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="stanford-postagger-3.8.0, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Stanford.NLP.POSTagger.3.8.0.0\lib\stanford-postagger-3.8.0.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="stanford-postagger-3.9.1, Version=3.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stanford.NLP.POSTagger.3.9.1.0\lib\stanford-postagger-3.9.1.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
