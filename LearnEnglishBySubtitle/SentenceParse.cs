@@ -139,7 +139,7 @@ namespace Studyzy.LearnEnglishBySubtitle
                     if (wordMean != null)
                     {
                       var originalMean=  Global.DictionaryService.GetChineseMeanInDict(original);
-                        if (!wordMean.Detail.Contains( originalMean.Detail))
+                        if (originalMean==null|| !wordMean.Detail.Contains( originalMean.Detail))
                         {
                             //找到的原型不对
                             original = wordLow;
